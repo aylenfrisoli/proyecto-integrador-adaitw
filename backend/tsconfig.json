@@ -1,0 +1,24 @@
+{
+  // configuracion del compilador de typescript para la api
+  "compilerOptions": {
+    // version de javascript que genera, node 22 la soporta completa
+    "target": "es2023",
+    // node decide como cargar los modulos segun el "type" del package.json (commonjs)
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    // el codigo fuente vive en src y el compilado va a dist, que es lo que corre render
+    "rootDir": "src",
+    "outDir": "dist",
+    // carga los tipos de node (process, __dirname, etc), desde ts 6 no se cargan solos
+    "types": ["node"],
+    // activa todos los chequeos estrictos, asi ts nos avisa de errores antes de correr
+    "strict": true,
+    // permite importar librerias commonjs como express con import express from "express"
+    "esModuleInterop": true,
+    // no revisa los tipos internos de node_modules, compila mas rapido
+    "skipLibCheck": true,
+    // da error si un import no respeta mayusculas y minusculas, evita fallas en linux (render)
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}
