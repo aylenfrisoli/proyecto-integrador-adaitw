@@ -1,0 +1,33 @@
+.pagina {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* ficha chica en mayusculas controladas */
+.etiqueta {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.titulo {
+  margin: 0 0 1rem;
+  font-size: clamp(2.25rem, 8vw, 3.75rem);
+}
+
+.bajada {
+  max-width: 46ch;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
