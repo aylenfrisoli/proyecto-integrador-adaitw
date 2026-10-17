@@ -1,0 +1,157 @@
+/* estilos compartidos por todos los paneles del admin (categorias, obras, productos y talleres) */
+
+.seccion {
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.titulo {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+}
+
+.descripcion {
+  max-width: 56ch;
+  margin: 0 0 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* formulario en linea: el campo se estira y el boton queda al lado cuando hay lugar */
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* formulario que reemplaza a una fila mientras se edita: ocupa todo el ancho de la fila y el input se estira */
+.formularioEdicion {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.formularioEdicion .input {
+  flex: 1;
+  min-width: 12rem;
+}
+
+/* el label envuelve al input, asi hacer clic en el texto enfoca el campo */
+.campo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 14rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.campo input,
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-card);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-main);
+}
+
+.campo input:focus,
+.input:focus {
+  border-color: var(--color-brand-primary);
+  outline: 2px solid rgba(159, 118, 87, 0.25);
+}
+
+/* mensajes de resultado: exito en azul pastel y error con el rosa pastel de la paleta */
+.mensaje {
+  margin: 0 0 1.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+
+.exito {
+  background-color: rgba(196, 220, 255, 0.45);
+}
+
+.error {
+  border-color: var(--color-brand-primary);
+  background-color: rgba(246, 203, 213, 0.4);
+  color: var(--color-brand-hover);
+}
+
+/* lista de filas en vez de tabla, para que se vea bien tambien en celular */
+.lista {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-card);
+}
+
+.fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+}
+
+/* la linea fina separa las filas entre si, sin repetir el borde de la lista */
+.fila + .fila {
+  border-top: 1px solid var(--color-border);
+}
+
+.nombre {
+  font-weight: 500;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.botonChico {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  background-color: transparent;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.botonChico:hover {
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+/* borrar usa el tono tierra oscuro para distinguirse sin salirse de la paleta */
+.botonPeligro:hover {
+  background-color: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
+  color: #ffffff;
+}
+
+.botonChico:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
