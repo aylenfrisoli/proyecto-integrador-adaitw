@@ -27,7 +27,7 @@ function Navbar() {
           onClick={() => setAbierto(!abierto)}
           aria-expanded={abierto}
           aria-controls="menu-principal"
-          aria-label={abierto ? "Cerrar menu" : "Abrir menu"}
+          aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
         >
           {abierto ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
