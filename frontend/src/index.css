@@ -64,6 +64,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* las formas decorativas asoman fuera de las secciones: clip corta lo que sobra sin crear scroll horizontal ni romper el navbar sticky */
+main {
+  overflow-x: clip;
+}
+
 img {
   display: block;
   max-width: 100%;
