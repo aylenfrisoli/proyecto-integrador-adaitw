@@ -12,8 +12,8 @@ function Footer() {
         <div className={styles.brand}>
           <p className={styles.logo}>SAF Creaciones para Vos</p>
           <p className={styles.text}>
-            Piezas unicas hechas a mano, con dedicacion y calidez, para
-            inspirar y conectar a las personas con la alegria de la creatividad.
+            Piezas únicas hechas a mano, con dedicación y calidez, para
+            inspirar y conectar a las personas con la alegría de la creatividad.
           </p>
         </div>
 
@@ -31,14 +31,14 @@ function Footer() {
         </nav>
 
         <div>
-          <h2 className={styles.title}>Ubicacion</h2>
+          <h2 className={styles.title}>Ubicación</h2>
           <p className={styles.text}>Costa argentina</p>
         </div>
       </div>
 
       <div className={`container ${styles.bottom}`}>
         <small>
-          © {anio} SAF Creaciones para Vos · Sara Figarra, artista plastica
+          © {anio} SAF Creaciones para Vos · Sara Figarra, artista plástica
         </small>
       </div>
     </footer>
