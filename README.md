@@ -1,13 +1,15 @@
-# Sara Figarra · API
+# Sara Figarra · Landing, panel y API
 
-API REST para el sitio de **Sara Figarra**, artista plástica. Alimenta una landing pública (obras, productos y talleres) y un panel de administración desde el que ella carga y edita el contenido.
+Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos y talleres, y un panel de administración desde el que ella carga y edita el contenido.
 
 - **API deployada:** https://proyecto-integrador-adaitw.onrender.com
-- **Repositorio:** monorepo con las carpetas `backend/` (esta API) y `frontend/` (React con Vite, en desarrollo).
+- **Repositorio:** monorepo con las carpetas `backend/` (API REST con Express y MongoDB) y `frontend/` (React con Vite).
 
 > Render puede tardar unos segundos en responder la primera vez si la API estuvo inactiva.
 
 ## Tecnologías
+
+**Backend**
 
 - Node.js 22 + Express 5 en TypeScript (CommonJS)
 - MongoDB Atlas + Mongoose 9
@@ -15,6 +17,99 @@ API REST para el sitio de **Sara Figarra**, artista plástica. Alimenta una land
 - `bcrypt` y `jsonwebtoken` para la autenticación
 - `express-rate-limit`, `helmet` y `cors` para la seguridad
 - `morgan` para los logs y `dotenv` para las variables de entorno
+
+**Frontend**
+
+- React 19 con Vite, en JavaScript
+- `react-router-dom` 6 para las rutas
+- Módulos CSS para los estilos de cada componente y un `index.css` global con los colores y tipografías
+- `react-icons` para los íconos
+- Context API para la sesión y custom hooks (`useFetch`, `useApi`, `useAccion`) para hablar con la API
+
+## Cómo levantar el proyecto
+
+Requisitos: Node.js 22 o superior, Git y un cluster de MongoDB Atlas (el plan gratuito alcanza).
+
+Se necesitan **dos terminales**: una para el backend y otra para el frontend.
+
+### Paso 1: clonar el repositorio
+
+```bash
+git clone https://github.com/aylenfrisoli/proyecto-integrador-adaitw.git
+cd proyecto-integrador-adaitw
+```
+
+### Paso 2: levantar el backend (terminal 1)
+
+```bash
+cd backend
+npm install
+cp .env.example .env     # abrí el .env y completá los valores (ver la tabla de variables)
+npm run seed             # crea la cuenta de administradora con el email y la contraseña del .env
+npm run seed:demo        # opcional: carga obras, productos y talleres de ejemplo
+npm run dev              # levanta la API en http://localhost:3000
+```
+
+Para saber si anduvo, abrí http://localhost:3000 en el navegador: tiene que responder sin errores.
+
+### Paso 3: levantar el frontend (terminal 2)
+
+```bash
+cd frontend
+npm install
+cp .env.example .env     # trae VITE_API_URL=http://localhost:3000, que ya sirve para desarrollo
+npm run dev              # levanta el sitio en http://localhost:5173
+```
+
+### Paso 4: usar el sitio
+
+- **Landing pública:** http://localhost:5173
+- **Panel de administración:** entrá a http://localhost:5173/login con el `ADMIN_EMAIL` y el `ADMIN_PASSWORD` que pusiste en el `.env` del backend.
+
+### Si algo no anda
+
+- **El navegador muestra un error de CORS o la landing dice que no hay conexión:** `CORS_ORIGIN` del backend tiene que ser exactamente la URL del front (`http://localhost:5173`). Si Vite abrió otro puerto, cambiá `CORS_ORIGIN` y reiniciá el backend.
+- **El login responde "demasiados intentos":** después de 5 intentos fallidos hay que esperar 15 minutos.
+- **El backend no arranca y avisa que falta una variable:** revisá que el `.env` tenga todos los valores de la tabla de abajo.
+
+### Scripts del backend
+
+| Script                   | Qué hace                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------- |
+| `npm run dev`            | levanta la API con recarga automática (`tsx watch`)                             |
+| `npm run build`          | compila TypeScript a la carpeta `dist/`                                         |
+| `npm start`              | corre la versión compilada (`dist/server.js`)                                   |
+| `npm run seed`           | crea la cuenta admin; si ya existe, no la duplica                               |
+| `npm run seed:demo`      | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
+| `npm run seed:demo:borrar` | borra solo los datos que cargó el seed demo, sin tocar lo cargado desde el panel |
+
+El seed demo escribe en la base que indique `MONGO_URI`, así que si apunta a Atlas también se ve en la API deployada. Los datos de ejemplo quedan cargados en producción hasta que Sara suba su contenido real; entonces se sacan con `seed:demo:borrar`, que no toca lo que ella cargue desde el panel.
+
+### Variables de entorno
+
+| Variable         | Descripción                                                          |
+| ---------------- | -------------------------------------------------------------------- |
+| `PORT`           | puerto donde escucha la API (Render define el suyo)                  |
+| `MONGO_URI`      | URI de conexión a Atlas, con el nombre de la base (`sara-figarra`)   |
+| `JWT_SECRET`     | clave para firmar los tokens, larga y difícil de adivinar            |
+| `JWT_EXPIRES_IN` | duración de la sesión, por ejemplo `1d`                              |
+| `CORS_ORIGIN`    | URL del front que puede consumir la API (en desarrollo, Vite: `http://localhost:5173`; en producción, la del front deployado) |
+| `ADMIN_EMAIL`    | email de la cuenta admin que crea el seed                            |
+| `ADMIN_PASSWORD` | contraseña de la cuenta admin que crea el seed                       |
+
+### Scripts del frontend
+
+| Script            | Qué hace                                              |
+| ----------------- | ----------------------------------------------------- |
+| `npm run dev`     | levanta el sitio con recarga automática (Vite)        |
+| `npm run build`   | genera la versión de producción en `frontend/dist/`   |
+| `npm run preview` | sirve la versión compilada para probarla              |
+
+### Variable de entorno del frontend
+
+| Variable       | Descripción                                                                     |
+| -------------- | ------------------------------------------------------------------------------- |
+| `VITE_API_URL` | URL de la API (`http://localhost:3000` en desarrollo, la de Render en producción) |
 
 ## Estructura del backend
 
@@ -31,43 +126,30 @@ backend/src/
 └── server.ts      conecta la base y levanta el servidor
 ```
 
-## Instalación y ejecución
+## Estructura del frontend
 
-Requisitos: Node.js 22 o superior y un cluster de MongoDB Atlas.
-
-```bash
-git clone https://github.com/aylenfrisoli/proyecto-integrador-adaitw.git
-cd proyecto-integrador-adaitw/backend
-npm install
-cp .env.example .env     # completá los valores (ver la tabla de abajo)
-npm run seed             # crea la cuenta de administradora
-npm run dev              # levanta la API en http://localhost:3000
+```
+frontend/src/
+├── components/    piezas de la landing (Hero, tarjetas, listas) y del panel (formularios y listas de administración)
+├── config/        URL de la API, secciones de la navbar y datos de contacto (WhatsApp y redes)
+├── context/       AuthContext: guarda la sesión de la administradora
+├── hooks/         useFetch (leer datos), useApi (escribir con el token) y useAccion (estado de cada acción)
+├── pages/         HomePage, LoginPage, AdminPage y NotFoundPage
+├── utils/         funciones puras para formatear precios y fechas, filtrar y leer el token
+├── App.jsx        define las rutas
+└── main.jsx       punto de entrada
 ```
 
-### Scripts
+### Rutas del frontend
 
-| Script                   | Qué hace                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------- |
-| `npm run dev`            | levanta la API con recarga automática (`tsx watch`)                             |
-| `npm run build`          | compila TypeScript a la carpeta `dist/`                                         |
-| `npm start`              | corre la versión compilada (`dist/server.js`)                                   |
-| `npm run seed`           | crea la cuenta admin; si ya existe, no la duplica                               |
-| `npm run seed:demo`      | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
-| `npm run seed:demo:borrar` | borra solo los datos que cargó el seed demo, sin tocar lo cargado desde el panel |
+| Ruta                  | Acceso    | Qué muestra                                                  |
+| --------------------- | --------- | ------------------------------------------------------------ |
+| `/`                   | público   | landing con obras, productos, talleres y la sección sobre Sara |
+| `/login`              | público   | formulario de ingreso de la administradora                   |
+| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos` y `talleres` |
+| cualquier otra ruta   | público   | página 404                                                   |
 
-El seed demo escribe en la base que indique `MONGO_URI`, así que si apunta a Atlas también se ve en la API deployada. Conviene borrarlo (`seed:demo:borrar`) antes de la entrega.
-
-### Variables de entorno
-
-| Variable         | Descripción                                                          |
-| ---------------- | -------------------------------------------------------------------- |
-| `PORT`           | puerto donde escucha la API (Render define el suyo)                  |
-| `MONGO_URI`      | URI de conexión a Atlas, con el nombre de la base (`sara-figarra`)   |
-| `JWT_SECRET`     | clave para firmar los tokens, larga y difícil de adivinar            |
-| `JWT_EXPIRES_IN` | duración de la sesión, por ejemplo `1d`                              |
-| `CORS_ORIGIN`    | URL del front que puede consumir la API (en desarrollo, Vite: `http://localhost:5173`) |
-| `ADMIN_EMAIL`    | email de la cuenta admin que crea el seed                            |
-| `ADMIN_PASSWORD` | contraseña de la cuenta admin que crea el seed                       |
+`/admin` redirige a `/admin/categorias`. Si alguien entra al panel sin sesión, lo manda al login; si el token vence, cierra la sesión solo.
 
 ## Autenticación
 
@@ -240,4 +322,4 @@ Corrida completa contra la API local y contra la de Render: 56 requests y 82 ase
 ## Mejoras a futuro
 
 - Subir las imágenes desde el panel en lugar de pegar la URL.
-- Terminar el frontend (landing pública y panel de administración).
+- Reemplazar el número de WhatsApp de ejemplo por el real en `frontend/src/config/contacto.js`.
