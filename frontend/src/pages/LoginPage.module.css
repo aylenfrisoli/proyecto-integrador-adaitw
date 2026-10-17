@@ -1,0 +1,92 @@
+/* pagina completa con la tarjeta centrada */
+.pagina {
+  display: grid;
+  min-height: 100vh;
+  padding: 1.5rem;
+  place-items: center;
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 26rem;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-card);
+}
+
+.logo {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.titulo {
+  margin: 0 0 0.75rem;
+  font-size: 2rem;
+}
+
+.bajada {
+  margin: 0 0 1.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* el label envuelve al input, asi hacer clic en el texto enfoca el campo */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.campo input {
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-main);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-main);
+}
+
+.campo input:focus {
+  border-color: var(--color-brand-primary);
+  outline: 2px solid rgba(159, 118, 87, 0.25);
+}
+
+/* el error usa el rosa pastel de la paleta en vez de un rojo */
+.error {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-brand-primary);
+  border-radius: var(--radius-sm);
+  background-color: rgba(246, 203, 213, 0.4);
+  font-size: 0.9rem;
+  color: var(--color-brand-hover);
+}
+
+.formulario button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.volver {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.volver:hover {
+  color: var(--color-brand-primary);
+}
