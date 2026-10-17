@@ -53,6 +53,8 @@
 }
 
 .campo input,
+.campo textarea,
+.campo select,
 .input {
   padding: 0.75rem 1rem;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -64,6 +66,8 @@
 }
 
 .campo input:focus,
+.campo textarea:focus,
+.campo select:focus,
 .input:focus {
   border-color: var(--color-brand-primary);
   outline: 2px solid rgba(159, 118, 87, 0.25);
@@ -154,4 +158,100 @@
 .botonChico:disabled {
   opacity: 0.5;
   cursor: wait;
+}
+
+/* barra de arriba de la lista: titulo a la izquierda y el boton de crear a la derecha */
+.barraLista {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* texto chico de ayuda debajo de un boton o un campo */
+.pista {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* tarjeta que contiene el formulario completo de una obra, un producto o un taller */
+.tarjetaForm {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-card);
+}
+
+.tituloForm {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* campos uno debajo del otro; el ancho minimo de .campo se anula porque aca ocupan toda la fila */
+.formularioColumna {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.formularioColumna .campo {
+  flex: none;
+  min-width: 0;
+}
+
+.campo textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+/* separa los botones de guardar y cancelar de los campos */
+.accionesForm {
+  margin-top: 1.5rem;
+}
+
+/* vista previa de la imagen: misma proporcion 4/5 que usa la landing para las obras */
+.vistaPrevia {
+  width: 9rem;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+/* version cuadrada para los productos */
+.vistaPreviaCuadrada {
+  aspect-ratio: 1 / 1;
+}
+
+/* contenido de una fila con imagen: miniatura a la izquierda y los textos al lado */
+.filaContenido {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.miniatura {
+  flex-shrink: 0;
+  width: 3.2rem;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.miniaturaCuadrada {
+  aspect-ratio: 1 / 1;
+}
+
+.metadato {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
 }
