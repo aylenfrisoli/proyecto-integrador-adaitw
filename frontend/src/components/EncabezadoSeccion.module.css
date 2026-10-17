@@ -1,0 +1,25 @@
+.encabezado {
+  margin-bottom: 2rem;
+}
+
+/* ficha chica en mayusculas controladas, como las de un catalogo */
+.etiqueta {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.titulo {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.descripcion {
+  max-width: 52ch;
+  margin: 1rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
