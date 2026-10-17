@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
@@ -11,9 +11,14 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
-      {/* el panel solo se muestra con sesion iniciada; ProtectedRoute redirige al login si no la hay */}
+      {/* /admin solo redirige a la primera seccion del panel */}
       <Route
         path="/admin"
+        element={<Navigate to="/admin/categorias" replace />}
+      />
+      {/* el panel solo se muestra con sesion iniciada; :seccion dice que panel abrir (categorias, obras...) */}
+      <Route
+        path="/admin/:seccion"
         element={
           <ProtectedRoute>
             <AdminPage />
