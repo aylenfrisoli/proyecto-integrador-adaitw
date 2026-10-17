@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import AdminTabs from "../components/AdminTabs";
 import CategoriasAdmin from "../components/CategoriasAdmin";
 import ObrasAdmin from "../components/ObrasAdmin";
+import ProductosAdmin from "../components/ProductosAdmin";
 import { useAuth } from "../context/AuthContext";
 import NotFoundPage from "./NotFoundPage";
 import styles from "./AdminPage.module.css";
@@ -11,6 +12,7 @@ import styles from "./AdminPage.module.css";
 const PANELES = [
   { id: "categorias", nombre: "Categorías", componente: CategoriasAdmin },
   { id: "obras", nombre: "Obras", componente: ObrasAdmin },
+  { id: "productos", nombre: "Productos", componente: ProductosAdmin },
 ];
 
 // estructura del panel de administracion: cabecera con acciones, pestañas y el panel de la seccion elegida
