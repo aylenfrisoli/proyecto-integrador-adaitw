@@ -4,6 +4,7 @@ import { filtrarPorCategoria, obtenerCategorias } from "../utils/categorias";
 import CategoriaFilter from "./CategoriaFilter";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
+import FormaDecorativa from "./FormaDecorativa";
 import ObraCard from "./ObraCard";
 import styles from "./ObrasList.module.css";
 
@@ -20,8 +21,12 @@ function ObrasList() {
 
   return (
     <section id="obras" className={`container ${styles.seccion}`}>
+      {/* formas que asoman por los costados, donde queda lugar en blanco */}
+      <FormaDecorativa tipo="ovalo" color="lila" tamano="5rem" lado="izquierda" arriba="28%" />
+      <FormaDecorativa tipo="cuarto" color="melocoton" tamano="4rem" lado="derecha" arriba="62%" />
       <EncabezadoSeccion
         etiqueta="Obras"
+        forma={{ tipo: "gota", color: "rosa" }}
         titulo="Una obra, una historia"
         descripcion="Pinturas, collages y bordados únicos, hechos a mano con mucho color."
       />

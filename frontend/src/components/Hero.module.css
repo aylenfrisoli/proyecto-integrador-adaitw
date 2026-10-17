@@ -53,38 +53,155 @@
   justify-self: center;
 }
 
+/* cada bloque tiene tres animaciones a la vez, cada una sobre una propiedad distinta para que no se pisen:
+   entrada (transform, una sola vez), flotar (translate, infinita) y cambiarForma (border-radius, infinita) */
 .bloque {
   display: block;
+  cursor: pointer;
+  border-radius: var(--forma-a);
+  /* los nombres de las animaciones tienen que ir escritos aca y no dentro de una variable: css modules solo los renombra en la propiedad animation */
+  animation:
+    entrada 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) var(--retraso) backwards,
+    flotar var(--duracion-flote) ease-in-out var(--fase) infinite,
+    cambiarForma var(--duracion-forma) ease-in-out var(--fase) infinite alternate;
+  /* scale se anima con transition y no con transform, para que el hover y el salto se sumen sin pelearse */
+  transition: scale 0.25s ease;
+  /* cada bloque define sus propios valores abajo; estos son los de reserva */
+  --retraso: 0s;
+  --duracion-flote: 6s;
+  --duracion-forma: 7s;
+  --fase: 0s;
+}
+
+.bloque:hover {
+  scale: 1.05;
+}
+
+/* al hacer clic react suma esta clase: se repiten las tres animaciones (si no, se cortarian) y se agrega el salto al final */
+.salto {
+  animation:
+    entrada 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) var(--retraso) backwards,
+    flotar var(--duracion-flote) ease-in-out var(--fase) infinite,
+    cambiarForma var(--duracion-forma) ease-in-out var(--fase) infinite alternate,
+    saltar 0.8s ease-out;
+}
+
+/* los bloques aparecen de a uno, cayendo desde abajo con un pequeño rebote (el cubic-bezier se pasa de 1 a proposito) */
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem) scale(0.6) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* sube y baja suave, cada bloque con su propio ritmo */
+@keyframes flotar {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.6rem;
+  }
+}
+
+/* de la forma a a la forma b y vuelta; los valores salen de las variables de cada bloque */
+@keyframes cambiarForma {
+  from {
+    border-radius: var(--forma-a);
+  }
+  to {
+    border-radius: var(--forma-b);
+  }
+}
+
+/* se agacha, salta estirado y cae aplastado antes de volver a su tamaño (squash and stretch) */
+@keyframes saltar {
+  0% {
+    transform: none;
+  }
+  15% {
+    transform: scale(1.06, 0.88);
+  }
+  45% {
+    transform: translateY(-2.5rem) scale(0.94, 1.1);
+  }
+  70% {
+    transform: translateY(0) scale(1.07, 0.9);
+  }
+  85% {
+    transform: translateY(-0.5rem) scale(0.98, 1.03);
+  }
+  100% {
+    transform: none;
+  }
 }
 
 .rosa {
   grid-column: 1;
   grid-row: 1 / span 2;
   background-color: var(--color-pastel-pink);
-  border-radius: var(--radius-lg);
+  --forma-a: var(--radius-lg);
+  --forma-b: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  --retraso: 0s;
+  --duracion-flote: 6s;
+  --duracion-forma: 8s;
+  --fase: 0s;
 }
 
-/* forma de arco en la parte de arriba */
+/* forma de arco en la parte de arriba: al cambiar de forma el arco se da vuelta */
 .azul {
   grid-column: 2;
   grid-row: 1;
   background-color: var(--color-pastel-blue);
-  border-radius: 999px 999px var(--radius-md) var(--radius-md);
+  --forma-a: 999px 999px var(--radius-md) var(--radius-md);
+  --forma-b: var(--radius-md) var(--radius-md) 999px 999px;
+  --retraso: 0.15s;
+  --duracion-flote: 5s;
+  --duracion-forma: 6s;
+  --fase: -1.5s;
 }
 
 .lila {
   grid-column: 2;
   grid-row: 2 / span 2;
   background-color: var(--color-pastel-purple);
-  border-radius: var(--radius-lg);
+  --forma-a: var(--radius-lg);
+  --forma-b: 50%;
+  --retraso: 0.3s;
+  --duracion-flote: 7s;
+  --duracion-forma: 9s;
+  --fase: -3s;
 }
 
-/* cuarto de circulo, sirve de remate abajo a la izquierda */
+/* cuarto de circulo, sirve de remate abajo a la izquierda: al cambiar de forma gira la esquina redonda */
 .melocoton {
   grid-column: 1;
   grid-row: 3;
   background-color: var(--color-pastel-peach);
-  border-radius: var(--radius-md) 100% var(--radius-md) var(--radius-md);
+  --forma-a: var(--radius-md) 100% var(--radius-md) var(--radius-md);
+  --forma-b: 100% var(--radius-md) var(--radius-md) var(--radius-md);
+  --retraso: 0.45s;
+  --duracion-flote: 5.5s;
+  --duracion-forma: 5s;
+  --fase: -2s;
+}
+
+/* quien tiene activada la opcion de menos movimiento en su sistema ve el collage quieto */
+@media (prefers-reduced-motion: reduce) {
+  .bloque,
+  .salto {
+    animation: none;
+    border-radius: var(--forma-a);
+  }
+
+  .bloque:hover {
+    scale: 1;
+  }
 }
 
 @media (min-width: 900px) {

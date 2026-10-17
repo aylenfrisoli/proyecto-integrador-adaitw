@@ -1,3 +1,4 @@
+import FondoArtistico from "../components/FondoArtistico";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
@@ -10,7 +11,7 @@ import TalleresList from "../components/TalleresList";
 // la navbar y el footer viven aca y no en App porque el login y el panel no los usan
 function HomePage() {
   return (
-    <>
+    <FondoArtistico>
       <Navbar />
       <main>
         <Hero />
@@ -20,7 +21,7 @@ function HomePage() {
         <SobreSara />
       </main>
       <Footer />
-    </>
+    </FondoArtistico>
   );
 }
 
