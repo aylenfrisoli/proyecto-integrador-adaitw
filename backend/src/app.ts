@@ -2,6 +2,7 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
+import authRoutes from "./routes/auth.routes";
 import { manejarErrores, rutaNoEncontrada } from "./middlewares/error.middleware";
 
 // arma la app de express con sus middlewares, pero no la levanta: de eso se encarga server.ts
@@ -23,6 +24,9 @@ app.use(express.json());
 app.get("/", (_req, res) => {
   res.json({ message: "api de sara figarra funcionando" });
 });
+
+// rutas de autenticacion: /auth/login
+app.use("/auth", authRoutes);
 
 // estos dos van siempre al final: express prueba los middlewares en orden
 // si un pedido llego hasta aca es porque ninguna ruta lo atendio, o porque alguna tiro un error
