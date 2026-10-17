@@ -60,6 +60,39 @@
   color: var(--color-brand-primary);
 }
 
+.tituloRedes {
+  margin-top: 2rem;
+}
+
+.redes {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* boton redondo con borde fino, el icono se pinta del color de marca al pasar el mouse */
+.red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 50%;
+  color: var(--color-text-light);
+  font-size: 1.05rem;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.red:hover {
+  color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+}
+
 /* franja inferior separada por una linea fina; el copyright y el acceso se reparten el ancho */
 .bottom {
   display: flex;

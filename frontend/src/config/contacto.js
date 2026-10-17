@@ -7,3 +7,9 @@ export const WHATSAPP_NUMERO = "5491100000000";
 export function armarLinkWhatsapp(mensaje) {
   return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensaje)}`;
 }
+
+// perfiles de sara en redes sociales; el id elige el icono en el footer
+export const REDES = [
+  { id: "instagram", nombre: "Instagram", url: "https://instagram.com/safcreacionesparavos" },
+  { id: "facebook", nombre: "Facebook", url: "https://facebook.com/safcreacionesparavos" },
+];
