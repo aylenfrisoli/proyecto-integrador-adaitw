@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/api";
 
-// pide datos a la api con GET y devuelve { data, loading, error }; si cambia la ruta (ej: otro filtro) vuelve a pedir
+// pide datos a la api con GET y devuelve { data, loading, error, recargar }
+// si cambia la ruta (ej: otro filtro) vuelve a pedir, y recargar() fuerza un pedido nuevo (ej: despues de crear o borrar algo)
 function useFetch(ruta) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // un contador que solo sirve para disparar el efecto de nuevo: cada recargar() lo sube en uno
+  const [version, setVersion] = useState(0);
 
   useEffect(() => {
     // el controller permite cancelar el pedido si el componente se desmonta o la ruta cambia antes de que llegue la respuesta
@@ -48,9 +51,12 @@ function useFetch(ruta) {
 
     // limpieza del efecto: se corre al desmontar o antes de volver a ejecutar el efecto
     return () => controller.abort();
-  }, [ruta]);
+  }, [ruta, version]);
 
-  return { data, loading, error };
+  // la funcion actualizadora (v => v + 1) evita depender del valor viejo del contador
+  const recargar = () => setVersion((v) => v + 1);
+
+  return { data, loading, error, recargar };
 }
 
 export default useFetch;
