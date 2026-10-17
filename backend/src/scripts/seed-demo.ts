@@ -10,16 +10,9 @@ import { Taller } from "../models/taller.model";
 // datos de ejemplo para ver la landing y el panel con contenido; se reemplazan por los reales de sara
 // "npm run seed:demo" los carga y "npm run seed:demo:borrar" los saca
 
-const DIA_EN_MS = 24 * 60 * 60 * 1000;
-
 // imagen de relleno con los colores de la paleta; placehold.co devuelve un png con el texto que le pasemos
 function imagen(ancho: number, alto: number, fondo: string, texto: string): string {
   return `https://placehold.co/${ancho}x${alto}/${fondo}/9f7657.png?text=${encodeURIComponent(texto)}`;
-}
-
-// fecha futura a partir de hoy, asi los talleres de ejemplo nunca quedan vencidos al correr el seed
-function enDias(dias: number): Date {
-  return new Date(Date.now() + dias * DIA_EN_MS);
 }
 
 const CATEGORIAS = ["Pinturas", "Cajas", "Bordados", "Bolsos", "Papelería", "Collages"];
@@ -124,11 +117,12 @@ const PRODUCTOS: {
   },
 ];
 
+// las fechas llevan el offset -03:00 de argentina para que la hora cargada sea la de la web, sin depender de la zona de quien corra el seed
 const TALLERES = [
   {
     titulo: "Taller de Collage Creativo",
     descripcion: "Encuentro presencial para crear collages con papeles, telas y texturas. No hace falta experiencia previa.",
-    fecha: enDias(14),
+    fecha: new Date("2026-10-31T18:00:00-03:00"),
     modalidad: "presencial" as const,
     direccion: "Costanera 1234, San Bernardo del Tuyú",
     estado: "abierto" as const,
@@ -136,8 +130,25 @@ const TALLERES = [
   {
     titulo: "Iniciación a la Pintura",
     descripcion: "Un espacio ideal para principiantes: colores, pinceles y técnicas básicas paso a paso.",
-    fecha: enDias(30),
+    fecha: new Date("2026-11-16T17:00:00-03:00"),
     modalidad: "virtual" as const,
+    estado: "abierto" as const,
+  },
+  {
+    titulo: "Taller de Cianotipia",
+    descripcion:
+      "Taller virtual para descubrir la cianotipia, una técnica antigua que deja imágenes en azul profundo sobre papel o tela. Vemos el proceso paso a paso y creamos nuestras propias imágenes. Horario: de 15 a 17 hs.",
+    fecha: new Date("2026-11-20T15:00:00-03:00"),
+    modalidad: "virtual" as const,
+    estado: "abierto" as const,
+  },
+  {
+    titulo: "Workshop de Texturas",
+    descripcion:
+      "Workshop presencial para explorar texturas: probamos materiales, relieves y técnicas para darle cuerpo y carácter a nuestras obras. Horario: de 16 a 18:30 hs.",
+    fecha: new Date("2026-11-27T16:00:00-03:00"),
+    modalidad: "presencial" as const,
+    direccion: "Costanera 1234, San Bernardo del Tuyú",
     estado: "abierto" as const,
   },
 ];
