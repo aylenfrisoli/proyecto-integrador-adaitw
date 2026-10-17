@@ -1,0 +1,102 @@
+/* fondo con un tinte rosa muy suave para distinguir los productos de las obras */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: rgba(246, 203, 213, 0.2);
+}
+
+/* position relative para poder ubicar la etiqueta encima de la imagen */
+.contenedorImagen {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.5s ease,
+    opacity 0.3s ease;
+}
+
+.tarjeta:hover .imagen {
+  transform: scale(1.05);
+}
+
+.apagada {
+  opacity: 0.55;
+}
+
+.etiqueta {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.3rem 0.8rem;
+  /* el borde fino evita que la etiqueta se pierda cuando tiene el mismo color que la imagen */
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+}
+
+.disponible {
+  background-color: var(--color-pastel-blue);
+}
+
+.agotado {
+  background-color: var(--color-pastel-pink);
+}
+
+.por_encargo {
+  background-color: var(--color-pastel-peach);
+}
+
+.info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.categoria {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.titulo {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.descripcion {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* margin-top auto empuja el precio y el boton al fondo, asi quedan alineados aunque las descripciones tengan distinto largo */
+.precio {
+  margin: auto 0 1rem;
+  padding-top: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  /* tnum hace que todas las cifras ocupen el mismo ancho */
+  font-feature-settings: "tnum";
+}
+
+.boton {
+  width: 100%;
+}
