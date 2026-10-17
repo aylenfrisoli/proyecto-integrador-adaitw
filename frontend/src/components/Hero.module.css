@@ -1,0 +1,101 @@
+/* mobile first: una columna con el texto arriba y el collage abajo */
+.hero {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+/* ficha chica en mayusculas controladas, como las de un catalogo */
+.eyebrow {
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.titulo {
+  margin: 0 0 1.5rem;
+  /* clamp hace que el titular crezca con la pantalla pero sin pasarse de 3.75rem; syne es una fuente ancha y con mas tamaño se parte en demasiadas lineas */
+  font-size: clamp(2.25rem, 8vw, 3.75rem);
+}
+
+.acento {
+  color: var(--color-brand-primary);
+}
+
+.bajada {
+  max-width: 46ch;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* grilla asimetrica de 2 columnas y 3 filas: los bloques ocupan distinta cantidad de celdas */
+.collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.75rem;
+  aspect-ratio: 4 / 5;
+  max-height: 32rem;
+  width: 100%;
+  justify-self: center;
+}
+
+.bloque {
+  display: block;
+}
+
+.rosa {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  background-color: var(--color-pastel-pink);
+  border-radius: var(--radius-lg);
+}
+
+/* forma de arco en la parte de arriba */
+.azul {
+  grid-column: 2;
+  grid-row: 1;
+  background-color: var(--color-pastel-blue);
+  border-radius: 999px 999px var(--radius-md) var(--radius-md);
+}
+
+.lila {
+  grid-column: 2;
+  grid-row: 2 / span 2;
+  background-color: var(--color-pastel-purple);
+  border-radius: var(--radius-lg);
+}
+
+/* cuarto de circulo, sirve de remate abajo a la izquierda */
+.melocoton {
+  grid-column: 1;
+  grid-row: 3;
+  background-color: var(--color-pastel-peach);
+  border-radius: var(--radius-md) 100% var(--radius-md) var(--radius-md);
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: 1.25fr 1fr;
+    gap: 4rem;
+    padding-top: 5rem;
+    padding-bottom: 6rem;
+  }
+
+  .collage {
+    max-height: none;
+  }
+}
