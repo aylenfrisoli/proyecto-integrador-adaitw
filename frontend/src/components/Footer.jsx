@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SECCIONES } from "../config/secciones";
 import styles from "./Footer.module.css";
 
@@ -40,6 +41,10 @@ function Footer() {
         <small>
           © {anio} SAF Creaciones para Vos · Sara Figarra, artista plástica
         </small>
+        {/* acceso discreto al panel: no esta en la navbar porque es solo para la administradora */}
+        <Link to="/login" className={styles.acceso}>
+          Acceso administradora
+        </Link>
       </div>
     </footer>
   );
