@@ -1,29 +1,60 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import AdminTabs from "../components/AdminTabs";
+import CategoriasAdmin from "../components/CategoriasAdmin";
 import { useAuth } from "../context/AuthContext";
+import NotFoundPage from "./NotFoundPage";
 import styles from "./AdminPage.module.css";
 
-// panel de administracion: por ahora solo confirma la sesion y permite salir; el crud se suma en el proximo paso
+// paneles disponibles: el id es lo que va en la url (/admin/categorias) y componente es lo que se muestra
+// para sumar un panel nuevo alcanza con agregar una linea aca
+const PANELES = [
+  { id: "categorias", nombre: "Categorías", componente: CategoriasAdmin },
+];
+
+// estructura del panel de administracion: cabecera con acciones, pestañas y el panel de la seccion elegida
 function AdminPage() {
   const { logout } = useAuth();
+  // la seccion sale de la url: en /admin/categorias vale "categorias"
+  const { seccion } = useParams();
+
+  const panel = PANELES.find((p) => p.id === seccion);
+
+  // una seccion que no existe (ej: /admin/cosas) se trata como cualquier otra ruta inexistente
+  if (!panel) {
+    return <NotFoundPage />;
+  }
+
+  // con mayuscula inicial para que react lo use como componente y no como una etiqueta html
+  const Panel = panel.componente;
 
   return (
-    <main className={`container ${styles.pagina}`}>
-      <p className={styles.etiqueta}>Panel de administración</p>
-      <h1 className={`display-title ${styles.titulo}`}>Hola, Sara</h1>
-      <p className={styles.bajada}>
-        Iniciaste sesión correctamente. Muy pronto vas a poder gestionar tus
-        obras, productos y talleres desde acá.
-      </p>
+    <>
+      <header className={styles.cabecera}>
+        <div className={`container ${styles.barra}`}>
+          <div>
+            <p className={styles.etiqueta}>Panel de administración</p>
+            <Link to="/admin" className={`brand-logo ${styles.logo}`}>
+              SAF Creaciones para Vos
+            </Link>
+          </div>
+          <div className={styles.acciones}>
+            <Link to="/" className="btn btn-outline">
+              Ver el sitio
+            </Link>
+            <button type="button" className="btn btn-primary" onClick={logout}>
+              Cerrar sesión
+            </button>
+          </div>
+        </div>
+        <div className="container">
+          <AdminTabs paneles={PANELES} activo={panel.id} />
+        </div>
+      </header>
 
-      <div className={styles.acciones}>
-        <Link to="/" className="btn btn-outline">
-          Ver el sitio
-        </Link>
-        <button type="button" className="btn btn-primary" onClick={logout}>
-          Cerrar sesión
-        </button>
-      </div>
-    </main>
+      <main>
+        <Panel />
+      </main>
+    </>
   );
 }
 
