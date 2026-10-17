@@ -26,7 +26,7 @@ backend/src/
 ├── models/        modelos de Mongoose
 ├── routes/        rutas por entidad
 ├── schemas/       esquemas de Zod
-├── scripts/       seed para crear la cuenta admin
+├── scripts/       seed de la cuenta admin y seed demo con datos de ejemplo
 ├── app.ts         arma la app de Express
 └── server.ts      conecta la base y levanta el servidor
 ```
@@ -46,12 +46,16 @@ npm run dev              # levanta la API en http://localhost:3000
 
 ### Scripts
 
-| Script          | Qué hace                                              |
-| --------------- | ----------------------------------------------------- |
-| `npm run dev`   | levanta la API con recarga automática (`tsx watch`)   |
-| `npm run build` | compila TypeScript a la carpeta `dist/`               |
-| `npm start`     | corre la versión compilada (`dist/server.js`)         |
-| `npm run seed`  | crea la cuenta admin; si ya existe, no la duplica     |
+| Script                   | Qué hace                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------- |
+| `npm run dev`            | levanta la API con recarga automática (`tsx watch`)                             |
+| `npm run build`          | compila TypeScript a la carpeta `dist/`                                         |
+| `npm start`              | corre la versión compilada (`dist/server.js`)                                   |
+| `npm run seed`           | crea la cuenta admin; si ya existe, no la duplica                               |
+| `npm run seed:demo`      | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
+| `npm run seed:demo:borrar` | borra solo los datos que cargó el seed demo, sin tocar lo cargado desde el panel |
+
+El seed demo escribe en la base que indique `MONGO_URI`, así que si apunta a Atlas también se ve en la API deployada. Conviene borrarlo (`seed:demo:borrar`) antes de la entrega.
 
 ### Variables de entorno
 
