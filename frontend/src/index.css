@@ -114,6 +114,12 @@ img {
     border-color 0.2s ease;
 }
 
+/* un boton deshabilitado se ve apagado y no cambia de color al pasar el mouse */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .btn-primary {
   background-color: var(--color-brand-primary);
   color: #ffffff;

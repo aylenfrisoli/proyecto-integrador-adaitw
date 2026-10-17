@@ -1,42 +1,24 @@
 import { useState } from "react";
+import useAccion from "../hooks/useAccion";
 import useApi from "../hooks/useApi";
 import useFetch from "../hooks/useFetch";
 import estilos from "../styles/admin.module.css";
 import EstadoDeDatos from "./EstadoDeDatos";
+import MensajeAdmin from "./MensajeAdmin";
 
 // panel de categorias: crear, renombrar y borrar; la lista se vuelve a pedir a la api despues de cada cambio
 function CategoriasAdmin() {
   const { data: categorias, loading, error, recargar } = useFetch("/categorias");
   const { pedir } = useApi();
+  const { ejecutar, enviando, mensaje, limpiarMensaje } = useAccion(recargar);
 
   const [nombreNuevo, setNombreNuevo] = useState("");
   // id de la categoria que se esta editando; null = ninguna
   const [editandoId, setEditandoId] = useState(null);
   const [nombreEditado, setNombreEditado] = useState("");
-  // { tipo: "exito" | "error", texto } o null
-  const [mensaje, setMensaje] = useState(null);
-  const [enviando, setEnviando] = useState(false);
 
   // mientras no llegan los datos categorias es null, por eso se usa un array vacio para no romper el map
   const lista = categorias ?? [];
-
-  // corre una accion contra la api, muestra el resultado y recarga la lista
-  // devuelve true si salio bien, asi crear, editar y borrar no repiten el try/catch
-  async function ejecutar(accion, textoExito) {
-    setEnviando(true);
-    setMensaje(null);
-    try {
-      await accion();
-      setMensaje({ tipo: "exito", texto: textoExito });
-      recargar();
-      return true;
-    } catch (err) {
-      setMensaje({ tipo: "error", texto: err.message });
-      return false;
-    } finally {
-      setEnviando(false);
-    }
-  }
 
   async function crear(evento) {
     evento.preventDefault();
@@ -51,7 +33,7 @@ function CategoriasAdmin() {
   function empezarEdicion(categoria) {
     setEditandoId(categoria._id);
     setNombreEditado(categoria.nombre);
-    setMensaje(null);
+    limpiarMensaje();
   }
 
   async function guardar(evento, id) {
@@ -98,15 +80,7 @@ function CategoriasAdmin() {
         </button>
       </form>
 
-      {/* role alert para los errores y status para los avisos: los lectores de pantalla los anuncian solos */}
-      {mensaje && (
-        <p
-          className={`${estilos.mensaje} ${mensaje.tipo === "error" ? estilos.error : estilos.exito}`}
-          role={mensaje.tipo === "error" ? "alert" : "status"}
-        >
-          {mensaje.texto}
-        </p>
-      )}
+      <MensajeAdmin mensaje={mensaje} />
 
       <EstadoDeDatos
         loading={loading}
