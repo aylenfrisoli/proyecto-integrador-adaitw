@@ -1,0 +1,15 @@
+.mensaje {
+  margin: 0;
+  padding: 2rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* el error usa el tono tierra de la marca en vez de un rojo, para no romper la paleta */
+.error {
+  border-style: solid;
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-hover);
+}
