@@ -1,6 +1,17 @@
-// componente raiz: por ahora es un placeholder, las rutas y la landing se suman en los proximos pasos
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// componente raiz: arma navbar + contenido + footer; el contenido es un placeholder hasta armar la landing
 function App() {
-  return <h1>SAF Creaciones para Vos</h1>;
+  return (
+    <>
+      <Navbar />
+      <main id="inicio" className="container">
+        <h1 className="display-title">SAF Creaciones para Vos</h1>
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 export default App;

@@ -1,0 +1,105 @@
+/* ==========================================================================
+   tokens de tema: sara figarra - artista plastica
+   estilo: minimalismo editorial suizo
+   ========================================================================== */
+
+/* tipografias desde google fonts */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@500;700;800&display=swap");
+
+:root {
+  /* --- paleta principal --- */
+  --color-brand-primary: #9f7657; /* tono tierra para logo, enlaces y botones clave */
+  --color-brand-hover: #835f44; /* variante mas oscura para el estado hover */
+
+  /* pasteles para fondos, tarjetas y etiquetas */
+  --color-pastel-pink: #f6cbd5;
+  --color-pastel-purple: #ebceff;
+  --color-pastel-blue: #c4dcff;
+  --color-pastel-peach: #ffdfbd;
+
+  /* neutros de lectura y estructura */
+  --color-bg-main: #fbfbfb;
+  --color-bg-card: #ffffff;
+  --color-bg-dark: #121212; /* pie de pagina y secciones de alto contraste */
+
+  --color-text-main: #1a1a1a;
+  --color-text-muted: #6b6b6b; /* metadatos: tecnica, medidas, fechas */
+  --color-text-light: #f5f5f5; /* texto sobre fondos oscuros */
+
+  --color-border: rgba(0, 0, 0, 0.08); /* bordes ultra finos tipo editorial */
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+
+  /* --- tipografia --- */
+  --font-display:
+    "Syne", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body:
+    "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* --- medidas --- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --container-max-width: 1280px;
+}
+
+/* box-sizing border-box en todo para que el padding no agrande los elementos */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* scroll suave entre secciones; el padding evita que la navbar tape el titulo al saltar al ancla */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* titulares estilo editorial */
+.display-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--color-text-main);
+}
+
+.brand-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* divisor editorial fino */
+.editorial-divider {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  margin: 1.5rem 0;
+}
+
+/* contenedor centrado que reusan todas las secciones; solo define margen y padding horizontales (no los atajos margin/padding) para no pisar los verticales de cada componente */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}

@@ -1,0 +1,76 @@
+.footer {
+  margin-top: 4rem;
+  padding: 3.5rem 0 1.5rem;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+}
+
+/* mobile first: una columna; desde tablet la marca ocupa mas lugar que las otras dos */
+.grid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+.logo {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--color-brand-primary);
+}
+
+.text {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(245, 245, 245, 0.75);
+}
+
+/* titulos chicos en mayusculas controladas, estilo ficha tecnica */
+.title {
+  margin: 0 0 1rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.5);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--color-brand-primary);
+}
+
+/* franja inferior separada por una linea fina */
+.bottom {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-dark);
+  font-size: 0.85rem;
+  color: rgba(245, 245, 245, 0.5);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
