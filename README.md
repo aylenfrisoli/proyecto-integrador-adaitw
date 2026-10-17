@@ -199,6 +199,32 @@ Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; lo
 | 429    | demasiados intentos fallidos de login                                        |
 | 500    | error interno (no se devuelven detalles al cliente)                          |
 
+## Pruebas con Postman
+
+La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 56 requests en 6 carpetas (Auth, Categorías, Obras, Productos, Talleres, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
+
+### Cómo usarla
+
+1. En Postman: **Import** y elegí el archivo de la colección.
+2. Abrí la colección, pestaña **Variables**, y completá `adminEmail` y `adminPassword` en la columna **Current value** (van vacías para no subir credenciales al repo).
+3. Clic derecho en la colección, **Run collection** y **Run**. Tiene que correr completa y en orden: el login guarda el token y cada request usa los ids que creó el anterior.
+
+| Variable        | Para qué sirve                                                                 |
+| --------------- | ------------------------------------------------------------------------------ |
+| `baseUrl`       | dirección de la API; viene con la de Render y en local se cambia a `http://localhost:3000` |
+| `adminEmail`    | email de la cuenta admin                                                       |
+| `adminPassword` | contraseña de la cuenta admin                                                  |
+| `token`         | lo completa solo el login, no hay que tocarlo                                  |
+
+### Resultado esperado
+
+Corrida completa contra la API local y contra la de Render: 56 requests y 82 aserciones, sin fallos. La colección borra al final todo lo que crea, así la base queda como estaba.
+
+### Ojo
+
+- El login tiene rate limit (5 intentos fallidos cada 15 minutos por IP) y la colección hace 2 logins fallidos a propósito. Si se corre 3 veces seguidas, el login responde `429`: esperá 15 minutos.
+- Si `baseUrl` apunta a Render, la colección escribe en la base real mientras corre.
+
 ## Seguridad
 
 - Contraseña hasheada con `bcrypt`; el login responde igual si el email no existe, para no revelar qué cuentas hay, y compara siempre contra un hash para evitar timing attacks.
