@@ -2,6 +2,7 @@ import useFetch from "../hooks/useFetch";
 import { ordenarTalleres } from "../utils/talleres";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
+import FormaDecorativa from "./FormaDecorativa";
 import TallerCard from "./TallerCard";
 import styles from "./TalleresList.module.css";
 
@@ -14,8 +15,13 @@ function TalleresList() {
 
   return (
     <section id="talleres" className={`container ${styles.seccion}`}>
+      {/* formas que asoman por los costados, donde queda lugar en blanco */}
+      <FormaDecorativa tipo="ovalo" color="azul" tamano="5.5rem" lado="izquierda" arriba="42%" />
+      <FormaDecorativa tipo="arco" color="lila" tamano="4rem" lado="derecha" arriba="18%" />
+      <FormaDecorativa tipo="cuarto" color="rosa" tamano="3.5rem" lado="derecha" arriba="72%" />
       <EncabezadoSeccion
         etiqueta="Talleres"
+        forma={{ tipo: "cuarto", color: "melocoton" }}
         titulo="Aprendé creando"
         descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
       />

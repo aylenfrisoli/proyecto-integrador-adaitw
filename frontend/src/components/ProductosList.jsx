@@ -4,6 +4,7 @@ import { filtrarPorCategoria, obtenerCategorias } from "../utils/categorias";
 import CategoriaFilter from "./CategoriaFilter";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
+import FormaDecorativa from "./FormaDecorativa";
 import ProductoCard from "./ProductoCard";
 import styles from "./ProductosList.module.css";
 
@@ -20,8 +21,12 @@ function ProductosList() {
 
   return (
     <section id="productos" className={`container ${styles.seccion}`}>
+      {/* formas que asoman por los costados, donde queda lugar en blanco */}
+      <FormaDecorativa tipo="gota" color="rosa" tamano="5rem" lado="derecha" arriba="22%" />
+      <FormaDecorativa tipo="arco" color="azul" tamano="4rem" lado="izquierda" arriba="60%" />
       <EncabezadoSeccion
         etiqueta="Productos"
+        forma={{ tipo: "arco", color: "azul" }}
         titulo="Hecho a mano para vos"
         descripcion="Cajas, bordados, bolsos y papelería artesanales. Consultá por WhatsApp y coordinamos la entrega."
       />
