@@ -1,0 +1,171 @@
+/* formas que viven en el margen de una seccion, donde queda espacio en blanco; en pantallas angostas no hay margen y no se muestran */
+/* .forma.lateral y no solo .lateral: .forma define display: block mas abajo y con la misma especificidad le ganaria al none */
+.forma.lateral {
+  display: none;
+  position: absolute;
+  top: var(--arriba);
+  /* detras del texto: la seccion crea su propio contexto con isolation, asi el -1 no se va detras del fondo de la pagina */
+  z-index: -1;
+}
+
+@media (min-width: 1360px) {
+  .forma.lateral {
+    display: block;
+    /* hueco = margen libre a cada lado del contenedor, mas el padding de .container (1.25rem), menos 0.75rem de aire para que nunca toque el contenido
+       100vw cuenta la barra de scroll (hasta 17px), por eso se resta medio ancho de barra: 0.5rem */
+    --hueco: calc((100vw - var(--container-max-width)) / 2);
+    /* la forma nunca es mas ancha que el hueco, asi no se mete debajo del contenido ni se corta contra el borde de la pantalla */
+    width: min(var(--tamano), var(--hueco));
+    height: min(var(--tamano), var(--hueco));
+  }
+
+  /* el borde de adentro queda 0.75rem antes de donde empieza el contenido */
+  .izquierda {
+    left: calc(0.5rem - min(var(--tamano), var(--hueco)));
+  }
+
+  .derecha {
+    right: calc(0.5rem - min(var(--tamano), var(--hueco)));
+  }
+}
+
+/* invisible hasta que useAparecer le suma .visible, ahi arranca la entrada */
+.forma {
+  display: block;
+  flex-shrink: 0;
+  width: var(--tamano);
+  height: var(--tamano);
+  cursor: pointer;
+  opacity: 0;
+  border-radius: var(--forma-a);
+  /* scale va por transition y no por transform, para que el hover y el salto se sumen sin pelearse */
+  transition: scale 0.25s ease;
+  --fase: 0s;
+}
+
+.forma:hover {
+  scale: 1.1;
+}
+
+/* los nombres de las animaciones tienen que ir escritos aca y no dentro de una variable: css modules solo los renombra en la propiedad animation */
+.visible {
+  opacity: 1;
+  animation:
+    entrada 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) backwards,
+    flotar 6s ease-in-out var(--fase) infinite,
+    cambiarForma 8s ease-in-out var(--fase) infinite alternate;
+}
+
+/* al hacer clic react suma esta clase: se repiten las animaciones (si no, se cortarian) y se agrega el salto al final */
+.salto {
+  opacity: 1;
+  animation:
+    entrada 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) backwards,
+    flotar 6s ease-in-out var(--fase) infinite,
+    cambiarForma 8s ease-in-out var(--fase) infinite alternate,
+    saltar 0.8s ease-out;
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.5) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* sube y baja un poco menos que en el hero, porque son formas chicas */
+@keyframes flotar {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.4rem;
+  }
+}
+
+@keyframes cambiarForma {
+  from {
+    border-radius: var(--forma-a);
+  }
+  to {
+    border-radius: var(--forma-b);
+  }
+}
+
+/* se agacha, salta estirada y cae aplastada (squash and stretch) */
+@keyframes saltar {
+  0% {
+    transform: none;
+  }
+  15% {
+    transform: scale(1.08, 0.86);
+  }
+  45% {
+    transform: translateY(-1.5rem) scale(0.94, 1.12);
+  }
+  70% {
+    transform: translateY(0) scale(1.08, 0.9);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+/* cada tipo define entre que dos formas cambia */
+.gota {
+  --forma-a: var(--radius-lg);
+  --forma-b: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* arco: al cambiar de forma se da vuelta */
+.arco {
+  --forma-a: 999px 999px var(--radius-md) var(--radius-md);
+  --forma-b: var(--radius-md) var(--radius-md) 999px 999px;
+}
+
+.ovalo {
+  --forma-a: var(--radius-lg);
+  --forma-b: 50%;
+}
+
+/* cuarto de circulo: gira la esquina redonda */
+.cuarto {
+  --forma-a: var(--radius-md) 100% var(--radius-md) var(--radius-md);
+  --forma-b: 100% var(--radius-md) var(--radius-md) var(--radius-md);
+}
+
+.rosa {
+  background-color: var(--color-pastel-pink);
+}
+
+.lila {
+  background-color: var(--color-pastel-purple);
+}
+
+.azul {
+  background-color: var(--color-pastel-blue);
+}
+
+.melocoton {
+  background-color: var(--color-pastel-peach);
+}
+
+/* con la opcion de menos movimiento activada en el sistema las formas quedan quietas y visibles */
+@media (prefers-reduced-motion: reduce) {
+  .forma,
+  .visible,
+  .salto {
+    opacity: 1;
+    animation: none;
+    border-radius: var(--forma-a);
+  }
+
+  .forma:hover {
+    scale: 1;
+  }
+}
