@@ -1,5 +1,8 @@
 /* la linea fina de arriba separa la seccion de la anterior */
 .seccion {
+  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  position: relative;
+  isolation: isolate;
   padding-top: 4rem;
   padding-bottom: 4rem;
   border-top: 1px solid var(--color-border);

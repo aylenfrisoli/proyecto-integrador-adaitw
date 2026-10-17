@@ -1,5 +1,8 @@
 /* mobile first: una columna; la linea fina de arriba separa la seccion de la anterior */
 .seccion {
+  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  position: relative;
+  isolation: isolate;
   display: grid;
   gap: 2rem;
   padding-top: 4rem;
@@ -18,6 +21,14 @@
 .titulo {
   margin: 0;
   font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+/* align-items end apoya las dos formas sobre la misma linea aunque tengan distinto tamaño */
+.formas {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .contenido p {
