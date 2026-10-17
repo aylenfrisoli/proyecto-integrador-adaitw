@@ -130,15 +130,13 @@ const TALLERES = [
     descripcion: "Encuentro presencial para crear collages con papeles, telas y texturas. No hace falta experiencia previa.",
     fecha: enDias(14),
     modalidad: "presencial" as const,
-    // dato de ejemplo: la direccion real la carga sara desde el panel
-    direccion: "Av. Costanera 1234 (dirección de ejemplo)",
+    direccion: "Costanera 1234, San Bernardo del Tuyú",
     estado: "abierto" as const,
   },
   {
     titulo: "Iniciación a la Pintura",
     descripcion: "Un espacio ideal para principiantes: colores, pinceles y técnicas básicas paso a paso.",
     fecha: enDias(30),
-    // la modalidad real de este taller todavia no esta definida: virtual en el demo sirve para ver los dos casos
     modalidad: "virtual" as const,
     estado: "abierto" as const,
   },
