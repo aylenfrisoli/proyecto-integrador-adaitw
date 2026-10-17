@@ -1,7 +1,7 @@
 {
   "name": "proyecto-integrador-backend",
   "version": "1.0.0",
-  "description": "API REST de tareas con usuarios y autenticacion JWT",
+  "description": "API REST de Sara Figarra: obras, productos y talleres con autenticacion JWT",
   "main": "dist/server.js",
   "type": "commonjs",
   "scripts": {
