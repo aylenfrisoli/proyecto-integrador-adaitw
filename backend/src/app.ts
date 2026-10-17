@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.routes";
 import categoriaRoutes from "./routes/categoria.routes";
 import obraRoutes from "./routes/obra.routes";
 import productoRoutes from "./routes/producto.routes";
+import tallerRoutes from "./routes/taller.routes";
 import { manejarErrores, rutaNoEncontrada } from "./middlewares/error.middleware";
 
 // arma la app de express con sus middlewares, pero no la levanta: de eso se encarga server.ts
@@ -43,6 +44,9 @@ app.use("/obras", obraRoutes);
 
 // rutas de productos: /productos y /productos/:id
 app.use("/productos", productoRoutes);
+
+// rutas de talleres: /talleres y /talleres/:id
+app.use("/talleres", tallerRoutes);
 
 // estos dos van siempre al final: express prueba los middlewares en orden
 // si un pedido llego hasta aca es porque ninguna ruta lo atendio, o porque alguna tiro un error
