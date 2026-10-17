@@ -1,0 +1,26 @@
+/* la linea fina de arriba separa la seccion de la anterior */
+.seccion {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* mobile first: una columna; son pocos talleres, asi que alcanza con dos columnas en pantallas grandes */
+.grilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .grilla {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .seccion {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
