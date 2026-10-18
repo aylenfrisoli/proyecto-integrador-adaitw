@@ -1,4 +1,4 @@
-/* tarjeta de invitacion: degradado de rosa a lila pastel, los colores de la campana */
+/* tarjeta de invitacion: degradado suave de ladrillo a arena, los tonos calidos de la paleta */
 .apoyo {
   display: flex;
   flex-direction: column;
@@ -10,8 +10,8 @@
   border-radius: var(--radius-lg);
   background: linear-gradient(
     135deg,
-    rgba(246, 203, 213, 0.6),
-    rgba(235, 206, 255, 0.5)
+    color-mix(in srgb, var(--color-soft-brick) 60%, transparent),
+    color-mix(in srgb, var(--color-soft-sand) 50%, transparent)
   );
 }
 
