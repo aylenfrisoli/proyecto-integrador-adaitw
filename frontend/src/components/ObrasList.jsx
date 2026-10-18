@@ -22,11 +22,11 @@ function ObrasList() {
   return (
     <section id="obras" className={`container ${styles.seccion}`}>
       {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="ovalo" color="lila" tamano="5rem" lado="izquierda" arriba="28%" />
-      <FormaDecorativa tipo="cuarto" color="melocoton" tamano="4rem" lado="derecha" arriba="62%" />
+      <FormaDecorativa tipo="ovalo" color="arena" tamano="5rem" lado="izquierda" arriba="28%" />
+      <FormaDecorativa tipo="cuarto" color="ocre" tamano="4rem" lado="derecha" arriba="62%" />
       <EncabezadoSeccion
         etiqueta="Obras"
-        forma={{ tipo: "gota", color: "rosa" }}
+        forma={{ tipo: "gota", color: "ladrillo" }}
         titulo="Una obra, una historia"
         descripcion="Pinturas, collages y bordados únicos, hechos a mano con mucho color."
       />

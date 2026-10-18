@@ -7,38 +7,38 @@ import styles from "./FondoArtistico.module.css";
 // luces suaves de colores que respiran muy despacio detras de todo
 // profundidad: cuanto se mueven al hacer scroll (negativo = suben mas lento que la pagina, se sienten lejos)
 const LUCES = [
-  { color: "rosa", x: "-10%", arriba: "3%", tam: 38, duracion: 22, profundidad: -0.06 },
-  { color: "azul", x: "68%", arriba: "18%", tam: 42, duracion: 26, profundidad: -0.1 },
-  { color: "melocoton", x: "-14%", arriba: "40%", tam: 40, duracion: 24, profundidad: -0.07 },
-  { color: "lila", x: "64%", arriba: "56%", tam: 44, duracion: 28, profundidad: -0.12 },
-  { color: "rosa", x: "18%", arriba: "78%", tam: 38, duracion: 25, profundidad: -0.08 },
+  { color: "ladrillo", x: "-10%", arriba: "3%", tam: 38, duracion: 22, profundidad: -0.06 },
+  { color: "salvia", x: "68%", arriba: "18%", tam: 42, duracion: 26, profundidad: -0.1 },
+  { color: "ocre", x: "-14%", arriba: "40%", tam: 40, duracion: 24, profundidad: -0.07 },
+  { color: "arena", x: "64%", arriba: "56%", tam: 44, duracion: 28, profundidad: -0.12 },
+  { color: "ladrillo", x: "18%", arriba: "78%", tam: 38, duracion: 25, profundidad: -0.08 },
 ];
 
 // pares de colores de la paleta: cada pincelada va de uno al otro, como pintura que se mezcla
 const MEZCLAS = {
-  "rosa-lila": ["var(--color-pastel-pink)", "var(--color-pastel-purple)"],
-  "azul-rosa": ["var(--color-pastel-blue)", "var(--color-pastel-pink)"],
-  "lila-azul": ["var(--color-pastel-purple)", "var(--color-pastel-blue)"],
-  "melocoton-rosa": ["var(--color-pastel-peach)", "var(--color-pastel-pink)"],
-  "rosa-melocoton": ["var(--color-pastel-pink)", "var(--color-pastel-peach)"],
-  melocoton: ["var(--color-pastel-peach)", "var(--color-pastel-peach)"],
-  rosa: ["var(--color-pastel-pink)", "var(--color-pastel-pink)"],
-  azul: ["var(--color-pastel-blue)", "var(--color-pastel-blue)"],
-  lila: ["var(--color-pastel-purple)", "var(--color-pastel-purple)"],
+  "ladrillo-arena": ["var(--color-soft-brick)", "var(--color-soft-sand)"],
+  "salvia-ladrillo": ["var(--color-soft-green)", "var(--color-soft-brick)"],
+  "arena-salvia": ["var(--color-soft-sand)", "var(--color-soft-green)"],
+  "ocre-ladrillo": ["var(--color-soft-ochre)", "var(--color-soft-brick)"],
+  "ladrillo-ocre": ["var(--color-soft-brick)", "var(--color-soft-ochre)"],
+  ocre: ["var(--color-soft-ochre)", "var(--color-soft-ochre)"],
+  ladrillo: ["var(--color-soft-brick)", "var(--color-soft-brick)"],
+  salvia: ["var(--color-soft-green)", "var(--color-soft-green)"],
+  arena: ["var(--color-soft-sand)", "var(--color-soft-sand)"],
 };
 
 // trazos de pincel y de resaltador; x e arriba son % de la pagina, ancho en rem
 // van repartidos por toda la landing, cruzando de una seccion a otra, y casi siempre asomando por los costados de lo que hay arriba
 const TRAZOS = [
-  { estilo: "resaltador", mezcla: "melocoton", forma: "recta", x: "55%", arriba: "15.5%", ancho: 22, giro: 3, profundidad: 0.03 },
-  { estilo: "pincel", mezcla: "azul-rosa", forma: "curva", x: "-5%", arriba: "24%", ancho: 28, giro: 8, profundidad: -0.08 },
-  { estilo: "resaltador", mezcla: "rosa", forma: "recta", x: "62%", arriba: "34%", ancho: 22, giro: -4, profundidad: 0.04 },
-  { estilo: "pincel", mezcla: "lila-azul", forma: "suave", x: "40%", arriba: "42%", ancho: 30, giro: -9, profundidad: -0.06 },
-  { estilo: "resaltador", mezcla: "azul", forma: "recta", x: "-3%", arriba: "50%", ancho: 22, giro: 5, profundidad: 0.03 },
-  { estilo: "pincel", mezcla: "melocoton-rosa", forma: "ola", x: "58%", arriba: "58%", ancho: 28, giro: 7, profundidad: -0.09 },
-  { estilo: "resaltador", mezcla: "lila", forma: "recta", x: "4%", arriba: "66%", ancho: 20, giro: -5, profundidad: 0.04 },
-  { estilo: "pincel", mezcla: "rosa-melocoton", forma: "curva", x: "50%", arriba: "76%", ancho: 30, giro: -8, profundidad: -0.06 },
-  { estilo: "resaltador", mezcla: "melocoton", forma: "recta", x: "-2%", arriba: "82%", ancho: 22, giro: 4, profundidad: 0.03 },
+  { estilo: "resaltador", mezcla: "ocre", forma: "recta", x: "55%", arriba: "15.5%", ancho: 22, giro: 3, profundidad: 0.03 },
+  { estilo: "pincel", mezcla: "salvia-ladrillo", forma: "curva", x: "-5%", arriba: "24%", ancho: 28, giro: 8, profundidad: -0.08 },
+  { estilo: "resaltador", mezcla: "ladrillo", forma: "recta", x: "62%", arriba: "34%", ancho: 22, giro: -4, profundidad: 0.04 },
+  { estilo: "pincel", mezcla: "arena-salvia", forma: "suave", x: "40%", arriba: "42%", ancho: 30, giro: -9, profundidad: -0.06 },
+  { estilo: "resaltador", mezcla: "salvia", forma: "recta", x: "-3%", arriba: "50%", ancho: 22, giro: 5, profundidad: 0.03 },
+  { estilo: "pincel", mezcla: "ocre-ladrillo", forma: "ola", x: "58%", arriba: "58%", ancho: 28, giro: 7, profundidad: -0.09 },
+  { estilo: "resaltador", mezcla: "arena", forma: "recta", x: "4%", arriba: "66%", ancho: 20, giro: -5, profundidad: 0.04 },
+  { estilo: "pincel", mezcla: "ladrillo-ocre", forma: "curva", x: "50%", arriba: "76%", ancho: 30, giro: -8, profundidad: -0.06 },
+  { estilo: "resaltador", mezcla: "ocre", forma: "recta", x: "-2%", arriba: "82%", ancho: 22, giro: 4, profundidad: 0.03 },
 ];
 
 // recorridos posibles de un trazo, en un lienzo de 200 x 60

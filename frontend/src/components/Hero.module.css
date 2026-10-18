@@ -141,10 +141,10 @@
   }
 }
 
-.rosa {
+.ladrillo {
   grid-column: 1;
   grid-row: 1 / span 2;
-  background-color: var(--color-pastel-pink);
+  background-color: var(--color-soft-brick);
   --forma-a: var(--radius-lg);
   --forma-b: 60% 40% 30% 70% / 60% 30% 70% 40%;
   --retraso: 0s;
@@ -154,10 +154,10 @@
 }
 
 /* forma de arco en la parte de arriba: al cambiar de forma el arco se da vuelta */
-.azul {
+.salvia {
   grid-column: 2;
   grid-row: 1;
-  background-color: var(--color-pastel-blue);
+  background-color: var(--color-soft-green);
   --forma-a: 999px 999px var(--radius-md) var(--radius-md);
   --forma-b: var(--radius-md) var(--radius-md) 999px 999px;
   --retraso: 0.15s;
@@ -166,10 +166,10 @@
   --fase: -1.5s;
 }
 
-.lila {
+.arena {
   grid-column: 2;
   grid-row: 2 / span 2;
-  background-color: var(--color-pastel-purple);
+  background-color: var(--color-soft-sand);
   --forma-a: var(--radius-lg);
   --forma-b: 50%;
   --retraso: 0.3s;
@@ -179,10 +179,10 @@
 }
 
 /* cuarto de circulo, sirve de remate abajo a la izquierda: al cambiar de forma gira la esquina redonda */
-.melocoton {
+.ocre {
   grid-column: 1;
   grid-row: 3;
-  background-color: var(--color-pastel-peach);
+  background-color: var(--color-soft-ochre);
   --forma-a: var(--radius-md) 100% var(--radius-md) var(--radius-md);
   --forma-b: 100% var(--radius-md) var(--radius-md) var(--radius-md);
   --retraso: 0.45s;

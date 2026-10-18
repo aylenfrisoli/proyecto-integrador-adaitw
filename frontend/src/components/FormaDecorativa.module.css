@@ -139,20 +139,20 @@
   --forma-b: 100% var(--radius-md) var(--radius-md) var(--radius-md);
 }
 
-.rosa {
-  background-color: var(--color-pastel-pink);
+.ladrillo {
+  background-color: var(--color-soft-brick);
 }
 
-.lila {
-  background-color: var(--color-pastel-purple);
+.arena {
+  background-color: var(--color-soft-sand);
 }
 
-.azul {
-  background-color: var(--color-pastel-blue);
+.salvia {
+  background-color: var(--color-soft-green);
 }
 
-.melocoton {
-  background-color: var(--color-pastel-peach);
+.ocre {
+  background-color: var(--color-soft-ochre);
 }
 
 /* con la opcion de menos movimiento activada en el sistema las formas quedan quietas y visibles */

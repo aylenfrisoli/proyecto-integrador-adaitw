@@ -22,11 +22,11 @@ function ProductosList() {
   return (
     <section id="productos" className={`container ${styles.seccion}`}>
       {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="gota" color="rosa" tamano="5rem" lado="derecha" arriba="22%" />
-      <FormaDecorativa tipo="arco" color="azul" tamano="4rem" lado="izquierda" arriba="60%" />
+      <FormaDecorativa tipo="gota" color="ladrillo" tamano="5rem" lado="derecha" arriba="22%" />
+      <FormaDecorativa tipo="arco" color="salvia" tamano="4rem" lado="izquierda" arriba="60%" />
       <EncabezadoSeccion
         etiqueta="Productos"
-        forma={{ tipo: "arco", color: "azul" }}
+        forma={{ tipo: "arco", color: "salvia" }}
         titulo="Hecho a mano para vos"
         descripcion="Cajas, bordados, bolsos y papelería artesanales. Consultá por WhatsApp y coordinamos la entrega."
       />

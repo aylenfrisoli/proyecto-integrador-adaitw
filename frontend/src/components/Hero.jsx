@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./Hero.module.css";
 
 // los cuatro bloques del collage; el id coincide con la clase de css que les da color, lugar y forma
-const BLOQUES = ["rosa", "azul", "lila", "melocoton"];
+const BLOQUES = ["ladrillo", "salvia", "arena", "ocre"];
 
 // portada de la landing: titular grande, dos botones y un collage decorativo hecho con css que se anima solo y salta al tocarlo
 function Hero() {

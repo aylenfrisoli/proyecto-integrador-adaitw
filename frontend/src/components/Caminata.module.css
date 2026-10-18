@@ -8,12 +8,12 @@
   border-top: 1px solid var(--color-border);
 }
 
-/* panel con un tinte rosa muy suave (el color de la concientizacion) donde se ve la edicion elegida */
+/* panel con un tinte ladrillo muy suave (calido, para acompanar la concientizacion) donde se ve la edicion elegida */
 .detalle {
   padding: 1.5rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background-color: rgba(246, 203, 213, 0.2);
+  background-color: color-mix(in srgb, var(--color-soft-brick) 20%, transparent);
   /* al cambiar de edicion el panel se vuelve a crear (key) y esta animacion lo hace entrar suave */
   animation: entrar 0.45s ease;
 }
