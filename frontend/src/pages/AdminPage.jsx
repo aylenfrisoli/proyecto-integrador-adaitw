@@ -3,6 +3,7 @@ import AdminTabs from "../components/AdminTabs";
 import CaminataAdmin from "../components/CaminataAdmin";
 import CategoriasAdmin from "../components/CategoriasAdmin";
 import ObrasAdmin from "../components/ObrasAdmin";
+import PortadaAdmin from "../components/PortadaAdmin";
 import ProductosAdmin from "../components/ProductosAdmin";
 import TalleresAdmin from "../components/TalleresAdmin";
 import { useAuth } from "../context/AuthContext";
@@ -17,6 +18,7 @@ const PANELES = [
   { id: "productos", nombre: "Productos", componente: ProductosAdmin },
   { id: "talleres", nombre: "Talleres", componente: TalleresAdmin },
   { id: "caminata", nombre: "Caminata", componente: CaminataAdmin },
+  { id: "portada", nombre: "Portada", componente: PortadaAdmin },
 ];
 
 // estructura del panel de administracion: cabecera con acciones, pestañas y el panel de la seccion elegida

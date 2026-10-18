@@ -73,7 +73,7 @@
   outline: 2px solid color-mix(in srgb, var(--color-brand-primary) 25%, transparent);
 }
 
-/* mensajes de resultado: exito en salvia suave y error con el ladrillo suave de la paleta */
+/* mensajes de resultado: exito en celeste suave y error en rosa */
 .mensaje {
   margin: 0 0 1.5rem;
   padding: 0.8rem 1rem;
@@ -83,13 +83,13 @@
 }
 
 .exito {
-  background-color: color-mix(in srgb, var(--color-soft-green) 45%, transparent);
+  background-color: color-mix(in srgb, var(--color-sky-soft) 60%, transparent);
 }
 
 .error {
-  border-color: var(--color-brand-primary);
-  background-color: color-mix(in srgb, var(--color-soft-brick) 40%, transparent);
-  color: var(--color-brand-hover);
+  border-color: var(--color-error);
+  background-color: color-mix(in srgb, var(--color-error-bg) 60%, transparent);
+  color: var(--color-error);
 }
 
 /* lista de filas en vez de tabla, para que se vea bien tambien en celular */
@@ -148,11 +148,11 @@
   color: var(--color-brand-primary);
 }
 
-/* borrar usa el tono tierra oscuro para distinguirse sin salirse de la paleta */
+/* borrar pasa al rosa oscuro del error para distinguirse de los otros botones */
 .botonPeligro:hover {
-  background-color: var(--color-brand-hover);
-  border-color: var(--color-brand-hover);
-  color: #ffffff;
+  background-color: var(--color-error);
+  border-color: var(--color-error);
+  color: var(--color-white);
 }
 
 .botonChico:disabled {
@@ -230,6 +230,12 @@
   aspect-ratio: 1 / 1;
 }
 
+/* version horizontal y mas ancha para la portada, que en la landing es un rectangulo 16/10 */
+.vistaPreviaHorizontal {
+  width: min(100%, 22rem);
+  aspect-ratio: 16 / 10;
+}
+
 /* contenido de una fila con imagen: miniatura a la izquierda y los textos al lado */
 .filaContenido {
   display: flex;
@@ -261,9 +267,9 @@
   width: 6rem;
 }
 
-/* cuadro ladrillo suave que ocupa el lugar de la miniatura cuando una fila todavia no tiene foto */
+/* cuadro rosa palido que ocupa el lugar de la miniatura cuando una fila todavia no tiene foto */
 .miniaturaVacia {
-  background-color: var(--color-soft-brick);
+  background-color: var(--color-pink);
 }
 
 /* grupo de fotos del formulario de la caminata; fieldset agrupa los campos para los lectores de pantalla, sin su borde de fabrica */
