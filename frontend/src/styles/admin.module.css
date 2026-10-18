@@ -255,3 +255,61 @@
   font-size: 0.85rem;
   color: var(--color-text-muted);
 }
+
+/* vista previa mas chica para los formularios con muchas imagenes; va despues de .vistaPrevia para que le gane el ancho */
+.vistaPreviaChica {
+  width: 6rem;
+}
+
+/* cuadro rosa pastel que ocupa el lugar de la miniatura cuando una fila todavia no tiene foto */
+.miniaturaVacia {
+  background-color: var(--color-pastel-pink);
+}
+
+/* grupo de fotos del formulario de la caminata; fieldset agrupa los campos para los lectores de pantalla, sin su borde de fabrica */
+.grupoFotos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.leyenda {
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.listaFotos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* tarjeta de cada foto: va despues de .formularioColumna para que le gane el espacio entre campos */
+.filaFoto {
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-main);
+}
+
+/* el numero de foto a la izquierda y el boton de quitar a la derecha */
+.encabezadoFoto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* el boton de agregar queda a la izquierda y no se estira al ancho de la tarjeta */
+.agregarFoto {
+  align-self: flex-start;
+}
