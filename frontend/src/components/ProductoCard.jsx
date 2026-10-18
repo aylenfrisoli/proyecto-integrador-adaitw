@@ -12,7 +12,7 @@ function ProductoCard({ producto }) {
   const agotado = producto.disponibilidad === "agotado";
 
   return (
-    <article className={styles.tarjeta}>
+    <article className={`${styles.tarjeta} decoracion-liana`}>
       <div className={styles.contenedorImagen}>
         <img
           src={producto.imagen}
