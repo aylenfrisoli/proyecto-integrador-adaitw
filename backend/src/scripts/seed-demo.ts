@@ -11,9 +11,21 @@ import { Taller } from "../models/taller.model";
 // datos de ejemplo para ver la landing y el panel con contenido; se reemplazan por los reales de sara
 // "npm run seed:demo" los carga y "npm run seed:demo:borrar" los saca
 
+// colores de las imagenes de relleno: los tonos suaves de la paleta de naturaleza de fondo, con el texto en el marron o el musgo que mejor se lee encima
+const TONOS = {
+  arena: { fondo: "ecdcc4", texto: "5a4634" },
+  ocre: { fondo: "f7d9a4", texto: "5a4634" },
+  ladrillo: { fondo: "f5c9bb", texto: "5a4634" },
+  salvia: { fondo: "cfe3c9", texto: "4d6b4d" },
+};
+
+type Tono = keyof typeof TONOS;
+
 // imagen de relleno con los colores de la paleta; placehold.co devuelve un png con el texto que le pasemos
-function imagen(ancho: number, alto: number, fondo: string, texto: string): string {
-  return `https://placehold.co/${ancho}x${alto}/${fondo}/9f7657.png?text=${encodeURIComponent(texto)}`;
+// la fuente con serif (playfair) le da un aire mas de galeria que la letra por defecto
+function imagen(ancho: number, alto: number, tono: Tono, texto: string): string {
+  const { fondo, texto: colorTexto } = TONOS[tono];
+  return `https://placehold.co/${ancho}x${alto}/${fondo}/${colorTexto}.png?text=${encodeURIComponent(texto)}&font=playfair-display`;
 }
 
 const CATEGORIAS = ["Pinturas", "Cajas", "Bordados", "Bolsos", "Papelería", "Collages"];
@@ -23,37 +35,37 @@ const OBRAS = [
   {
     titulo: "Mar de colores",
     descripcion: "Pintura sobre tela con capas de azules y turquesas que imitan el movimiento del mar al amanecer.",
-    imagen: imagen(800, 1000, "c4dcff", "Mar de colores"),
+    imagen: imagen(800, 1000, "arena", "Mar de colores"),
     categoria: "Pinturas",
   },
   {
     titulo: "Atardecer en la costa",
     descripcion: "Acrílico con tonos durazno y rosa, pintado a espátula para dar textura al cielo.",
-    imagen: imagen(800, 1000, "ffdfbd", "Atardecer en la costa"),
+    imagen: imagen(800, 1000, "ladrillo", "Atardecer en la costa"),
     categoria: "Pinturas",
   },
   {
     titulo: "Jardín abstracto",
     descripcion: "Formas libres y colores vivos inspiradas en las flores del jardín de Sara.",
-    imagen: imagen(800, 1000, "f6cbd5", "Jardín abstracto"),
+    imagen: imagen(800, 1000, "salvia", "Jardín abstracto"),
     categoria: "Pinturas",
   },
   {
     titulo: "Formas en diálogo",
     descripcion: "Collage abstracto con papeles recortados a mano que juegan con el equilibrio y el color.",
-    imagen: imagen(800, 1000, "ebceff", "Formas en diálogo"),
+    imagen: imagen(800, 1000, "salvia", "Formas en diálogo"),
     categoria: "Collages",
   },
   {
     titulo: "Papeles de verano",
     descripcion: "Collage con papeles teñidos, telas y texturas en tonos cálidos.",
-    imagen: imagen(800, 1000, "ffdfbd", "Papeles de verano"),
+    imagen: imagen(800, 1000, "ocre", "Papeles de verano"),
     categoria: "Collages",
   },
   {
     titulo: "Textura de sal",
     descripcion: "Bordado artesanal sobre lino con hilos de colores que dibujan olas y espuma.",
-    imagen: imagen(800, 1000, "c4dcff", "Textura de sal"),
+    imagen: imagen(800, 1000, "arena", "Textura de sal"),
     categoria: "Bordados",
   },
 ];
@@ -71,7 +83,7 @@ const PRODUCTOS: {
     titulo: "Caja de madera Abstracto Vivo",
     descripcion: "Caja de madera pintada a mano con diseño abstracto y colores vivos. Ideal para guardar tesoros.",
     precio: 18500,
-    imagen: imagen(800, 800, "f6cbd5", "Caja Abstracto Vivo"),
+    imagen: imagen(800, 800, "ocre", "Caja Abstracto Vivo"),
     disponibilidad: "disponible",
     categoria: "Cajas",
   },
@@ -79,7 +91,7 @@ const PRODUCTOS: {
     titulo: "Caja de madera Mar",
     descripcion: "Caja pintada en tonos azules con detalles dorados. Cada una es única.",
     precio: 16000,
-    imagen: imagen(800, 800, "c4dcff", "Caja Mar"),
+    imagen: imagen(800, 800, "salvia", "Caja Mar"),
     disponibilidad: "agotado",
     categoria: "Cajas",
   },
@@ -87,7 +99,7 @@ const PRODUCTOS: {
     titulo: "Bordado Flores de hilo",
     descripcion: "Bastidor con flores bordadas a mano, hilos de colores y mucha textura.",
     precio: 12000,
-    imagen: imagen(800, 800, "ebceff", "Bordado Flores de hilo"),
+    imagen: imagen(800, 800, "ladrillo", "Bordado Flores de hilo"),
     mensajeWhatsapp: "Hola Sara! Me gustaría encargar un bordado como el de Flores de hilo.",
     disponibilidad: "por_encargo",
     categoria: "Bordados",
@@ -96,7 +108,7 @@ const PRODUCTOS: {
     titulo: "Bolso de tela pintada",
     descripcion: "Bolso práctico y artesanal con tela pintada a mano, de estilo único.",
     // sin precio a proposito: sirve para probar el texto "consultar precio" del front
-    imagen: imagen(800, 800, "ffdfbd", "Bolso de tela pintada"),
+    imagen: imagen(800, 800, "ladrillo", "Bolso de tela pintada"),
     disponibilidad: "disponible",
     categoria: "Bolsos",
   },
@@ -104,7 +116,7 @@ const PRODUCTOS: {
     titulo: "Bolso bandolera",
     descripcion: "Bandolera de tela con bordado en el frente y correa regulable.",
     precio: 21000,
-    imagen: imagen(800, 800, "f6cbd5", "Bolso bandolera"),
+    imagen: imagen(800, 800, "arena", "Bolso bandolera"),
     disponibilidad: "disponible",
     categoria: "Bolsos",
   },
@@ -112,7 +124,7 @@ const PRODUCTOS: {
     titulo: "Cuaderno ilustrado",
     descripcion: "Cuaderno artesanal con tapa ilustrada y personalizable.",
     precio: 7500,
-    imagen: imagen(800, 800, "c4dcff", "Cuaderno ilustrado"),
+    imagen: imagen(800, 800, "ocre", "Cuaderno ilustrado"),
     disponibilidad: "disponible",
     categoria: "Papelería",
   },
@@ -163,10 +175,10 @@ const CAMINATAS = [
     lugar: "San Bernardo del Tuyú",
     descripcion: "Primera caminata de concientización sobre el cáncer de mama: salimos a recorrer la costa para visibilizar y acompañarnos entre todos.",
     fotos: [
-      { url: imagen(600, 600, "f6cbd5", "La salida"), epigrafe: "La salida" },
-      { url: imagen(600, 600, "ebceff", "En camino"), epigrafe: "Caminando juntos" },
+      { url: imagen(600, 600, "ladrillo", "La salida"), epigrafe: "La salida" },
+      { url: imagen(600, 600, "salvia", "En camino"), epigrafe: "Caminando juntos" },
       // sin epigrafe a proposito: sirve para ver como queda una polaroid sin texto
-      { url: imagen(600, 600, "c4dcff", "Llegada") },
+      { url: imagen(600, 600, "arena", "Llegada") },
     ],
   },
   {
@@ -175,9 +187,9 @@ const CAMINATAS = [
     lugar: "San Bernardo del Tuyú",
     descripcion: "Segunda caminata: más personas, más lazos y la misma ilusión de seguir juntos.",
     fotos: [
-      { url: imagen(600, 600, "ffdfbd", "Largada"), epigrafe: "La largada" },
-      { url: imagen(600, 600, "f6cbd5", "Todas juntas"), epigrafe: "Todas juntas" },
-      { url: imagen(600, 600, "ebceff", "Un abrazo"), epigrafe: "Un abrazo en la meta" },
+      { url: imagen(600, 600, "ocre", "Largada"), epigrafe: "La largada" },
+      { url: imagen(600, 600, "ladrillo", "Todas juntas"), epigrafe: "Todas juntas" },
+      { url: imagen(600, 600, "salvia", "Un abrazo"), epigrafe: "Un abrazo en la meta" },
     ],
   },
   {
@@ -186,10 +198,10 @@ const CAMINATAS = [
     lugar: "San Bernardo del Tuyú",
     descripcion: "Tercera caminata del año, la más grande hasta ahora. Gracias a cada persona que vino a caminar.",
     fotos: [
-      { url: imagen(600, 600, "c4dcff", "Llegando"), epigrafe: "Llegando a la meta" },
-      { url: imagen(600, 600, "f6cbd5", "Mariposas"), epigrafe: "Mariposas rosas" },
-      { url: imagen(600, 600, "ffdfbd", "Sonrisas"), epigrafe: "Sonrisas por todos lados" },
-      { url: imagen(600, 600, "ebceff", "El cierre") },
+      { url: imagen(600, 600, "arena", "Llegando"), epigrafe: "Llegando a la meta" },
+      { url: imagen(600, 600, "ladrillo", "Mariposas"), epigrafe: "Mariposas rosas" },
+      { url: imagen(600, 600, "ocre", "Sonrisas"), epigrafe: "Sonrisas por todos lados" },
+      { url: imagen(600, 600, "salvia", "El cierre") },
     ],
   },
 ];
