@@ -36,9 +36,10 @@ function SobreSara() {
 
       <div className={styles.contenido}>
         <p>
-          Soy Sara, la artista y creadora detrás de SAF Creaciones para Vos, y
-          vivo en la costa argentina. Mi trabajo es un reflejo de mi amor por
-          el color y la forma.
+          Soy Sara Figarra, artista plástica, comunicadora social y muralista,
+          y la creadora detrás de SAF Creaciones para Vos. Vivo en la costa
+          argentina y mi trabajo es un reflejo de mi amor por el color y la
+          forma.
         </p>
         <p>
           Cada creación es una pieza única con alma, hecha a mano con
