@@ -34,16 +34,16 @@ export function diaDesdeInput(valor) {
   return `${valor}T12:00:00-03:00`;
 }
 
-// ordena las ediciones de la mas vieja a la mas nueva (1ª, 2ª, 3ª)
+// ordena las ediciones de la mas nueva a la mas vieja (3ª, 2ª, 1ª), asi la ultima publicada aparece primero
 // se copia el array antes de ordenar porque sort modifica el original y los datos de react no se tocan
 export function ordenarEdiciones(ediciones) {
-  return [...ediciones].sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+  return [...ediciones].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 }
 
 // devuelve la edicion que hay que mostrar: la elegida y, si todavia no eligio ninguna, la mas reciente
-// recibe las ediciones ya ordenadas y devuelve undefined si no hay ninguna
+// recibe las ediciones ya ordenadas (la mas reciente va primera) y devuelve undefined si no hay ninguna
 export function elegirEdicion(ediciones, idElegido) {
-  return ediciones.find((edicion) => edicion._id === idElegido) ?? ediciones.at(-1);
+  return ediciones.find((edicion) => edicion._id === idElegido) ?? ediciones[0];
 }
 
 // cuanto se inclina cada polaroid, en grados; alternan hacia un lado y hacia el otro
