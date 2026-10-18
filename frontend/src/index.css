@@ -11,6 +11,9 @@
   --color-nature-green: #6b8e6b; /* verde salvia, natural y fresco */
   --color-nature-brick: #b9533d; /* ladrillo calido; un poco mas oscuro que el original para que el texto blanco encima se lea bien (contraste 4.8:1) */
   --color-nature-ochre: #e2ad5f; /* ocre alegre para bordes y detalles */
+  /* dos tonos mas profundos para las siluetas y el pie de pagina: el musgo da el verde de hoja oscura y la tierra el marron calido */
+  --color-nature-moss: #4d6b4d; /* verde musgo; con texto claro encima da 5.7:1 */
+  --color-nature-earth: #8f6b4a; /* marron tierra, mas claro y calido que el texto principal */
 
   /* --- paleta principal --- */
   /* los componentes usan estos nombres, asi que al apuntarlos a la identidad nueva cambia todo el sitio sin tocar cada archivo */
