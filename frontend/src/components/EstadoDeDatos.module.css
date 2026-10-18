@@ -1,15 +1,17 @@
+/* el mensaje hereda el color del texto de la seccion donde aparece (blanco sobre azul, oscuro sobre amarillo) para leerse siempre
+   currentColor al 40% da un borde que tambien combina con cualquier fondo */
 .mensaje {
   margin: 0;
   padding: 2rem;
-  border: 1px dashed var(--color-border);
+  border: 1px dashed color-mix(in srgb, currentColor 40%, transparent);
   border-radius: var(--radius-md);
   text-align: center;
-  color: var(--color-text-muted);
+  color: inherit;
 }
 
-/* el error usa el tono tierra de la marca en vez de un rojo, para no romper la paleta */
+/* el error pasa a borde continuo y letra mas fuerte: no depende solo del color para distinguirse */
 .error {
   border-style: solid;
-  border-color: var(--color-brand-primary);
-  color: var(--color-brand-hover);
+  border-color: currentColor;
+  font-weight: 600;
 }

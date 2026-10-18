@@ -1,32 +1,35 @@
+/* los colores salen de variables que define la seccion donde se usa, asi el mismo filtro sirve sobre azul, sobre crema y sobre rosa
+   si la seccion no las define se usan los de la derecha (azul tinta) */
 .filtro {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 2rem;
 }
 
 .boton {
-  padding: 0.5rem 1.1rem;
-  border: 1px solid var(--color-border);
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 1.5px solid var(--filtro-color, var(--color-ink));
   border-radius: 999px;
-  background-color: var(--color-bg-card);
+  background-color: transparent;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--color-text-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--filtro-color, var(--color-ink));
   cursor: pointer;
   transition:
     background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color 0.2s ease;
 }
 
 .boton:hover {
-  border-color: var(--color-brand-primary);
+  background-color: var(--filtro-hover, var(--color-white));
 }
 
-/* el boton elegido se rellena de verde salvia suave; el texto oscuro se lee bien y el ladrillo queda para los botones de accion */
-.activo {
-  border-color: var(--color-nature-green);
-  background-color: var(--color-soft-green);
-  color: var(--color-text-main);
+/* el boton elegido se rellena; el hover se repite aca para que no le gane al de arriba */
+.activo,
+.activo:hover {
+  border-color: var(--filtro-activo-fondo, var(--color-ink));
+  background-color: var(--filtro-activo-fondo, var(--color-ink));
+  color: var(--filtro-activo-texto, var(--color-white));
 }
