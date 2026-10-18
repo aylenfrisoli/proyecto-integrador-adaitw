@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { REDES } from "../config/contacto";
 import { SECCIONES } from "../config/secciones";
 import styles from "./Footer.module.css";
+import Silueta from "./Silueta";
 
 // icono de cada red, se elige con el id que tiene en config/contacto.js
 const ICONOS = {
@@ -10,7 +11,7 @@ const ICONOS = {
   facebook: FaFacebookF,
 };
 
-// pie de pagina oscuro con la marca, los links a las secciones, la ubicacion y las redes
+// pie de pagina como un prado: lomas arriba, la info sobre fondo salvia suave, siluetas paradas en el pasto y una franja de musgo con el copyright
 function Footer() {
   // el anio se calcula para no tener que actualizar el copyright a mano
   const anio = new Date().getFullYear();
@@ -67,14 +68,27 @@ function Footer() {
         </div>
       </div>
 
-      <div className={`container ${styles.bottom}`}>
-        <small>
-          © {anio} SAF Creaciones para Vos · Sara Figarra, artista plástica
-        </small>
-        {/* acceso discreto al panel: no esta en la navbar porque es solo para la administradora */}
-        <Link to="/login" className={styles.acceso}>
-          Acceso administradora
-        </Link>
+      {/* las siluetas paradas en el pasto: de la cuarta en adelante se ocultan en el celular para que no se amontonen */}
+      <div className={`container ${styles.suelo}`}>
+        <Silueta tipo="helecho" color="musgo" tamano="7rem" giro={-4} />
+        <Silueta tipo="flor" color="ladrillo" tamano="3.5rem" giro={6} />
+        <Silueta tipo="hongo" color="tierra" tamano="3.5rem" />
+        <Silueta tipo="margarita" color="ocre" tamano="4.5rem" giro={-8} />
+        <Silueta tipo="piedras" color="tierra" tamano="3rem" />
+        <Silueta tipo="pajaro" color="musgo" tamano="4rem" giro={-4} />
+        <Silueta tipo="rama" color="salvia" tamano="8rem" giro={6} />
+      </div>
+
+      <div className={styles.base}>
+        <div className={`container ${styles.bottom}`}>
+          <small>
+            © {anio} SAF Creaciones para Vos · Sara Figarra, artista plástica
+          </small>
+          {/* acceso discreto al panel: no esta en la navbar porque es solo para la administradora */}
+          <Link to="/login" className={styles.acceso}>
+            Acceso administradora
+          </Link>
+        </div>
       </div>
     </footer>
   );
