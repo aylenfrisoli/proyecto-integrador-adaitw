@@ -1,4 +1,4 @@
-import FormaDecorativa from "./FormaDecorativa";
+import Silueta from "./Silueta";
 import styles from "./SobreSara.module.css";
 
 // materiales con los que trabaja sara, salen de las categorias del sitio
@@ -18,19 +18,20 @@ const COLORES = [styles.ladrillo, styles.arena, styles.salvia, styles.ocre];
 function SobreSara() {
   return (
     <section id="sobre-sara" className={`container ${styles.seccion}`}>
-      {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="gota" color="ocre" tamano="4.5rem" lado="izquierda" arriba="72%" />
-      <FormaDecorativa tipo="cuarto" color="salvia" tamano="4rem" lado="derecha" arriba="10%" />
-      <FormaDecorativa tipo="ovalo" color="ladrillo" tamano="5rem" lado="derecha" arriba="78%" />
+      {/* siluetas que asoman por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="hoja" color="salvia" tamano="4.5rem" lado="izquierda" arriba="72%" giro={-12} profundidad={-0.6} />
+      <Silueta tipo="mariposa" color="ocre" tamano="4rem" lado="derecha" arriba="10%" giro={10} profundidad={0.4} />
+      <Silueta tipo="semilla" color="tierra" tamano="5rem" lado="derecha" arriba="78%" giro={14} profundidad={-0.4} />
       <div>
         <p className={styles.eyebrow}>Sobre Sara</p>
         <h2 className={`display-title ${styles.titulo}`}>
           Cada pieza tiene su propia historia
         </h2>
-        {/* dos formas de distinto tamaño, como un pequeño collage bajo el titular */}
-        <div className={styles.formas}>
-          <FormaDecorativa tipo="ovalo" color="arena" tamano="4.5rem" />
-          <FormaDecorativa tipo="gota" color="ladrillo" tamano="3rem" />
+        {/* tres siluetas de distinto tamaño, como un pequeño paisaje bajo el titular */}
+        <div className={styles.siluetas}>
+          <Silueta tipo="rama" color="musgo" tamano="9rem" giro={-4} />
+          <Silueta tipo="pajaro" color="ocre" tamano="5rem" />
+          <Silueta tipo="piedras" color="tierra" tamano="4rem" />
         </div>
       </div>
 
