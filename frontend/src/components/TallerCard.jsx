@@ -21,9 +21,9 @@ function TallerCard({ taller }) {
   const abierto = taller.estado === "abierto";
 
   return (
-    // la clase de modalidad pinta la tarjeta (presencial lila, virtual azul) y la de estado apaga los finalizados
+    // la clase de modalidad pinta la tarjeta (presencial arena, virtual salvia) y la de estado apaga los finalizados
     <article
-      className={`${styles.tarjeta} ${styles[taller.modalidad]} ${styles[taller.estado]}`}
+      className={`${styles.tarjeta} ${styles[taller.modalidad]} ${styles[taller.estado]} decoracion-liana`}
     >
       <div className={styles.etiquetas}>
         <span className={styles.etiqueta}>
