@@ -23,11 +23,11 @@ function Caminata() {
   return (
     <section id="caminata" className={`container ${styles.seccion}`}>
       {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="gota" color="rosa" tamano="4.5rem" lado="derecha" arriba="14%" />
-      <FormaDecorativa tipo="ovalo" color="lila" tamano="4rem" lado="izquierda" arriba="62%" />
+      <FormaDecorativa tipo="gota" color="ladrillo" tamano="4.5rem" lado="derecha" arriba="14%" />
+      <FormaDecorativa tipo="ovalo" color="arena" tamano="4rem" lado="izquierda" arriba="62%" />
       <EncabezadoSeccion
         etiqueta="Concientización"
-        forma={{ tipo: "arco", color: "rosa" }}
+        forma={{ tipo: "arco", color: "ladrillo" }}
         titulo="Caminata sobre el cáncer de mama"
         descripcion="Una jornada para caminar en comunidad, visibilizar el cáncer de mama y acompañarnos entre todos. La organiza Sara: elegí una edición y mirá cómo fue."
       />
