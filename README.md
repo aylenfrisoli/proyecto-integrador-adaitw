@@ -1,6 +1,6 @@
 # Sara Figarra · Landing, panel y API
 
-Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos, talleres y las ediciones de la caminata de concientización sobre el cáncer de mama que organiza, y un panel de administración desde el que ella carga y edita el contenido.
+Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos y talleres, y un panel de administración desde el que ella carga y edita el contenido.
 
 - **API deployada:** https://proyecto-integrador-adaitw.onrender.com
 - **Repositorio:** monorepo con las carpetas `backend/` (API REST con Express y MongoDB) y `frontend/` (React con Vite).
@@ -133,8 +133,9 @@ backend/src/
 ```
 frontend/src/
 ├── components/    piezas de la landing (Hero, tarjetas, listas) y del panel (formularios y listas de administración)
-├── config/        URL de la API, secciones de la navbar y datos de contacto (WhatsApp y redes)
+├── config/        URL de la API, secciones de la navbar, datos de contacto (WhatsApp y redes) y el retrato de Sara
 ├── context/       AuthContext: guarda la sesión de la administradora
+├── exportables/   la sección de la caminata, sacada de la landing y lista para volver a ponerla (ver su LEEME.md)
 ├── hooks/         useFetch (leer datos), useApi (escribir con el token) y useAccion (estado de cada acción)
 ├── pages/         HomePage, LoginPage, AdminPage y NotFoundPage
 ├── utils/         funciones puras para formatear precios y fechas, filtrar y leer el token
@@ -146,9 +147,9 @@ frontend/src/
 
 | Ruta                  | Acceso    | Qué muestra                                                  |
 | --------------------- | --------- | ------------------------------------------------------------ |
-| `/`                   | público   | landing con obras, productos, talleres, la caminata y la sección sobre Sara |
+| `/`                   | público   | landing con obras, productos, talleres y la sección sobre Sara |
 | `/login`              | público   | formulario de ingreso de la administradora                   |
-| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `caminata` |
+| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres`, `caminata` y `portada` |
 | cualquier otra ruta   | público   | página 404                                                   |
 
 `/admin` redirige a `/admin/categorias`. Si alguien entra al panel sin sesión, lo manda al login; si el token vence, cierra la sesión solo.
@@ -237,7 +238,7 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 }
 ```
 
-- `precio`, `mensajeWhatsapp` y `disponibilidad` son opcionales. Sin precio, el front muestra "Consultar precio". Al editar, `"precio": null` borra el precio guardado.
+- `precio`, `mensajeWhatsapp` y `disponibilidad` son opcionales. Sin precio, el front muestra "Consultar precio". Al editar, `"precio": null` borra el precio guardado. El botón "Consultar" de la landing arma solo el mensaje ("Hola, quería consultar por el producto ..."), así que hoy el front no usa `mensajeWhatsapp`.
 - `disponibilidad` acepta `disponible` (valor por defecto), `agotado` o `por_encargo`.
 
 ### Talleres
@@ -267,7 +268,7 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 
 ### Caminatas
 
-Cada documento es una edición de la caminata de concientización sobre el cáncer de mama (1ª edición, 2ª edición...). Las fotos viven dentro de la edición, no tienen rutas propias.
+Cada documento es una edición de la caminata de concientización sobre el cáncer de mama (1ª edición, 2ª edición...). Las fotos viven dentro de la edición, no tienen rutas propias. La sección que las muestra está fuera de la landing por ahora (ver `frontend/src/exportables/caminata/`), pero la API y la pestaña del panel siguen funcionando.
 
 | Método | Ruta              | Acceso  | Descripción                                                    |
 | ------ | ----------------- | ------- | -------------------------------------------------------------- |
@@ -290,10 +291,28 @@ Cada documento es una edición de la caminata de concientización sobre el cánc
 }
 ```
 
-- `nombre` es la etiqueta del botón de cada edición en la landing (hasta 60 caracteres). `lugar` admite hasta 150 y `descripcion` hasta 1000.
+- `nombre` es la etiqueta del botón de cada edición en la sección de la caminata (hasta 60 caracteres). `lugar` admite hasta 150 y `descripcion` hasta 1000.
 - `fecha` se manda como texto en formato ISO. El panel manda mediodía con offset `-03:00` para que el día no se corra en Argentina.
-- `fotos` es opcional y acepta hasta 30 fotos. Cada una lleva la `url` de un link directo a la imagen (solo `http` y `https`) y un `epigrafe` opcional de hasta 120 caracteres, que se ve debajo de la polaroid.
+- `fotos` es opcional y acepta hasta 30 fotos. Cada una lleva la `url` de un link directo a la imagen (solo `http` y `https`) y un `epigrafe` opcional de hasta 120 caracteres, que se ve debajo de la foto.
 - Al editar, si el body no trae `fotos` se conservan las que ya tenía; si las trae, reemplazan la lista entera (con `"fotos": []` se vacía).
+
+### Configuración
+
+Datos sueltos de la landing que Sara cambia desde el panel. Por ahora es solo la foto de la portada. A diferencia de las otras entidades es **un único documento**: no hay lista, ni ids en las rutas, ni `POST` o `DELETE` (el documento se crea solo la primera vez que se guarda).
+
+| Método | Ruta             | Acceso  | Descripción                                                                |
+| ------ | ---------------- | ------- | -------------------------------------------------------------------------- |
+| GET    | `/configuracion` | público | trae la configuración; si todavía no se guardó nada responde `{ "imagenPortada": "" }` |
+| PUT    | `/configuracion` | admin   | guarda la configuración (la crea si no existe)                             |
+
+```json
+{
+  "imagenPortada": "https://ejemplo.com/portada.jpg"
+}
+```
+
+- `imagenPortada` es obligatorio y tiene que ser un link directo a la imagen (solo `http` y `https`).
+- Un texto vacío (`""`) es válido y quiere decir "sin foto": la landing muestra un bloque de color en su lugar. Así se saca la foto desde el panel.
 
 ## Respuestas y errores
 
@@ -319,7 +338,7 @@ Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; lo
 
 ## Pruebas con Postman
 
-La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 77 requests en 7 carpetas (Auth, Categorías, Obras, Productos, Talleres, Caminatas, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
+La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 85 requests en 8 carpetas (Auth, Categorías, Obras, Productos, Talleres, Caminatas, Configuración, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
 
 ### Cómo usarla
 
@@ -333,10 +352,11 @@ La colección está en [`backend/postman/sara-figarra.postman_collection.json`](
 | `adminEmail`    | email de la cuenta admin                                                       |
 | `adminPassword` | contraseña de la cuenta admin                                                  |
 | `token`         | lo completa solo el login, no hay que tocarlo                                  |
+| `imagenPortadaOriginal` | la completa sola la carpeta de Configuración: guarda la foto de la portada que había y la devuelve al final |
 
 ### Resultado esperado
 
-Corrida completa contra la API local: 77 requests y 123 aserciones, sin fallos. La colección borra al final todo lo que crea, así la base queda como estaba.
+Corrida completa: todos los requests y aserciones en verde. La colección borra al final todo lo que crea, y la carpeta de Configuración vuelve a dejar la foto de la portada como estaba, así la base queda como antes de correrla.
 
 ### Ojo
 
