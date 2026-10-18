@@ -1,11 +1,12 @@
-/* fondo con un tinte rosa muy suave para distinguir los productos de las obras */
+/* fondo con un tinte ladrillo muy suave para distinguir los productos de las obras */
 .tarjeta {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  /* borde ocre de la identidad naturaleza; la liana de la esquina viene de la clase global decoracion-liana */
+  border: 1px solid var(--color-nature-ochre);
   border-radius: var(--radius-lg);
-  background-color: rgba(246, 203, 213, 0.2);
+  background-color: color-mix(in srgb, var(--color-soft-brick) 20%, transparent);
 }
 
 /* position relative para poder ubicar la etiqueta encima de la imagen */
@@ -38,7 +39,7 @@
   left: 1rem;
   padding: 0.3rem 0.8rem;
   /* el borde fino evita que la etiqueta se pierda cuando tiene el mismo color que la imagen */
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid color-mix(in srgb, var(--color-text-main) 18%, transparent);
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 500;
@@ -46,15 +47,15 @@
 }
 
 .disponible {
-  background-color: var(--color-pastel-blue);
+  background-color: var(--color-soft-green);
 }
 
 .agotado {
-  background-color: var(--color-pastel-pink);
+  background-color: var(--color-soft-brick);
 }
 
 .por_encargo {
-  background-color: var(--color-pastel-peach);
+  background-color: var(--color-soft-ochre);
 }
 
 .info {
