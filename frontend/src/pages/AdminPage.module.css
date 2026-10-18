@@ -3,7 +3,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(251, 251, 251, 0.85);
+  background-color: color-mix(in srgb, var(--color-bg-main) 85%, transparent);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
