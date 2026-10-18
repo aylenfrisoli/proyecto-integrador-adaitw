@@ -23,8 +23,8 @@
   font-size: clamp(2rem, 6vw, 3.5rem);
 }
 
-/* align-items end apoya las dos formas sobre la misma linea aunque tengan distinto tamaño */
-.formas {
+/* align-items end apoya las siluetas sobre la misma linea aunque tengan distinto tamaño */
+.siluetas {
   display: flex;
   align-items: flex-end;
   gap: 1rem;
