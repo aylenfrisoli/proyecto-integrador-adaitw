@@ -1,32 +1,62 @@
-/* el separador de arriba (una linea fina con un adorno botanico, ver .separador-botanico en index.css) separa la seccion de la anterior */
+/* seccion amarilla que sube sobre la anterior: el margen negativo y las esquinas redondeadas hacen que parezca una hoja apilada */
 .seccion {
-  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  /* los colores de los filtros y del acento del titular se heredan en los componentes de adentro */
+  --color-acento: var(--color-plum);
+  --filtro-color: var(--color-plum);
+  --filtro-hover: var(--color-white);
+  --filtro-activo-fondo: var(--color-plum);
+  --filtro-activo-texto: var(--color-white);
   position: relative;
-  isolation: isolate;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  margin-top: calc(-1 * var(--radius-seccion));
+  padding: clamp(5rem, 9vw, 8.75rem) 0;
+  border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
+  background-color: var(--color-yellow);
+  color: var(--color-plum-deep);
+}
+
+/* formas de la esquina de arriba a la derecha, detras del texto */
+.brocha,
+.gota {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.brocha {
+  top: 56px;
+  right: 4%;
+  width: clamp(4.375rem, 8vw, 8.125rem);
+  height: clamp(4.375rem, 8vw, 8.125rem);
+}
+
+.gota {
+  top: 70px;
+  right: 14%;
+  width: clamp(1.25rem, 2.2vw, 2.125rem);
+  height: clamp(1.25rem, 2.2vw, 2.125rem);
+}
+
+/* el contenido va arriba de las formas */
+.seccion > :global(.container) {
+  position: relative;
+  z-index: 1;
 }
 
 /* mobile first: una columna, y mas columnas a medida que hay lugar */
 .grilla {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 640px) {
   .grilla {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1000px) {
-  .seccion {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
   .grilla {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
