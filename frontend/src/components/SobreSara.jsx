@@ -11,17 +11,17 @@ const MATERIALES = [
   "Collages",
 ];
 
-// clases pastel que se reparten entre las etiquetas, una por una y volviendo a empezar
-const COLORES = [styles.rosa, styles.lila, styles.azul, styles.melocoton];
+// clases de color que se reparten entre las etiquetas, una por una y volviendo a empezar
+const COLORES = [styles.ladrillo, styles.arena, styles.salvia, styles.ocre];
 
 // presentacion de sara: dos columnas, el titulo a la izquierda y el texto con las etiquetas a la derecha
 function SobreSara() {
   return (
     <section id="sobre-sara" className={`container ${styles.seccion}`}>
       {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="gota" color="melocoton" tamano="4.5rem" lado="izquierda" arriba="72%" />
-      <FormaDecorativa tipo="cuarto" color="azul" tamano="4rem" lado="derecha" arriba="10%" />
-      <FormaDecorativa tipo="ovalo" color="rosa" tamano="5rem" lado="derecha" arriba="78%" />
+      <FormaDecorativa tipo="gota" color="ocre" tamano="4.5rem" lado="izquierda" arriba="72%" />
+      <FormaDecorativa tipo="cuarto" color="salvia" tamano="4rem" lado="derecha" arriba="10%" />
+      <FormaDecorativa tipo="ovalo" color="ladrillo" tamano="5rem" lado="derecha" arriba="78%" />
       <div>
         <p className={styles.eyebrow}>Sobre Sara</p>
         <h2 className={`display-title ${styles.titulo}`}>
@@ -29,8 +29,8 @@ function SobreSara() {
         </h2>
         {/* dos formas de distinto tamaño, como un pequeño collage bajo el titular */}
         <div className={styles.formas}>
-          <FormaDecorativa tipo="ovalo" color="lila" tamano="4.5rem" />
-          <FormaDecorativa tipo="gota" color="rosa" tamano="3rem" />
+          <FormaDecorativa tipo="ovalo" color="arena" tamano="4.5rem" />
+          <FormaDecorativa tipo="gota" color="ladrillo" tamano="3rem" />
         </div>
       </div>
 
