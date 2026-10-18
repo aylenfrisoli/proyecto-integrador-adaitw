@@ -13,3 +13,9 @@ export const REDES = [
   { id: "instagram", nombre: "Instagram", url: "https://instagram.com/safcreacionesparavos" },
   { id: "facebook", nombre: "Facebook", url: "https://facebook.com/safcreacionesparavos" },
 ];
+
+// cuenta de instagram de la caminata: es distinta a la de sara y la usa la invitacion a apoyar el proyecto
+export const INSTAGRAM_CAMINATA = {
+  usuario: "mariposasrosas2024",
+  url: "https://www.instagram.com/mariposasrosas2024/",
+};
