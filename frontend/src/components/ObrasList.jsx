@@ -4,8 +4,8 @@ import { filtrarPorCategoria, obtenerCategorias } from "../utils/categorias";
 import CategoriaFilter from "./CategoriaFilter";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
-import FormaDecorativa from "./FormaDecorativa";
 import ObraCard from "./ObraCard";
+import Silueta from "./Silueta";
 import styles from "./ObrasList.module.css";
 
 // seccion de obras: pide todas a la api una sola vez y filtra por categoria en el front
@@ -21,12 +21,13 @@ function ObrasList() {
 
   return (
     <section id="obras" className={`container ${styles.seccion}`}>
-      {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="ovalo" color="arena" tamano="5rem" lado="izquierda" arriba="28%" />
-      <FormaDecorativa tipo="cuarto" color="ocre" tamano="4rem" lado="derecha" arriba="62%" />
+      {/* siluetas naturales: la grande asoma junto al titular y las chicas por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="rama" color="musgo" tamano="11rem" lado="derecha" dentro arriba="2.5rem" giro={8} profundidad={0.5} />
+      <Silueta tipo="mariposa" color="ocre" tamano="4rem" lado="izquierda" arriba="30%" giro={-10} profundidad={-0.6} />
+      <Silueta tipo="flor" color="ladrillo" tamano="3.5rem" lado="derecha" arriba="62%" giro={12} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Obras"
-        forma={{ tipo: "gota", color: "ladrillo" }}
+        silueta={{ tipo: "hoja", color: "salvia" }}
         titulo="Una obra, una historia"
         descripcion="Pinturas, collages y bordados únicos, hechos a mano con mucho color."
       />
