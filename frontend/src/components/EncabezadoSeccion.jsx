@@ -1,15 +1,15 @@
-import FormaDecorativa from "./FormaDecorativa";
+import Silueta from "./Silueta";
 import styles from "./EncabezadoSeccion.module.css";
 
-// cabecera que repiten las secciones de la landing: ficha chica con una forma decorativa opcional, titular y una bajada opcional
-// forma es un objeto { tipo, color } con lo que recibe FormaDecorativa
-function EncabezadoSeccion({ etiqueta, titulo, descripcion, forma }) {
+// cabecera que repiten las secciones de la landing: ficha chica con una silueta natural opcional, titular y una bajada opcional
+// silueta es un objeto { tipo, color } con lo que recibe Silueta
+function EncabezadoSeccion({ etiqueta, titulo, descripcion, silueta }) {
   return (
     <header className={styles.encabezado}>
-      {/* la forma va en la misma fila que la etiqueta y no encima del titulo, asi nunca tapa el texto */}
+      {/* la silueta va en la misma fila que la etiqueta y no encima del titulo, asi nunca tapa el texto */}
       <div className={styles.fila}>
         <p className={styles.etiqueta}>{etiqueta}</p>
-        {forma && <FormaDecorativa tipo={forma.tipo} color={forma.color} />}
+        {silueta && <Silueta tipo={silueta.tipo} color={silueta.color} tamano="3.5rem" />}
       </div>
       <h2 className={`display-title ${styles.titulo}`}>{titulo}</h2>
       {descripcion && <p className={styles.descripcion}>{descripcion}</p>}
