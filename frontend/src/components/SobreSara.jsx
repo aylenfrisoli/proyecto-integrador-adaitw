@@ -1,7 +1,8 @@
-import Silueta from "./Silueta";
+import { IMAGEN_RETRATO_SARA } from "../config/imagenes";
+import Forma from "./Forma";
 import styles from "./SobreSara.module.css";
 
-// materiales con los que trabaja sara, salen de las categorias del sitio
+// materiales y tecnicas con los que trabaja sara: las categorias del sitio y las que todavia no tienen productos
 const MATERIALES = [
   "Pinturas",
   "Cajas",
@@ -9,60 +10,77 @@ const MATERIALES = [
   "Bolsos",
   "Papelería",
   "Collages",
+  "Murales",
+  "Cerámica",
+  "Porcelana",
+  "Decoupage",
 ];
 
-// clases de color que se reparten entre las etiquetas, una por una y volviendo a empezar
-const COLORES = [styles.ladrillo, styles.arena, styles.salvia, styles.ocre];
+// clases de color e inclinacion que se reparten entre las etiquetas, una por una y volviendo a empezar (hay seis y mas materiales)
+const ETIQUETAS = [
+  styles.blanca,
+  styles.amarilla,
+  styles.oscura,
+  styles.celeste,
+  styles.rosa,
+  styles.crema,
+];
 
-// presentacion de sara: dos columnas, el titulo a la izquierda y el texto con las etiquetas a la derecha
+// presentacion de sara: el titular grande arriba y debajo dos columnas, el retrato a la izquierda y el texto con las etiquetas a la derecha
 function SobreSara() {
   return (
-    <section id="sobre-sara" className={`container separador-botanico ${styles.seccion}`}>
-      {/* piezas de herbario que asoman por los costados, donde queda lugar en blanco */}
-      <Silueta tipo="amapola" color="ladrillo" tamano="7rem" lado="izquierda" arriba="72%" giro={-6} profundidad={-0.6} />
-      <Silueta tipo="diente" color="salvia" tamano="7rem" lado="derecha" arriba="10%" giro={4} profundidad={0.4} />
-      <Silueta tipo="espiga" color="tierra" tamano="5rem" lado="derecha" arriba="78%" giro={6} profundidad={-0.4} />
-      <div>
-        <p className={styles.eyebrow}>Sobre Sara</p>
-        <h2 className={`display-title ${styles.titulo}`}>
-          Cada pieza tiene su propia historia
+    <section id="sobre-sara" className={styles.seccion}>
+      <div className="container">
+        <h2 className={styles.titulo}>
+          <span className={styles.renglon}>
+            Cada pieza tiene su
+            <Forma tipo="sol" colores={["white"]} ancho="0.6em" alto="0.6em" />
+          </span>
+          <span className={styles.acento}>propia historia</span>
         </h2>
-        {/* una pluma, una concha y una caracola, como los objetos que quedan sobre la mesa de un taller de la costa */}
-        <div className={styles.siluetas}>
-          <Silueta tipo="pluma" color="tierra" tamano="4rem" giro={-4} />
-          <Silueta tipo="concha" color="tierra" tamano="8rem" />
-          <Silueta tipo="caracola" color="musgo" tamano="6.5rem" />
+
+        <div className={styles.columnas}>
+          <div className={styles.retrato}>
+            {/* arco: redondo arriba y con esquinas suaves abajo; sin foto queda el azul de fondo */}
+            <div className={styles.arco}>
+              {IMAGEN_RETRATO_SARA && (
+                <img src={IMAGEN_RETRATO_SARA} alt="Retrato de Sara Figarra" className={styles.imagen} />
+              )}
+            </div>
+            <Forma tipo="flor" colores={["yellow", "rose"]} duracion={24} className={styles.flor} />
+            <Forma tipo="lapiz" colores={["rose"]} className={styles.lapiz} />
+            <Forma tipo="acuarela" colores={["rose-soft"]} className={styles.acuarela} />
+          </div>
+
+          <div>
+            <div className={styles.texto}>
+              <p>
+                Soy Sara Figarra, artista plástica, comunicadora social y
+                muralista, y la creadora detrás de SAF Creaciones para Vos. Vivo
+                en la costa argentina y mi trabajo es un reflejo de mi amor por
+                el color y la forma.
+              </p>
+              <p>
+                Cada creación es una pieza única con alma, hecha a mano con
+                dedicación, calidez y una búsqueda constante de la belleza en
+                los detalles.
+              </p>
+              <p className={styles.deseo}>
+                Mi deseo es inspirar y conectar a las personas con la alegría de
+                la creatividad.
+              </p>
+            </div>
+
+            <h3 className={styles.subtitulo}>Trabajo con</h3>
+            <ul className={styles.etiquetas}>
+              {MATERIALES.map((material, indice) => (
+                <li key={material} className={`${styles.etiqueta} ${ETIQUETAS[indice % ETIQUETAS.length]}`}>
+                  {material}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.contenido}>
-        <p>
-          Soy Sara Figarra, artista plástica, comunicadora social y muralista,
-          y la creadora detrás de SAF Creaciones para Vos. Vivo en la costa
-          argentina y mi trabajo es un reflejo de mi amor por el color y la
-          forma.
-        </p>
-        <p>
-          Cada creación es una pieza única con alma, hecha a mano con
-          dedicación, calidez y una búsqueda constante de la belleza en los
-          detalles.
-        </p>
-        <p>
-          Mi deseo es inspirar y conectar a las personas con la alegría de la
-          creatividad.
-        </p>
-
-        <h3 className={styles.subtitulo}>Trabajo con</h3>
-        <ul className={styles.etiquetas}>
-          {MATERIALES.map((material, indice) => (
-            <li
-              key={material}
-              className={`${styles.etiqueta} ${COLORES[indice % COLORES.length]}`}
-            >
-              {material}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
