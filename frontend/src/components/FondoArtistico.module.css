@@ -42,20 +42,20 @@
   animation: respirar var(--duracion) ease-in-out infinite alternate;
 }
 
-.luz_rosa {
-  background: radial-gradient(circle, rgba(246, 203, 213, 0.6), transparent 65%);
+.luz_ladrillo {
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-soft-brick) 60%, transparent), transparent 65%);
 }
 
-.luz_azul {
-  background: radial-gradient(circle, rgba(196, 220, 255, 0.6), transparent 65%);
+.luz_salvia {
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-soft-green) 60%, transparent), transparent 65%);
 }
 
-.luz_melocoton {
-  background: radial-gradient(circle, rgba(255, 223, 189, 0.65), transparent 65%);
+.luz_ocre {
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-soft-ochre) 65%, transparent), transparent 65%);
 }
 
-.luz_lila {
-  background: radial-gradient(circle, rgba(235, 206, 255, 0.6), transparent 65%);
+.luz_arena {
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-soft-sand) 60%, transparent), transparent 65%);
 }
 
 @keyframes respirar {
@@ -137,7 +137,7 @@
 }
 
 .cerdaClara {
-  stroke: #ffffff;
+  stroke: var(--color-bg-card);
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-opacity: 0.55;
@@ -173,7 +173,7 @@
   width: 28rem;
   height: 28rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 214, 190, 0.55), rgba(246, 203, 213, 0.25) 40%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-soft-ochre) 55%, transparent), color-mix(in srgb, var(--color-soft-brick) 25%, transparent) 40%, transparent 70%);
   opacity: 0;
   pointer-events: none;
   transition:
