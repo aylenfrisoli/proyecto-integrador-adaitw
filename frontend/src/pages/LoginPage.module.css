@@ -50,7 +50,7 @@
 
 .campo input {
   padding: 0.8rem 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid color-mix(in srgb, var(--color-text-main) 22%, transparent);
   border-radius: var(--radius-md);
   background-color: var(--color-bg-main);
   font-family: var(--font-body);
@@ -60,16 +60,16 @@
 
 .campo input:focus {
   border-color: var(--color-brand-primary);
-  outline: 2px solid rgba(159, 118, 87, 0.25);
+  outline: 2px solid color-mix(in srgb, var(--color-brand-primary) 25%, transparent);
 }
 
-/* el error usa el rosa pastel de la paleta en vez de un rojo */
+/* el error usa el ladrillo suave de la paleta en vez de un rojo */
 .error {
   margin: 0;
   padding: 0.8rem 1rem;
   border: 1px solid var(--color-brand-primary);
   border-radius: var(--radius-sm);
-  background-color: rgba(246, 203, 213, 0.4);
+  background-color: color-mix(in srgb, var(--color-soft-brick) 40%, transparent);
   font-size: 0.9rem;
   color: var(--color-brand-hover);
 }
