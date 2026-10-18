@@ -30,6 +30,10 @@
     {
       "key": "token",
       "value": ""
+    },
+    {
+      "key": "imagenPortadaOriginal",
+      "value": ""
     }
   ],
   "item": [
@@ -2475,7 +2479,331 @@
       ]
     },
     {
-      "name": "7. Borrados y limpieza",
+      "name": "7. Configuracion",
+      "item": [
+        {
+          "name": "Leer la configuracion (publico)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "const configuracion = pm.response.json();",
+                  "pm.test(\"trae imagenPortada como texto\", () => pm.expect(configuracion.imagenPortada).to.be.a(\"string\"));",
+                  "// se guarda la foto que habia para devolverla al final y no pisar la portada real si se corre contra Render",
+                  "pm.collectionVariables.set(\"imagenPortadaOriginal\", configuracion.imagenPortada);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Guardar sin token (401)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 401\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Guardar una imagen que no es http o https (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"el error es del campo imagenPortada\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"imagenPortada\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"javascript:alert(1)\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Guardar sin el campo imagenPortada (400)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"el error es del campo imagenPortada\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"imagenPortada\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Guardar la foto de la portada (se quitan los espacios de los costados)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"guarda la url sin espacios\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"  https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman  \"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Leer la configuracion guardada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"devuelve la foto que se guardo\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Quitar la foto con un texto vacio",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"queda sin foto\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Devolver la foto original (deja la portada como estaba)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"queda la foto que habia antes de las pruebas\", () => pm.expect(pm.response.json().imagenPortada).to.eql(pm.collectionVariables.get(\"imagenPortadaOriginal\")));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"{{imagenPortadaOriginal}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Borrados y limpieza",
       "description": "Prueba el 409 y despues borra todo lo que creo la coleccion, asi la base queda como estaba.",
       "item": [
         {
