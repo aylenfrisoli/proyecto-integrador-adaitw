@@ -24,9 +24,9 @@
   border-color: var(--color-brand-primary);
 }
 
-/* el boton elegido se rellena con el color de marca */
+/* el boton elegido se rellena de verde salvia suave; el texto oscuro se lee bien y el ladrillo queda para los botones de accion */
 .activo {
-  border-color: var(--color-brand-primary);
-  background-color: var(--color-brand-primary);
-  color: #ffffff;
+  border-color: var(--color-nature-green);
+  background-color: var(--color-soft-green);
+  color: var(--color-text-main);
 }

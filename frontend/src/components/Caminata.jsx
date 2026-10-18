@@ -6,9 +6,9 @@ import ApoyoCaminata from "./ApoyoCaminata";
 import styles from "./Caminata.module.css";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
-import FormaDecorativa from "./FormaDecorativa";
 import PolaroidCard from "./PolaroidCard";
 import SelectorEdicion from "./SelectorEdicion";
+import Silueta from "./Silueta";
 
 // seccion de la caminata: un boton por edicion y debajo los datos y las polaroids de la elegida
 function Caminata() {
@@ -21,13 +21,15 @@ function Caminata() {
   const edicion = elegirEdicion(ediciones, elegidaId);
 
   return (
-    <section id="caminata" className={`container ${styles.seccion}`}>
-      {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="gota" color="ladrillo" tamano="4.5rem" lado="derecha" arriba="14%" />
-      <FormaDecorativa tipo="ovalo" color="arena" tamano="4rem" lado="izquierda" arriba="62%" />
+    <section id="caminata" className={`container separador-botanico ${styles.seccion}`}>
+      {/* piezas de herbario: la grande sangra por el borde y las chicas asoman por los costados, donde queda lugar en blanco */}
+      {/* mas abajo que en las otras secciones: el titular de la caminata es largo y llega casi hasta el borde derecho, asi que la pampa se apoya junto a la bajada */}
+      <Silueta tipo="pampa" color="tierra" tamano="12rem" lado="derecha" dentro arriba="7rem" sangre="1.5rem" giro={3} profundidad={0.5} />
+      <Silueta tipo="mariposa" color="ladrillo" tamano="6rem" lado="derecha" arriba="14%" giro={10} profundidad={-0.6} />
+      <Silueta tipo="helecho" color="musgo" tamano="8rem" lado="izquierda" arriba="62%" giro={-4} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Concientización"
-        forma={{ tipo: "arco", color: "ladrillo" }}
+        silueta={{ tipo: "amapola", color: "ladrillo" }}
         titulo="Caminata sobre el cáncer de mama"
         descripcion="Una jornada para caminar en comunidad, visibilizar el cáncer de mama y acompañarnos entre todos. La organiza Sara: elegí una edición y mirá cómo fue."
       />

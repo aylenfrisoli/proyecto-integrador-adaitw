@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { REDES } from "../config/contacto";
 import { SECCIONES } from "../config/secciones";
 import styles from "./Footer.module.css";
+import Silueta from "./Silueta";
 
 // icono de cada red, se elige con el id que tiene en config/contacto.js
 const ICONOS = {
@@ -10,7 +11,7 @@ const ICONOS = {
   facebook: FaFacebookF,
 };
 
-// pie de pagina oscuro con la marca, los links a las secciones, la ubicacion y las redes
+// pie de pagina como un prado: lomas arriba, la info sobre fondo salvia suave, siluetas paradas en el pasto y una franja de musgo con el copyright
 function Footer() {
   // el anio se calcula para no tener que actualizar el copyright a mano
   const anio = new Date().getFullYear();
@@ -67,14 +68,30 @@ function Footer() {
         </div>
       </div>
 
-      <div className={`container ${styles.bottom}`}>
-        <small>
-          © {anio} SAF Creaciones para Vos · Sara Figarra, artista plástica
-        </small>
-        {/* acceso discreto al panel: no esta en la navbar porque es solo para la administradora */}
-        <Link to="/login" className={styles.acceso}>
-          Acceso administradora
-        </Link>
+      {/* un campo de la pampa: las piezas paradas en el pasto; segun el ancho de la pantalla se ven mas o menos (ver .suelo en el css) para que nunca se amontonen */}
+      <div className={`container ${styles.suelo}`}>
+        <Silueta tipo="helecho" color="musgo" tamano="7rem" giro={-3} />
+        <Silueta tipo="amapola" color="ladrillo" tamano="5.5rem" giro={4} />
+        <Silueta tipo="espiga" color="tierra" tamano="4.5rem" giro={-2} />
+        <Silueta tipo="pampa" color="tierra" tamano="8.5rem" giro={2} />
+        <Silueta tipo="alga" color="ocre" tamano="5rem" giro={-3} />
+        <Silueta tipo="diente" color="salvia" tamano="5.5rem" giro={-4} />
+        <Silueta tipo="olivo" color="musgo" tamano="6.5rem" giro={3} />
+        <Silueta tipo="pluma" color="tierra" tamano="3.2rem" giro={5} />
+        <Silueta tipo="eucalipto" color="salvia" tamano="7rem" giro={-2} />
+        <Silueta tipo="espiga" color="tierra" tamano="4rem" giro={4} />
+      </div>
+
+      <div className={styles.base}>
+        <div className={`container ${styles.bottom}`}>
+          <small>
+            © {anio} SAF Creaciones para Vos · Sara Figarra, artista plástica
+          </small>
+          {/* acceso discreto al panel: no esta en la navbar porque es solo para la administradora */}
+          <Link to="/login" className={styles.acceso}>
+            Acceso administradora
+          </Link>
+        </div>
       </div>
     </footer>
   );

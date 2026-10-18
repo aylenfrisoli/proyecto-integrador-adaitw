@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch";
 import { ordenarTalleres } from "../utils/talleres";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
-import FormaDecorativa from "./FormaDecorativa";
+import Silueta from "./Silueta";
 import TallerCard from "./TallerCard";
 import styles from "./TalleresList.module.css";
 
@@ -14,14 +14,14 @@ function TalleresList() {
   const lista = ordenarTalleres(talleres ?? []);
 
   return (
-    <section id="talleres" className={`container ${styles.seccion}`}>
-      {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="ovalo" color="salvia" tamano="5.5rem" lado="izquierda" arriba="42%" />
-      <FormaDecorativa tipo="arco" color="arena" tamano="4rem" lado="derecha" arriba="18%" />
-      <FormaDecorativa tipo="cuarto" color="ladrillo" tamano="3.5rem" lado="derecha" arriba="72%" />
+    <section id="talleres" className={`container separador-botanico ${styles.seccion}`}>
+      {/* piezas de herbario: la grande sangra por el borde junto al titular y las chicas asoman por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="alga" color="ocre" tamano="12rem" lado="derecha" dentro arriba="1rem" sangre="1rem" giro={4} profundidad={0.4} />
+      <Silueta tipo="concha" color="tierra" tamano="8rem" lado="izquierda" arriba="42%" giro={-6} profundidad={-0.6} />
+      <Silueta tipo="caracola" color="musgo" tamano="7rem" lado="derecha" arriba="72%" giro={8} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Talleres"
-        forma={{ tipo: "cuarto", color: "ocre" }}
+        silueta={{ tipo: "eucalipto", color: "salvia" }}
         titulo="Aprendé creando"
         descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
       />

@@ -4,8 +4,8 @@ import { filtrarPorCategoria, obtenerCategorias } from "../utils/categorias";
 import CategoriaFilter from "./CategoriaFilter";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
-import FormaDecorativa from "./FormaDecorativa";
 import ProductoCard from "./ProductoCard";
+import Silueta from "./Silueta";
 import styles from "./ProductosList.module.css";
 
 // seccion de productos: igual que la de obras, pide todo una vez y filtra por categoria en el front
@@ -20,13 +20,14 @@ function ProductosList() {
   const productosVisibles = filtrarPorCategoria(lista, categoriaId);
 
   return (
-    <section id="productos" className={`container ${styles.seccion}`}>
-      {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="gota" color="ladrillo" tamano="5rem" lado="derecha" arriba="22%" />
-      <FormaDecorativa tipo="arco" color="salvia" tamano="4rem" lado="izquierda" arriba="60%" />
+    <section id="productos" className={`container separador-botanico ${styles.seccion}`}>
+      {/* piezas de herbario: la grande sangra por el borde junto al titular y las chicas asoman por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="eucalipto" color="salvia" tamano="13rem" lado="derecha" dentro arriba="0.5rem" sangre="1.5rem" giro={-4} profundidad={0.5} />
+      <Silueta tipo="pluma" color="tierra" tamano="4rem" lado="izquierda" arriba="22%" giro={-10} profundidad={-0.6} />
+      <Silueta tipo="diente" color="salvia" tamano="8rem" lado="derecha" arriba="58%" giro={4} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Productos"
-        forma={{ tipo: "arco", color: "salvia" }}
+        silueta={{ tipo: "espiga", color: "tierra" }}
         titulo="Hecho a mano para vos"
         descripcion="Cajas, bordados, bolsos y papelería artesanales. Consultá por WhatsApp y coordinamos la entrega."
       />

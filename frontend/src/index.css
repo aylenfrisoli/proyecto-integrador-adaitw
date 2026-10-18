@@ -11,6 +11,9 @@
   --color-nature-green: #6b8e6b; /* verde salvia, natural y fresco */
   --color-nature-brick: #b9533d; /* ladrillo calido; un poco mas oscuro que el original para que el texto blanco encima se lea bien (contraste 4.8:1) */
   --color-nature-ochre: #e2ad5f; /* ocre alegre para bordes y detalles */
+  /* dos tonos mas profundos para las siluetas y el pie de pagina: el musgo da el verde de hoja oscura y la tierra el marron calido */
+  --color-nature-moss: #4d6b4d; /* verde musgo; con texto claro encima da 5.7:1 */
+  --color-nature-earth: #8f6b4a; /* marron tierra, mas claro y calido que el texto principal */
 
   /* --- paleta principal --- */
   /* los componentes usan estos nombres, asi que al apuntarlos a la identidad nueva cambia todo el sitio sin tocar cada archivo */
@@ -29,14 +32,12 @@
   /* neutros de lectura y estructura */
   --color-bg-main: #fdf9f1; /* crema arena, mas calido que el blanco */
   --color-bg-card: #ffffff;
-  --color-bg-dark: #3b2e22; /* tierra oscura para el pie de pagina y las secciones de alto contraste */
 
   --color-text-main: #5a4634; /* marron tierra, legible y menos duro que el negro */
   --color-text-muted: #7a6655; /* metadatos: tecnica, medidas, fechas; marron mas claro para que no desentone con el texto */
   --color-text-light: var(--color-bg-main); /* texto sobre fondos oscuros: el mismo arena del fondo */
 
   --color-border: color-mix(in srgb, var(--color-text-main) 12%, transparent); /* bordes ultra finos tipo editorial, en marron */
-  --color-border-dark: color-mix(in srgb, var(--color-text-light) 12%, transparent);
 
   /* --- tipografia --- */
   --font-display:
@@ -108,30 +109,38 @@ img {
   margin: 1.5rem 0;
 }
 
-/* liana con hojas y flores en la esquina de las tarjetas de obras, productos y talleres
-   va como clase global porque la usan tres modulos distintos y asi no se repite el mismo bloque tres veces */
-.decoracion-liana {
-  /* relative para que la liana se ubique respecto de la tarjeta; hidden para que no se salga de la esquina redondeada */
-  position: relative;
-  overflow: hidden;
-}
-
-.decoracion-liana::before {
+/* separador de seccion: una linea fina con un adorno botanico en el centro, como el de un libro de plantas
+   lo usan las secciones de la landing, que son position: relative; la linea se parte en dos para dejarle lugar al adorno */
+.separador-botanico::before,
+.separador-botanico::after {
   content: "";
   position: absolute;
   top: 0;
-  right: 0;
-  /* z-index 1 porque la imagen de producto tiene position relative y si no la taparia */
-  z-index: 1;
-  width: 60px;
-  height: 60px;
-  background-image: url("./img/liana-hojas.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  /* un poco transparente para no competir con la foto ni con el texto */
-  opacity: 0.8;
-  /* asi no bloquea los clics de lo que quede debajo */
   pointer-events: none;
+}
+
+.separador-botanico::before {
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--color-border) calc(50% - 5.75rem),
+    transparent calc(50% - 5.75rem) calc(50% + 5.75rem),
+    var(--color-border) calc(50% + 5.75rem)
+  );
+}
+
+.separador-botanico::after {
+  left: 50%;
+  width: 10rem;
+  height: 2rem;
+  /* el adorno se centra justo sobre la linea */
+  translate: -50% -50%;
+  background-color: var(--color-nature-moss);
+  opacity: 0.9;
+  -webkit-mask: url("./img/siluetas/fleuron.svg") center / contain no-repeat;
+  mask: url("./img/siluetas/fleuron.svg") center / contain no-repeat;
 }
 
 /* botones reutilizables: .btn es la base y se combina con una variante (.btn-primary o .btn-outline) */

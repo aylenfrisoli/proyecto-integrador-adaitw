@@ -2,13 +2,21 @@
   margin-bottom: 2rem;
 }
 
-/* etiqueta a la izquierda y forma a la derecha; el margen de abajo separa la fila del titular */
+/* etiqueta a la izquierda y silueta a la derecha; el margen de abajo separa la fila del titular */
 .fila {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
+}
+
+/* desde 900px la seccion suma su silueta grande en ese mismo lugar, asi que la chica se oculta para que no se pisen
+   en el celular y la tablet no hay silueta grande y esta es la unica */
+@media (min-width: 900px) {
+  .fila > *:not(:first-child) {
+    display: none;
+  }
 }
 
 /* ficha chica en mayusculas controladas, como las de un catalogo */

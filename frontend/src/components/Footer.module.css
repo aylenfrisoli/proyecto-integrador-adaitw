@@ -1,8 +1,46 @@
+/* pie de pagina claro, como un prado: el fondo es salvia suave y arriba lo recortan dos lomas de distinto tono
+   position relative e isolation para que las lomas y el pasto se ubiquen contra el pie y se apilen en el orden correcto */
 .footer {
-  margin-top: 4rem;
-  padding: 3.5rem 0 1.5rem;
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-light);
+  position: relative;
+  isolation: isolate;
+  margin-top: 6rem;
+  padding: 3.5rem 0 0;
+  background-color: var(--color-soft-green);
+  color: var(--color-text-main);
+}
+
+/* las dos lomas salen del mismo dibujo: la de atras es mas alta y de un salvia mas intenso, la de adelante es del color del pie y va espejada para que los picos no coincidan
+   bottom calc(100% - 1px) las monta una linea sobre el pie para que no quede una costura clara */
+.footer::before,
+.footer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 1px);
+  pointer-events: none;
+  -webkit-mask-image: url("../img/siluetas/lomas.svg");
+  mask-image: url("../img/siluetas/lomas.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  mask-position: bottom;
+  /* se estira a lo ancho de la pantalla: son lomas, no hace falta que mantengan la proporcion */
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.footer::before {
+  z-index: -2;
+  height: 6rem;
+  background-color: color-mix(in srgb, var(--color-nature-green) 55%, var(--color-bg-main));
+}
+
+.footer::after {
+  z-index: -1;
+  height: 3.75rem;
+  background-color: var(--color-soft-green);
+  transform: scaleX(-1);
 }
 
 /* mobile first: una columna; desde tablet la marca ocupa mas lugar que las otras dos */
@@ -18,8 +56,8 @@
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: -0.02em;
-  /* en el footer los acentos van en ocre: el ladrillo sobre la tierra oscura casi no se lee (2.7:1) y el ocre si (6.5:1) */
-  color: var(--color-nature-ochre);
+  /* el musgo sobre el salvia suave pasa el contraste para texto grande (4.4:1) */
+  color: var(--color-nature-moss);
 }
 
 .text {
@@ -27,10 +65,9 @@
   max-width: 34ch;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: color-mix(in srgb, var(--color-text-light) 75%, transparent);
 }
 
-/* titulos chicos en mayusculas controladas, estilo ficha tecnica */
+/* titulos chicos en mayusculas controladas, estilo ficha tecnica; en el color de texto principal porque el marron claro no llega a 4.5:1 sobre el salvia */
 .title {
   margin: 0 0 1rem;
   font-family: var(--font-body);
@@ -38,7 +75,7 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-text-light) 50%, transparent);
+  color: var(--color-text-main);
 }
 
 .list {
@@ -51,14 +88,16 @@
 }
 
 .link {
-  color: var(--color-text-light);
+  color: var(--color-text-main);
   font-size: 0.95rem;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
+/* en hover el link pasa al ladrillo (4.9:1 sobre el salvia) y se subraya, asi el cambio no depende solo del color */
 .link:hover {
-  color: var(--color-nature-ochre);
+  color: var(--color-brand-primary);
+  text-decoration: underline;
 }
 
 .tituloRedes {
@@ -80,9 +119,9 @@
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--color-border-dark);
+  border: 1px solid color-mix(in srgb, var(--color-text-main) 35%, transparent);
   border-radius: 50%;
-  color: var(--color-text-light);
+  color: var(--color-text-main);
   font-size: 1.05rem;
   transition:
     color 0.2s ease,
@@ -90,22 +129,81 @@
 }
 
 .red:hover {
-  color: var(--color-nature-ochre);
-  border-color: var(--color-nature-ochre);
+  color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
 }
 
-/* franja inferior separada por una linea fina; el copyright y el acceso se reparten el ancho */
+/* fila de siluetas paradas en el pasto: se reparten el ancho y se apoyan todas sobre la misma linea
+   el margen negativo las hunde un poco en el pasto de la franja de abajo para que parezcan plantadas */
+.suelo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  margin-bottom: -0.5rem;
+}
+
+/* segun el ancho se ven mas o menos piezas: sumadas, las que entran siempre caben en el contenedor y no hay scroll horizontal
+   celular: 3 piezas (17rem); desde 600px: 5 (30.5rem); desde 900px: 8 (45.7rem); desde 1280px: las 10 (56.7rem) */
+.suelo > *:nth-child(n + 4) {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .suelo > *:nth-child(-n + 5) {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .suelo > *:nth-child(-n + 8) {
+    display: block;
+  }
+}
+
+@media (min-width: 1280px) {
+  .suelo > *:nth-child(n + 4) {
+    display: block;
+  }
+}
+
+/* franja de musgo con el copyright; el pasto le crece por arriba y va por delante de las siluetas (z-index 1) para taparles la base */
+.base {
+  position: relative;
+  padding: 1.5rem 0;
+  background-color: var(--color-nature-moss);
+  color: var(--color-text-light);
+}
+
+.base::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 1px);
+  z-index: 1;
+  height: 2.25rem;
+  background-color: var(--color-nature-moss);
+  pointer-events: none;
+  -webkit-mask-image: url("../img/siluetas/pasto.svg");
+  mask-image: url("../img/siluetas/pasto.svg");
+  /* el dibujo se repite a lo ancho en vez de estirarse, asi las hojas de pasto no se ensanchan en pantallas grandes */
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: bottom left;
+  mask-position: bottom left;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+}
+
+/* el copyright y el acceso se reparten el ancho */
 .bottom {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border-dark);
   font-size: 0.85rem;
-  color: color-mix(in srgb, var(--color-text-light) 50%, transparent);
 }
 
 .acceso {
@@ -114,8 +212,10 @@
   transition: color 0.2s ease;
 }
 
+/* el ocre fuerte no se lee sobre el musgo (2.9:1): el ocre suave si (4.4:1) */
 .acceso:hover {
-  color: var(--color-nature-ochre);
+  color: var(--color-soft-ochre);
+  text-decoration: underline;
 }
 
 @media (min-width: 768px) {

@@ -1,10 +1,35 @@
 .tarjeta {
+  /* relative para que la enredadera se ubique respecto de la tarjeta; hidden para que no se salga de la esquina redondeada */
+  position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   padding: 1.75rem;
-  /* borde ocre de la identidad naturaleza; la liana de la esquina viene de la clase global decoracion-liana */
-  border: 1px solid var(--color-nature-ochre);
+  /* el color del borde lo pone la modalidad (ver .presencial y .virtual) */
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
+}
+
+/* enredadera fina que cae desde la esquina superior derecha; solo esta tarjeta la lleva porque no tiene foto: en obras y productos taparia la imagen */
+.tarjeta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 84px;
+  height: 74px;
+  /* el dibujo es un svg de un solo color usado como mascara: el color sale de aca y combina con el resto de las piezas de herbario */
+  background-color: var(--color-nature-moss);
+  -webkit-mask-image: url("../img/siluetas/liana.svg");
+  mask-image: url("../img/siluetas/liana.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: top right;
+  mask-position: top right;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  /* asi no bloquea los clics de lo que quede debajo */
+  pointer-events: none;
 }
 
 /* en el celular el padding es mas chico para que las dos etiquetas entren en una sola fila */
@@ -14,12 +39,15 @@
   }
 }
 
-/* el color de la tarjeta indica la modalidad */
+/* el color de la tarjeta indica la modalidad: fondo y borde van juntos
+   el borde presencial usa el ladrillo al 60% para que sea calido pero no tan fuerte como un boton */
 .presencial {
+  border-color: color-mix(in srgb, var(--color-nature-brick) 60%, transparent);
   background-color: color-mix(in srgb, var(--color-soft-sand) 45%, transparent);
 }
 
 .virtual {
+  border-color: var(--color-nature-green);
   background-color: color-mix(in srgb, var(--color-soft-green) 45%, transparent);
 }
 
@@ -45,10 +73,11 @@
   white-space: nowrap;
 }
 
+/* abierto va en verde suave con texto oscuro, igual que "disponible" en los productos */
 .etiquetaAbierto {
-  border-color: var(--color-brand-primary);
-  background-color: var(--color-brand-primary);
-  color: #ffffff;
+  border-color: var(--color-nature-green);
+  background-color: var(--color-soft-green);
+  color: var(--color-text-main);
 }
 
 /* ocupa siempre dos lineas aunque el titulo entre en una: asi todas las tarjetas miden lo mismo
@@ -105,7 +134,7 @@
 .datos svg {
   flex-shrink: 0;
   margin-top: 0.2em;
-  color: var(--color-brand-primary);
+  color: var(--color-nature-green);
 }
 
 /* fecha y hora: una linea; min-width 0 deja que el texto se achique dentro del flex y muestre "..." en vez de salirse de la tarjeta */
