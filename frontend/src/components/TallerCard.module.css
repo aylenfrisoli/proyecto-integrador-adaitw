@@ -1,10 +1,35 @@
 .tarjeta {
+  /* relative para que la enredadera se ubique respecto de la tarjeta; hidden para que no se salga de la esquina redondeada */
+  position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   padding: 1.75rem;
-  /* el color del borde lo pone la modalidad (ver .presencial y .virtual); la liana de la esquina viene de la clase global decoracion-liana */
+  /* el color del borde lo pone la modalidad (ver .presencial y .virtual) */
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
+}
+
+/* enredadera fina que cae desde la esquina superior derecha; solo esta tarjeta la lleva porque no tiene foto: en obras y productos taparia la imagen */
+.tarjeta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 84px;
+  height: 74px;
+  /* el dibujo es un svg de un solo color usado como mascara: el color sale de aca y combina con el resto de las piezas de herbario */
+  background-color: var(--color-nature-moss);
+  -webkit-mask-image: url("../img/siluetas/liana.svg");
+  mask-image: url("../img/siluetas/liana.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: top right;
+  mask-position: top right;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  /* asi no bloquea los clics de lo que quede debajo */
+  pointer-events: none;
 }
 
 /* en el celular el padding es mas chico para que las dos etiquetas entren en una sola fila */

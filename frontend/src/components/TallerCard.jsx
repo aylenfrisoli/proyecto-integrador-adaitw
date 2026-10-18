@@ -23,7 +23,7 @@ function TallerCard({ taller }) {
   return (
     // la clase de modalidad pinta la tarjeta (presencial arena, virtual salvia) y la de estado apaga los finalizados
     <article
-      className={`${styles.tarjeta} ${styles[taller.modalidad]} ${styles[taller.estado]} decoracion-liana`}
+      className={`${styles.tarjeta} ${styles[taller.modalidad]} ${styles[taller.estado]}`}
     >
       <div className={styles.etiquetas}>
         <span className={styles.etiqueta}>

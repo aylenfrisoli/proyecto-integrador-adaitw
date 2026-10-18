@@ -143,37 +143,6 @@ img {
   mask: url("./img/siluetas/fleuron.svg") center / contain no-repeat;
 }
 
-/* enredadera fina que cae desde la esquina de las tarjetas de obras, productos y talleres
-   va como clase global porque la usan tres modulos distintos y asi no se repite el mismo bloque tres veces */
-.decoracion-liana {
-  /* relative para que la liana se ubique respecto de la tarjeta; hidden para que no se salga de la esquina redondeada */
-  position: relative;
-  overflow: hidden;
-}
-
-.decoracion-liana::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  /* z-index 1 porque la imagen de producto tiene position relative y si no la taparia */
-  z-index: 1;
-  width: 84px;
-  height: 74px;
-  /* el dibujo es un svg de un solo color usado como mascara: el color sale de aca y combina con el resto de las piezas de herbario */
-  background-color: var(--color-nature-moss);
-  -webkit-mask-image: url("./img/siluetas/liana.svg");
-  mask-image: url("./img/siluetas/liana.svg");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: top right;
-  mask-position: top right;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  /* asi no bloquea los clics de lo que quede debajo */
-  pointer-events: none;
-}
-
 /* botones reutilizables: .btn es la base y se combina con una variante (.btn-primary o .btn-outline) */
 .btn {
   display: inline-flex;
