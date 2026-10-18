@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FiCalendar, FiMapPin } from "react-icons/fi";
 import useFetch from "../hooks/useFetch";
 import { elegirEdicion, formatearDia, ordenarEdiciones } from "../utils/caminata";
+import ApoyoCaminata from "./ApoyoCaminata";
 import styles from "./Caminata.module.css";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
@@ -83,6 +84,9 @@ function Caminata() {
           </div>
         )}
       </EstadoDeDatos>
+
+      {/* va afuera de EstadoDeDatos para que se vea siempre, aunque las ediciones no hayan cargado */}
+      <ApoyoCaminata />
     </section>
   );
 }

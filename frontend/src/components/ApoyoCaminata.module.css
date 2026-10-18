@@ -1,0 +1,90 @@
+/* tarjeta de invitacion: degradado de rosa a lila pastel, los colores de la campana */
+.apoyo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    135deg,
+    rgba(246, 203, 213, 0.6),
+    rgba(235, 206, 255, 0.5)
+  );
+}
+
+/* circulo de color de marca con el icono de instagram adentro */
+.icono {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background-color: var(--color-brand-primary);
+  font-size: 1.6rem;
+  color: #ffffff;
+  transition: transform 0.35s ease;
+}
+
+.texto {
+  flex: 1;
+}
+
+.titulo {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.bajada {
+  max-width: 52ch;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-main);
+}
+
+/* el nombre de la cuenta se destaca con el color de marca y cifras de ancho fijo */
+.usuario {
+  font-weight: 500;
+  font-feature-settings: "tnum";
+  color: var(--color-brand-hover);
+}
+
+.boton {
+  flex-shrink: 0;
+}
+
+/* desktop: icono, texto y boton en una sola fila, con el boton a la derecha */
+@media (min-width: 700px) {
+  .apoyo {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.75rem 2rem;
+  }
+}
+
+/* el icono se da vuelta apenas al pasar el mouse por la tarjeta; solo en dispositivos con mouse */
+@media (hover: hover) {
+  .apoyo:hover .icono {
+    transform: rotate(-12deg) scale(1.08);
+  }
+}
+
+/* quien pide menos movimiento ve el icono quieto */
+@media (prefers-reduced-motion: reduce) {
+  .icono {
+    transition: none;
+  }
+
+  .apoyo:hover .icono {
+    transform: none;
+  }
+}
