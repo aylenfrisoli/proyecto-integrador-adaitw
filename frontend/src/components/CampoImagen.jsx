@@ -3,7 +3,14 @@ import estilos from "../styles/admin.module.css";
 
 // campo para pegar el link de una imagen, con vista previa y un aviso si el link no carga
 // cuadrada cambia la proporcion de la vista previa: 4/5 para obras y 1/1 para productos
-function CampoImagen({ valor, onChange, cuadrada = false }) {
+// etiqueta y chica son para cuando hay varias imagenes en el mismo formulario (las fotos de la caminata)
+function CampoImagen({
+  valor,
+  onChange,
+  cuadrada = false,
+  etiqueta = "Imagen (link)",
+  chica = false,
+}) {
   const [falla, setFalla] = useState(false);
 
   function cambiar(evento) {
@@ -15,7 +22,7 @@ function CampoImagen({ valor, onChange, cuadrada = false }) {
   return (
     <>
       <label className={estilos.campo}>
-        Imagen (link)
+        {etiqueta}
         <input
           type="url"
           value={valor}
@@ -30,7 +37,7 @@ function CampoImagen({ valor, onChange, cuadrada = false }) {
         <img
           src={valor}
           alt="Vista previa de la imagen"
-          className={`${estilos.vistaPrevia} ${cuadrada ? estilos.vistaPreviaCuadrada : ""}`}
+          className={`${estilos.vistaPrevia} ${cuadrada ? estilos.vistaPreviaCuadrada : ""} ${chica ? estilos.vistaPreviaChica : ""}`}
           onError={() => setFalla(true)}
         />
       )}

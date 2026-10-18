@@ -1,3 +1,4 @@
+import Caminata from "../components/Caminata";
 import FondoArtistico from "../components/FondoArtistico";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
@@ -18,6 +19,7 @@ function HomePage() {
         <ObrasList />
         <ProductosList />
         <TalleresList />
+        <Caminata />
         <SobreSara />
       </main>
       <Footer />

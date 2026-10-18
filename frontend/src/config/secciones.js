@@ -3,5 +3,6 @@ export const SECCIONES = [
   { id: "obras", nombre: "Obras" },
   { id: "productos", nombre: "Productos" },
   { id: "talleres", nombre: "Talleres" },
+  { id: "caminata", nombre: "Caminata" },
   { id: "sobre-sara", nombre: "Sobre Sara" },
 ];
