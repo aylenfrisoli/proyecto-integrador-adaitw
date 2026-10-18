@@ -1,7 +1,7 @@
 import { useState } from "react";
-import estilos from "../styles/admin.module.css";
-import { MAX_FOTOS, diaDesdeInput, diaParaInput } from "../utils/caminata";
-import CampoImagen from "./CampoImagen";
+import CampoImagen from "../../components/CampoImagen";
+import estilos from "../../styles/admin.module.css";
+import { MAX_FOTOS, diaDesdeInput, diaParaInput } from "../../utils/caminata";
 
 // cada fila de foto necesita un id propio y estable para usarlo de key
 // el indice no sirve: al quitar una fila del medio las demas cambiarian de key y react mezclaria sus datos

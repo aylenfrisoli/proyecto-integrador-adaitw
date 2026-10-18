@@ -8,11 +8,13 @@ Esta carpeta guarda la sección de la Caminata de Concientización sobre el Cán
 - `FotoCaminata`: cada foto en su cuadrado con el epígrafe.
 - `ApoyoCaminata`: la tarjeta que invita a apoyar el proyecto en Instagram.
 - `SelectorEdicion.jsx`: los botones para elegir la edición.
-- `index.js`: exporta `Caminata`.
+- `CaminataAdmin.jsx` y `CaminataForm.jsx`: la pestaña del panel de administración donde se cargan, editan y borran las ediciones.
+- `index.js`: exporta `Caminata` y `CaminataAdmin`.
 
-La sección lee la API (`GET /caminatas`) y usa componentes y utilidades que siguen en el resto del front (`EncabezadoSeccion`, `EstadoDeDatos`, `Forma`, `useFetch`, `utils/caminata.js`, `config/contacto.js`). El panel de administración (pestaña Caminata) y la API no se tocaron.
+La sección lee la API (`GET /caminatas`) y usa componentes y utilidades que siguen en el resto del front (`EncabezadoSeccion`, `EstadoDeDatos`, `Forma`, `CampoImagen`, `useFetch`, `utils/caminata.js`, `config/contacto.js`). La API sigue funcionando completa; lo único que se sacó es mostrarla en la landing y en el panel.
 
 ## Cómo volver a ponerla
 
-1. En `src/pages/HomePage.jsx`: `import { Caminata } from "../exportables/caminata";` y `<Caminata />` entre `<TalleresList />` y `<SobreSara />`.
-2. En `src/config/secciones.js`: sumar `{ id: "caminata", nombre: "Caminata" }` entre talleres y sobre Sara, para que vuelva el link de la navbar y del pie.
+1. En `src/pages/HomePage.jsx`: `import { Caminata } from "../exportables/caminata";` y `<Caminata />` entre `<ObrasList />` y `<SobreSara />`, que es donde estaba. Ojo: cada lugar de la landing tiene su color de fondo, así que hay que ajustar el fondo, los textos y las formas de la sección al lugar donde caiga.
+2. En `src/config/secciones.js`: sumar `{ id: "caminata", nombre: "Caminata" }` donde corresponda, para que vuelva el link de la navbar y del pie.
+3. En `src/pages/AdminPage.jsx`: `import { CaminataAdmin } from "../exportables/caminata";` y sumar `{ id: "caminata", nombre: "Caminata", componente: CaminataAdmin }` a `PANELES`.

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import useAccion from "../hooks/useAccion";
-import useApi from "../hooks/useApi";
-import useFetch from "../hooks/useFetch";
-import estilos from "../styles/admin.module.css";
-import { contarFotos, formatearDia } from "../utils/caminata";
+import EstadoDeDatos from "../../components/EstadoDeDatos";
+import MensajeAdmin from "../../components/MensajeAdmin";
+import useAccion from "../../hooks/useAccion";
+import useApi from "../../hooks/useApi";
+import useFetch from "../../hooks/useFetch";
+import estilos from "../../styles/admin.module.css";
+import { contarFotos, formatearDia } from "../../utils/caminata";
 import CaminataForm from "./CaminataForm";
-import EstadoDeDatos from "./EstadoDeDatos";
-import MensajeAdmin from "./MensajeAdmin";
 
 // panel de la caminata: las ediciones con sus fotos, mismo patron que el de talleres
 function CaminataAdmin() {
