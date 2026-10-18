@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
 import { SECCIONES } from "../config/secciones";
-import logoHeader from "../img/logo-header-brown-recortado.png";
 import styles from "./Navbar.module.css";
 
-// barra de navegacion fija con fondo translucido; en celular los links se despliegan con un boton
+// barra de navegacion flotante con forma de pastilla; en celular los links se despliegan en un panel azul con un boton
 function Navbar() {
   const [abierto, setAbierto] = useState(false);
 
@@ -13,17 +11,22 @@ function Navbar() {
 
   return (
     <header className={styles.navbar}>
-      <nav className={`container ${styles.inner}`} aria-label="Principal">
+      <nav className={styles.barra} aria-label="Principal">
         <a href="#inicio" className={styles.logo} onClick={cerrarMenu}>
-          {/* el alt lleva el nombre completo porque el logo solo dice saf creaciones */}
-          <img
-            src={logoHeader}
-            alt="SAF Creaciones para Vos"
-            className={styles.logoImg}
-            width="107"
-            height="40"
-          />
+          <span className={styles.marca}>SAF</span>
+          <span className={styles.nombre}>Creaciones para Vos</span>
         </a>
+
+        {/* desktop: links en fila; en celular esta lista se oculta y se usa el boton de abajo */}
+        <ul className={styles.links}>
+          {SECCIONES.map((seccion) => (
+            <li key={seccion.id}>
+              <a href={`#${seccion.id}`} className={styles.link}>
+                {seccion.nombre}
+              </a>
+            </li>
+          ))}
+        </ul>
 
         <button
           type="button"
@@ -33,26 +36,23 @@ function Navbar() {
           aria-controls="menu-principal"
           aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
         >
-          {abierto ? <FiX size={24} /> : <FiMenu size={24} />}
+          {abierto ? "Cerrar" : "Menú"}
         </button>
+      </nav>
 
-        <ul
-          id="menu-principal"
-          className={`${styles.links} ${abierto ? styles.open : ""}`}
-        >
-          {SECCIONES.map((seccion) => (
+      {abierto && (
+        <ul id="menu-principal" className={styles.menuMovil}>
+          {SECCIONES.map((seccion, indice) => (
             <li key={seccion.id}>
-              <a
-                href={`#${seccion.id}`}
-                className={styles.link}
-                onClick={cerrarMenu}
-              >
+              <a href={`#${seccion.id}`} className={styles.linkMovil} onClick={cerrarMenu}>
                 {seccion.nombre}
+                {/* numero de orden en cifras de dos digitos: 01, 02... */}
+                <span className={styles.numero}>{String(indice + 1).padStart(2, "0")}</span>
               </a>
             </li>
           ))}
         </ul>
-      </nav>
+      )}
     </header>
   );
 }

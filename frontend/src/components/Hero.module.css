@@ -1,37 +1,157 @@
-/* mobile first: una columna con el texto arriba y el collage abajo */
+/* overflow hidden: las formas y las bandas de fondo no se salen de la portada */
 .hero {
-  display: grid;
-  gap: 2.5rem;
-  align-items: center;
-  padding-top: 3rem;
-  padding-bottom: 4rem;
+  position: relative;
+  padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3.75rem, 7vw, 6.25rem);
+  overflow: hidden;
 }
 
-/* ficha chica en mayusculas controladas, como las de un catalogo */
-.eyebrow {
-  margin: 0 0 1.25rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+/* el contenido va arriba de la decoracion */
+.contenido {
+  position: relative;
+  z-index: 1;
 }
 
+/* ---------- decoracion de fondo: todas absolutas, sin recibir clics y detras del texto ---------- */
+.bandas,
+.pincel,
+.paleta,
+.gotaRosa,
+.gotaLila,
+.pomo {
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bandas {
+  bottom: 0;
+  height: 220px;
+  opacity: 0.35;
+}
+
+.pincel,
+.paleta,
+.gotaRosa,
+.gotaLila,
+.pomo {
+  position: absolute;
+}
+
+.pincel {
+  top: 3%;
+  right: 5%;
+  width: clamp(4.375rem, 10vw, 10.625rem);
+  height: clamp(4.375rem, 10vw, 10.625rem);
+}
+
+.paleta {
+  top: clamp(10rem, 24vw, 25rem);
+  right: 7%;
+  width: clamp(5.625rem, 13vw, 13.75rem);
+  height: clamp(4.5rem, 10.4vw, 11rem);
+}
+
+.gotaRosa {
+  top: 6%;
+  right: 26%;
+  width: clamp(1.375rem, 2.6vw, 2.5rem);
+  height: clamp(1.375rem, 2.6vw, 2.5rem);
+}
+
+.gotaLila {
+  top: clamp(7.5rem, 18vw, 18.75rem);
+  right: 2%;
+  width: clamp(1.125rem, 2vw, 1.875rem);
+  height: clamp(1.125rem, 2vw, 1.875rem);
+}
+
+.pomo {
+  bottom: clamp(2.5rem, 6vw, 5.625rem);
+  left: -10px;
+  width: clamp(3.5rem, 6vw, 6rem);
+  height: clamp(3.5rem, 6vw, 6rem);
+}
+
+/* ---------- titular ---------- */
 .titulo {
-  margin: 0 0 1.5rem;
-  /* clamp hace que el titular crezca con la pantalla pero sin pasarse de 3.75rem; syne es una fuente ancha y con mas tamaño se parte en demasiadas lineas */
-  font-size: clamp(2.25rem, 8vw, 3.75rem);
+  margin: 0;
+  font-size: clamp(4rem, 14vw, 14.5rem);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  color: var(--color-ink);
+}
+
+/* cada renglon se parte en dos si no entra, con la forma debajo de la palabra */
+.renglon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.14em;
+}
+
+/* el segundo y el tercer renglon van corridos a la derecha, escalonados */
+.segundo {
+  padding-left: clamp(0px, 8vw, 140px);
+}
+
+.tercero {
+  padding-left: clamp(0px, 11vw, 200px);
+}
+
+/* "Colores" va en ciruela, distinto del tinta del resto del titular y del celeste de la manuscrita */
+.colores {
+  color: var(--color-plum);
 }
 
 .acento {
-  color: var(--color-brand-primary);
+  font-family: var(--font-acento);
+  font-weight: 700;
+  color: var(--color-sky);
+}
+
+/* ---------- foto, bajada y botones: dos columnas cuando hay lugar (minimo 380px cada una) ---------- */
+.pie {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+  margin-top: clamp(2.75rem, 6vw, 5rem);
+}
+
+/* sin foto queda este bloque celeste, que es el fondo */
+.foto {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-sky-soft);
+}
+
+.imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* sello amarillo pegado en la esquina de abajo, en la tipografia de ficha */
+.sello {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 999px;
+  background-color: var(--color-yellow);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink);
 }
 
 .bajada {
-  max-width: 46ch;
+  max-width: 40ch;
   margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
+  font-size: clamp(1.1875rem, 1.7vw, 1.5rem);
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .acciones {
@@ -41,178 +161,25 @@
   margin-top: 2rem;
 }
 
-/* grilla asimetrica de 2 columnas y 3 filas: los bloques ocupan distinta cantidad de celdas */
-.collage {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
+/* botones grandes de la portada; el primero lleva una flecha en un circulo amarillo y por eso tiene menos relleno a la derecha */
+.boton {
   gap: 0.75rem;
-  aspect-ratio: 4 / 5;
-  max-height: 32rem;
-  width: 100%;
-  justify-self: center;
+  min-height: 3.5rem;
+  padding: 0 0.5625rem 0 1.625rem;
+  font-size: 1.0625rem;
 }
 
-/* cada bloque tiene tres animaciones a la vez, cada una sobre una propiedad distinta para que no se pisen:
-   entrada (transform, una sola vez), flotar (translate, infinita) y cambiarForma (border-radius, infinita) */
-.bloque {
-  display: block;
-  cursor: pointer;
-  border-radius: var(--forma-a);
-  /* los nombres de las animaciones tienen que ir escritos aca y no dentro de una variable: css modules solo los renombra en la propiedad animation */
-  animation:
-    entrada 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) var(--retraso) backwards,
-    flotar var(--duracion-flote) ease-in-out var(--fase) infinite,
-    cambiarForma var(--duracion-forma) ease-in-out var(--fase) infinite alternate;
-  /* scale se anima con transition y no con transform, para que el hover y el salto se sumen sin pelearse */
-  transition: scale 0.25s ease;
-  /* cada bloque define sus propios valores abajo; estos son los de reserva */
-  --retraso: 0s;
-  --duracion-flote: 6s;
-  --duracion-forma: 7s;
-  --fase: 0s;
+.botonSimple {
+  padding: 0 1.625rem;
 }
 
-.bloque:hover {
-  scale: 1.05;
-}
-
-/* al hacer clic react suma esta clase: se repiten las tres animaciones (si no, se cortarian) y se agrega el salto al final */
-.salto {
-  animation:
-    entrada 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) var(--retraso) backwards,
-    flotar var(--duracion-flote) ease-in-out var(--fase) infinite,
-    cambiarForma var(--duracion-forma) ease-in-out var(--fase) infinite alternate,
-    saltar 0.8s ease-out;
-}
-
-/* los bloques aparecen de a uno, cayendo desde abajo con un pequeño rebote (el cubic-bezier se pasa de 1 a proposito) */
-@keyframes entrada {
-  from {
-    opacity: 0;
-    transform: translateY(2.5rem) scale(0.6) rotate(-8deg);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* sube y baja suave, cada bloque con su propio ritmo */
-@keyframes flotar {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -0.6rem;
-  }
-}
-
-/* de la forma a a la forma b y vuelta; los valores salen de las variables de cada bloque */
-@keyframes cambiarForma {
-  from {
-    border-radius: var(--forma-a);
-  }
-  to {
-    border-radius: var(--forma-b);
-  }
-}
-
-/* se agacha, salta estirado y cae aplastado antes de volver a su tamaño (squash and stretch) */
-@keyframes saltar {
-  0% {
-    transform: none;
-  }
-  15% {
-    transform: scale(1.06, 0.88);
-  }
-  45% {
-    transform: translateY(-2.5rem) scale(0.94, 1.1);
-  }
-  70% {
-    transform: translateY(0) scale(1.07, 0.9);
-  }
-  85% {
-    transform: translateY(-0.5rem) scale(0.98, 1.03);
-  }
-  100% {
-    transform: none;
-  }
-}
-
-.ladrillo {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  background-color: var(--color-soft-brick);
-  --forma-a: var(--radius-lg);
-  --forma-b: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  --retraso: 0s;
-  --duracion-flote: 6s;
-  --duracion-forma: 8s;
-  --fase: 0s;
-}
-
-/* forma de arco en la parte de arriba: al cambiar de forma el arco se da vuelta */
-.salvia {
-  grid-column: 2;
-  grid-row: 1;
-  background-color: var(--color-soft-green);
-  --forma-a: 999px 999px var(--radius-md) var(--radius-md);
-  --forma-b: var(--radius-md) var(--radius-md) 999px 999px;
-  --retraso: 0.15s;
-  --duracion-flote: 5s;
-  --duracion-forma: 6s;
-  --fase: -1.5s;
-}
-
-.arena {
-  grid-column: 2;
-  grid-row: 2 / span 2;
-  background-color: var(--color-soft-sand);
-  --forma-a: var(--radius-lg);
-  --forma-b: 50%;
-  --retraso: 0.3s;
-  --duracion-flote: 7s;
-  --duracion-forma: 9s;
-  --fase: -3s;
-}
-
-/* cuarto de circulo, sirve de remate abajo a la izquierda: al cambiar de forma gira la esquina redonda */
-.ocre {
-  grid-column: 1;
-  grid-row: 3;
-  background-color: var(--color-soft-ochre);
-  --forma-a: var(--radius-md) 100% var(--radius-md) var(--radius-md);
-  --forma-b: 100% var(--radius-md) var(--radius-md) var(--radius-md);
-  --retraso: 0.45s;
-  --duracion-flote: 5.5s;
-  --duracion-forma: 5s;
-  --fase: -2s;
-}
-
-/* quien tiene activada la opcion de menos movimiento en su sistema ve el collage quieto */
-@media (prefers-reduced-motion: reduce) {
-  .bloque,
-  .salto {
-    animation: none;
-    border-radius: var(--forma-a);
-  }
-
-  .bloque:hover {
-    scale: 1;
-  }
-}
-
-@media (min-width: 900px) {
-  .hero {
-    grid-template-columns: 1.25fr 1fr;
-    gap: 4rem;
-    padding-top: 5rem;
-    padding-bottom: 6rem;
-  }
-
-  .collage {
-    max-height: none;
-  }
+.flecha {
+  display: grid;
+  place-items: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  font-size: 1.125rem;
+  color: var(--color-ink);
 }
