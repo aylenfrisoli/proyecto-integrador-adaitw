@@ -42,7 +42,10 @@ function ProductoCard({ producto }) {
           aria-label={`Consultar por ${producto.titulo} por WhatsApp`}
         >
           <FaWhatsapp aria-hidden="true" />
-          Consultar por WhatsApp
+          {/* en pantallas muy angostas " por WhatsApp" se oculta para que el boton no se parta en dos lineas (ver .textoLargo) */}
+          <span>
+            Consultar<span className={styles.textoLargo}> por WhatsApp</span>
+          </span>
         </a>
       </div>
     </article>
