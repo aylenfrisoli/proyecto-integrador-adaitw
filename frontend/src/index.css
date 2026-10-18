@@ -32,14 +32,12 @@
   /* neutros de lectura y estructura */
   --color-bg-main: #fdf9f1; /* crema arena, mas calido que el blanco */
   --color-bg-card: #ffffff;
-  --color-bg-dark: #3b2e22; /* tierra oscura para el pie de pagina y las secciones de alto contraste */
 
   --color-text-main: #5a4634; /* marron tierra, legible y menos duro que el negro */
   --color-text-muted: #7a6655; /* metadatos: tecnica, medidas, fechas; marron mas claro para que no desentone con el texto */
   --color-text-light: var(--color-bg-main); /* texto sobre fondos oscuros: el mismo arena del fondo */
 
   --color-border: color-mix(in srgb, var(--color-text-main) 12%, transparent); /* bordes ultra finos tipo editorial, en marron */
-  --color-border-dark: color-mix(in srgb, var(--color-text-light) 12%, transparent);
 
   /* --- tipografia --- */
   --font-display:
