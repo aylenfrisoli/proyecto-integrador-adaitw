@@ -1,0 +1,52 @@
+/* los margenes negativos y la inclinacion hacen que la cinta llegue de borde a borde aunque este girada
+   main corta lo que sobra a los costados */
+.cinta {
+  position: relative;
+  z-index: 2;
+  margin: 0 -20px;
+  padding: 18px 0;
+  overflow: hidden;
+  background-color: var(--color-yellow);
+  color: var(--color-ink);
+  transform: rotate(-1.5deg);
+}
+
+/* width max-content: la pista mide lo que miden sus dos filas y translateX(-50%) la corre exactamente una fila */
+.pista {
+  display: flex;
+  width: max-content;
+  animation: desplazar 32s linear infinite;
+}
+
+.fila {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 36px;
+  padding-right: 36px;
+}
+
+.palabra {
+  font-size: clamp(1.875rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.manuscrita {
+  font-family: var(--font-acento);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.forma {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+}
+
+@keyframes desplazar {
+  to {
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,12 @@
+/* capa fija del tamano de la pantalla, por encima de todo (incluso la navbar) pero sin tapar los clics
+   multiply oscurece lo que hay debajo solo donde el grano tiene color, asi no ensucia los blancos */
+.grano {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  /* el grano es un svg con ruido fractal pintado de azul tinta, escrito en la url (los # y los < van codificados) */
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .3 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
