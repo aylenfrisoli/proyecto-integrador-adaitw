@@ -135,7 +135,7 @@ frontend/src/
 ├── components/    piezas de la landing (Hero, tarjetas, listas) y del panel (formularios y listas de administración)
 ├── config/        URL de la API, secciones de la navbar, datos de contacto (WhatsApp y redes) y el retrato de Sara
 ├── context/       AuthContext: guarda la sesión de la administradora
-├── exportables/   la sección de la caminata, sacada de la landing y lista para volver a ponerla (ver su LEEME.md)
+├── exportables/   la sección de la caminata y su pestaña del panel, sacadas del sitio y listas para volver a ponerlas (ver su LEEME.md)
 ├── hooks/         useFetch (leer datos), useApi (escribir con el token) y useAccion (estado de cada acción)
 ├── pages/         HomePage, LoginPage, AdminPage y NotFoundPage
 ├── utils/         funciones puras para formatear precios y fechas, filtrar y leer el token
@@ -149,7 +149,7 @@ frontend/src/
 | --------------------- | --------- | ------------------------------------------------------------ |
 | `/`                   | público   | landing con obras, productos, talleres y la sección sobre Sara |
 | `/login`              | público   | formulario de ingreso de la administradora                   |
-| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres`, `caminata` y `portada` |
+| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `portada` |
 | cualquier otra ruta   | público   | página 404                                                   |
 
 `/admin` redirige a `/admin/categorias`. Si alguien entra al panel sin sesión, lo manda al login; si el token vence, cierra la sesión solo.
@@ -268,7 +268,7 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 
 ### Caminatas
 
-Cada documento es una edición de la caminata de concientización sobre el cáncer de mama (1ª edición, 2ª edición...). Las fotos viven dentro de la edición, no tienen rutas propias. La sección que las muestra está fuera de la landing por ahora (ver `frontend/src/exportables/caminata/`), pero la API y la pestaña del panel siguen funcionando.
+Cada documento es una edición de la caminata de concientización sobre el cáncer de mama (1ª edición, 2ª edición...). Las fotos viven dentro de la edición, no tienen rutas propias. La sección que las muestra está fuera de la landing por ahora y su pestaña del panel también se sacó (el código de ambas está en `frontend/src/exportables/caminata/`), pero la API sigue funcionando completa.
 
 | Método | Ruta              | Acceso  | Descripción                                                    |
 | ------ | ----------------- | ------- | -------------------------------------------------------------- |
