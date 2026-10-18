@@ -14,14 +14,14 @@ function TalleresList() {
   const lista = ordenarTalleres(talleres ?? []);
 
   return (
-    <section id="talleres" className={`container ${styles.seccion}`}>
-      {/* siluetas naturales: la grande asoma junto al titular y las chicas por los costados, donde queda lugar en blanco */}
-      <Silueta tipo="montanas" color="tierra" tamano="10rem" lado="derecha" dentro arriba="3rem" profundidad={0.4} />
-      <Silueta tipo="pajaro" color="musgo" tamano="4.5rem" lado="izquierda" arriba="42%" giro={-6} profundidad={-0.6} />
-      <Silueta tipo="hongo" color="ladrillo" tamano="3.5rem" lado="derecha" arriba="72%" giro={6} profundidad={0.4} />
+    <section id="talleres" className={`container separador-botanico ${styles.seccion}`}>
+      {/* piezas de herbario: la grande sangra por el borde junto al titular y las chicas asoman por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="alga" color="ocre" tamano="12rem" lado="derecha" dentro arriba="1rem" sangre="1rem" giro={4} profundidad={0.4} />
+      <Silueta tipo="concha" color="tierra" tamano="8rem" lado="izquierda" arriba="42%" giro={-6} profundidad={-0.6} />
+      <Silueta tipo="caracola" color="musgo" tamano="7rem" lado="derecha" arriba="72%" giro={8} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Talleres"
-        silueta={{ tipo: "hoja", color: "ocre" }}
+        silueta={{ tipo: "eucalipto", color: "salvia" }}
         titulo="Aprendé creando"
         descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
       />

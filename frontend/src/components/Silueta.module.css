@@ -1,12 +1,12 @@
-/* siluetas naturales de un solo color: el dibujo es un svg negro que se usa como mascara y el color sale del background,
-   asi cada silueta puede ir en cualquier tono de la paleta sin duplicar el archivo */
+/* piezas de herbario de un solo color: el dibujo es un svg negro con partes translucidas (el lavado) y partes firmes (la linea de tinta)
+   se usa como mascara y el color sale del background, asi cada pieza puede ir en cualquier tono de la paleta sin duplicar el archivo */
 
-/* el span de afuera solo ubica y mueve con el scroll; el tamaño es el mismo para ancho y alto porque los dibujos son cuadrados */
+/* el span de afuera solo ubica y mueve con el scroll; el alto sale del aspect-ratio que le pone el componente segun el dibujo */
 .posicion {
+  position: relative;
   display: block;
   flex-shrink: 0;
   width: var(--tamano);
-  height: var(--tamano);
 }
 
 /* en el margen de la seccion, donde queda espacio en blanco; en pantallas angostas no hay margen y no se muestran
@@ -25,9 +25,8 @@
     /* hueco = margen libre a cada lado del contenedor, mas el padding de .container (1.25rem), menos 0.75rem de aire para que nunca toque el contenido
        100vw cuenta la barra de scroll (hasta 17px), por eso se resta medio ancho de barra: 0.5rem */
     --hueco: calc((100vw - var(--container-max-width)) / 2);
-    /* la silueta nunca es mas ancha que el hueco, asi no se mete debajo del contenido ni se corta contra el borde de la pantalla */
+    /* la pieza nunca es mas ancha que el hueco, asi no se mete debajo del contenido ni se corta contra el borde de la pantalla */
     width: min(var(--tamano), var(--hueco));
-    height: min(var(--tamano), var(--hueco));
   }
 
   /* el borde de adentro queda 0.75rem antes de donde empieza el contenido */
@@ -51,32 +50,29 @@
 @media (min-width: 900px) {
   .posicion.dentro {
     display: block;
-    /* nunca mas de un sexto del ancho de la pantalla, para que en tablet no pise el titular */
-    width: min(var(--tamano), 16vw);
-    height: min(var(--tamano), 16vw);
+    /* nunca mas de un quinto del ancho de la pantalla, para que en tablet no pise el titular */
+    width: min(var(--tamano), 20vw);
   }
 
   .dentro.izquierda {
-    left: 1.25rem;
+    left: calc((100% - 100vw) / 2 - var(--sangre));
   }
 
+  /* (100% - 100vw) / 2 es el hueco entre el contenedor y el borde de la pantalla, en negativo: pega la pieza al borde y la sangre la saca un poco mas */
   .dentro.derecha {
-    right: 1.25rem;
+    right: calc((100% - 100vw) / 2 - var(--sangre));
   }
 }
 
 /* invisible hasta que useAparecer le suma .visible, ahi arranca la entrada
    el origen abajo al centro hace que se mezan como una planta, apoyada en la base */
 .figura {
-  display: block;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   cursor: pointer;
   opacity: 0;
-  transform-origin: 50% 90%;
+  transform-origin: 50% 92%;
   rotate: var(--giro, 0deg);
-  /* scale va por transition y no por transform, para que el hover y la sacudida se sumen sin pelearse */
-  transition: scale 0.25s ease;
   --fase: 0s;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -86,47 +82,54 @@
   mask-size: contain;
 }
 
-.figura:hover {
-  scale: 1.08;
-}
-
 /* los nombres de las animaciones tienen que ir escritos aca y no dentro de una variable: css modules solo los renombra en la propiedad animation */
 .visible {
   opacity: 1;
   animation:
-    brotar 1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards,
-    mecer 7s ease-in-out var(--fase) infinite alternate;
+    crecer 1.8s cubic-bezier(0.22, 0.8, 0.3, 1) backwards,
+    mecer 9s ease-in-out var(--fase) infinite alternate;
 }
 
 .visible.vuela {
   animation:
-    brotar 1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards,
-    mecer 7s ease-in-out var(--fase) infinite alternate,
-    flotar 5s ease-in-out var(--fase) infinite;
+    aparecer 1.4s ease-out backwards,
+    mecer 9s ease-in-out var(--fase) infinite alternate,
+    flotar 7s ease-in-out var(--fase) infinite;
 }
 
-/* al tocarla react suma esta clase: se repiten las animaciones de arriba (si no, se cortarian) y se agrega la sacudida al final */
-.sacudida {
+/* al tocarla react suma esta clase: se repiten las animaciones de arriba (si no, se cortarian) y se agrega el soplo al final */
+.soplo {
   opacity: 1;
   animation:
-    brotar 1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards,
-    mecer 7s ease-in-out var(--fase) infinite alternate,
-    sacudir 0.8s ease-out;
+    crecer 1.8s cubic-bezier(0.22, 0.8, 0.3, 1) backwards,
+    mecer 9s ease-in-out var(--fase) infinite alternate,
+    soplo 1.6s ease-in-out;
 }
 
-.sacudida.vuela {
+.soplo.vuela {
   animation:
-    brotar 1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards,
-    mecer 7s ease-in-out var(--fase) infinite alternate,
-    flotar 5s ease-in-out var(--fase) infinite,
-    sacudir 0.8s ease-out;
+    aparecer 1.4s ease-out backwards,
+    mecer 9s ease-in-out var(--fase) infinite alternate,
+    flotar 7s ease-in-out var(--fase) infinite,
+    soplo 1.6s ease-in-out;
 }
 
-/* crece desde la base como un brote, con un pasito de rebote al final */
-@keyframes brotar {
+/* la pieza crece desde la base hacia arriba, como una planta: el recorte va subiendo y descubre el dibujo */
+@keyframes crecer {
   from {
     opacity: 0;
-    transform: translateY(1rem) scale(0.3) rotate(-14deg);
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
   }
   to {
     opacity: 1;
@@ -134,13 +137,13 @@
   }
 }
 
-/* balanceo corto hacia un lado y hacia el otro, sumado al giro fijo de cada silueta */
+/* balanceo corto y lento hacia un lado y hacia el otro, sumado al giro fijo de cada pieza */
 @keyframes mecer {
   from {
-    rotate: calc(var(--giro, 0deg) - 3deg);
+    rotate: calc(var(--giro, 0deg) - 1.2deg);
   }
   to {
-    rotate: calc(var(--giro, 0deg) + 3deg);
+    rotate: calc(var(--giro, 0deg) + 1.2deg);
   }
 }
 
@@ -150,31 +153,28 @@
     translate: 0 0;
   }
   50% {
-    translate: 0 -0.5rem;
+    translate: 0.2rem -0.4rem;
   }
 }
 
-/* se estremece de un lado al otro, como una hoja a la que le pegaron un soplido */
-@keyframes sacudir {
+/* un soplo de viento: se inclina hacia un lado, vuelve y se acomoda, cada vez menos */
+@keyframes soplo {
   0%,
   100% {
     transform: none;
   }
-  20% {
-    transform: rotate(-12deg) scale(1.06);
+  25% {
+    transform: rotate(-4deg);
   }
-  40% {
-    transform: rotate(10deg) scale(1.06);
-  }
-  60% {
-    transform: rotate(-6deg);
+  55% {
+    transform: rotate(2.5deg);
   }
   80% {
-    transform: rotate(4deg);
+    transform: rotate(-1deg);
   }
 }
 
-/* profundidad con el scroll: se mueve de un lado a otro de la pantalla mientras la silueta la cruza, y cuanto mas grande la profundidad mas se nota
+/* profundidad con el scroll: se mueve de un lado a otro de la pantalla mientras la pieza la cruza, y cuanto mas grande la profundidad mas se nota
    animation-timeline: view() usa el propio scroll como reloj, no hace falta javascript; donde el navegador no lo soporta quedan quietas */
 @supports (animation-timeline: view()) {
   .posicion {
@@ -185,14 +185,14 @@
 
 @keyframes profundidad {
   from {
-    translate: 0 calc(var(--profundidad, 0) * 90px);
+    translate: 0 calc(var(--profundidad, 0) * 110px);
   }
   to {
-    translate: 0 calc(var(--profundidad, 0) * -90px);
+    translate: 0 calc(var(--profundidad, 0) * -110px);
   }
 }
 
-/* un color por silueta, todos de la paleta */
+/* un color por pieza, todos de la paleta */
 .salvia {
   background-color: var(--color-nature-green);
 }
@@ -214,14 +214,39 @@
 }
 
 /* el dibujo de cada tipo; el prefijo -webkit- sigue haciendo falta en algunos navegadores */
-.abeja {
-  -webkit-mask-image: url("../img/siluetas/abeja.svg");
-  mask-image: url("../img/siluetas/abeja.svg");
+.alga {
+  -webkit-mask-image: url("../img/siluetas/alga.svg");
+  mask-image: url("../img/siluetas/alga.svg");
 }
 
-.flor {
-  -webkit-mask-image: url("../img/siluetas/flor.svg");
-  mask-image: url("../img/siluetas/flor.svg");
+.amapola {
+  -webkit-mask-image: url("../img/siluetas/amapola.svg");
+  mask-image: url("../img/siluetas/amapola.svg");
+}
+
+.caracola {
+  -webkit-mask-image: url("../img/siluetas/caracola.svg");
+  mask-image: url("../img/siluetas/caracola.svg");
+}
+
+.concha {
+  -webkit-mask-image: url("../img/siluetas/concha.svg");
+  mask-image: url("../img/siluetas/concha.svg");
+}
+
+.diente {
+  -webkit-mask-image: url("../img/siluetas/diente.svg");
+  mask-image: url("../img/siluetas/diente.svg");
+}
+
+.espiga {
+  -webkit-mask-image: url("../img/siluetas/espiga.svg");
+  mask-image: url("../img/siluetas/espiga.svg");
+}
+
+.eucalipto {
+  -webkit-mask-image: url("../img/siluetas/eucalipto.svg");
+  mask-image: url("../img/siluetas/eucalipto.svg");
 }
 
 .helecho {
@@ -229,62 +254,33 @@
   mask-image: url("../img/siluetas/helecho.svg");
 }
 
-.hoja {
-  -webkit-mask-image: url("../img/siluetas/hoja.svg");
-  mask-image: url("../img/siluetas/hoja.svg");
-}
-
-.hongo {
-  -webkit-mask-image: url("../img/siluetas/hongo.svg");
-  mask-image: url("../img/siluetas/hongo.svg");
-}
-
-.margarita {
-  -webkit-mask-image: url("../img/siluetas/margarita.svg");
-  mask-image: url("../img/siluetas/margarita.svg");
-}
-
 .mariposa {
   -webkit-mask-image: url("../img/siluetas/mariposa.svg");
   mask-image: url("../img/siluetas/mariposa.svg");
 }
 
-.montanas {
-  -webkit-mask-image: url("../img/siluetas/montanas.svg");
-  mask-image: url("../img/siluetas/montanas.svg");
+.olivo {
+  -webkit-mask-image: url("../img/siluetas/olivo.svg");
+  mask-image: url("../img/siluetas/olivo.svg");
 }
 
-.pajaro {
-  -webkit-mask-image: url("../img/siluetas/pajaro.svg");
-  mask-image: url("../img/siluetas/pajaro.svg");
+.pampa {
+  -webkit-mask-image: url("../img/siluetas/pampa.svg");
+  mask-image: url("../img/siluetas/pampa.svg");
 }
 
-.piedras {
-  -webkit-mask-image: url("../img/siluetas/piedras.svg");
-  mask-image: url("../img/siluetas/piedras.svg");
+.pluma {
+  -webkit-mask-image: url("../img/siluetas/pluma.svg");
+  mask-image: url("../img/siluetas/pluma.svg");
 }
 
-.rama {
-  -webkit-mask-image: url("../img/siluetas/rama.svg");
-  mask-image: url("../img/siluetas/rama.svg");
-}
-
-.semilla {
-  -webkit-mask-image: url("../img/siluetas/semilla.svg");
-  mask-image: url("../img/siluetas/semilla.svg");
-}
-
-/* con la opcion de menos movimiento activada en el sistema las siluetas quedan quietas y visibles */
+/* con la opcion de menos movimiento activada en el sistema las piezas quedan quietas y visibles */
 @media (prefers-reduced-motion: reduce) {
   .posicion,
   .figura,
   .visible,
-  .sacudida {
+  .soplo {
     opacity: 1;
     animation: none;
-  }
-
-  .figura:hover {
-    scale: 1;
   }
 }

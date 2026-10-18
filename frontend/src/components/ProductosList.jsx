@@ -20,14 +20,14 @@ function ProductosList() {
   const productosVisibles = filtrarPorCategoria(lista, categoriaId);
 
   return (
-    <section id="productos" className={`container ${styles.seccion}`}>
-      {/* siluetas naturales: la grande asoma junto al titular y las chicas por los costados, donde queda lugar en blanco */}
-      <Silueta tipo="helecho" color="salvia" tamano="11rem" lado="derecha" dentro arriba="2rem" giro={-6} profundidad={0.5} />
-      <Silueta tipo="abeja" color="ocre" tamano="4.5rem" lado="izquierda" arriba="22%" giro={-8} profundidad={-0.6} />
-      <Silueta tipo="margarita" color="tierra" tamano="4rem" lado="derecha" arriba="58%" giro={10} profundidad={0.4} />
+    <section id="productos" className={`container separador-botanico ${styles.seccion}`}>
+      {/* piezas de herbario: la grande sangra por el borde junto al titular y las chicas asoman por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="eucalipto" color="salvia" tamano="13rem" lado="derecha" dentro arriba="0.5rem" sangre="1.5rem" giro={-4} profundidad={0.5} />
+      <Silueta tipo="pluma" color="tierra" tamano="4rem" lado="izquierda" arriba="22%" giro={-10} profundidad={-0.6} />
+      <Silueta tipo="diente" color="salvia" tamano="8rem" lado="derecha" arriba="58%" giro={4} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Productos"
-        silueta={{ tipo: "semilla", color: "tierra" }}
+        silueta={{ tipo: "espiga", color: "tierra" }}
         titulo="Hecho a mano para vos"
         descripcion="Cajas, bordados, bolsos y papelería artesanales. Consultá por WhatsApp y coordinamos la entrega."
       />

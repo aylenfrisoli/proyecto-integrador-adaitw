@@ -17,21 +17,21 @@ const COLORES = [styles.ladrillo, styles.arena, styles.salvia, styles.ocre];
 // presentacion de sara: dos columnas, el titulo a la izquierda y el texto con las etiquetas a la derecha
 function SobreSara() {
   return (
-    <section id="sobre-sara" className={`container ${styles.seccion}`}>
-      {/* siluetas que asoman por los costados, donde queda lugar en blanco */}
-      <Silueta tipo="hoja" color="salvia" tamano="4.5rem" lado="izquierda" arriba="72%" giro={-12} profundidad={-0.6} />
-      <Silueta tipo="mariposa" color="ocre" tamano="4rem" lado="derecha" arriba="10%" giro={10} profundidad={0.4} />
-      <Silueta tipo="semilla" color="tierra" tamano="5rem" lado="derecha" arriba="78%" giro={14} profundidad={-0.4} />
+    <section id="sobre-sara" className={`container separador-botanico ${styles.seccion}`}>
+      {/* piezas de herbario que asoman por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="amapola" color="ladrillo" tamano="7rem" lado="izquierda" arriba="72%" giro={-6} profundidad={-0.6} />
+      <Silueta tipo="diente" color="salvia" tamano="7rem" lado="derecha" arriba="10%" giro={4} profundidad={0.4} />
+      <Silueta tipo="espiga" color="tierra" tamano="5rem" lado="derecha" arriba="78%" giro={6} profundidad={-0.4} />
       <div>
         <p className={styles.eyebrow}>Sobre Sara</p>
         <h2 className={`display-title ${styles.titulo}`}>
           Cada pieza tiene su propia historia
         </h2>
-        {/* tres siluetas de distinto tamaño, como un pequeño paisaje bajo el titular */}
+        {/* una pluma, una concha y una caracola, como los objetos que quedan sobre la mesa de un taller de la costa */}
         <div className={styles.siluetas}>
-          <Silueta tipo="rama" color="musgo" tamano="9rem" giro={-4} />
-          <Silueta tipo="pajaro" color="ocre" tamano="5rem" />
-          <Silueta tipo="piedras" color="tierra" tamano="4rem" />
+          <Silueta tipo="pluma" color="tierra" tamano="4rem" giro={-4} />
+          <Silueta tipo="concha" color="tierra" tamano="8rem" />
+          <Silueta tipo="caracola" color="musgo" tamano="6.5rem" />
         </div>
       </div>
 

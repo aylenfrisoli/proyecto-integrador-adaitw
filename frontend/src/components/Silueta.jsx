@@ -3,28 +3,48 @@ import useAnimacionAlTocar from "../hooks/useAnimacionAlTocar";
 import useAparecer from "../hooks/useAparecer";
 import styles from "./Silueta.module.css";
 
-// los que vuelan, ademas de mecerse suben y bajan despacito
-const VUELAN = ["mariposa", "abeja"];
+// ancho y alto del svg de cada dibujo: la caja toma esa proporcion y no sobra aire alrededor
+const PROPORCIONES = {
+  alga: [100, 150],
+  amapola: [100, 150],
+  caracola: [100, 100],
+  concha: [100, 84],
+  diente: [100, 150],
+  espiga: [80, 150],
+  eucalipto: [100, 150],
+  helecho: [100, 150],
+  mariposa: [100, 100],
+  olivo: [100, 150],
+  pampa: [100, 150],
+  pluma: [70, 150],
+};
 
-// silueta natural de un solo color que decora la landing: brota al llegar, se mece como con brisa, se sacude al tocarla y se mueve distinto con el scroll
-// tipo: abeja | flor | helecho | hoja | hongo | margarita | mariposa | montanas | pajaro | piedras | rama | semilla
-// color: salvia | musgo | tierra | ocre | ladrillo (el dibujo es siempre un solo color, lo pone el css)
+// los que vuelan, ademas de mecerse flotan despacito
+const VUELAN = ["mariposa"];
+
+// pieza de herbario de un solo color que decora la landing: crece desde la base al llegar, se mece como con brisa, recibe un soplo al tocarla y se mueve distinto con el scroll
+// tipo: alga | amapola | caracola | concha | diente | espiga | eucalipto | helecho | mariposa | olivo | pampa | pluma
+// color: salvia | musgo | tierra | ocre | ladrillo (el dibujo es siempre un solo color, con un lavado suave y la linea mas firme; lo pone el css)
+// tamano es el ancho; el alto sale de la proporcion del dibujo
 // sin lado queda en el flujo de la pagina; con lado (izquierda | derecha) y arriba (ej: "30%") se saca del flujo, y la seccion tiene que ser position: relative
-// dentro: va sobre el contenedor de la seccion (desde 900px) y no en el margen; giro en grados; profundidad entre -1 y 1 (negativa = se siente lejos)
+// dentro: va sobre el contenedor de la seccion (desde 900px) y no en el margen; sangre: cuanto se sale del borde de la pantalla (ej: "2rem")
+// giro en grados; profundidad entre -1 y 1 (negativa = se siente lejos)
 function Silueta({
-  tipo = "hoja",
-  color = "salvia",
+  tipo = "olivo",
+  color = "musgo",
   tamano = "4rem",
   lado,
   dentro = false,
   arriba,
+  sangre = "0rem",
   giro = 0,
   profundidad = 0,
 }) {
   const [ref, visible] = useAparecer();
-  const [sacudiendo, eventos] = useAnimacionAlTocar("sacudir");
-  // la fase desfasa el meceo para que dos siluetas juntas no se muevan igual; se calcula una sola vez para que no cambie en cada render
-  const [fase] = useState(() => `-${(Math.random() * 6).toFixed(1)}s`);
+  const [soplando, eventos] = useAnimacionAlTocar("soplo");
+  // la fase desfasa el meceo para que dos piezas juntas no se muevan igual; se calcula una sola vez para que no cambie en cada render
+  const [fase] = useState(() => `-${(Math.random() * 8).toFixed(1)}s`);
+  const [ancho, alto] = PROPORCIONES[tipo];
 
   const clasesPosicion = [
     styles.posicion,
@@ -38,7 +58,7 @@ function Silueta({
     styles[color],
     VUELAN.includes(tipo) ? styles.vuela : "",
     visible ? styles.visible : "",
-    sacudiendo ? styles.sacudida : "",
+    soplando ? styles.soplo : "",
   ].join(" ");
 
   return (
@@ -47,7 +67,13 @@ function Silueta({
     <span
       ref={ref}
       className={clasesPosicion}
-      style={{ "--tamano": tamano, "--arriba": arriba, "--profundidad": profundidad }}
+      style={{
+        "--tamano": tamano,
+        "--arriba": arriba,
+        "--sangre": sangre,
+        "--profundidad": profundidad,
+        aspectRatio: `${ancho} / ${alto}`,
+      }}
       aria-hidden="true"
     >
       <span className={clasesFigura} style={{ "--giro": `${giro}deg`, "--fase": fase }} {...eventos} />

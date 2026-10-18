@@ -20,14 +20,14 @@ function ObrasList() {
   const obrasVisibles = filtrarPorCategoria(lista, categoriaId);
 
   return (
-    <section id="obras" className={`container ${styles.seccion}`}>
-      {/* siluetas naturales: la grande asoma junto al titular y las chicas por los costados, donde queda lugar en blanco */}
-      <Silueta tipo="rama" color="musgo" tamano="11rem" lado="derecha" dentro arriba="2.5rem" giro={8} profundidad={0.5} />
-      <Silueta tipo="mariposa" color="ocre" tamano="4rem" lado="izquierda" arriba="30%" giro={-10} profundidad={-0.6} />
-      <Silueta tipo="flor" color="ladrillo" tamano="3.5rem" lado="derecha" arriba="62%" giro={12} profundidad={0.4} />
+    <section id="obras" className={`container separador-botanico ${styles.seccion}`}>
+      {/* piezas de herbario: la grande sangra por el borde junto al titular y las chicas asoman por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="olivo" color="musgo" tamano="15rem" lado="derecha" dentro arriba="0.5rem" sangre="1.5rem" giro={5} profundidad={0.5} />
+      <Silueta tipo="mariposa" color="tierra" tamano="7rem" lado="izquierda" arriba="30%" giro={-12} profundidad={-0.6} />
+      <Silueta tipo="amapola" color="ladrillo" tamano="8rem" lado="derecha" arriba="60%" giro={6} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Obras"
-        silueta={{ tipo: "hoja", color: "salvia" }}
+        silueta={{ tipo: "olivo", color: "musgo" }}
         titulo="Una obra, una historia"
         descripcion="Pinturas, collages y bordados únicos, hechos a mano con mucho color."
       />
