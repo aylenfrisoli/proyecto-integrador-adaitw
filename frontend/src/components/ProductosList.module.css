@@ -1,32 +1,61 @@
-/* el separador de arriba (una linea fina con un adorno botanico, ver .separador-botanico en index.css) separa la seccion de la anterior */
+/* seccion azul marino con texto blanco; el margen negativo de arriba la mete debajo de la cinta amarilla inclinada */
 .seccion {
-  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  /* los colores de los filtros y del acento del titular se heredan en los componentes de adentro */
+  --color-acento: var(--color-yellow);
+  --filtro-color: var(--color-white);
+  --filtro-hover: color-mix(in srgb, var(--color-white) 14%, transparent);
+  --filtro-activo-fondo: var(--color-yellow);
+  --filtro-activo-texto: var(--color-ink);
   position: relative;
-  isolation: isolate;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  margin-top: -20px;
+  padding: clamp(5.625rem, 10vw, 9.375rem) 0 clamp(5rem, 9vw, 8.125rem);
+  background-color: var(--color-navy);
+  color: var(--color-white);
+}
+
+/* formas de la esquina de arriba a la derecha, detras del texto */
+.pomo,
+.acuarela {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pomo {
+  top: 44px;
+  right: 4%;
+  width: clamp(4rem, 7vw, 7.25rem);
+  height: clamp(4rem, 7vw, 7.25rem);
+}
+
+.acuarela {
+  top: 36px;
+  right: 13%;
+  width: clamp(3.125rem, 6vw, 6rem);
+  height: clamp(3.125rem, 6vw, 6rem);
+}
+
+/* el contenido va arriba de las formas */
+.seccion > :global(.container) {
+  position: relative;
+  z-index: 1;
 }
 
 /* mobile first: una columna, y mas columnas a medida que hay lugar */
 .grilla {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 640px) {
   .grilla {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1000px) {
-  .seccion {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
   .grilla {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

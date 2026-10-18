@@ -1,134 +1,171 @@
-/* fondo con un tinte ocre muy suave para distinguir los productos de las obras (el ladrillo queda para los botones) */
+/* tarjeta blanca con un marco de aire alrededor de la imagen */
 .tarjeta {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  /* borde ocre, el color propio de los productos; sobre la imagen solo va la etiqueta de disponibilidad, ningun adorno */
-  border: 1px solid var(--color-nature-ochre);
-  border-radius: var(--radius-lg);
-  background-color: color-mix(in srgb, var(--color-soft-ochre) 30%, transparent);
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-plum) 8%, transparent);
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-white);
+  /* el texto no hereda el de la seccion (blanco sobre el azul): sobre la tarjeta blanca tiene que ser oscuro */
+  color: var(--color-plum-deep);
 }
 
-/* position relative para poder ubicar la etiqueta encima de la imagen */
+/* position relative para ubicar la etiqueta encima de la imagen; overflow hidden recorta la imagen con el zoom */
 .contenedorImagen {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.fondoLila {
+  background-color: var(--color-lilac-pale);
+}
+
+.fondoAmarillo {
+  background-color: var(--color-yellow-soft);
+}
+
+.fondoNeblina {
+  background-color: var(--color-lilac-mist);
 }
 
 .imagen {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition:
-    transform 0.5s ease,
-    opacity 0.3s ease;
-}
-
-.tarjeta:hover .imagen {
-  transform: scale(1.05);
+  transition: transform 0.5s ease;
 }
 
 .apagada {
-  opacity: 0.55;
+  filter: grayscale(0.85) opacity(0.65);
 }
 
 .etiqueta {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  padding: 0.3rem 0.8rem;
-  /* el borde fino evita que la etiqueta se pierda cuando tiene el mismo color que la imagen */
-  border: 1px solid color-mix(in srgb, var(--color-text-main) 18%, transparent);
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.4375rem 0.75rem;
   border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-text-main);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  pointer-events: none;
 }
 
 .disponible {
-  background-color: var(--color-soft-green);
+  background-color: var(--color-plum);
+  color: var(--color-white);
 }
 
 .agotado {
-  background-color: var(--color-soft-brick);
+  background-color: var(--color-plum-deep);
+  color: var(--color-white);
 }
 
 .por_encargo {
-  background-color: var(--color-soft-ochre);
+  background-color: var(--color-yellow);
+  color: var(--color-ink);
 }
 
+/* flex 1 estira la parte de abajo hasta el fondo de la tarjeta, asi el precio y el boton quedan alineados entre tarjetas */
 .info {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 1.25rem 1.25rem 1.5rem;
+  gap: 0.5rem;
+  padding: 1.125rem 0.625rem 0.5rem;
 }
 
 /* una sola linea con "..." para que una categoria larga no empuje al titulo */
 .categoria {
-  margin: 0 0 0.5rem;
+  margin: 0;
   overflow: hidden;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: var(--color-text-muted);
+  color: var(--color-plum);
 }
 
-/* ocupa siempre dos lineas aunque el titulo entre en una: asi todas las tarjetas miden lo mismo y sus partes quedan alineadas
-   si el titulo es mas largo se corta con "..." (los lectores de pantalla lo leen completo igual) */
+/* hasta dos lineas con "..." (los lectores de pantalla lo leen completo igual) */
 .titulo {
   display: -webkit-box;
-  height: 2.4em;
-  margin: 0 0 0.5rem;
+  margin: 0;
   overflow: hidden;
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
-/* tres lineas fijas, con el mismo criterio que el titulo */
+/* hasta tres lineas */
 .descripcion {
   display: -webkit-box;
-  height: 4.8em;
-  margin: 0 0 1rem;
+  margin: 0;
   overflow: hidden;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.9375rem;
+  line-height: 1.5;
   color: var(--color-text-muted);
+  text-wrap: pretty;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
 
-/* margin-top auto empuja el precio y el boton al fondo de la tarjeta; nowrap lo deja siempre en una linea */
+/* margin-top auto empuja el precio y el boton al fondo de la tarjeta */
+.pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.875rem;
+}
+
 .precio {
-  margin: auto 0 1rem;
-  padding-top: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-  white-space: nowrap;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   /* tnum hace que todas las cifras ocupen el mismo ancho */
   font-feature-settings: "tnum";
 }
 
 .boton {
-  width: 100%;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-height: 2.875rem;
+  padding: 0 1.125rem;
+  border-radius: 999px;
+  background-color: var(--color-plum);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
 }
 
-/* " por WhatsApp" del boton: debajo de 360px no entra en una linea, asi que se oculta
-   el icono de whatsapp y el aria-label del boton ya dicen que la consulta es por whatsapp */
-.textoLargo {
-  display: none;
+.boton:hover {
+  background-color: var(--color-plum-light);
 }
 
-@media (min-width: 360px) {
-  .textoLargo {
-    display: inline;
+/* el efecto de hover solo se aplica a dispositivos con mouse: en el celular quedaria pegado despues de tocar */
+@media (hover: hover) {
+  .tarjeta {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .tarjeta:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 40px -24px color-mix(in srgb, var(--color-ink) 50%, transparent);
+  }
+
+  .tarjeta:hover .imagen {
+    transform: scale(1.05);
   }
 }

@@ -21,10 +21,8 @@ export function formatearPrecio(precio) {
   }).format(precio);
 }
 
-// mensaje de whatsapp del producto: el que cargo sara o, si no hay, uno generico con el titulo
+// mensaje de whatsapp del producto: siempre el mismo con el titulo, asi sara sabe de que producto le escriben
+// no se usa producto.mensajeWhatsapp (el campo del panel) porque el mensaje tiene que ser automatico para todos
 export function armarMensajeProducto(producto) {
-  return (
-    producto.mensajeWhatsapp ||
-    `Hola Sara! Me interesa "${producto.titulo}". ¿Me pasás más información?`
-  );
+  return `Hola, quería consultar por el producto "${producto.titulo}".`;
 }
