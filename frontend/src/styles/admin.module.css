@@ -57,7 +57,7 @@
 .campo select,
 .input {
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid color-mix(in srgb, var(--color-text-main) 22%, transparent);
   border-radius: var(--radius-md);
   background-color: var(--color-bg-card);
   font-family: var(--font-body);
@@ -70,10 +70,10 @@
 .campo select:focus,
 .input:focus {
   border-color: var(--color-brand-primary);
-  outline: 2px solid rgba(159, 118, 87, 0.25);
+  outline: 2px solid color-mix(in srgb, var(--color-brand-primary) 25%, transparent);
 }
 
-/* mensajes de resultado: exito en azul pastel y error con el rosa pastel de la paleta */
+/* mensajes de resultado: exito en salvia suave y error con el ladrillo suave de la paleta */
 .mensaje {
   margin: 0 0 1.5rem;
   padding: 0.8rem 1rem;
@@ -83,12 +83,12 @@
 }
 
 .exito {
-  background-color: rgba(196, 220, 255, 0.45);
+  background-color: color-mix(in srgb, var(--color-soft-green) 45%, transparent);
 }
 
 .error {
   border-color: var(--color-brand-primary);
-  background-color: rgba(246, 203, 213, 0.4);
+  background-color: color-mix(in srgb, var(--color-soft-brick) 40%, transparent);
   color: var(--color-brand-hover);
 }
 
@@ -130,7 +130,7 @@
 
 .botonChico {
   padding: 0.4rem 0.9rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid color-mix(in srgb, var(--color-text-main) 30%, transparent);
   border-radius: 999px;
   background-color: transparent;
   font-family: var(--font-body);
@@ -261,9 +261,9 @@
   width: 6rem;
 }
 
-/* cuadro rosa pastel que ocupa el lugar de la miniatura cuando una fila todavia no tiene foto */
+/* cuadro ladrillo suave que ocupa el lugar de la miniatura cuando una fila todavia no tiene foto */
 .miniaturaVacia {
-  background-color: var(--color-pastel-pink);
+  background-color: var(--color-soft-brick);
 }
 
 /* grupo de fotos del formulario de la caminata; fieldset agrupa los campos para los lectores de pantalla, sin su borde de fabrica */
