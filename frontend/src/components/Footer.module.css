@@ -143,12 +143,25 @@
   margin-bottom: -0.5rem;
 }
 
-/* en el celular solo entran las tres primeras */
+/* segun el ancho se ven mas o menos piezas: sumadas, las que entran siempre caben en el contenedor y no hay scroll horizontal
+   celular: 3 piezas (17rem); desde 600px: 5 (30.5rem); desde 900px: 8 (45.7rem); desde 1280px: las 10 (56.7rem) */
 .suelo > *:nth-child(n + 4) {
   display: none;
 }
 
 @media (min-width: 600px) {
+  .suelo > *:nth-child(-n + 5) {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .suelo > *:nth-child(-n + 8) {
+    display: block;
+  }
+}
+
+@media (min-width: 1280px) {
   .suelo > *:nth-child(n + 4) {
     display: block;
   }

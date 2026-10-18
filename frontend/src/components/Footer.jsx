@@ -68,15 +68,18 @@ function Footer() {
         </div>
       </div>
 
-      {/* las siluetas paradas en el pasto: de la cuarta en adelante se ocultan en el celular para que no se amontonen */}
+      {/* un campo de la pampa: las piezas paradas en el pasto; segun el ancho de la pantalla se ven mas o menos (ver .suelo en el css) para que nunca se amontonen */}
       <div className={`container ${styles.suelo}`}>
-        <Silueta tipo="helecho" color="musgo" tamano="7rem" giro={-4} />
-        <Silueta tipo="flor" color="ladrillo" tamano="3.5rem" giro={6} />
-        <Silueta tipo="hongo" color="tierra" tamano="3.5rem" />
-        <Silueta tipo="margarita" color="ocre" tamano="4.5rem" giro={-8} />
-        <Silueta tipo="piedras" color="tierra" tamano="3rem" />
-        <Silueta tipo="pajaro" color="musgo" tamano="4rem" giro={-4} />
-        <Silueta tipo="rama" color="salvia" tamano="8rem" giro={6} />
+        <Silueta tipo="helecho" color="musgo" tamano="7rem" giro={-3} />
+        <Silueta tipo="amapola" color="ladrillo" tamano="5.5rem" giro={4} />
+        <Silueta tipo="espiga" color="tierra" tamano="4.5rem" giro={-2} />
+        <Silueta tipo="pampa" color="tierra" tamano="8.5rem" giro={2} />
+        <Silueta tipo="alga" color="ocre" tamano="5rem" giro={-3} />
+        <Silueta tipo="diente" color="salvia" tamano="5.5rem" giro={-4} />
+        <Silueta tipo="olivo" color="musgo" tamano="6.5rem" giro={3} />
+        <Silueta tipo="pluma" color="tierra" tamano="3.2rem" giro={5} />
+        <Silueta tipo="eucalipto" color="salvia" tamano="7rem" giro={-2} />
+        <Silueta tipo="espiga" color="tierra" tamano="4rem" giro={4} />
       </div>
 
       <div className={styles.base}>
