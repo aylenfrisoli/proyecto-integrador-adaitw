@@ -1,12 +1,12 @@
-/* fondo con un tinte ladrillo muy suave para distinguir los productos de las obras */
+/* fondo con un tinte ocre muy suave para distinguir los productos de las obras (el ladrillo queda para los botones) */
 .tarjeta {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /* borde ocre de la identidad naturaleza; la liana de la esquina viene de la clase global decoracion-liana */
+  /* borde ocre, el color propio de los productos; la liana de la esquina viene de la clase global decoracion-liana */
   border: 1px solid var(--color-nature-ochre);
   border-radius: var(--radius-lg);
-  background-color: color-mix(in srgb, var(--color-soft-brick) 20%, transparent);
+  background-color: color-mix(in srgb, var(--color-soft-ochre) 30%, transparent);
 }
 
 /* position relative para poder ubicar la etiqueta encima de la imagen */
