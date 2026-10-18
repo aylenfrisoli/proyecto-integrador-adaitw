@@ -1,28 +1,68 @@
-/* el separador de arriba (una linea fina con un adorno botanico, ver .separador-botanico en index.css) separa la seccion de la anterior */
+/* seccion crema que sube sobre la anterior; overflow hidden para que las bandas de fondo no se salgan */
 .seccion {
-  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  /* el acento del titular se hereda en el componente de adentro */
+  --color-acento: var(--color-plum);
   position: relative;
-  isolation: isolate;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  margin-top: calc(-1 * var(--radius-seccion));
+  padding: clamp(5rem, 9vw, 8.75rem) 0;
+  overflow: hidden;
+  border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
+  background-color: var(--color-cream);
+  color: var(--color-plum-deep);
 }
 
-/* mobile first: una columna; son pocos talleres, asi que alcanza con dos columnas en pantallas grandes */
-.grilla {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+/* decoracion de fondo: lineas onduladas a lo ancho y formas en la esquina de arriba a la derecha, todas detras del texto */
+.bandas,
+.brocha,
+.lapiz,
+.gota {
+  z-index: 0;
+  pointer-events: none;
 }
 
-@media (min-width: 700px) {
-  .grilla {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.bandas {
+  top: 120px;
+  height: 240px;
+  opacity: 0.35;
 }
 
-@media (min-width: 1000px) {
-  .seccion {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
+.brocha,
+.lapiz,
+.gota {
+  position: absolute;
+}
+
+.brocha {
+  top: 56px;
+  right: 5%;
+  width: clamp(4.75rem, 9vw, 9.375rem);
+  height: clamp(4.75rem, 9vw, 9.375rem);
+}
+
+.lapiz {
+  top: 110px;
+  right: 16%;
+  width: clamp(3.125rem, 6vw, 6rem);
+  height: clamp(3.125rem, 6vw, 6rem);
+}
+
+.gota {
+  top: 200px;
+  right: 2%;
+  width: clamp(1.25rem, 2.2vw, 2.125rem);
+  height: clamp(1.25rem, 2.2vw, 2.125rem);
+}
+
+/* el contenido va arriba de la decoracion */
+.seccion > :global(.container) {
+  position: relative;
+  z-index: 1;
+}
+
+/* una linea arriba y una debajo de cada taller (ver TallerFila) */
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1.5px solid var(--color-plum);
 }
