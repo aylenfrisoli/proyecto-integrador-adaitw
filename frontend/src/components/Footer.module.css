@@ -18,7 +18,8 @@
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: -0.02em;
-  color: var(--color-brand-primary);
+  /* en el footer los acentos van en ocre: el ladrillo sobre la tierra oscura casi no se lee (2.7:1) y el ocre si (6.5:1) */
+  color: var(--color-nature-ochre);
 }
 
 .text {
@@ -26,7 +27,7 @@
   max-width: 34ch;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(245, 245, 245, 0.75);
+  color: color-mix(in srgb, var(--color-text-light) 75%, transparent);
 }
 
 /* titulos chicos en mayusculas controladas, estilo ficha tecnica */
@@ -37,7 +38,7 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(245, 245, 245, 0.5);
+  color: color-mix(in srgb, var(--color-text-light) 50%, transparent);
 }
 
 .list {
@@ -57,7 +58,7 @@
 }
 
 .link:hover {
-  color: var(--color-brand-primary);
+  color: var(--color-nature-ochre);
 }
 
 .tituloRedes {
@@ -89,8 +90,8 @@
 }
 
 .red:hover {
-  color: var(--color-brand-primary);
-  border-color: var(--color-brand-primary);
+  color: var(--color-nature-ochre);
+  border-color: var(--color-nature-ochre);
 }
 
 /* franja inferior separada por una linea fina; el copyright y el acceso se reparten el ancho */
@@ -104,7 +105,7 @@
   padding-top: 1.5rem;
   border-top: 1px solid var(--color-border-dark);
   font-size: 0.85rem;
-  color: rgba(245, 245, 245, 0.5);
+  color: color-mix(in srgb, var(--color-text-light) 50%, transparent);
 }
 
 .acceso {
@@ -114,7 +115,7 @@
 }
 
 .acceso:hover {
-  color: var(--color-brand-primary);
+  color: var(--color-nature-ochre);
 }
 
 @media (min-width: 768px) {
