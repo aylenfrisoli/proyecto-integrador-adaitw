@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch";
 import { ordenarTalleres } from "../utils/talleres";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
-import FormaDecorativa from "./FormaDecorativa";
+import Silueta from "./Silueta";
 import TallerCard from "./TallerCard";
 import styles from "./TalleresList.module.css";
 
@@ -15,13 +15,13 @@ function TalleresList() {
 
   return (
     <section id="talleres" className={`container ${styles.seccion}`}>
-      {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="ovalo" color="salvia" tamano="5.5rem" lado="izquierda" arriba="42%" />
-      <FormaDecorativa tipo="arco" color="arena" tamano="4rem" lado="derecha" arriba="18%" />
-      <FormaDecorativa tipo="cuarto" color="ladrillo" tamano="3.5rem" lado="derecha" arriba="72%" />
+      {/* siluetas naturales: la grande asoma junto al titular y las chicas por los costados, donde queda lugar en blanco */}
+      <Silueta tipo="montanas" color="tierra" tamano="10rem" lado="derecha" dentro arriba="3rem" profundidad={0.4} />
+      <Silueta tipo="pajaro" color="musgo" tamano="4.5rem" lado="izquierda" arriba="42%" giro={-6} profundidad={-0.6} />
+      <Silueta tipo="hongo" color="ladrillo" tamano="3.5rem" lado="derecha" arriba="72%" giro={6} profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Talleres"
-        forma={{ tipo: "cuarto", color: "ocre" }}
+        silueta={{ tipo: "hoja", color: "ocre" }}
         titulo="Aprendé creando"
         descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
       />
