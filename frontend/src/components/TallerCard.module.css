@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   padding: 1.75rem;
-  /* borde ocre de la identidad naturaleza; la liana de la esquina viene de la clase global decoracion-liana */
-  border: 1px solid var(--color-nature-ochre);
+  /* el color del borde lo pone la modalidad (ver .presencial y .virtual); la liana de la esquina viene de la clase global decoracion-liana */
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
 
@@ -14,12 +14,15 @@
   }
 }
 
-/* el color de la tarjeta indica la modalidad */
+/* el color de la tarjeta indica la modalidad: fondo y borde van juntos
+   el borde presencial usa el ladrillo al 60% para que sea calido pero no tan fuerte como un boton */
 .presencial {
+  border-color: color-mix(in srgb, var(--color-nature-brick) 60%, transparent);
   background-color: color-mix(in srgb, var(--color-soft-sand) 45%, transparent);
 }
 
 .virtual {
+  border-color: var(--color-nature-green);
   background-color: color-mix(in srgb, var(--color-soft-green) 45%, transparent);
 }
 
@@ -45,10 +48,11 @@
   white-space: nowrap;
 }
 
+/* abierto va en verde suave con texto oscuro, igual que "disponible" en los productos */
 .etiquetaAbierto {
-  border-color: var(--color-brand-primary);
-  background-color: var(--color-brand-primary);
-  color: #ffffff;
+  border-color: var(--color-nature-green);
+  background-color: var(--color-soft-green);
+  color: var(--color-text-main);
 }
 
 /* ocupa siempre dos lineas aunque el titulo entre en una: asi todas las tarjetas miden lo mismo
@@ -105,7 +109,7 @@
 .datos svg {
   flex-shrink: 0;
   margin-top: 0.2em;
-  color: var(--color-brand-primary);
+  color: var(--color-nature-green);
 }
 
 /* fecha y hora: una linea; min-width 0 deja que el texto se achique dentro del flex y muestre "..." en vez de salirse de la tarjeta */
