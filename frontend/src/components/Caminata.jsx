@@ -6,9 +6,9 @@ import ApoyoCaminata from "./ApoyoCaminata";
 import styles from "./Caminata.module.css";
 import EncabezadoSeccion from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
-import FormaDecorativa from "./FormaDecorativa";
 import PolaroidCard from "./PolaroidCard";
 import SelectorEdicion from "./SelectorEdicion";
+import Silueta from "./Silueta";
 
 // seccion de la caminata: un boton por edicion y debajo los datos y las polaroids de la elegida
 function Caminata() {
@@ -22,12 +22,14 @@ function Caminata() {
 
   return (
     <section id="caminata" className={`container ${styles.seccion}`}>
-      {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="gota" color="ladrillo" tamano="4.5rem" lado="derecha" arriba="14%" />
-      <FormaDecorativa tipo="ovalo" color="arena" tamano="4rem" lado="izquierda" arriba="62%" />
+      {/* siluetas naturales: la grande asoma junto al titular y las chicas por los costados, donde queda lugar en blanco */}
+      {/* mas abajo que en las otras secciones: el titular de la caminata es largo y llega casi hasta el borde derecho, asi que la margarita se apoya junto a la bajada */}
+      <Silueta tipo="margarita" color="ocre" tamano="8rem" lado="derecha" dentro arriba="17rem" giro={8} profundidad={0.5} />
+      <Silueta tipo="mariposa" color="musgo" tamano="4rem" lado="derecha" arriba="14%" giro={10} profundidad={-0.6} />
+      <Silueta tipo="piedras" color="tierra" tamano="4rem" lado="izquierda" arriba="62%" profundidad={0.4} />
       <EncabezadoSeccion
         etiqueta="Concientización"
-        forma={{ tipo: "arco", color: "ladrillo" }}
+        silueta={{ tipo: "flor", color: "ladrillo" }}
         titulo="Caminata sobre el cáncer de mama"
         descripcion="Una jornada para caminar en comunidad, visibilizar el cáncer de mama y acompañarnos entre todos. La organiza Sara: elegí una edición y mirá cómo fue."
       />
