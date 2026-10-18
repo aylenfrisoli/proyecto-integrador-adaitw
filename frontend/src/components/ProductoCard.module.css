@@ -64,39 +64,70 @@
   padding: 1.25rem 1.25rem 1.5rem;
 }
 
+/* una sola linea con "..." para que una categoria larga no empuje al titulo */
 .categoria {
   margin: 0 0 0.5rem;
+  overflow: hidden;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: var(--color-text-muted);
 }
 
+/* ocupa siempre dos lineas aunque el titulo entre en una: asi todas las tarjetas miden lo mismo y sus partes quedan alineadas
+   si el titulo es mas largo se corta con "..." (los lectores de pantalla lo leen completo igual) */
 .titulo {
+  display: -webkit-box;
+  height: 2.4em;
   margin: 0 0 0.5rem;
+  overflow: hidden;
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 700;
+  line-height: 1.2;
   letter-spacing: -0.03em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
+/* tres lineas fijas, con el mismo criterio que el titulo */
 .descripcion {
+  display: -webkit-box;
+  height: 4.8em;
   margin: 0 0 1rem;
+  overflow: hidden;
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--color-text-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
-/* margin-top auto empuja el precio y el boton al fondo, asi quedan alineados aunque las descripciones tengan distinto largo */
+/* margin-top auto empuja el precio y el boton al fondo de la tarjeta; nowrap lo deja siempre en una linea */
 .precio {
   margin: auto 0 1rem;
   padding-top: 0.5rem;
   font-size: 1.1rem;
   font-weight: 500;
+  white-space: nowrap;
   /* tnum hace que todas las cifras ocupen el mismo ancho */
   font-feature-settings: "tnum";
 }
 
 .boton {
   width: 100%;
+}
+
+/* " por WhatsApp" del boton: debajo de 360px no entra en una linea, asi que se oculta
+   el icono de whatsapp y el aria-label del boton ya dicen que la consulta es por whatsapp */
+.textoLargo {
+  display: none;
+}
+
+@media (min-width: 360px) {
+  .textoLargo {
+    display: inline;
+  }
 }
