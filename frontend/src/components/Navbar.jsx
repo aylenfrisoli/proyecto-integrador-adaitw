@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { SECCIONES } from "../config/secciones";
+import logoHeader from "../img/logo-header-brown-recortado.png";
 import styles from "./Navbar.module.css";
 
 // barra de navegacion fija con fondo translucido; en celular los links se despliegan con un boton
@@ -13,12 +14,15 @@ function Navbar() {
   return (
     <header className={styles.navbar}>
       <nav className={`container ${styles.inner}`} aria-label="Principal">
-        <a
-          href="#inicio"
-          className={`brand-logo ${styles.logo}`}
-          onClick={cerrarMenu}
-        >
-          SAF Creaciones para Vos
+        <a href="#inicio" className={styles.logo} onClick={cerrarMenu}>
+          {/* el alt lleva el nombre completo porque el logo solo dice saf creaciones */}
+          <img
+            src={logoHeader}
+            alt="SAF Creaciones para Vos"
+            className={styles.logoImg}
+            width="107"
+            height="40"
+          />
         </a>
 
         <button

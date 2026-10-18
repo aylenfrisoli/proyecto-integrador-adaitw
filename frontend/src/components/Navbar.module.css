@@ -17,10 +17,15 @@
   padding-bottom: 0.9rem;
 }
 
-/* el selector doble (.navbar .logo) le gana al font-size de .brand-logo global; en celular el logo es mas chico para que entre en una linea */
-.navbar .logo {
-  font-size: 1.1rem;
-  white-space: nowrap;
+.logo {
+  display: flex;
+}
+
+/* se fija el alto y el ancho sale solo, asi no se deforma; en celular es mas chico para dejar lugar al boton del menu */
+.logoImg {
+  display: block;
+  height: 2.1rem;
+  width: auto;
 }
 
 .toggle {
@@ -70,8 +75,9 @@
 
 /* desktop: sin boton, links en fila a la derecha y subrayado animado en hover */
 @media (min-width: 768px) {
-  .navbar .logo {
-    font-size: 1.5rem;
+  /* 2.5rem son los 40px reales del png: mas grande se veria borroso */
+  .logoImg {
+    height: 2.5rem;
   }
 
   .toggle {
