@@ -1,0 +1,99 @@
+/* tarjeta rosa oscuro con texto blanco; overflow hidden recorta la mancha que se sale por la esquina */
+.apoyo {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1.5rem 2.5rem;
+  align-items: center;
+  margin-top: 4rem;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  overflow: hidden;
+  border-radius: 2.5rem;
+  background-color: var(--color-rose-dark);
+  color: var(--color-white);
+}
+
+.mancha,
+.mariposa {
+  position: absolute;
+  pointer-events: none;
+}
+
+.mancha {
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+}
+
+.mariposa {
+  right: 48px;
+  bottom: 24px;
+  width: 64px;
+  height: 52px;
+}
+
+/* el texto y el boton van arriba de las formas */
+.texto,
+.boton {
+  position: relative;
+}
+
+.titulo {
+  margin: 0 0 0.625rem;
+  font-size: clamp(1.875rem, 3.4vw, 3rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.acento {
+  font-family: var(--font-acento);
+  font-weight: 700;
+  color: var(--color-yellow);
+}
+
+.bajada {
+  max-width: 44ch;
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+/* el nombre de la cuenta va en mono, con cifras de ancho fijo y en amarillo palido: el amarillo fuerte no llega a 4,5:1 sobre el rosa oscuro en letra chica */
+.usuario {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum";
+  color: var(--color-yellow-soft);
+}
+
+/* boton amarillo con una flecha en un circulo del color de la tarjeta */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  padding: 0 0.5625rem 0 1.625rem;
+  border-radius: 999px;
+  background-color: var(--color-yellow);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.boton:hover {
+  background-color: var(--color-white);
+}
+
+.flecha {
+  display: grid;
+  place-items: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 50%;
+  background-color: var(--color-rose-dark);
+  color: var(--color-yellow);
+}

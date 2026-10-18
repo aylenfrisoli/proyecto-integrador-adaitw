@@ -1,0 +1,110 @@
+/* seccion rosa palido que sube sobre la anterior; el texto es azul tinta, el color por defecto de la pagina */
+.seccion {
+  /* los colores de los botones de edicion, del acento y el tamano del titular se heredan en los componentes de adentro
+     el titular de la caminata es mas largo que los otros, por eso es un poco mas chico */
+  --color-acento: var(--color-rose-dark); /* el rosa claro sobre este fondo queda justo bajo el 3:1 de contraste para texto grande */
+  --tam-titulo: clamp(3rem, 7.4vw, 7.5rem);
+  --filtro-color: var(--color-ink);
+  --filtro-hover: var(--color-white);
+  --filtro-activo-fondo: var(--color-ink);
+  --filtro-activo-texto: var(--color-white);
+  position: relative;
+  margin-top: calc(-1 * var(--radius-seccion));
+  padding: clamp(5rem, 9vw, 8.75rem) 0;
+  border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
+  background-color: var(--color-pink);
+}
+
+/* dos mariposas que se pasean por los costados, detras del texto */
+.mariposaArriba,
+.mariposaCostado {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mariposaArriba {
+  top: 56px;
+  right: 5%;
+  width: clamp(4rem, 8vw, 7.5rem);
+  height: clamp(3.25rem, 6.4vw, 6rem);
+}
+
+.mariposaCostado {
+  top: 44%;
+  left: 2%;
+  width: clamp(2.75rem, 5vw, 4.5rem);
+  height: clamp(2.25rem, 4vw, 3.625rem);
+}
+
+/* el contenido va arriba de las mariposas */
+.seccion > :global(.container) {
+  position: relative;
+  z-index: 1;
+}
+
+/* al cambiar de edicion el panel se vuelve a crear (key) y esta animacion lo hace entrar suave */
+.detalle {
+  animation: entrar 0.45s ease;
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* linea fina arriba; el nombre y los datos a la izquierda y la descripcion a la derecha, o una debajo de la otra si no entran */
+.cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1.5px solid var(--color-ink);
+}
+
+.nombre {
+  margin: 0 0 0.375rem;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* ficha de la edicion: fecha y lugar en tipografia mono con cifras de ancho fijo */
+.datos {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-feature-settings: "tnum";
+}
+
+.descripcion {
+  max-width: 52ch;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* mobile first: el minimo hace que entre una columna en celular y se sumen solas a medida que hay lugar */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 1.25rem;
+}
+
+.sinFotos {
+  margin: 0;
+  font-family: var(--font-acento);
+  font-size: 1.375rem;
+}

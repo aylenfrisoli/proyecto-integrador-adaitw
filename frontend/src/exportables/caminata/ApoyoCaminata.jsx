@@ -1,5 +1,5 @@
-import { FaInstagram } from "react-icons/fa";
-import { INSTAGRAM_CAMINATA } from "../config/contacto";
+import Forma from "../../components/Forma";
+import { INSTAGRAM_CAMINATA } from "../../config/contacto";
 import styles from "./ApoyoCaminata.module.css";
 
 // invitacion a apoyar el proyecto siguiendo la cuenta de instagram de la caminata
@@ -9,14 +9,13 @@ function ApoyoCaminata() {
 
   return (
     <aside className={styles.apoyo} aria-labelledby="titulo-apoyo-caminata">
-      {/* es solo decoracion: el titulo y el boton ya dicen de que se trata */}
-      <span className={styles.icono} aria-hidden="true">
-        <FaInstagram />
-      </span>
+      {/* formas de adorno en las esquinas, detras del texto */}
+      <Forma tipo="blob" colores={["rose-soft"]} className={styles.mancha} />
+      <Forma tipo="mariposa" colores={["rose-soft", "yellow"]} duracion={0.8} vuela className={styles.mariposa} />
 
       <div className={styles.texto}>
         <h3 id="titulo-apoyo-caminata" className={styles.titulo}>
-          Apoyá este proyecto en redes
+          Apoyá este proyecto <span className={styles.acento}>en redes</span>
         </h3>
         <p className={styles.bajada}>
           Seguí a <span className={styles.usuario}>@{usuario}</span> en
@@ -28,12 +27,15 @@ function ApoyoCaminata() {
       {/* el aria-label empieza con el texto visible y suma que se abre en una pestaña nueva */}
       <a
         href={url}
-        className={`btn btn-primary ${styles.boton}`}
+        className={styles.boton}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Seguir en Instagram: @${usuario} (se abre en una pestaña nueva)`}
       >
         Seguir en Instagram
+        <span className={styles.flecha} aria-hidden="true">
+          →
+        </span>
       </a>
     </aside>
   );

@@ -46,11 +46,11 @@ export function elegirEdicion(ediciones, idElegido) {
   return ediciones.find((edicion) => edicion._id === idElegido) ?? ediciones[0];
 }
 
-// cuanto se inclina cada polaroid, en grados; alternan hacia un lado y hacia el otro
+// cuanto se inclina cada foto al pasar el mouse, en grados; alternan hacia un lado y hacia el otro
 // no se usa random para que la inclinacion sea la misma en cada render y no salte al cambiar de edicion
-const GIROS = [-2.5, 1.8, -1.2, 2.6, -2, 1.2];
+const GIROS = [-2, 1.6, -1, 2.2];
 
-export function rotacionPolaroid(indice) {
+export function giroFoto(indice) {
   return GIROS[indice % GIROS.length];
 }
 

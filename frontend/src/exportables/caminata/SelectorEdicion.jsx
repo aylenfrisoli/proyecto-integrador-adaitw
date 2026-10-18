@@ -1,5 +1,5 @@
 // se reusan los estilos del filtro de categorias para que los botones se vean exactamente igual
-import estilos from "./CategoriaFilter.module.css";
+import estilos from "../../components/CategoriaFilter.module.css";
 
 // un boton por edicion de la caminata; a diferencia de las categorias no hay opcion "Todas", siempre se ve una edicion
 function SelectorEdicion({ ediciones, elegidaId, onElegir }) {
