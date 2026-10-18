@@ -1,4 +1,4 @@
-/* tarjeta de invitacion: degradado suave de ladrillo a arena, los tonos calidos de la paleta */
+/* tarjeta de invitacion: degradado suave de ocre a arena, los tonos calidos de la paleta (el ladrillo queda para el circulo del icono) */
 .apoyo {
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
   border-radius: var(--radius-lg);
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--color-soft-brick) 60%, transparent),
+    color-mix(in srgb, var(--color-soft-ochre) 60%, transparent),
     color-mix(in srgb, var(--color-soft-sand) 50%, transparent)
   );
 }
