@@ -3,6 +3,7 @@ import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.routes";
+import caminataRoutes from "./routes/caminata.routes";
 import categoriaRoutes from "./routes/categoria.routes";
 import obraRoutes from "./routes/obra.routes";
 import productoRoutes from "./routes/producto.routes";
@@ -47,6 +48,9 @@ app.use("/productos", productoRoutes);
 
 // rutas de talleres: /talleres y /talleres/:id
 app.use("/talleres", tallerRoutes);
+
+// rutas de la caminata: /caminatas y /caminatas/:id
+app.use("/caminatas", caminataRoutes);
 
 // estos dos van siempre al final: express prueba los middlewares en orden
 // si un pedido llego hasta aca es porque ninguna ruta lo atendio, o porque alguna tiro un error
