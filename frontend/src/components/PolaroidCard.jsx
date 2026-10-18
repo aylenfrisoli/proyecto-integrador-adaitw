@@ -3,10 +3,10 @@ import styles from "./PolaroidCard.module.css";
 
 // clases de cada cinta, se reparten una por una y volviendo a empezar
 const CINTAS = [
-  styles.cintaRosa,
-  styles.cintaLila,
-  styles.cintaAzul,
-  styles.cintaMelocoton,
+  styles.cintaLadrillo,
+  styles.cintaArena,
+  styles.cintaSalvia,
+  styles.cintaOcre,
 ];
 
 // foto de la caminata con forma de polaroid: la inclinacion y la cinta salen de la posicion de la foto en la edicion
