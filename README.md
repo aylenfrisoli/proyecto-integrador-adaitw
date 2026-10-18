@@ -1,6 +1,6 @@
 # Sara Figarra · Landing, panel y API
 
-Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos y talleres, y un panel de administración desde el que ella carga y edita el contenido.
+Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos, talleres y las ediciones de la caminata de concientización sobre el cáncer de mama que organiza, y un panel de administración desde el que ella carga y edita el contenido.
 
 - **API deployada:** https://proyecto-integrador-adaitw.onrender.com
 - **Repositorio:** monorepo con las carpetas `backend/` (API REST con Express y MongoDB) y `frontend/` (React con Vite).
@@ -46,7 +46,7 @@ cd backend
 npm install
 cp .env.example .env     # abrí el .env y completá los valores (ver la tabla de variables)
 npm run seed             # crea la cuenta de administradora con el email y la contraseña del .env
-npm run seed:demo        # opcional: carga obras, productos y talleres de ejemplo
+npm run seed:demo        # opcional: carga obras, productos, talleres y ediciones de la caminata de ejemplo
 npm run dev              # levanta la API en http://localhost:3000
 ```
 
@@ -80,10 +80,12 @@ npm run dev              # levanta el sitio en http://localhost:5173
 | `npm run build`          | compila TypeScript a la carpeta `dist/`                                         |
 | `npm start`              | corre la versión compilada (`dist/server.js`)                                   |
 | `npm run seed`           | crea la cuenta admin; si ya existe, no la duplica                               |
-| `npm run seed:demo`      | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
+| `npm run seed:demo`      | carga categorías, obras, productos, talleres y ediciones de la caminata de ejemplo con imágenes de relleno |
 | `npm run seed:demo:borrar` | borra solo los datos que cargó el seed demo, sin tocar lo cargado desde el panel |
 
 El seed demo escribe en la base que indique `MONGO_URI`, así que si apunta a Atlas también se ve en la API deployada. Los datos de ejemplo quedan cargados en producción hasta que Sara suba su contenido real; entonces se sacan con `seed:demo:borrar`, que no toca lo que ella cargue desde el panel.
+
+Con la caminata el seed es más cuidadoso: las ediciones de ejemplo solo se cargan si todavía no hay ninguna, y `seed:demo:borrar` solo borra las que tienen todas las fotos de relleno, así que nunca toca las ediciones reales.
 
 ### Variables de entorno
 
@@ -144,9 +146,9 @@ frontend/src/
 
 | Ruta                  | Acceso    | Qué muestra                                                  |
 | --------------------- | --------- | ------------------------------------------------------------ |
-| `/`                   | público   | landing con obras, productos, talleres y la sección sobre Sara |
+| `/`                   | público   | landing con obras, productos, talleres, la caminata y la sección sobre Sara |
 | `/login`              | público   | formulario de ingreso de la administradora                   |
-| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos` y `talleres` |
+| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `caminata` |
 | cualquier otra ruta   | público   | página 404                                                   |
 
 `/admin` redirige a `/admin/categorias`. Si alguien entra al panel sin sesión, lo manda al login; si el token vence, cierra la sesión solo.
@@ -263,6 +265,36 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 - `modalidad` acepta `presencial` o `virtual`. La `direccion` es obligatoria en los presenciales; en los virtuales no se guarda.
 - `estado` acepta `abierto` (valor por defecto), `completo` o `finalizado`.
 
+### Caminatas
+
+Cada documento es una edición de la caminata de concientización sobre el cáncer de mama (1ª edición, 2ª edición...). Las fotos viven dentro de la edición, no tienen rutas propias.
+
+| Método | Ruta              | Acceso  | Descripción                                                    |
+| ------ | ----------------- | ------- | -------------------------------------------------------------- |
+| GET    | `/caminatas`      | público | lista las ediciones, de la más vieja a la más nueva            |
+| GET    | `/caminatas/:id`  | público | trae una edición                                               |
+| POST   | `/caminatas`      | admin   | crea una edición                                               |
+| PUT    | `/caminatas/:id`  | admin   | edita una edición                                              |
+| DELETE | `/caminatas/:id`  | admin   | borra una edición con todas sus fotos                          |
+
+```json
+{
+  "nombre": "1ª edición",
+  "fecha": "2026-03-14T12:00:00-03:00",
+  "lugar": "San Bernardo del Tuyú",
+  "descripcion": "Primera caminata de concientización sobre el cáncer de mama",
+  "fotos": [
+    { "url": "https://ejemplo.com/salida.jpg", "epigrafe": "La salida" },
+    { "url": "https://ejemplo.com/llegada.jpg" }
+  ]
+}
+```
+
+- `nombre` es la etiqueta del botón de cada edición en la landing (hasta 60 caracteres). `lugar` admite hasta 150 y `descripcion` hasta 1000.
+- `fecha` se manda como texto en formato ISO. El panel manda mediodía con offset `-03:00` para que el día no se corra en Argentina.
+- `fotos` es opcional y acepta hasta 30 fotos. Cada una lleva la `url` de un link directo a la imagen (solo `http` y `https`) y un `epigrafe` opcional de hasta 120 caracteres, que se ve debajo de la polaroid.
+- Al editar, si el body no trae `fotos` se conservan las que ya tenía; si las trae, reemplazan la lista entera (con `"fotos": []` se vacía).
+
 ## Respuestas y errores
 
 Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; los de validación suman la lista de campos con problemas:
@@ -287,7 +319,7 @@ Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; lo
 
 ## Pruebas con Postman
 
-La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 56 requests en 6 carpetas (Auth, Categorías, Obras, Productos, Talleres, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
+La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 77 requests en 7 carpetas (Auth, Categorías, Obras, Productos, Talleres, Caminatas, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
 
 ### Cómo usarla
 
@@ -304,7 +336,7 @@ La colección está en [`backend/postman/sara-figarra.postman_collection.json`](
 
 ### Resultado esperado
 
-Corrida completa contra la API local y contra la de Render: 56 requests y 82 aserciones, sin fallos. La colección borra al final todo lo que crea, así la base queda como estaba.
+Corrida completa contra la API local: 77 requests y 123 aserciones, sin fallos. La colección borra al final todo lo que crea, así la base queda como estaba.
 
 ### Ojo
 
