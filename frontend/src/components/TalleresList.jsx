@@ -16,12 +16,12 @@ function TalleresList() {
   return (
     <section id="talleres" className={`container ${styles.seccion}`}>
       {/* formas que asoman por los costados, donde queda lugar en blanco */}
-      <FormaDecorativa tipo="ovalo" color="azul" tamano="5.5rem" lado="izquierda" arriba="42%" />
-      <FormaDecorativa tipo="arco" color="lila" tamano="4rem" lado="derecha" arriba="18%" />
-      <FormaDecorativa tipo="cuarto" color="rosa" tamano="3.5rem" lado="derecha" arriba="72%" />
+      <FormaDecorativa tipo="ovalo" color="salvia" tamano="5.5rem" lado="izquierda" arriba="42%" />
+      <FormaDecorativa tipo="arco" color="arena" tamano="4rem" lado="derecha" arriba="18%" />
+      <FormaDecorativa tipo="cuarto" color="ladrillo" tamano="3.5rem" lado="derecha" arriba="72%" />
       <EncabezadoSeccion
         etiqueta="Talleres"
-        forma={{ tipo: "cuarto", color: "melocoton" }}
+        forma={{ tipo: "cuarto", color: "ocre" }}
         titulo="Aprendé creando"
         descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
       />
