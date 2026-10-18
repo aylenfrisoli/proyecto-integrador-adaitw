@@ -1,8 +1,10 @@
 /* la foto es una polaroid: marco blanco ancho abajo, levemente inclinada y con una cinta pastel arriba */
 .polaroid {
+  /* alto fijo del epigrafe: el espacio de arriba mas dos lineas de texto (0.9rem con interlineado 1.4) */
+  --alto-epigrafe: calc(0.7rem + 2 * 1.4 * 0.9rem);
   position: relative;
   margin: 0;
-  padding: 0.75rem 0.75rem 0;
+  padding: 0.75rem;
   border: 1px solid var(--color-border);
   background-color: #ffffff;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
@@ -13,9 +15,9 @@
     box-shadow 0.35s ease;
 }
 
-/* sin epigrafe el marco de abajo se arma con padding, para que todas las polaroids tengan el mismo alto de borde */
+/* sin epigrafe el marco de abajo se completa con el mismo alto que ocupa el epigrafe, asi todas las polaroids miden lo mismo */
 .sinEpigrafe {
-  padding-bottom: 3.25rem;
+  padding-bottom: calc(0.75rem + var(--alto-epigrafe));
 }
 
 /* el marco recorta la foto cuando hace zoom, igual que las imagenes de obras y productos */
@@ -33,13 +35,18 @@
   transition: transform 0.5s ease;
 }
 
+/* el epigrafe ocupa siempre dos lineas: si es corto queda el espacio y si es largo se corta con "..." */
 .epigrafe {
-  min-height: 3.25rem;
-  padding: 0.85rem 0.25rem 1rem;
+  display: -webkit-box;
+  height: var(--alto-epigrafe);
+  padding: 0.7rem 0.25rem 0;
+  overflow: hidden;
   font-size: 0.9rem;
   line-height: 1.4;
   text-align: center;
   color: var(--color-text-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 /* cinta de papel: asoma por arriba del marco y cada polaroid usa un pastel distinto */

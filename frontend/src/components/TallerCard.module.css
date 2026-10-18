@@ -6,6 +6,13 @@
   border-radius: var(--radius-lg);
 }
 
+/* en el celular el padding es mas chico para que las dos etiquetas entren en una sola fila */
+@media (max-width: 599px) {
+  .tarjeta {
+    padding: 1.25rem;
+  }
+}
+
 /* el color de la tarjeta indica la modalidad */
 .presencial {
   background-color: rgba(235, 206, 255, 0.45);
@@ -20,9 +27,9 @@
   opacity: 0.6;
 }
 
+/* las etiquetas van siempre en una sola fila: si se partieran en dos, la tarjeta creceria */
 .etiquetas {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.25rem;
 }
@@ -34,6 +41,7 @@
   background-color: rgba(255, 255, 255, 0.7);
   font-size: 0.8rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .etiquetaAbierto {
@@ -42,30 +50,47 @@
   color: #ffffff;
 }
 
+/* ocupa siempre dos lineas aunque el titulo entre en una: asi todas las tarjetas miden lo mismo
+   si el titulo es mas largo se corta con "..." (los lectores de pantalla lo leen completo igual) */
 .titulo {
+  display: -webkit-box;
+  height: 2.3em;
   margin: 0 0 0.75rem;
+  overflow: hidden;
   font-family: var(--font-display);
   font-size: 1.6rem;
   font-weight: 700;
+  line-height: 1.15;
   letter-spacing: -0.03em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
+/* tres lineas fijas, con el mismo criterio que el titulo */
 .descripcion {
+  display: -webkit-box;
+  height: 4.8em;
   margin: 0 0 1.25rem;
+  overflow: hidden;
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--color-text-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
-/* ficha tecnica del taller: fecha y lugar, en tipografia chica con cifras de ancho fijo */
+/* ficha tecnica del taller: fecha, hora y lugar, en tipografia chica con cifras de ancho fijo
+   alto fijo de cuatro lineas (fecha, hora y hasta dos de direccion) para que presenciales y virtuales midan lo mismo */
 .datos {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  height: calc(6em + 1.2rem);
   margin: 0 0 1.5rem;
   padding: 0;
   list-style: none;
   font-size: 0.9rem;
+  line-height: 1.5;
   font-feature-settings: "tnum";
 }
 
@@ -75,22 +100,57 @@
   gap: 0.6rem;
 }
 
-/* el icono no se achica cuando el texto es largo y ocupa varias lineas */
+/* el icono no se achica cuando el texto es largo */
 .datos svg {
   flex-shrink: 0;
-  margin-top: 0.15rem;
+  margin-top: 0.2em;
   color: var(--color-brand-primary);
 }
 
-/* margin-top auto deja el boton al fondo para que queden alineados aunque las descripciones tengan distinto largo */
+/* fecha y hora: una linea; min-width 0 deja que el texto se achique dentro del flex y muestre "..." en vez de salirse de la tarjeta */
+.dato {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* la direccion puede ocupar hasta dos lineas */
+.direccion {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* el boton y el aviso tienen el mismo alto: segun el estado se ve uno u otro y la tarjeta no cambia de tamaño
+   margin-top auto los deja al fondo de la tarjeta */
 .boton {
   width: 100%;
+  height: 3.1rem;
   margin-top: auto;
 }
 
 .aviso {
+  display: flex;
+  align-items: center;
+  height: 3.1rem;
   margin: auto 0 0;
   font-size: 0.9rem;
   font-style: italic;
+  line-height: 1.4;
   color: var(--color-text-muted);
+}
+
+/* " por WhatsApp" del boton: debajo de 360px no entra en una linea, asi que se oculta
+   el icono de whatsapp y el aria-label del boton ya dicen que la consulta es por whatsapp */
+.textoLargo {
+  display: none;
+}
+
+@media (min-width: 360px) {
+  .textoLargo {
+    display: inline;
+  }
 }

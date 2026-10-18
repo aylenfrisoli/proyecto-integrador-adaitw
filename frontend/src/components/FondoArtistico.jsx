@@ -1,4 +1,5 @@
 import { useId, useRef } from "react";
+import useAltoFondo from "../hooks/useAltoFondo";
 import useAparecer from "../hooks/useAparecer";
 import useFondoReactivo from "../hooks/useFondoReactivo";
 import styles from "./FondoArtistico.module.css";
@@ -146,12 +147,14 @@ function Banda({ arriba }) {
 // envuelve la landing y le pone detras un fondo de arte digital: papel con grano, luces que respiran, pinceladas, lineas fluidas y una luz que sigue al cursor
 // todo es decoracion pura: se oculta para lectores de pantalla, no recibe toques ni foco, y va detras del contenido
 function FondoArtistico({ children }) {
+  const paginaRef = useRef(null);
   const fondoRef = useRef(null);
   const focoRef = useRef(null);
+  useAltoFondo(paginaRef, fondoRef);
   useFondoReactivo(fondoRef, focoRef);
 
   return (
-    <div className={styles.pagina}>
+    <div className={styles.pagina} ref={paginaRef}>
       {/* filtros que usan las pinceladas: ruido que desplaza los bordes para que queden irregulares como pintura de verdad */}
       <svg className={styles.filtros} aria-hidden="true">
         <defs>

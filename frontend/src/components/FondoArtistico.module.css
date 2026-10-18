@@ -2,6 +2,8 @@
 .pagina {
   position: relative;
   isolation: isolate;
+  /* corta lo que el fondo se pasa del final cuando la pagina se achica al filtrar (ver .fondo); clip y no hidden porque hidden rompe la navbar sticky */
+  overflow: clip;
 }
 
 /* contenedor de los filtros svg: no ocupa lugar ni se ve, solo existe para que css los pueda usar con filter: url(#id) */
@@ -15,7 +17,12 @@
    sin z-index a proposito: cada pieza decide sola su lugar y todas van detras del contenido */
 .fondo {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  /* el alto lo fija useAltoFondo y nunca baja: asi las decoraciones (en % de este alto) no se mueven cuando un filtro achica la pagina
+     hasta que el hook lo escribe vale 100%, o sea lo mismo que la pagina */
+  height: var(--alto-fondo, 100%);
   overflow: hidden;
   pointer-events: none;
 }

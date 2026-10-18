@@ -28,26 +28,43 @@
   padding: 1.25rem 1.25rem 1.5rem;
 }
 
-/* ficha chica en mayusculas controladas */
+/* ficha chica en mayusculas controladas; una sola linea con "..." para que una categoria larga no empuje al titulo */
 .categoria {
   margin: 0 0 0.5rem;
+  overflow: hidden;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: var(--color-text-muted);
 }
 
+/* ocupa siempre dos lineas aunque el titulo entre en una: asi todas las tarjetas miden lo mismo y la descripcion arranca a la misma altura
+   si el titulo es mas largo se corta con "..." (los lectores de pantalla lo leen completo igual) */
 .titulo {
+  display: -webkit-box;
+  height: 2.4em;
   margin: 0 0 0.5rem;
+  overflow: hidden;
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 700;
+  line-height: 1.2;
   letter-spacing: -0.03em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
+/* tres lineas fijas, con el mismo criterio que el titulo */
 .descripcion {
+  display: -webkit-box;
+  height: 4.8em;
   margin: 0;
+  overflow: hidden;
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--color-text-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
