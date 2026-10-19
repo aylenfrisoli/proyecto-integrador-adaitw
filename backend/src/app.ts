@@ -54,7 +54,7 @@ app.use("/talleres", tallerRoutes);
 // rutas de la caminata: /caminatas y /caminatas/:id
 app.use("/caminatas", caminataRoutes);
 
-// ruta de la configuracion del sitio (foto de la portada): /configuracion
+// ruta de la configuracion del sitio (fotos de la portada y de sobre sara): /configuracion
 app.use("/configuracion", configuracionRoutes);
 
 // estos dos van siempre al final: express prueba los middlewares en orden

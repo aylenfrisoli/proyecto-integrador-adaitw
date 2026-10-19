@@ -113,7 +113,7 @@ Con la caminata el seed es más cuidadoso: las ediciones de ejemplo solo se carg
 | -------------- | ------------------------------------------------------------------------------- |
 | `VITE_API_URL` | URL de la API (`http://localhost:3000` en desarrollo, la de Render en producción) |
 
-Las imágenes se eligen desde los formularios y se guardan como Data URLs Base64 en MongoDB. Cada archivo puede pesar hasta 4 MB; la API admite cuerpos de hasta 10 MB.
+Las imágenes se eligen desde los formularios y se guardan como Data URLs Base64 en MongoDB. Cada archivo puede pesar hasta 4 MB y la API admite cuerpos de hasta 10 MB en total por envío (si se pasa responde `413`). Por eso las fotos de una edición de la caminata tienen que ser livianas: entre todas no pueden pasar los 10 MB.
 
 ## Estructura del backend
 
@@ -337,6 +337,7 @@ Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; lo
 | 401    | falta el token, es inválido, venció, o las credenciales del login son erróneas |
 | 404    | el recurso o la ruta no existe                                               |
 | 409    | se intenta borrar una categoría que tiene obras o productos                  |
+| 413    | el body pasa los 10 MB (por ejemplo, varias imágenes pesadas en un mismo envío) |
 | 429    | demasiados intentos fallidos de login                                        |
 | 500    | error interno (no se devuelven detalles al cliente)                          |
 
