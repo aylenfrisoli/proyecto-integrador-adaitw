@@ -12,10 +12,10 @@ import styles from "./AdminPage.module.css";
 // paneles disponibles: el id es lo que va en la url (/admin/categorias) y componente es lo que se muestra
 // para sumar un panel nuevo alcanza con agregar una linea aca
 const PANELES = [
-  { id: "categorias", nombre: "Categorías", componente: CategoriasAdmin },
   { id: "obras", nombre: "Obras", componente: ObrasAdmin },
   { id: "productos", nombre: "Productos", componente: ProductosAdmin },
   { id: "talleres", nombre: "Talleres", componente: TalleresAdmin },
+  { id: "categorias", nombre: "Categorías", componente: CategoriasAdmin },
   { id: "web", nombre: "Web", componente: PortadaAdmin },
 ];
 
@@ -41,8 +41,12 @@ function AdminPage() {
         <div className={`container ${styles.barra}`}>
           <div>
             <p className={styles.etiqueta}>Panel de administración</p>
-            <Link to="/admin" className={`brand-logo ${styles.logo}`}>
-              SAF Creaciones para Vos
+            {/* en celular saluda ("Hola SAF!") y desde 640px muestra el nombre completo; cada parte se oculta desde el css */}
+            <Link to="/admin" className={styles.logo}>
+              <span className={styles.saludo}>Hola </span>
+              <span className={styles.marca}>SAF</span>
+              <span className={styles.saludo}>!</span>
+              <span className={styles.nombreCompleto}> Creaciones para Vos</span>
             </Link>
           </div>
           <div className={styles.acciones}>
