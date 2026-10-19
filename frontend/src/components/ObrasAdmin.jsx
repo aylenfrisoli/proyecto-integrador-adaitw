@@ -58,7 +58,7 @@ function ObrasAdmin() {
       <h2 className={`display-title ${estilos.titulo}`}>Obras</h2>
       <p className={estilos.descripcion}>
         Las pinturas, collages y bordados que se muestran en la galería del
-        sitio. Cada obra necesita una categoría y el link de su imagen.
+        sitio. Cada obra necesita una categoría y una imagen de hasta 4 MB.
       </p>
 
       <div className={estilos.barraLista}>

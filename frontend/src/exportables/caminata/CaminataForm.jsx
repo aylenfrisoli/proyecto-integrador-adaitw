@@ -106,8 +106,7 @@ function CaminataForm({ caminata, enviando, onGuardar, onCancelar }) {
         <fieldset className={estilos.grupoFotos}>
           <legend className={estilos.leyenda}>Fotos</legend>
           <p className={estilos.pista}>
-            Pegá el link directo de cada foto (tiene que terminar en .jpg, .png o
-            similar). Los links de Drive o Instagram no funcionan. En el sitio se
+            Elegí archivos de imagen de hasta 4 MB cada uno. En el sitio se
             muestran como polaroids, con el epígrafe debajo.
           </p>
 
@@ -134,7 +133,7 @@ function CaminataForm({ caminata, enviando, onGuardar, onCancelar }) {
                 </div>
 
                 <CampoImagen
-                  etiqueta={`Foto ${indice + 1} (link)`}
+                  etiqueta={`Foto ${indice + 1}`}
                   valor={foto.url}
                   onChange={(url) => cambiarFoto(foto.id, { url })}
                   cuadrada

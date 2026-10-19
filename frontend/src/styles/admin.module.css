@@ -177,6 +177,12 @@
   color: var(--color-text-muted);
 }
 
+.errorImagen {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-error);
+}
+
 /* tarjeta que contiene el formulario completo de una obra, un producto o un taller */
 .tarjetaForm {
   margin-bottom: 2rem;
