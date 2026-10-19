@@ -1,5 +1,5 @@
-/* el titular ocupa todo el ancho en su propia fila, asi la primera linea entra entera; debajo, la bajada y los filtros van en la mitad derecha
-   (en celular y tablet angosta una sola columna) */
+/* el titular ocupa todo el ancho en su propia fila, asi la primera linea entra entera; debajo, la bajada y los filtros van a la izquierda
+   en la primera de dos columnas, para que no se estiren de punta a punta (en celular y tablet angosta una sola columna) */
 .encabezado {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -10,10 +10,6 @@
 @media (min-width: 960px) {
   .encabezado {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .lateral {
-    grid-column: 2;
   }
 }
 

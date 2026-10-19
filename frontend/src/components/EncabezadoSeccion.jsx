@@ -10,7 +10,7 @@ export function Acento({ children }) {
   return <span className={styles.acento}>{children}</span>;
 }
 
-// cabecera que repiten las secciones de la landing: el titular grande a la izquierda y a la derecha la bajada
+// cabecera que repiten las secciones de la landing: el titular grande arriba y debajo, a la izquierda, la bajada
 // children es lo que va debajo de la bajada, por ejemplo los botones de filtro
 // titulo recibe jsx (varias <Linea>) porque cada titular combina texto y formas distintas
 function EncabezadoSeccion({ titulo, descripcion, children }) {
