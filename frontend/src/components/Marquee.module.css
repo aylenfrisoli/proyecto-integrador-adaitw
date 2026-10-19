@@ -1,3 +1,10 @@
+/* la cinta girada deja un triangulo libre en cada punta: arriba a la izquierda se ve la portada y abajo a la derecha la seccion de productos
+   a mas ancho de pantalla el triangulo crece (la punta sube mas que el solape de la seccion), por eso no alcanza con un margen fijo
+   la mitad de arriba es del color de la portada y la de abajo del de productos, asi nunca asoma el fondo de la pagina */
+.contenedor {
+  background: linear-gradient(to bottom, var(--color-cream) 50%, var(--color-navy) 50%);
+}
+
 /* los margenes negativos y la inclinacion hacen que la cinta llegue de borde a borde aunque este girada
    main corta lo que sobra a los costados */
 .cinta {

@@ -28,15 +28,18 @@ function Fila() {
   );
 }
 
-// cinta amarilla inclinada que se desplaza sola entre la portada y las obras
+// cinta amarilla inclinada que se desplaza sola entre la portada y los productos
 // es solo decoracion (las mismas palabras estan en el resto de la pagina), por eso se oculta para los lectores de pantalla
 function Marquee() {
   return (
-    <div className={styles.cinta} aria-hidden="true">
-      {/* la fila va dos veces: la pista se corre justo la mitad y vuelve a empezar, asi el movimiento no tiene saltos */}
-      <div className={styles.pista}>
-        <Fila />
-        <Fila />
+    // el contenedor pinta de crema (portada) arriba y de azul (productos) abajo: es lo que se ve por los costados de la cinta girada
+    <div className={styles.contenedor} aria-hidden="true">
+      <div className={styles.cinta}>
+        {/* la fila va dos veces: la pista se corre justo la mitad y vuelve a empezar, asi el movimiento no tiene saltos */}
+        <div className={styles.pista}>
+          <Fila />
+          <Fila />
+        </div>
       </div>
     </div>
   );

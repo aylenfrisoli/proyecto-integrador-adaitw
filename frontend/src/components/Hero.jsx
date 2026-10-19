@@ -37,9 +37,12 @@ function Hero() {
         </h1>
 
         <div className={styles.pie}>
-          <div className={styles.foto}>
-            {imagenPortada && <img src={imagenPortada} alt="Una obra de Sara Figarra" className={styles.imagen} />}
-            <span className={styles.sello}>SAF · hecho a mano</span>
+          {/* el marco es solo pintura en css: simula un cuadro colgado, en el amarillo de las formas del titular */}
+          <div className={styles.marco}>
+            <div className={styles.foto}>
+              {imagenPortada && <img src={imagenPortada} alt="Una obra de Sara Figarra" className={styles.imagen} />}
+              <span className={styles.sello}>Sara A. Figarra</span>
+            </div>
           </div>
 
           <div>
