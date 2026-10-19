@@ -27,8 +27,9 @@ app.use(cors({ origin: process.env.CORS_ORIGIN }));
 // muestra cada peticion en la terminal, sirve para ver que llega mientras probamos con postman
 app.use(morgan("dev"));
 
-// convierte el body json de las peticiones en req.body
-app.use(express.json());
+// permite recibir imagenes codificadas en base64 dentro del body json
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // ruta de prueba para saber si la api esta viva, tambien la usa render para chequear el deploy
 app.get("/", (_req, res) => {
