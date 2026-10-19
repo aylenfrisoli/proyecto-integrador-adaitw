@@ -60,7 +60,6 @@ function ObrasList() {
         >
           <div className={styles.grilla}>
             {obrasVisibles.map((obra) => (
-              // el numero es la posicion en la lista completa, asi no cambia al filtrar
               <ObraCard key={obra._id} obra={obra} />
             ))}
           </div>
