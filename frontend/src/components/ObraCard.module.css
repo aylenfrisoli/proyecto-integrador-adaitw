@@ -1,71 +1,65 @@
+/* la tarjeta no tiene fondo propio: el texto se apoya directo sobre el amarillo de la seccion
+   no tiene efecto al pasar el mouse: ni la imagen ni los textos se mueven */
 .tarjeta {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  /* borde verde salvia: cada tipo de tarjeta tiene su color (obras verde, productos ocre, talleres segun modalidad); sobre la imagen no va ningun adorno */
-  border: 1px solid var(--color-nature-green);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-bg-card);
+  gap: 1rem;
 }
 
-/* overflow hidden recorta la imagen cuando se agranda con el zoom */
+/* position relative para ubicar la categoria encima; overflow hidden recorta la imagen con las esquinas redondeadas */
 .contenedorImagen {
+  position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-blue);
 }
 
 .imagen {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
 }
 
-.tarjeta:hover .imagen {
-  transform: scale(1.05);
-}
-
-.info {
-  padding: 1.25rem 1.25rem 1.5rem;
-}
-
-/* ficha chica en mayusculas controladas; una sola linea con "..." para que una categoria larga no empuje al titulo */
 .categoria {
-  margin: 0 0 0.5rem;
-  overflow: hidden;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: var(--color-text-muted);
+  position: absolute;
+  top: 0.875rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink);
+  pointer-events: none;
 }
 
-/* ocupa siempre dos lineas aunque el titulo entre en una: asi todas las tarjetas miden lo mismo y la descripcion arranca a la misma altura
-   si el titulo es mas largo se corta con "..." (los lectores de pantalla lo leen completo igual) */
+.categoria {
+  left: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--color-white);
+}
+
+/* hasta dos lineas con "..." (los lectores de pantalla lo leen completo igual); el interlineado de 1.1 evita que se corten las letras con cola */
 .titulo {
   display: -webkit-box;
-  height: 2.4em;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.375rem;
   overflow: hidden;
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.875rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
-/* tres lineas fijas, con el mismo criterio que el titulo */
+/* hasta tres lineas */
 .descripcion {
   display: -webkit-box;
-  height: 4.8em;
   margin: 0;
   overflow: hidden;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-plum-deep);
+  text-wrap: pretty;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }

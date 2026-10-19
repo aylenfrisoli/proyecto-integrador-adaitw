@@ -2,7 +2,6 @@
 import "dotenv/config";
 import mongoose from "mongoose";
 import { connectDB } from "../config/db";
-import { Caminata } from "../models/caminata.model";
 import { Categoria } from "../models/categoria.model";
 import { Obra } from "../models/obra.model";
 import { Producto, type Disponibilidad } from "../models/producto.model";
@@ -21,11 +20,15 @@ const TONOS = {
 
 type Tono = keyof typeof TONOS;
 
-// imagen de relleno con los colores de la paleta; placehold.co devuelve un png con el texto que le pasemos
-// la fuente con serif (playfair) le da un aire mas de galeria que la letra por defecto
+// imagen svg de relleno codificada en base64 para usar el mismo formato que el panel
 function imagen(ancho: number, alto: number, tono: Tono, texto: string): string {
   const { fondo, texto: colorTexto } = TONOS[tono];
-  return `https://placehold.co/${ancho}x${alto}/${fondo}/${colorTexto}.png?text=${encodeURIComponent(texto)}&font=playfair-display`;
+  const textoSeguro = texto.replace(/[&<>"']/g, (caracter) => {
+    const entidades: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" };
+    return entidades[caracter];
+  });
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${ancho}" height="${alto}" viewBox="0 0 ${ancho} ${alto}"><rect width="100%" height="100%" fill="#${fondo}"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#${colorTexto}" font-family="sans-serif" font-size="${Math.max(18, Math.floor(ancho / 18))}">${textoSeguro}</text></svg>`;
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 }
 
 const CATEGORIAS = ["Pinturas", "Cajas", "Bordados", "Bolsos", "Papelería", "Collages"];
@@ -33,40 +36,40 @@ const CATEGORIAS = ["Pinturas", "Cajas", "Bordados", "Bolsos", "Papelería", "Co
 // la categoria se indica por nombre y se cambia por su id al guardar
 const OBRAS = [
   {
-    titulo: "Mar de colores",
-    descripcion: "Pintura sobre tela con capas de azules y turquesas que imitan el movimiento del mar al amanecer.",
-    imagen: imagen(800, 1000, "arena", "Mar de colores"),
-    categoria: "Pinturas",
-  },
-  {
-    titulo: "Atardecer en la costa",
-    descripcion: "Acrílico con tonos durazno y rosa, pintado a espátula para dar textura al cielo.",
-    imagen: imagen(800, 1000, "ladrillo", "Atardecer en la costa"),
-    categoria: "Pinturas",
-  },
-  {
-    titulo: "Jardín abstracto",
-    descripcion: "Formas libres y colores vivos inspiradas en las flores del jardín de Sara.",
-    imagen: imagen(800, 1000, "salvia", "Jardín abstracto"),
-    categoria: "Pinturas",
-  },
-  {
-    titulo: "Formas en diálogo",
-    descripcion: "Collage abstracto con papeles recortados a mano que juegan con el equilibrio y el color.",
-    imagen: imagen(800, 1000, "salvia", "Formas en diálogo"),
-    categoria: "Collages",
+    titulo: "Textura de sal",
+    descripcion: "Cuadro con flores en tonos violetas y gama azul, pintado sobre tela con acrílicos sobre bastidor.",
+    imagen: imagen(800, 1000, "arena", "Textura de sal"),
+    categoria: "Bordados",
   },
   {
     titulo: "Papeles de verano",
-    descripcion: "Collage con papeles teñidos, telas y texturas en tonos cálidos.",
+    descripcion: "Cuadro de limones, pintado sobre tela con acrílicos sobre bastidor.",
     imagen: imagen(800, 1000, "ocre", "Papeles de verano"),
     categoria: "Collages",
   },
   {
-    titulo: "Textura de sal",
-    descripcion: "Bordado artesanal sobre lino con hilos de colores que dibujan olas y espuma.",
-    imagen: imagen(800, 1000, "arena", "Textura de sal"),
-    categoria: "Bordados",
+    titulo: "Formas en diálogo",
+    descripcion: "Cuadro collage de mujer sentada mirando hacia la derecha, con mar al frente, isla y bosque en el fondo.",
+    imagen: imagen(800, 1000, "salvia", "Formas en diálogo"),
+    categoria: "Collages",
+  },
+  {
+    titulo: "Fondo del Mar",
+    descripcion: "Cuadro sobre madera con combinación de acrílicos y óleos aplicados con espátula sobre fondo marino.",
+    imagen: imagen(800, 1000, "salvia", "Fondo del Mar"),
+    categoria: "Pinturas",
+  },
+  {
+    titulo: "Mar de colores",
+    descripcion: "Cuadro con cianotipia azul y hojas naturales.",
+    imagen: imagen(800, 1000, "arena", "Mar de colores"),
+    categoria: "Pinturas",
+  },
+  {
+    titulo: "Jardín abstracto",
+    descripcion: "Cuadro vertical de jarrón celeste con gran ramo de flores blancas y centros amarillos, una de las obras más aclamadas de la autora.",
+    imagen: imagen(800, 1000, "salvia", "Jardín abstracto"),
+    categoria: "Pinturas",
   },
 ];
 
@@ -133,81 +136,56 @@ const PRODUCTOS: {
 // las fechas llevan el offset -03:00 de argentina para que la hora cargada sea la de la web, sin depender de la zona de quien corra el seed
 const TALLERES = [
   {
-    titulo: "Taller de Collage Creativo",
-    descripcion: "Encuentro presencial para crear collages con papeles, telas y texturas. No hace falta experiencia previa.",
-    fecha: new Date("2026-10-31T18:00:00-03:00"),
+    titulo: "Workshop de Resina",
+    descripcion: "Decoramos piezas de yeso con resina + buquet de flores. Horario: 15:00 a 17:00 hs.",
+    fecha: new Date("2026-10-15T15:00:00-03:00"),
     modalidad: "presencial" as const,
-    direccion: "Costanera 1234, San Bernardo del Tuyú",
-    estado: "abierto" as const,
+    direccion: "Marano 308, Mar de Ajó",
+    estado: "completo" as const,
   },
   {
-    titulo: "Iniciación a la Pintura",
-    descripcion: "Un espacio ideal para principiantes: colores, pinceles y técnicas básicas paso a paso.",
-    fecha: new Date("2026-11-16T17:00:00-03:00"),
-    modalidad: "virtual" as const,
-    estado: "abierto" as const,
+    titulo: "El encanto de la Cianotipia",
+    descripcion: "Técnica de fotografía antigua, convertí luz en arte. Break incluido. Horario: 10:00 a 12:00 hs.",
+    fecha: new Date("2026-10-03T10:00:00-03:00"),
+    modalidad: "presencial" as const,
+    direccion: "Marano 308, Mar de Ajó",
+    estado: "completo" as const,
   },
   {
-    titulo: "Taller de Cianotipia",
+    titulo: "Vino y Pintura",
     descripcion:
-      "Taller virtual para descubrir la cianotipia, una técnica antigua que deja imágenes en azul profundo sobre papel o tela. Vemos el proceso paso a paso y creamos nuestras propias imágenes. Horario: de 15 a 17 hs.",
-    fecha: new Date("2026-11-20T15:00:00-03:00"),
-    modalidad: "virtual" as const,
-    estado: "abierto" as const,
+      "Espacio para soltar la mente, despertar tu lado artístico mientras disfrutas buena compañía. Usando de referencia cuadro de tallerista, aprenderemos a observar, dibujar y pintar. Horario: 18:00 a 20:00 hs.",
+    fecha: new Date("2026-09-19T18:00:00-03:00"),
+    modalidad: "presencial" as const,
+    direccion: "Marano 308, Mar de Ajó",
+    estado: "completo" as const,
   },
   {
     titulo: "Workshop de Texturas",
     descripcion:
-      "Workshop presencial para explorar texturas: probamos materiales, relieves y técnicas para darle cuerpo y carácter a nuestras obras. Horario: de 16 a 18:30 hs.",
-    fecha: new Date("2026-11-27T16:00:00-03:00"),
+      "Bastidor de 30x40 con pintura y espátula. Materiales y merienda incluidos. Horario: 15:00 a 17:00 hs.",
+    fecha: new Date("2026-08-15T15:00:00-03:00"),
     modalidad: "presencial" as const,
-    direccion: "Costanera 1234, San Bernardo del Tuyú",
-    estado: "abierto" as const,
+    direccion: "Marano 308, Mar de Ajó",
+    estado: "completo" as const,
   },
 ];
 
-// ediciones de ejemplo de la caminata, con fotos de relleno en los rosas y lilas de la paleta
-// las fechas van a mediodia con el offset -03:00, igual que las que carga el panel, para que el dia no se corra
-const CAMINATAS = [
-  {
-    nombre: "1ª edición",
-    fecha: new Date("2026-03-14T12:00:00-03:00"),
-    lugar: "San Bernardo del Tuyú",
-    descripcion: "Primera caminata de concientización sobre el cáncer de mama: salimos a recorrer la costa para visibilizar y acompañarnos entre todos.",
-    fotos: [
-      { url: imagen(600, 600, "ladrillo", "La salida"), epigrafe: "La salida" },
-      { url: imagen(600, 600, "salvia", "En camino"), epigrafe: "Caminando juntos" },
-      // sin epigrafe a proposito: sirve para ver como queda una polaroid sin texto
-      { url: imagen(600, 600, "arena", "Llegada") },
-    ],
-  },
-  {
-    nombre: "2ª edición",
-    fecha: new Date("2026-05-16T12:00:00-03:00"),
-    lugar: "San Bernardo del Tuyú",
-    descripcion: "Segunda caminata: más personas, más lazos y la misma ilusión de seguir juntos.",
-    fotos: [
-      { url: imagen(600, 600, "ocre", "Largada"), epigrafe: "La largada" },
-      { url: imagen(600, 600, "ladrillo", "Todas juntas"), epigrafe: "Todas juntas" },
-      { url: imagen(600, 600, "salvia", "Un abrazo"), epigrafe: "Un abrazo en la meta" },
-    ],
-  },
-  {
-    nombre: "3ª edición",
-    fecha: new Date("2026-08-22T12:00:00-03:00"),
-    lugar: "San Bernardo del Tuyú",
-    descripcion: "Tercera caminata del año, la más grande hasta ahora. Gracias a cada persona que vino a caminar.",
-    fotos: [
-      { url: imagen(600, 600, "arena", "Llegando"), epigrafe: "Llegando a la meta" },
-      { url: imagen(600, 600, "ladrillo", "Mariposas"), epigrafe: "Mariposas rosas" },
-      { url: imagen(600, 600, "ocre", "Sonrisas"), epigrafe: "Sonrisas por todos lados" },
-      { url: imagen(600, 600, "salvia", "El cierre") },
-    ],
-  },
+const TALLERES_RETIRADOS = [
+  "Taller de Cianotipia",
+  "Iniciación a la Pintura",
+  "Taller de Collage Creativo",
 ];
 
-// crea lo que falte; si ya existe algo con el mismo nombre o titulo no lo toca, asi se puede correr varias veces
+// crea lo que falta; los talleres de ejemplo se sincronizan por titulo para no duplicarse
 async function cargarDemo(): Promise<void> {
+  const talleresBorrados = await Taller.deleteMany({
+    titulo: { $in: TALLERES_RETIRADOS },
+  });
+  if (talleresBorrados.deletedCount > 0) {
+    console.log(`borrados ${talleresBorrados.deletedCount} talleres retirados`);
+  }
+
   // un mapa nombre -> id para reemplazar el nombre de categoria de cada obra y producto
   const idPorNombre = new Map<string, mongoose.Types.ObjectId>();
 
@@ -239,25 +217,13 @@ async function cargarDemo(): Promise<void> {
   }
 
   for (const datos of TALLERES) {
-    const existente = await Taller.findOne({ titulo: datos.titulo });
-    if (existente) {
-      console.log(`ya existia taller: ${datos.titulo}`);
-      continue;
-    }
-    await Taller.create(datos);
-    console.log(`creado taller: ${datos.titulo}`);
-  }
-
-  // las ediciones de ejemplo solo se cargan si todavia no hay ninguna
-  // si sara ya cargo las reales, mezclarlas con las de ejemplo confundiria el sitio
-  if (await Caminata.exists({})) {
-    console.log("ya hay ediciones de la caminata, no se cargan las de ejemplo");
-    return;
-  }
-
-  for (const datos of CAMINATAS) {
-    await Caminata.create(datos);
-    console.log(`creada edicion de la caminata: ${datos.nombre}`);
+    const resultado = await Taller.findOneAndUpdate({ titulo: datos.titulo }, datos, {
+      upsert: true,
+      returnDocument: "after",
+      runValidators: true,
+      setDefaultsOnInsert: true,
+    });
+    console.log(`sincronizado taller: ${resultado.titulo}`);
   }
 }
 
@@ -267,15 +233,6 @@ async function borrarDemo(): Promise<void> {
   const productos = await Producto.deleteMany({ titulo: { $in: PRODUCTOS.map((p) => p.titulo) } });
   const talleres = await Taller.deleteMany({ titulo: { $in: TALLERES.map((t) => t.titulo) } });
   console.log(`borradas ${obras.deletedCount} obras, ${productos.deletedCount} productos y ${talleres.deletedCount} talleres`);
-
-  // con las ediciones no alcanza el nombre: sara puede llamar "1ª edición" a una real
-  // por eso se borran solo las que ademas tienen todas sus fotos de relleno, y una edicion real tiene fotos propias
-  const candidatas = await Caminata.find({ nombre: { $in: CAMINATAS.map((c) => c.nombre) } });
-  const delDemo = candidatas.filter(
-    (c) => c.fotos.length > 0 && c.fotos.every((foto) => foto.url.startsWith("https://placehold.co/")),
-  );
-  await Caminata.deleteMany({ _id: { $in: delDemo.map((c) => c._id) } });
-  console.log(`borradas ${delDemo.length} ediciones de la caminata (se conservan ${candidatas.length - delDemo.length} con fotos propias)`);
 
   for (const nombre of CATEGORIAS) {
     const categoria = await Categoria.findOne({ nombre });

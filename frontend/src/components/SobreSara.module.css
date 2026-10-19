@@ -1,89 +1,234 @@
-/* mobile first: una columna; el separador de arriba (una linea fina con un adorno botanico, ver .separador-botanico en index.css) separa la seccion de la anterior */
+/* seccion azul medio con texto blanco, que sube sobre la anterior */
 .seccion {
-  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
   position: relative;
-  isolation: isolate;
-  display: grid;
-  gap: 2rem;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-.eyebrow {
-  margin: 0 0 1rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  margin-top: calc(-1 * var(--radius-seccion));
+  padding: clamp(5rem, 9vw, 8.75rem) 0;
+  border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
+  background-color: var(--color-blue);
+  color: var(--color-white);
 }
 
 .titulo {
-  margin: 0;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin: 0 0 clamp(2.5rem, 5vw, 4.5rem);
+  /* el tope de 9.25rem hace que "Cada pieza tiene su" entre en un solo renglon aun en pantallas muy anchas */
+  font-size: clamp(3.5rem, 10vw, 9.25rem);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.055em;
 }
 
-/* align-items end apoya las siluetas sobre la misma linea aunque tengan distinto tamaño */
-.siluetas {
+/* el renglon lleva el sol al lado y solo se parte en dos si no entra (celular) */
+.renglon {
   display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.14em;
 }
 
-.contenido p {
-  max-width: 56ch;
-  margin: 0 0 1.25rem;
-  font-size: 1.05rem;
-  line-height: 1.7;
+.acento {
+  display: block;
+  font-family: var(--font-acento);
+  font-weight: 700;
+  padding-top: 0.08em;
+  color: var(--color-yellow);
+}
+
+/* dos columnas cuando hay lugar (minimo 380px cada una) y una sola en el celular
+   position relative: las formas de los costados se miden desde el borde de arriba y de abajo de las columnas */
+.columnas {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
+}
+
+/* position relative para ubicar las formas que rodean el retrato, algunas fuera del borde */
+.retrato {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.arco {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 999px 999px var(--radius-2xl) var(--radius-2xl);
+  background-color: var(--color-navy);
+}
+
+.imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* formas alrededor del retrato, una por esquina; todas en amarillo, blanco o rosa claro porque el azul de fondo se come los tonos oscuros */
+.flor,
+.lapiz,
+.gotaArco,
+.acuarela,
+.deco {
+  position: absolute;
+  pointer-events: none;
+}
+
+.lapiz {
+  top: 40px;
+  left: -28px;
+  width: 110px;
+  height: 110px;
+  rotate: -18deg;
+}
+
+.gotaArco {
+  top: 12%;
+  right: -14px;
+  width: 30px;
+  height: 30px;
+}
+
+.flor {
+  right: -24px;
+  bottom: 40px;
+  width: 120px;
+  height: 120px;
+}
+
+.acuarela {
+  bottom: -30px;
+  left: 12%;
+  width: 90px;
+  height: 90px;
+}
+
+/* formas de los costados, solo en pantallas anchas: ahi las columnas dejan aire a la derecha del titular y debajo del texto */
+.solo {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .solo {
+    display: block;
+  }
+
+  /* paradas sobre el borde de arriba de las columnas, a la derecha: el pincel de pie, la mariposa mas alta y las gotas cayendo entre las dos */
+  .pincel {
+    right: 8%;
+    bottom: calc(100% - 2px);
+    width: clamp(4rem, 7vw, 8rem);
+    height: clamp(4rem, 7vw, 8rem);
+  }
+
+  .mariposa {
+    right: 24%;
+    bottom: calc(100% + 1.75rem);
+    width: clamp(3.5rem, 6vw, 6.5rem);
+    height: clamp(3.5rem, 6vw, 6.5rem);
+  }
+
+  .gotaBlanca {
+    right: 2.5%;
+    bottom: calc(100% + 0.75rem);
+    width: clamp(1rem, 1.8vw, 1.875rem);
+    height: clamp(1rem, 1.8vw, 1.875rem);
+  }
+
+  .gotaAmarilla {
+    right: 17%;
+    bottom: calc(100% + 0.25rem);
+    width: clamp(0.875rem, 1.4vw, 1.5rem);
+    height: clamp(0.875rem, 1.4vw, 1.5rem);
+  }
+
+  /* la brocha cruzada en el hueco de abajo, a la derecha, debajo de las etiquetas (el retrato es mas alto que el texto y deja lugar)
+     sube 3rem porque el pie se mete 3rem sobre el final de la seccion y le cortaria la punta */
+  .brocha {
+    top: calc(100% - 3rem);
+    right: 5%;
+    width: clamp(3.5rem, 6vw, 7rem);
+    height: clamp(3.5rem, 6vw, 7rem);
+    rotate: 24deg;
+  }
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 52ch;
+  font-size: clamp(1.1875rem, 1.6vw, 1.375rem);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.texto p {
+  margin: 0;
+}
+
+/* la frase final va en letra manuscrita y mas grande, como una firma */
+.deseo {
+  font-family: var(--font-acento);
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.3;
 }
 
 .subtitulo {
-  margin: 2rem 0 1rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  margin: 2.75rem 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 400;
 }
 
 .etiquetas {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+/* cada etiqueta lleva su color y una inclinacion distinta, como pegatinas sueltas */
 .etiqueta {
-  padding: 0.45rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.875rem;
+  /* el padding va en em y el tamano baja con el ancho de la pantalla: asi las diez etiquetas entran de a cinco por renglon en escritorio */
+  padding: 0 1.1em;
   border-radius: 999px;
-  font-size: 0.9rem;
-  color: var(--color-text-main);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  font-weight: 600;
+  color: var(--color-ink);
 }
 
-.ladrillo {
-  background-color: var(--color-soft-brick);
+.blanca {
+  background-color: var(--color-white);
+  transform: rotate(-2deg);
 }
 
-.arena {
-  background-color: var(--color-soft-sand);
+.amarilla {
+  background-color: var(--color-yellow);
+  transform: rotate(1.5deg);
 }
 
-.salvia {
-  background-color: var(--color-soft-green);
+.oscura {
+  background-color: var(--color-ink);
+  color: var(--color-white);
+  transform: rotate(-1deg);
 }
 
-.ocre {
-  background-color: var(--color-soft-ochre);
+.celeste {
+  background-color: var(--color-sky-soft);
+  transform: rotate(2deg);
 }
 
-@media (min-width: 900px) {
-  .seccion {
-    grid-template-columns: 1fr 1.2fr;
-    gap: 4rem;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
+.rosa {
+  background-color: var(--color-rose-soft);
+  transform: rotate(-1.5deg);
+}
+
+.crema {
+  background-color: var(--color-yellow-soft);
+  transform: rotate(1deg);
 }

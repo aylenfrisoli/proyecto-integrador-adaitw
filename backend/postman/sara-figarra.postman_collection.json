@@ -30,6 +30,10 @@
     {
       "key": "token",
       "value": ""
+    },
+    {
+      "key": "imagenPortadaOriginal",
+      "value": ""
     }
   ],
   "item": [
@@ -612,7 +616,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -695,7 +699,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"000000000000000000000000\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"000000000000000000000000\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -739,7 +743,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -916,7 +920,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer (editada)\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer (editada)\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -958,7 +962,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"No existe\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"No existe\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1005,7 +1009,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": 15000,\n  \"mensajeWhatsapp\": \"Hola Sara, me interesa el print\",\n  \"disponibilidad\": \"disponible\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": 15000,\n  \"mensajeWhatsapp\": \"Hola Sara, me interesa el print\",\n  \"disponibilidad\": \"disponible\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1051,7 +1055,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1093,7 +1097,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"disponibilidad\": \"regalado\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"disponibilidad\": \"regalado\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1134,7 +1138,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": -5,\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": -5,\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1178,7 +1182,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1354,7 +1358,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": null,\n  \"disponibilidad\": \"agotado\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": null,\n  \"disponibilidad\": \"agotado\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1396,7 +1400,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1809,280 +1813,44 @@
       ]
     },
     {
-      "name": "6. Caminatas",
+      "name": "6. Configuracion",
       "item": [
         {
-          "name": "Crear edicion con fotos",
+          "name": "Leer la configuracion (publico)",
           "event": [
             {
               "listen": "test",
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"responde 201\", () => pm.response.to.have.status(201));",
-                  "const caminata = pm.response.json();",
-                  "pm.collectionVariables.set(\"caminataId\", caminata._id);",
-                  "pm.test(\"guarda las dos fotos\", () => pm.expect(caminata.fotos).to.have.length(2));",
-                  "pm.test(\"el epigrafe se guarda sin los espacios de los costados\", () => pm.expect(caminata.fotos[0].epigrafe).to.eql(\"Salida desde la costanera\"));",
-                  "pm.test(\"un epigrafe vacio no se guarda\", () => pm.expect(caminata.fotos[1]).to.not.have.property(\"epigrafe\"));",
-                  "pm.test(\"las fotos no llevan id propio\", () => pm.expect(caminata.fotos[0]).to.not.have.property(\"_id\"));",
-                  "pm.test(\"la fecha queda al mediodia de argentina\", () => pm.expect(caminata.fecha).to.eql(\"2026-04-12T15:00:00.000Z\"));"
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "const configuracion = pm.response.json();",
+                  "pm.test(\"trae imagenPortada como texto\", () => pm.expect(configuracion.imagenPortada).to.be.a(\"string\"));",
+                  "// se guarda la foto que habia para devolverla al final y no pisar la portada real si se corre contra Render",
+                  "pm.collectionVariables.set(\"imagenPortadaOriginal\", configuracion.imagenPortada);"
                 ]
               }
             }
           ],
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/caminatas",
+              "raw": "{{baseUrl}}/configuracion",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "caminatas"
+                "configuracion"
               ]
             },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": [\n    {\n      \"url\": \"https://placehold.co/600x600/f6cbd5/9f7657.png?text=Postman1\",\n      \"epigrafe\": \"  Salida desde la costanera  \"\n    },\n    {\n      \"url\": \"https://placehold.co/600x600/ebceff/9f7657.png?text=Postman2\",\n      \"epigrafe\": \"\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+            "auth": {
+              "type": "noauth"
             }
           }
         },
         {
-          "name": "Crear edicion sin fotos (la lista queda vacia)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 201\", () => pm.response.to.have.status(201));",
-                  "pm.collectionVariables.set(\"caminataSinFotosId\", pm.response.json()._id);",
-                  "pm.test(\"las fotos son una lista vacia\", () => pm.expect(pm.response.json().fotos).to.eql([]));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion sin fotos Postman\",\n  \"fecha\": \"2026-01-10T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "Crear edicion sin nombre (400)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
-                  "pm.test(\"el error es del campo nombre\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"nombre\"));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "Crear edicion con fecha invalida (400)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
-                  "pm.test(\"el error es del campo fecha\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"fecha\"));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"no es una fecha\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "Crear edicion con una foto que no es http o https (400)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
-                  "pm.test(\"el error indica la foto con problemas\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"fotos.0.url\"));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": [\n    {\n      \"url\": \"ftp://servidor.com/foto.jpg\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "Crear edicion con mas de 30 fotos (400)",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "// 31 fotos: una mas que el maximo permitido",
-                  "const fotos = Array.from({ length: 31 }, (_, i) => ({ url: \"https://placehold.co/100x100.png?text=\" + i }));",
-                  "pm.request.body.update(JSON.stringify({ nombre: \"Edicion con demasiadas fotos\", fecha: \"2026-04-12T12:00:00-03:00\", lugar: \"Lugar\", descripcion: \"Descripcion\", fotos }));"
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
-                  "pm.test(\"el error es del campo fotos\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"fotos\"));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": []\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "Crear edicion sin token (401)",
+          "name": "Guardar sin token (401)",
           "event": [
             {
               "listen": "test",
@@ -2095,184 +1863,6 @@
             }
           ],
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "Listar ediciones (de la mas vieja a la mas nueva)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"devuelve una lista\", () => pm.expect(pm.response.json()).to.be.an(\"array\"));",
-                  "const fechas = pm.response.json().map((c) => new Date(c.fecha).getTime());",
-                  "pm.test(\"viene ordenada por fecha, de la mas vieja a la mas nueva\", () => pm.expect(fechas).to.eql([...fechas].sort((a, b) => a - b)));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "Traer edicion por id",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"es la edicion pedida\", () => pm.expect(pm.response.json()._id).to.eql(pm.collectionVariables.get(\"caminataId\")));",
-                  "pm.test(\"trae sus fotos\", () => pm.expect(pm.response.json().fotos).to.have.length(2));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "{{caminataId}}"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "Traer edicion inexistente (404)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 404\", () => pm.response.to.have.status(404));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/000000000000000000000000",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "000000000000000000000000"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "Traer edicion con id mal formado (400)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/abc",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "abc"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "Editar edicion: la lista de fotos se reemplaza entera",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "const caminata = pm.response.json();",
-                  "pm.test(\"cambio el nombre\", () => pm.expect(caminata.nombre).to.eql(\"Edicion de prueba Postman (editada)\"));",
-                  "pm.test(\"quedo una sola foto, la nueva\", () => {",
-                  "  pm.expect(caminata.fotos).to.have.length(1);",
-                  "  pm.expect(caminata.fotos[0].epigrafe).to.eql(\"Una sola foto\");",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
             "method": "PUT",
             "header": [
               {
@@ -2281,114 +1871,30 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
+              "raw": "{{baseUrl}}/configuracion",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "caminatas",
-                "{{caminataId}}"
+                "configuracion"
               ]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman (editada)\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": [\n    {\n      \"url\": \"https://placehold.co/600x600/c4dcff/9f7657.png?text=Postman3\",\n      \"epigrafe\": \"Una sola foto\"\n    }\n  ]\n}",
+              "raw": "{\n  \"imagenPortada\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
                 }
               }
-            }
-          }
-        },
-        {
-          "name": "Editar edicion sin mandar fotos: se conservan las que tenia",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"sigue teniendo su foto\", () => pm.expect(pm.response.json().fotos).to.have.length(1));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "{{caminataId}}"
-              ]
             },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+            "auth": {
+              "type": "noauth"
             }
           }
         },
         {
-          "name": "Editar edicion con la lista de fotos vacia: se borran todas",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"ya no tiene fotos\", () => pm.expect(pm.response.json().fotos).to.eql([]));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "{{caminataId}}"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": []\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          }
-        },
-        {
-          "name": "Editar edicion con datos invalidos (400)",
+          "name": "Guardar una imagen en formato invalido (400)",
           "event": [
             {
               "listen": "test",
@@ -2396,7 +1902,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
-                  "pm.test(\"el error es del campo lugar\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"lugar\"));"
+                  "pm.test(\"el error es del campo imagenPortada\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"imagenPortada\"));"
                 ]
               }
             }
@@ -2410,18 +1916,17 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
+              "raw": "{{baseUrl}}/configuracion",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "caminatas",
-                "{{caminataId}}"
+                "configuracion"
               ]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\"\n}",
+              "raw": "{\n  \"imagenPortada\": \"esto-no-es-una-data-url\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2431,14 +1936,15 @@
           }
         },
         {
-          "name": "Editar edicion inexistente (404)",
+          "name": "Guardar sin el campo imagenPortada (400)",
           "event": [
             {
               "listen": "test",
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"responde 404\", () => pm.response.to.have.status(404));"
+                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));",
+                  "pm.test(\"el error es del campo imagenPortada\", () => pm.expect(pm.response.json().errores.map((e) => e.campo)).to.include(\"imagenPortada\"));"
                 ]
               }
             }
@@ -2452,18 +1958,174 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/caminatas/000000000000000000000000",
+              "raw": "{{baseUrl}}/configuracion",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "caminatas",
-                "000000000000000000000000"
+                "configuracion"
               ]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\"\n}",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Guardar la foto de la portada (se quitan los espacios de los costados)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"guarda la data url sin espacios\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"  data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==  \"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Leer la configuracion guardada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"devuelve la foto que se guardo\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Quitar la foto con un texto vacio",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"queda sin foto\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Devolver la foto original (deja la portada como estaba)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"queda la foto que habia antes de las pruebas\", () => pm.expect(pm.response.json().imagenPortada).to.eql(pm.collectionVariables.get(\"imagenPortadaOriginal\")));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/configuracion",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "configuracion"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imagenPortada\": \"{{imagenPortadaOriginal}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2761,150 +2423,6 @@
               "path": [
                 "talleres",
                 "000000000000000000000000"
-              ]
-            }
-          }
-        },
-        {
-          "name": "Borrar edicion sin token (401)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 401\", () => pm.response.to.have.status(401));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "{{caminataId}}"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "Borrar edicion",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"el mensaje es: edicion de la caminata eliminada\", () => pm.expect(pm.response.json().message).to.eql(\"edicion de la caminata eliminada\"));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "{{caminataId}}"
-              ]
-            }
-          }
-        },
-        {
-          "name": "Borrar edicion sin fotos",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataSinFotosId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "{{caminataSinFotosId}}"
-              ]
-            }
-          }
-        },
-        {
-          "name": "Borrar edicion ya borrada (404)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 404\", () => pm.response.to.have.status(404));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/{{caminataId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "{{caminataId}}"
-              ]
-            }
-          }
-        },
-        {
-          "name": "Borrar edicion con id mal formado (400)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"responde 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/caminatas/abc",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "caminatas",
-                "abc"
               ]
             }
           }

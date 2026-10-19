@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import AdminTabs from "../components/AdminTabs";
-import CaminataAdmin from "../components/CaminataAdmin";
 import CategoriasAdmin from "../components/CategoriasAdmin";
 import ObrasAdmin from "../components/ObrasAdmin";
+import PortadaAdmin from "../components/PortadaAdmin";
 import ProductosAdmin from "../components/ProductosAdmin";
 import TalleresAdmin from "../components/TalleresAdmin";
 import { useAuth } from "../context/AuthContext";
@@ -12,11 +12,11 @@ import styles from "./AdminPage.module.css";
 // paneles disponibles: el id es lo que va en la url (/admin/categorias) y componente es lo que se muestra
 // para sumar un panel nuevo alcanza con agregar una linea aca
 const PANELES = [
-  { id: "categorias", nombre: "Categorías", componente: CategoriasAdmin },
   { id: "obras", nombre: "Obras", componente: ObrasAdmin },
   { id: "productos", nombre: "Productos", componente: ProductosAdmin },
   { id: "talleres", nombre: "Talleres", componente: TalleresAdmin },
-  { id: "caminata", nombre: "Caminata", componente: CaminataAdmin },
+  { id: "categorias", nombre: "Categorías", componente: CategoriasAdmin },
+  { id: "web", nombre: "Web", componente: PortadaAdmin },
 ];
 
 // estructura del panel de administracion: cabecera con acciones, pestañas y el panel de la seccion elegida
@@ -41,8 +41,12 @@ function AdminPage() {
         <div className={`container ${styles.barra}`}>
           <div>
             <p className={styles.etiqueta}>Panel de administración</p>
-            <Link to="/admin" className={`brand-logo ${styles.logo}`}>
-              SAF Creaciones para Vos
+            {/* en celular saluda ("Hola SAF!") y desde 640px muestra el nombre completo; cada parte se oculta desde el css */}
+            <Link to="/admin" className={styles.logo}>
+              <span className={styles.saludo}>Hola </span>
+              <span className={styles.marca}>SAF</span>
+              <span className={styles.saludo}>!</span>
+              <span className={styles.nombreCompleto}> Creaciones para Vos</span>
             </Link>
           </div>
           <div className={styles.acciones}>

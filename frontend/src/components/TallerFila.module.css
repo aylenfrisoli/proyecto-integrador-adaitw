@@ -1,0 +1,137 @@
+/* tres columnas cuando hay lugar (minimo 260px cada una) y una sola en el celular
+   el margen negativo y el relleno de los costados hacen que el fondo del hover sobresalga un poco de la linea de texto */
+.fila {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1.25rem 2.5rem;
+  align-items: start;
+  margin: 0 -0.75rem;
+  padding: 2.25rem 0.75rem;
+  border-bottom: 1.5px solid color-mix(in srgb, var(--color-plum) 35%, transparent);
+  border-radius: var(--radius-xl);
+  transition: background-color 0.25s ease;
+}
+
+.fila:hover {
+  background-color: var(--color-lilac-pale);
+}
+
+/* un taller finalizado se ve apagado */
+.finalizado {
+  opacity: 0.6;
+}
+
+/* hasta dos lineas con "..." (los lectores de pantalla lo leen completo igual) */
+.titulo {
+  display: -webkit-box;
+  margin: 0 0 0.625rem;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+/* dos fichas: la modalidad es un contorno y el estado va relleno */
+.etiqueta {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--color-plum);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.etiquetaEstado {
+  background-color: var(--color-plum);
+  color: var(--color-white);
+}
+
+.descripcion {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* nombre del dato a la izquierda (chico, en mono) y su valor a la derecha */
+.datos {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.375rem 0.875rem;
+  margin: 0;
+  font-size: 1rem;
+  /* tnum hace que todas las cifras ocupen el mismo ancho */
+  font-feature-settings: "tnum";
+}
+
+.datos dt {
+  padding-top: 0.1875rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.datos dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.625rem;
+  min-height: 3.125rem;
+  padding: 0 0.5rem 0 1.375rem;
+  border-radius: 999px;
+  background-color: var(--color-plum);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.boton:hover {
+  background-color: var(--color-plum-light);
+}
+
+.flecha {
+  display: grid;
+  place-items: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  color: var(--color-plum);
+}
+
+/* cuando ya no se puede inscribir, en lugar del boton va un aviso en letra manuscrita */
+.aviso {
+  margin: 0;
+  font-family: var(--font-acento);
+  font-size: 1.25rem;
+  /* ocupa el lugar del boton de inscripcion: el cursor avisa que ya no se puede (cupo completo o taller finalizado) */
+  cursor: not-allowed;
+}
+
+@media (min-width: 700px) {
+  .fila {
+    margin: 0 -1.25rem;
+    padding: 2.25rem 1.25rem;
+  }
+}

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { DISPONIBILIDADES } from "../models/producto.model";
-import { idDeMongo, urlImagen } from "./comun.schema";
+import { idDeMongo, imagenBase64 } from "./comun.schema";
 
 // reglas que tiene que cumplir el body al crear o editar un producto
 export const productoSchema = z.object({
@@ -22,7 +22,7 @@ export const productoSchema = z.object({
     // optional deja no mandarlo, y en los dos casos el front muestra "consultar precio"
     .nullable()
     .optional(),
-  imagen: urlImagen,
+  imagen: imagenBase64,
   mensajeWhatsapp: z
     .string({ error: "el mensaje de whatsapp tiene que ser texto" })
     .trim()

@@ -16,6 +16,13 @@ export function manejarErrores(err: unknown, _req: Request, res: Response, next:
     return;
   }
 
+  // el body pasa el limite de express.json (10 mb), por ejemplo muchas imagenes juntas en base64
+  // sin este caso caeria en el 500 y el panel diria "error inesperado" sin explicar nada
+  if (typeof err === "object" && err !== null && "type" in err && err.type === "entity.too.large") {
+    res.status(413).json({ message: "los datos enviados pesan demasiado, el maximo es de 10 mb en total" });
+    return;
+  }
+
   // express.json no pudo leer el body, por ejemplo por una coma o una llave de mas
   if (err instanceof SyntaxError && "type" in err && err.type === "entity.parse.failed") {
     res.status(400).json({ message: "el json enviado no es valido" });

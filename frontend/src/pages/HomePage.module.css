@@ -1,0 +1,6 @@
+/* la navbar es sticky y se apoya en este contenedor; overflow-x clip corta lo que asoma por los costados (formas, cinta inclinada) sin crear un scroll propio que rompa el sticky */
+.pagina {
+  position: relative;
+  overflow-x: clip;
+  background-color: var(--color-cream);
+}

@@ -1,4 +1,4 @@
-/* cabecera del panel: fija arriba con fondo translucido, igual que la navbar de la landing */
+/* cabecera del panel: fija arriba con fondo translucido */
 .cabecera {
   position: sticky;
   top: 0;
@@ -9,6 +9,8 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+/* mobile first: una sola fila con "SAF" a la izquierda y los botones contra el borde derecho
+   flex-wrap queda por si la pantalla es tan angosta que los botones no entran: pasan abajo en vez de romper el diseno */
 .barra {
   display: flex;
   flex-wrap: wrap;
@@ -18,8 +20,9 @@
   padding-top: 1rem;
 }
 
-/* ficha chica en mayusculas controladas */
+/* ficha chica en mayusculas controladas; en celular no se muestra porque no entra al lado de los botones */
 .etiqueta {
+  display: none;
   margin: 0 0 0.25rem;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -27,18 +30,81 @@
   color: var(--color-text-muted);
 }
 
+/* el logo usa la misma manuscrita que el de la landing: SAF mas grande que el resto del texto
+   el padding de la izquierda lo separa del borde en celular, donde el margen de la pagina es el mas chico */
 .logo {
-  font-size: 1.15rem;
+  padding-left: 0.75rem;
+  font-family: var(--font-acento);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text-main);
+  text-decoration: none;
 }
 
+/* sin fondo oscuro como la barra de la landing, SAF va en el azul de marca para que se lea sobre el crema */
+.marca {
+  font-size: 1.75rem;
+  color: var(--color-brand-primary);
+}
+
+/* "Hola SAF!" es solo de celular: desde 640px lo reemplaza el nombre completo */
+.nombreCompleto {
+  display: none;
+}
+
+/* margin-left auto los mantiene contra el borde derecho aunque pasen a la linea de abajo */
 .acciones {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.5rem;
+  margin-left: auto;
 }
 
-/* botones mas compactos que los de la landing para que entren en la cabecera */
+/* botones mas compactos que los de la landing para que entren en la cabecera
+   en celular son todavia mas chicos: con 320px de ancho no entrarian en la misma fila que "SAF" */
 .acciones :global(.btn) {
-  padding: 0.55rem 1.1rem;
-  font-size: 0.85rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.8125rem;
+}
+
+/* "Hola SAF!" y los botones ocupan 343px: en celulares de menos de 376px los botones se achican un poco para que sigan en la misma fila */
+@media (max-width: 375px) {
+  .acciones :global(.btn) {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* por debajo de 360px (ej: 320) no entra ni asi: se saca el saludo y queda solo "SAF" */
+@media (max-width: 359px) {
+  .saludo {
+    display: none;
+  }
+}
+
+/* desde 640px hay lugar para la etiqueta, el nombre completo y los botones con su tamano normal
+   el padding del logo vuelve a 0 para que quede alineado con la etiqueta que tiene encima */
+@media (min-width: 640px) {
+  .etiqueta {
+    display: block;
+  }
+
+  .logo {
+    padding-left: 0;
+  }
+
+  .saludo {
+    display: none;
+  }
+
+  .nombreCompleto {
+    display: inline;
+  }
+
+  .acciones :global(.btn) {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+  }
 }

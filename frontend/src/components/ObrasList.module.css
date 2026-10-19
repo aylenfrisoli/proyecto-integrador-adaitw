@@ -1,32 +1,121 @@
-/* el separador de arriba (una linea fina con un adorno botanico, ver .separador-botanico en index.css) separa la seccion de la anterior */
+/* seccion amarilla que sube sobre la anterior: el margen negativo y las esquinas redondeadas hacen que parezca una hoja apilada */
 .seccion {
-  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  /* los colores de los filtros y del acento del titular se heredan en los componentes de adentro */
+  --color-acento: var(--color-plum);
+  --filtro-color: var(--color-plum);
+  --filtro-hover: var(--color-white);
+  --filtro-activo-fondo: var(--color-plum);
+  --filtro-activo-texto: var(--color-white);
   position: relative;
-  isolation: isolate;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  margin-top: calc(-1 * var(--radius-seccion));
+  padding: clamp(5rem, 9vw, 8.75rem) 0;
+  border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
+  background-color: var(--color-yellow);
+  color: var(--color-plum-deep);
+}
+
+/* la zona de la grilla es el punto de referencia de las formas: su borde de arriba es el de las tarjetas de la primera fila */
+.zonaGrilla {
+  position: relative;
+}
+
+/* formas paradas sobre las tarjetas de la primera fila, en la parte derecha del ancho (la izquierda la ocupan la bajada y los filtros)
+   bottom: calc(100% - 2px) las hunde un poquito para que parezca que se apoyan */
+.deco {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* la mariposa, la segunda gota, la acuarela y la flor solo en pantallas anchas, donde hay lugar */
+.solo {
+  display: none;
+}
+
+/* z-index negativo: pasan por detras de las tarjetas (el contenedor de la seccion tiene su propio z-index, asi que no se van detras del fondo) */
+.detras {
+  z-index: -1;
+}
+
+/* mobile first: tamanos chicos, que entran en el espacio entre los filtros y las tarjetas */
+.lapiz {
+  right: 26%;
+  bottom: calc(100% - 2px);
+  width: clamp(2.75rem, 7vw, 8rem);
+  height: clamp(2.75rem, 7vw, 8rem);
+}
+
+.brocha {
+  right: 6%;
+  bottom: calc(100% - 2px);
+  width: clamp(3rem, 9vw, 10rem);
+  height: clamp(3rem, 9vw, 10rem);
+}
+
+.gotaUno {
+  right: 1%;
+  bottom: calc(100% + 0.5rem);
+  width: clamp(1rem, 2.2vw, 2.25rem);
+  height: clamp(1rem, 2.2vw, 2.25rem);
+}
+
+@media (min-width: 900px) {
+  .solo {
+    display: block;
+  }
+
+  .gotaDos {
+    right: 36%;
+    bottom: calc(100% + 1.25rem);
+    width: clamp(0.875rem, 1.6vw, 1.75rem);
+    height: clamp(0.875rem, 1.6vw, 1.75rem);
+  }
+
+  /* la mariposa vuela mas arriba, a la altura del titular, sin tocar los filtros */
+  .mariposa {
+    right: 40%;
+    bottom: calc(100% + 3.5rem);
+    width: clamp(3.5rem, 6vw, 7rem);
+    height: clamp(3.5rem, 6vw, 7rem);
+  }
+
+  /* mancha de acuarela celeste que se asoma por detras del costado derecho de las tarjetas de arriba */
+  .acuarela {
+    top: 1.5rem;
+    right: -3.5rem;
+    width: clamp(6rem, 11vw, 13rem);
+    height: clamp(6rem, 11vw, 13rem);
+  }
+
+  /* flor blanca asomando por detras de la esquina de abajo a la izquierda de la ultima fila */
+  .flor {
+    bottom: -2.5rem;
+    left: -3rem;
+    width: clamp(5rem, 8vw, 9.5rem);
+    height: clamp(5rem, 8vw, 9.5rem);
+  }
+}
+
+/* el contenido va arriba de las formas */
+.seccion > :global(.container) {
+  position: relative;
+  z-index: 1;
 }
 
 /* mobile first: una columna, y mas columnas a medida que hay lugar */
 .grilla {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 640px) {
   .grilla {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1000px) {
-  .seccion {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
   .grilla {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

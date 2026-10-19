@@ -1,103 +1,140 @@
-/* pie de pagina claro, como un prado: el fondo es salvia suave y arriba lo recortan dos lomas de distinto tono
-   position relative e isolation para que las lomas y el pasto se ubiquen contra el pie y se apilen en el orden correcto */
+/* pie azul tinta que sube sobre la ultima seccion; overflow hidden para que las bandas de fondo no se salgan */
 .footer {
   position: relative;
-  isolation: isolate;
-  margin-top: 6rem;
-  padding: 3.5rem 0 0;
-  background-color: var(--color-soft-green);
-  color: var(--color-text-main);
+  margin-top: calc(-1 * var(--radius-seccion));
+  /* el relleno de arriba es el radio de la esquina mas un poco de aire, asi el contenido arranca debajo de la curva */
+  padding: 4rem 0 1.25rem;
+  overflow: hidden;
+  border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
+  background-color: var(--color-ink);
+  color: var(--color-white);
 }
 
-/* las dos lomas salen del mismo dibujo: la de atras es mas alta y de un salvia mas intenso, la de adelante es del color del pie y va espejada para que los picos no coincidan
-   bottom calc(100% - 1px) las monta una linea sobre el pie para que no quede una costura clara */
-.footer::before,
-.footer::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(100% - 1px);
+/* rayas onduladas en el borde de arriba, por encima de las columnas */
+.bandas {
+  top: 0;
+  height: 64px;
+  opacity: 0.4;
+  z-index: 0;
   pointer-events: none;
-  -webkit-mask-image: url("../img/siluetas/lomas.svg");
-  mask-image: url("../img/siluetas/lomas.svg");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: bottom;
-  mask-position: bottom;
-  /* se estira a lo ancho de la pantalla: son lomas, no hace falta que mantengan la proporcion */
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
 }
 
-.footer::before {
-  z-index: -2;
-  height: 6rem;
-  background-color: color-mix(in srgb, var(--color-nature-green) 55%, var(--color-bg-main));
+.contenido {
+  position: relative;
+  z-index: 1;
 }
 
-.footer::after {
-  z-index: -1;
-  height: 3.75rem;
-  background-color: var(--color-soft-green);
-  transform: scaleX(-1);
+/* formas decorativas chicas: absolutas, detras del contenido y sin recibir clics; solo en pantallas anchas */
+.deco {
+  display: none;
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* mobile first: una columna; desde tablet la marca ocupa mas lugar que las otras dos */
+@media (min-width: 900px) {
+  .deco {
+    display: block;
+  }
+
+  .flor {
+    top: 4.5rem;
+    right: 5%;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .pincel {
+    top: 8.25rem;
+    right: 9.5%;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .gota {
+    top: 10.75rem;
+    right: 4%;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* mobile first: una sola columna y todo centrado */
 .grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
-  grid-template-columns: 1fr;
+  padding-bottom: 2.25rem;
+  text-align: center;
+}
+
+/* en escritorio vuelven las columnas, alineadas a la izquierda; el pie mide unos 326px: el relleno de arriba y de abajo se achica para que
+   las columnas queden a la vista */
+@media (min-width: 900px) {
+  .footer {
+    padding-top: 3.75rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding-bottom: 2.5rem;
+    text-align: left;
+  }
 }
 
 .logo {
-  margin: 0 0 1rem;
-  font-family: var(--font-display);
+  margin: 0 0 0.75rem;
+  font-family: var(--font-acento);
   font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
-  /* el musgo sobre el salvia suave pasa el contraste para texto grande (4.4:1) */
-  color: var(--color-nature-moss);
+  font-size: 1.875rem;
+  line-height: 1;
 }
 
 .text {
-  margin: 0;
   max-width: 34ch;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  /* margin auto lo centra en celular; en escritorio vuelve a pegarse a la izquierda (ver el final del archivo) */
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--color-mist);
 }
 
-/* titulos chicos en mayusculas controladas, estilo ficha tecnica; en el color de texto principal porque el marron claro no llega a 4.5:1 sobre el salvia */
+/* titulos chicos en la tipografia de ficha y en amarillo */
 .title {
-  margin: 0 0 1rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-main);
+  margin: 0 0 0.875rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-yellow);
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.375rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .link {
-  color: var(--color-text-main);
-  font-size: 0.95rem;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-/* en hover el link pasa al ladrillo (4.9:1 sobre el salvia) y se subraya, asi el cambio no depende solo del color */
 .link:hover {
-  color: var(--color-brand-primary);
-  text-decoration: underline;
+  color: var(--color-yellow);
+}
+
+.lugar {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
 }
 
 .tituloRedes {
@@ -106,120 +143,94 @@
 
 .redes {
   display: flex;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* boton redondo con borde fino, el icono se pinta del color de marca al pasar el mouse */
+/* pastilla con borde blanco; en hover se rellena de blanco */
 .red {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid color-mix(in srgb, var(--color-text-main) 35%, transparent);
-  border-radius: 50%;
-  color: var(--color-text-main);
-  font-size: 1.05rem;
+  min-height: 2.875rem;
+  padding: 0 1.25rem;
+  border: 1.5px solid var(--color-white);
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-white);
+  text-decoration: none;
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .red:hover {
-  color: var(--color-brand-primary);
-  border-color: var(--color-brand-primary);
+  background-color: var(--color-white);
+  color: var(--color-ink);
 }
 
-/* fila de siluetas paradas en el pasto: se reparten el ancho y se apoyan todas sobre la misma linea
-   el margen negativo las hunde un poco en el pasto de la franja de abajo para que parezcan plantadas */
-.suelo {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-top: 2.5rem;
-  margin-bottom: -0.5rem;
-}
-
-/* segun el ancho se ven mas o menos piezas: sumadas, las que entran siempre caben en el contenedor y no hay scroll horizontal
-   celular: 3 piezas (17rem); desde 600px: 5 (30.5rem); desde 900px: 8 (45.7rem); desde 1280px: las 10 (56.7rem) */
-.suelo > *:nth-child(n + 4) {
-  display: none;
-}
-
-@media (min-width: 600px) {
-  .suelo > *:nth-child(-n + 5) {
-    display: block;
-  }
-}
-
-@media (min-width: 900px) {
-  .suelo > *:nth-child(-n + 8) {
-    display: block;
-  }
-}
-
-@media (min-width: 1280px) {
-  .suelo > *:nth-child(n + 4) {
-    display: block;
-  }
-}
-
-/* franja de musgo con el copyright; el pasto le crece por arriba y va por delante de las siluetas (z-index 1) para taparles la base */
-.base {
-  position: relative;
-  padding: 1.5rem 0;
-  background-color: var(--color-nature-moss);
-  color: var(--color-text-light);
-}
-
-.base::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(100% - 1px);
-  z-index: 1;
-  height: 2.25rem;
-  background-color: var(--color-nature-moss);
-  pointer-events: none;
-  -webkit-mask-image: url("../img/siluetas/pasto.svg");
-  mask-image: url("../img/siluetas/pasto.svg");
-  /* el dibujo se repite a lo ancho en vez de estirarse, asi las hojas de pasto no se ensanchan en pantallas grandes */
-  -webkit-mask-repeat: repeat-x;
-  mask-repeat: repeat-x;
-  -webkit-mask-position: bottom left;
-  mask-position: bottom left;
-  -webkit-mask-size: auto 100%;
-  mask-size: auto 100%;
-}
-
-/* el copyright y el acceso se reparten el ancho */
+/* el copyright y los enlaces se reparten el ancho, con una linea fina arriba */
 .bottom {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   gap: 0.75rem;
-  font-size: 0.85rem;
+  text-align: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-white) 20%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-mist);
+}
+
+.copyright {
+  font-size: 0.75rem;
+}
+
+.enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
 }
 
 .acceso {
-  color: inherit;
+  color: var(--color-mist);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-/* el ocre fuerte no se lee sobre el musgo (2.9:1): el ocre suave si (4.4:1) */
 .acceso:hover {
-  color: var(--color-soft-ochre);
-  text-decoration: underline;
+  color: var(--color-yellow);
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: 2fr 1fr 1fr;
+/* escritorio: la lista, las redes y el texto vuelven a la izquierda, y el copyright y los enlaces se reparten el ancho */
+@media (min-width: 900px) {
+  .text {
+    margin: 0;
+  }
+
+  .list {
+    align-items: flex-start;
+  }
+
+  .redes {
+    justify-content: flex-start;
+  }
+
+  .bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .enlaces {
+    justify-content: flex-start;
   }
 }

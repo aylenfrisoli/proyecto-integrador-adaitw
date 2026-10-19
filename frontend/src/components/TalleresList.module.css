@@ -1,28 +1,95 @@
-/* el separador de arriba (una linea fina con un adorno botanico, ver .separador-botanico en index.css) separa la seccion de la anterior */
+/* seccion crema que sube sobre la anterior; overflow hidden para que las bandas de fondo no se salgan */
 .seccion {
-  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  /* el acento del titular se hereda en el componente de adentro */
+  --color-acento: var(--color-plum);
   position: relative;
-  isolation: isolate;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  margin-top: calc(-1 * var(--radius-seccion));
+  padding: clamp(5rem, 9vw, 8.75rem) 0;
+  overflow: hidden;
+  border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
+  background-color: var(--color-cream);
+  color: var(--color-plum-deep);
 }
 
-/* mobile first: una columna; son pocos talleres, asi que alcanza con dos columnas en pantallas grandes */
-.grilla {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+/* decoracion de fondo: lineas onduladas a lo ancho, detras del texto */
+.bandas {
+  z-index: 0;
+  top: 120px;
+  height: 240px;
+  opacity: 0.35;
+  pointer-events: none;
 }
 
-@media (min-width: 700px) {
-  .grilla {
-    grid-template-columns: repeat(2, 1fr);
+/* la zona de la lista es el punto de referencia de las formas: su borde de arriba es la linea de la lista */
+.zonaLista {
+  position: relative;
+}
+
+/* formas paradas sobre la linea de la lista, en la mitad derecha del ancho (la izquierda la ocupa la bajada)
+   bottom: calc(100% - 2px) las hunde un poquito en la linea para que parezca que se apoyan en ella */
+.deco {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* la mariposa y la segunda gota solo en pantallas anchas, donde hay lugar */
+.solo {
+  display: none;
+}
+
+/* mobile first: tamanos chicos, que entran en el espacio entre la bajada y la lista */
+.lapiz {
+  right: 24%;
+  bottom: calc(100% - 2px);
+  width: clamp(2.75rem, 7vw, 8rem);
+  height: clamp(2.75rem, 7vw, 8rem);
+}
+
+.brocha {
+  right: 6%;
+  bottom: calc(100% - 2px);
+  width: clamp(3rem, 10vw, 11rem);
+  height: clamp(3rem, 10vw, 11rem);
+}
+
+.gotaUno {
+  right: 1%;
+  bottom: calc(100% + 0.5rem);
+  width: clamp(1rem, 2.2vw, 2.25rem);
+  height: clamp(1rem, 2.2vw, 2.25rem);
+}
+
+@media (min-width: 900px) {
+  .solo {
+    display: block;
+  }
+
+  .gotaDos {
+    right: 33%;
+    bottom: calc(100% + 1.25rem);
+    width: clamp(0.875rem, 1.6vw, 1.75rem);
+    height: clamp(0.875rem, 1.6vw, 1.75rem);
+  }
+
+  /* la mariposa vuela mas arriba, entre el lapiz y el centro de la pagina */
+  .mariposa {
+    right: 38%;
+    bottom: calc(100% + 3rem);
+    width: clamp(3.5rem, 6vw, 7rem);
+    height: clamp(3.5rem, 6vw, 7rem);
   }
 }
 
-@media (min-width: 1000px) {
-  .seccion {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
+/* el contenido va arriba de la decoracion */
+.seccion > :global(.container) {
+  position: relative;
+  z-index: 1;
+}
+
+/* una linea arriba y una debajo de cada taller (ver TallerFila) */
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1.5px solid var(--color-plum);
 }

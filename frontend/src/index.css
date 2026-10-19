@@ -1,55 +1,86 @@
 /* ==========================================================================
    tokens de tema: sara figarra - artista plastica
-   estilo: minimalismo editorial suizo con la identidad de naturaleza (ayurveda)
+   estilo: color pleno y tipografia grande, con formas animadas (azul marino, amarillo, ciruela y rosa)
    ========================================================================== */
 
-/* tipografias desde google fonts */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@500;700;800&display=swap");
+/* tipografias desde google fonts: bricolage grotesque para titulares y texto, kalam (letra manuscrita) para las palabras de acento y dm mono para las fichas chicas
+   bricolage incluye el eje opsz (tamano optico): los titulares grandes salen mas apretados y finos que el texto chico, sin hacer nada mas */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Mono:wght@400;500&family=Kalam:wght@400;700&display=swap");
 
 :root {
-  /* --- identidad naturaleza: los colores se definen una sola vez aca, si sara quiere otro tono solo se cambia en este lugar --- */
-  --color-nature-green: #6b8e6b; /* verde salvia, natural y fresco */
-  --color-nature-brick: #b9533d; /* ladrillo calido; un poco mas oscuro que el original para que el texto blanco encima se lea bien (contraste 4.8:1) */
-  --color-nature-ochre: #e2ad5f; /* ocre alegre para bordes y detalles */
-  /* dos tonos mas profundos para las siluetas y el pie de pagina: el musgo da el verde de hoja oscura y la tierra el marron calido */
-  --color-nature-moss: #4d6b4d; /* verde musgo; con texto claro encima da 5.7:1 */
-  --color-nature-earth: #8f6b4a; /* marron tierra, mas claro y calido que el texto principal */
+  /* --- paleta: los colores se definen una sola vez aca, si sara quiere otro tono solo se cambia en este lugar --- */
+  /* azules */
+  --color-ink: #0a2c45; /* azul tinta, casi negro: texto principal y pie de pagina */
+  --color-navy: #0d5a84; /* azul marino de la marca; con texto blanco encima da 7:1 */
+  --color-header: #0d5881; /* fondo de la navbar fija; casi igual al marino pero elegido a mano por la usuaria */
+  --color-blue: #14739e; /* azul medio de la seccion sobre sara */
+  --color-sky: #1b87b6; /* celeste fuerte para acentos y formas */
+  --color-sky-soft: #cfe3ee; /* celeste suave para fondos y etiquetas */
+  --color-mist: #dce8f0; /* texto secundario sobre los fondos azules */
 
-  /* --- paleta principal --- */
-  /* los componentes usan estos nombres, asi que al apuntarlos a la identidad nueva cambia todo el sitio sin tocar cada archivo */
-  --color-brand-primary: var(--color-nature-brick); /* botones, enlaces y acentos */
-  --color-brand-hover: var(--color-nature-green); /* el hover cambia a verde en vez de oscurecer el ladrillo */
+  /* amarillos */
+  --color-yellow: #edd07a; /* amarillo manteca: fondos, botones y acentos */
+  --color-yellow-soft: #f6e7b4; /* amarillo palido */
+  --color-wood: #f1d9a8; /* madera clara: fondo de la paleta y punta de los lapices */
+  --color-paper: #f1e4c8; /* papel crudo: cerdas de las brochas */
 
-  /* tonos suaves de la misma paleta para fondos, tarjetas, etiquetas y formas decorativas */
-  --color-soft-brick: #f5c9bb; /* ladrillo suave */
-  --color-soft-green: #cfe3c9; /* salvia suave */
-  --color-soft-ochre: #f7d9a4; /* ocre suave */
-  --color-soft-sand: #ecdcc4; /* arena tostada */
+  /* ciruela y lila */
+  --color-plum: #352c55; /* ciruela: botones y acentos de productos y talleres */
+  --color-plum-deep: #2b2440; /* ciruela oscuro: texto sobre los fondos claros */
+  --color-plum-light: #5a4a85; /* ciruela claro: hover de los botones ciruela */
+  --color-lilac: #8b7b9d; /* lila gris para acentos grandes */
+  --color-lilac-soft: #aea7b9;
+  --color-lilac-pale: #e6e2ec;
+  --color-lilac-mist: #efeaf3;
+
+  /* rosas */
+  --color-rose: #b85d6c; /* rosa viejo: acentos de la caminata */
+  --color-rose-dark: #9e4757; /* rosa oscuro: tarjeta de apoyo y errores; con texto blanco da 6:1 */
+  --color-rose-soft: #c49fab; /* rosa empolvado */
+  --color-pink: #ebcfd6; /* rosa palido: fondo de la caminata */
+
+  /* otros */
+  --color-olive: #89875e; /* verde oliva, solo para detalles de las formas */
+  --color-metal: #d9d4ca; /* gris calido de las virolas de pinceles y tubos */
+  --color-cream: #f7f5ef; /* crema de fondo */
+  --color-white: #ffffff;
+
+  /* --- nombres con funcion: los componentes usan estos, asi al apuntarlos a otro color de la paleta cambia todo el sitio sin tocar cada archivo --- */
+  --color-brand-primary: var(--color-navy); /* botones, enlaces y acentos */
+  --color-brand-hover: var(--color-ink); /* el hover oscurece el azul marino */
+
+  --color-bg-main: var(--color-cream);
+  --color-bg-card: var(--color-white);
+
+  --color-text-main: var(--color-ink);
+  --color-text-muted: #5a5070; /* textos secundarios sobre claro: descripciones, metadatos (6,8:1 sobre el crema) */
+  --color-text-light: var(--color-white); /* texto sobre fondos oscuros */
+
+  --color-error: var(--color-rose-dark);
+  --color-error-bg: var(--color-pink);
 
   /* las transparencias se arman con color-mix(in srgb, var(--token) 40%, transparent): es lo mismo que un rgba,
      pero sale del token, asi si un color cambia aca tambien cambian todas sus versiones transparentes */
-
-  /* neutros de lectura y estructura */
-  --color-bg-main: #fdf9f1; /* crema arena, mas calido que el blanco */
-  --color-bg-card: #ffffff;
-
-  --color-text-main: #5a4634; /* marron tierra, legible y menos duro que el negro */
-  --color-text-muted: #7a6655; /* metadatos: tecnica, medidas, fechas; marron mas claro para que no desentone con el texto */
-  --color-text-light: var(--color-bg-main); /* texto sobre fondos oscuros: el mismo arena del fondo */
-
-  --color-border: color-mix(in srgb, var(--color-text-main) 12%, transparent); /* bordes ultra finos tipo editorial, en marron */
+  --color-border: color-mix(in srgb, var(--color-ink) 12%, transparent); /* bordes finos en azul tinta */
 
   /* --- tipografia --- */
   --font-display:
-    "Syne", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-body:
-    "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-acento: "Kalam", "Segoe Print", "Bradley Hand", cursive; /* letra manuscrita para las palabras de acento; solo tiene peso 400 y 700 y no tiene cursiva */
+  --font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace; /* fichas, fechas y etiquetas chicas */
 
   /* --- medidas --- */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
-  --container-max-width: 1280px;
+  --radius-xl: 1.75rem; /* imagenes de obras y fotos */
+  --radius-2xl: 2rem;
+  --radius-seccion: 3rem; /* esquinas de arriba de cada seccion de la landing */
+  --container-max-width: 1440px;
+  /* margen lateral: crece con la pantalla pero nunca menos de 1rem ni mas de 2rem */
+  --gutter: clamp(1rem, 3vw, 2rem);
 }
 
 /* box-sizing border-box en todo para que el padding no agrande los elementos */
@@ -59,10 +90,10 @@
   box-sizing: border-box;
 }
 
-/* scroll suave entre secciones; el padding evita que la navbar tape el titulo al saltar al ancla */
+/* scroll suave entre secciones; el padding evita que la navbar fija tape el titulo al saltar al ancla (es del alto de la barra) */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4rem;
 }
 
 body {
@@ -74,7 +105,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* las formas decorativas asoman fuera de las secciones: clip corta lo que sobra sin crear scroll horizontal ni romper el navbar sticky */
+/* las formas decorativas y la cinta inclinada asoman fuera de las secciones: clip corta lo que sobra sin crear scroll horizontal ni romper el navbar sticky */
 main {
   overflow-x: clip;
 }
@@ -84,63 +115,46 @@ img {
   max-width: 100%;
 }
 
-/* titulares estilo editorial */
+/* mano en todo lo que se puede tocar; :where() le saca especificidad para que el cursor propio de un componente (ej: wait al guardar) siga ganando */
+:where(a[href], button, select, summary, [role="button"], input[type="file"]) {
+  cursor: pointer;
+}
+
+/* el navegador deja la flecha comun en el boton "elegir archivo" y en el icono del calendario de las fechas; van en reglas separadas
+   porque si un navegador no conoce uno de los dos pseudo-elementos descarta toda la regla */
+:where(input[type="file"])::file-selector-button {
+  cursor: pointer;
+}
+
+:where(input[type="date"], input[type="datetime-local"])::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+/* va despues de las reglas de arriba para pisarlas: un control deshabilitado muestra que no se puede usar */
+:where(button:disabled, select:disabled, input:disabled, textarea:disabled) {
+  cursor: not-allowed;
+}
+
+:where(input[type="file"]:disabled)::file-selector-button {
+  cursor: not-allowed;
+}
+
+/* titulares: bricolage en peso extra y con las letras muy juntas */
 .display-title {
   font-family: var(--font-display);
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   line-height: 0.95;
   color: var(--color-text-main);
 }
 
 .brand-logo {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-brand-primary);
   text-decoration: none;
   font-size: 1.5rem;
-  letter-spacing: -0.02em;
-}
-
-/* divisor editorial fino */
-.editorial-divider {
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  margin: 1.5rem 0;
-}
-
-/* separador de seccion: una linea fina con un adorno botanico en el centro, como el de un libro de plantas
-   lo usan las secciones de la landing, que son position: relative; la linea se parte en dos para dejarle lugar al adorno */
-.separador-botanico::before,
-.separador-botanico::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  pointer-events: none;
-}
-
-.separador-botanico::before {
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    var(--color-border) calc(50% - 5.75rem),
-    transparent calc(50% - 5.75rem) calc(50% + 5.75rem),
-    var(--color-border) calc(50% + 5.75rem)
-  );
-}
-
-.separador-botanico::after {
-  left: 50%;
-  width: 10rem;
-  height: 2rem;
-  /* el adorno se centra justo sobre la linea */
-  translate: -50% -50%;
-  background-color: var(--color-nature-moss);
-  opacity: 0.9;
-  -webkit-mask: url("./img/siluetas/fleuron.svg") center / contain no-repeat;
-  mask: url("./img/siluetas/fleuron.svg") center / contain no-repeat;
+  letter-spacing: -0.04em;
 }
 
 /* botones reutilizables: .btn es la base y se combina con una variante (.btn-primary o .btn-outline) */
@@ -150,11 +164,12 @@ img {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 1.5rem;
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
   border-radius: 999px;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
   transition:
@@ -163,7 +178,7 @@ img {
     border-color 0.2s ease;
 }
 
-/* un boton deshabilitado se ve apagado y no cambia de color al pasar el mouse */
+/* un boton deshabilitado se ve apagado */
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -171,7 +186,7 @@ img {
 
 .btn-primary {
   background-color: var(--color-brand-primary);
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .btn-primary:hover {
@@ -185,16 +200,31 @@ img {
 }
 
 .btn-outline:hover {
-  background-color: var(--color-text-main);
-  color: var(--color-text-light);
+  background-color: var(--color-yellow);
 }
 
-/* contenedor centrado que reusan todas las secciones; solo define margen y padding horizontales (no los atajos margin/padding) para no pisar los verticales de cada componente */
+/* contenedor centrado que reusan todas las secciones: el contenido mide como maximo --container-max-width y el padding lateral es --gutter
+   solo define margen y padding horizontales (no los atajos margin/padding) para no pisar los verticales de cada componente */
 .container {
   width: 100%;
-  max-width: var(--container-max-width);
+  max-width: calc(var(--container-max-width) + 2 * var(--gutter));
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* quien tiene activada la opcion de menos movimiento en su sistema ve todo quieto y sin scroll animado
+   la landing tiene muchas formas que se mueven, por eso esta regla vale para todo el sitio */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

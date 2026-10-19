@@ -1,42 +1,57 @@
+/* el titular ocupa todo el ancho en su propia fila, asi la primera linea entra entera; debajo, la bajada y los filtros van a la izquierda
+   en la primera de dos columnas, para que no se estiren de punta a punta (en celular y tablet angosta una sola columna) */
 .encabezado {
-  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem 4rem;
+  margin-bottom: 3rem;
 }
 
-/* etiqueta a la izquierda y silueta a la derecha; el margen de abajo separa la fila del titular */
-.fila {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* desde 900px la seccion suma su silueta grande en ese mismo lugar, asi que la chica se oculta para que no se pisen
-   en el celular y la tablet no hay silueta grande y esta es la unica */
-@media (min-width: 900px) {
-  .fila > *:not(:first-child) {
-    display: none;
+@media (min-width: 960px) {
+  .encabezado {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* ficha chica en mayusculas controladas, como las de un catalogo */
-.etiqueta {
-  margin: 0;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
+/* el tamano se puede cambiar desde la seccion con --tam-titulo (la caminata tiene un titular mas largo) */
 .titulo {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: var(--tam-titulo, clamp(3.5rem, 9vw, 9.25rem));
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  /* en los dos casos el titular ocupa las dos columnas de arriba */
+  grid-column: 1 / -1;
+}
+
+/* una linea con una forma al lado, centrada en vertical con el texto; wrap para que en el celular las formas bajen en lugar de salirse */
+.linea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.14em;
+}
+
+.acento {
+  display: block;
+  font-family: var(--font-acento);
+  font-weight: 700;
+  /* la manuscrita tiene letras altas que rozarian la linea de arriba: este espacio las separa */
+  padding-top: 0.08em;
+  color: var(--color-acento);
+}
+
+.lateral {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
 .descripcion {
-  max-width: 52ch;
-  margin: 1rem 0 0;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
+  max-width: 40ch;
+  margin: 0;
+  font-size: clamp(1.1875rem, 1.6vw, 1.375rem);
+  line-height: 1.45;
+  text-wrap: pretty;
 }

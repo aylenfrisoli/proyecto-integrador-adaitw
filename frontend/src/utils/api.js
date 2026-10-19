@@ -13,6 +13,11 @@ export function mensajeErrorApi(status, datos) {
     return datos.errores.map((error) => capitalizar(error.mensaje)).join(" ");
   }
 
+  // 413 = el envio pasa el limite del servidor (10 MB entre todas las imagenes)
+  if (status === 413) {
+    return "Las imágenes pesan demasiado en total (máximo 10 MB por envío). Probá con archivos más livianos.";
+  }
+
   if (status === 404) {
     return "No encontramos ese registro, puede que ya se haya borrado.";
   }

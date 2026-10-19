@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { idDeMongo, urlImagen } from "./comun.schema";
+import { idDeMongo, imagenBase64 } from "./comun.schema";
 
 // reglas que tiene que cumplir el body al crear o editar una obra
 // el put tambien manda la obra completa, por eso se usa el mismo esquema para los dos
@@ -15,7 +15,7 @@ export const obraSchema = z.object({
     .trim()
     .min(1, "la descripcion no puede estar vacia")
     .max(1000, "la descripcion no puede tener mas de 1000 caracteres"),
-  imagen: urlImagen,
+  imagen: imagenBase64,
   // solo revisa el formato del id, que la categoria exista de verdad se chequea en el controller
   categoria: idDeMongo("la categoria"),
 });

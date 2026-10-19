@@ -1,6 +1,6 @@
 # Sara Figarra · Landing, panel y API
 
-Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos, talleres y las ediciones de la caminata de concientización sobre el cáncer de mama que organiza, y un panel de administración desde el que ella carga y edita el contenido.
+Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos y talleres, y un panel de administración desde el que ella carga y edita el contenido.
 
 - **API deployada:** https://proyecto-integrador-adaitw.onrender.com
 - **Repositorio:** monorepo con las carpetas `backend/` (API REST con Express y MongoDB) y `frontend/` (React con Vite).
@@ -46,7 +46,7 @@ cd backend
 npm install
 cp .env.example .env     # abrí el .env y completá los valores (ver la tabla de variables)
 npm run seed             # crea la cuenta de administradora con el email y la contraseña del .env
-npm run seed:demo        # opcional: carga obras, productos, talleres y ediciones de la caminata de ejemplo
+npm run seed:demo        # opcional: carga categorías, obras, productos y talleres de ejemplo
 npm run dev              # levanta la API en http://localhost:3000
 ```
 
@@ -80,12 +80,10 @@ npm run dev              # levanta el sitio en http://localhost:5173
 | `npm run build`          | compila TypeScript a la carpeta `dist/`                                         |
 | `npm start`              | corre la versión compilada (`dist/server.js`)                                   |
 | `npm run seed`           | crea la cuenta admin; si ya existe, no la duplica                               |
-| `npm run seed:demo`      | carga categorías, obras, productos, talleres y ediciones de la caminata de ejemplo con imágenes de relleno |
+| `npm run seed:demo`      | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
 | `npm run seed:demo:borrar` | borra solo los datos que cargó el seed demo, sin tocar lo cargado desde el panel |
 
 El seed demo escribe en la base que indique `MONGO_URI`, así que si apunta a Atlas también se ve en la API deployada. Los datos de ejemplo quedan cargados en producción hasta que Sara suba su contenido real; entonces se sacan con `seed:demo:borrar`, que no toca lo que ella cargue desde el panel.
-
-Con la caminata el seed es más cuidadoso: las ediciones de ejemplo solo se cargan si todavía no hay ninguna, y `seed:demo:borrar` solo borra las que tienen todas las fotos de relleno, así que nunca toca las ediciones reales.
 
 ### Variables de entorno
 
@@ -113,6 +111,8 @@ Con la caminata el seed es más cuidadoso: las ediciones de ejemplo solo se carg
 | -------------- | ------------------------------------------------------------------------------- |
 | `VITE_API_URL` | URL de la API (`http://localhost:3000` en desarrollo, la de Render en producción) |
 
+Las imágenes se eligen desde los formularios y se guardan como Data URLs Base64 en MongoDB. Cada archivo puede pesar hasta 4 MB y la API admite cuerpos de hasta 10 MB en total por envío (si se pasa responde `413`).
+
 ## Estructura del backend
 
 ```
@@ -124,6 +124,7 @@ backend/src/
 ├── routes/        rutas por entidad
 ├── schemas/       esquemas de Zod
 ├── scripts/       seed de la cuenta admin y seed demo con datos de ejemplo
+├── exportables/   la API de la caminata, sacada del proyecto y guardada para volver a ponerla (ver su LEEME.md)
 ├── app.ts         arma la app de Express
 └── server.ts      conecta la base y levanta el servidor
 ```
@@ -133,8 +134,9 @@ backend/src/
 ```
 frontend/src/
 ├── components/    piezas de la landing (Hero, tarjetas, listas) y del panel (formularios y listas de administración)
-├── config/        URL de la API, secciones de la navbar y datos de contacto (WhatsApp y redes)
+├── config/        URL de la API, secciones de la navbar, datos de contacto (WhatsApp y redes)
 ├── context/       AuthContext: guarda la sesión de la administradora
+├── exportables/   la sección de la caminata y su pestaña del panel, sacadas del sitio y guardadas para volver a ponerlas (ver su LEEME.md)
 ├── hooks/         useFetch (leer datos), useApi (escribir con el token) y useAccion (estado de cada acción)
 ├── pages/         HomePage, LoginPage, AdminPage y NotFoundPage
 ├── utils/         funciones puras para formatear precios y fechas, filtrar y leer el token
@@ -146,9 +148,9 @@ frontend/src/
 
 | Ruta                  | Acceso    | Qué muestra                                                  |
 | --------------------- | --------- | ------------------------------------------------------------ |
-| `/`                   | público   | landing con obras, productos, talleres, la caminata y la sección sobre Sara |
+| `/`                   | público   | landing con obras, productos, talleres y la sección sobre Sara |
 | `/login`              | público   | formulario de ingreso de la administradora                   |
-| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `caminata` |
+| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `web` |
 | cualquier otra ruta   | público   | página 404                                                   |
 
 `/admin` redirige a `/admin/categorias`. Si alguien entra al panel sin sesión, lo manda al login; si el token vence, cierra la sesión solo.
@@ -210,7 +212,7 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 {
   "titulo": "Atardecer",
   "descripcion": "Óleo sobre tela, 60 x 80 cm",
-  "imagen": "https://ejemplo.com/atardecer.jpg",
+  "imagen": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==",
   "categoria": "<id de una categoría existente>"
 }
 ```
@@ -230,14 +232,14 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
   "titulo": "Print Atardecer",
   "descripcion": "Impresión de edición limitada",
   "precio": 15000,
-  "imagen": "https://ejemplo.com/print.jpg",
+  "imagen": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==",
   "mensajeWhatsapp": "Hola Sara, me interesa el print Atardecer",
   "disponibilidad": "disponible",
   "categoria": "<id de una categoría existente>"
 }
 ```
 
-- `precio`, `mensajeWhatsapp` y `disponibilidad` son opcionales. Sin precio, el front muestra "Consultar precio". Al editar, `"precio": null` borra el precio guardado.
+- `precio`, `mensajeWhatsapp` y `disponibilidad` son opcionales. Sin precio, el front muestra "Consultar precio". Al editar, `"precio": null` borra el precio guardado. El botón "Consultar" de la landing arma solo el mensaje ("Hola, quería consultar por el producto ..."), así que hoy el front no usa `mensajeWhatsapp`.
 - `disponibilidad` acepta `disponible` (valor por defecto), `agotado` o `por_encargo`.
 
 ### Talleres
@@ -265,35 +267,25 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 - `modalidad` acepta `presencial` o `virtual`. La `direccion` es obligatoria en los presenciales; en los virtuales no se guarda.
 - `estado` acepta `abierto` (valor por defecto), `completo` o `finalizado`.
 
-### Caminatas
+### Configuración
 
-Cada documento es una edición de la caminata de concientización sobre el cáncer de mama (1ª edición, 2ª edición...). Las fotos viven dentro de la edición, no tienen rutas propias.
+Datos sueltos de la landing que Sara cambia desde la pestaña `Web` del panel: la foto de la portada y la foto de la sección «Cada pieza tiene su propia historia». A diferencia de las otras entidades es **un único documento**: no hay lista, ni ids en las rutas, ni `POST` o `DELETE` (el documento se crea solo la primera vez que se guarda).
 
-| Método | Ruta              | Acceso  | Descripción                                                    |
-| ------ | ----------------- | ------- | -------------------------------------------------------------- |
-| GET    | `/caminatas`      | público | lista las ediciones, de la más vieja a la más nueva            |
-| GET    | `/caminatas/:id`  | público | trae una edición                                               |
-| POST   | `/caminatas`      | admin   | crea una edición                                               |
-| PUT    | `/caminatas/:id`  | admin   | edita una edición                                              |
-| DELETE | `/caminatas/:id`  | admin   | borra una edición con todas sus fotos                          |
+| Método | Ruta             | Acceso  | Descripción                                                                |
+| ------ | ---------------- | ------- | -------------------------------------------------------------------------- |
+| GET    | `/configuracion` | público | trae la configuración; si todavía no se guardó nada responde ambos campos como texto vacío |
+| PUT    | `/configuracion` | admin   | guarda la configuración (la crea si no existe)                             |
 
 ```json
 {
-  "nombre": "1ª edición",
-  "fecha": "2026-03-14T12:00:00-03:00",
-  "lugar": "San Bernardo del Tuyú",
-  "descripcion": "Primera caminata de concientización sobre el cáncer de mama",
-  "fotos": [
-    { "url": "https://ejemplo.com/salida.jpg", "epigrafe": "La salida" },
-    { "url": "https://ejemplo.com/llegada.jpg" }
-  ]
+  "imagenPortada": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==",
+  "imagenSobreSara": ""
 }
 ```
 
-- `nombre` es la etiqueta del botón de cada edición en la landing (hasta 60 caracteres). `lugar` admite hasta 150 y `descripcion` hasta 1000.
-- `fecha` se manda como texto en formato ISO. El panel manda mediodía con offset `-03:00` para que el día no se corra en Argentina.
-- `fotos` es opcional y acepta hasta 30 fotos. Cada una lleva la `url` de un link directo a la imagen (solo `http` y `https`) y un `epigrafe` opcional de hasta 120 caracteres, que se ve debajo de la polaroid.
-- Al editar, si el body no trae `fotos` se conservan las que ya tenía; si las trae, reemplazan la lista entera (con `"fotos": []` se vacía).
+- `imagenPortada` es obligatorio y tiene que ser una Data URL Base64 de imagen de hasta 4 MB.
+- `imagenSobreSara` es opcional para mantener compatibilidad con clientes anteriores; si se envía, tiene que ser una Data URL Base64 de imagen de hasta 4 MB.
+- Un texto vacío (`""`) es válido y quiere decir "sin foto": la landing muestra un bloque de color en su lugar. Así se saca la foto desde el panel.
 
 ## Respuestas y errores
 
@@ -314,12 +306,13 @@ Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; lo
 | 401    | falta el token, es inválido, venció, o las credenciales del login son erróneas |
 | 404    | el recurso o la ruta no existe                                               |
 | 409    | se intenta borrar una categoría que tiene obras o productos                  |
+| 413    | el body pasa los 10 MB (por ejemplo, varias imágenes pesadas en un mismo envío) |
 | 429    | demasiados intentos fallidos de login                                        |
 | 500    | error interno (no se devuelven detalles al cliente)                          |
 
 ## Pruebas con Postman
 
-La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 77 requests en 7 carpetas (Auth, Categorías, Obras, Productos, Talleres, Caminatas, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
+La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 64 requests en 7 carpetas (Auth, Categorías, Obras, Productos, Talleres, Configuración, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
 
 ### Cómo usarla
 
@@ -333,10 +326,11 @@ La colección está en [`backend/postman/sara-figarra.postman_collection.json`](
 | `adminEmail`    | email de la cuenta admin                                                       |
 | `adminPassword` | contraseña de la cuenta admin                                                  |
 | `token`         | lo completa solo el login, no hay que tocarlo                                  |
+| `imagenPortadaOriginal` | la completa sola la carpeta de Configuración: guarda la foto de la portada que había y la devuelve al final |
 
 ### Resultado esperado
 
-Corrida completa contra la API local: 77 requests y 123 aserciones, sin fallos. La colección borra al final todo lo que crea, así la base queda como estaba.
+Corrida completa: todos los requests y aserciones en verde. La colección borra al final todo lo que crea, y la carpeta de Configuración vuelve a dejar la foto de la portada como estaba, así la base queda como antes de correrla.
 
 ### Ojo
 
@@ -348,10 +342,9 @@ Corrida completa contra la API local: 77 requests y 123 aserciones, sin fallos. 
 - Contraseña hasheada con `bcrypt`; el login responde igual si el email no existe, para no revelar qué cuentas hay, y compara siempre contra un hash para evitar timing attacks.
 - Sesión con JWT; las escrituras verifican el token antes de analizar el body.
 - Rate limit en el login contra ataques de fuerza bruta.
-- Validación de todos los datos de entrada con Zod, incluidas las URLs de imágenes (solo `http` y `https`).
+- Validación de todos los datos de entrada con Zod, incluidas las Data URLs de imágenes (hasta 4 MB por archivo).
 - Headers de seguridad con `helmet` y `cors` restringido al front configurado.
 
 ## Mejoras a futuro
 
-- Subir las imágenes desde el panel en lugar de pegar la URL.
 - Reemplazar el número de WhatsApp de ejemplo por el real en `frontend/src/config/contacto.js`.

@@ -13,7 +13,6 @@ function ProductoForm({ producto, categorias, enviando, onGuardar, onCancelar })
   // el precio se guarda como texto en el input; si el producto no tiene precio la api no manda el campo, por eso el ""
   const [precio, setPrecio] = useState(producto?.precio?.toString() ?? "");
   const [disponibilidad, setDisponibilidad] = useState(producto?.disponibilidad ?? "disponible");
-  const [mensajeWhatsapp, setMensajeWhatsapp] = useState(producto?.mensajeWhatsapp ?? "");
 
   function manejarEnvio(evento) {
     evento.preventDefault();
@@ -25,7 +24,6 @@ function ProductoForm({ producto, categorias, enviando, onGuardar, onCancelar })
       // precio vacio se manda como null: al editar es la forma de sacarle el precio, y la landing muestra "Consultar precio"
       precio: precio === "" ? null : Number(precio),
       disponibilidad,
-      mensajeWhatsapp,
     });
   }
 
@@ -91,20 +89,6 @@ function ProductoForm({ producto, categorias, enviando, onGuardar, onCancelar })
               </option>
             ))}
           </select>
-        </label>
-
-        <label className={estilos.campo}>
-          Mensaje de WhatsApp (opcional)
-          <textarea
-            value={mensajeWhatsapp}
-            onChange={(evento) => setMensajeWhatsapp(evento.target.value)}
-            maxLength={500}
-          />
-          <span className={estilos.pista}>
-            Es el texto que se escribe solo cuando alguien toca "Consultar por
-            WhatsApp". Si lo dejás vacío, se arma uno con el título del
-            producto.
-          </span>
         </label>
 
         <CampoImagen valor={imagen} onChange={setImagen} cuadrada />

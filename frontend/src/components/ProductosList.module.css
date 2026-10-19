@@ -1,32 +1,130 @@
-/* el separador de arriba (una linea fina con un adorno botanico, ver .separador-botanico en index.css) separa la seccion de la anterior */
+/* seccion azul marino con texto blanco; el margen negativo de arriba la mete debajo de la cinta amarilla inclinada */
 .seccion {
-  /* relative e isolation: las formas decorativas se ubican contra esta seccion y quedan detras de su contenido */
+  /* los colores de los filtros y del acento del titular se heredan en los componentes de adentro */
+  --color-acento: var(--color-yellow);
+  --filtro-color: var(--color-white);
+  --filtro-hover: color-mix(in srgb, var(--color-white) 14%, transparent);
+  --filtro-activo-fondo: var(--color-yellow);
+  --filtro-activo-texto: var(--color-ink);
   position: relative;
-  isolation: isolate;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  margin-top: -20px;
+  padding: clamp(5.625rem, 10vw, 9.375rem) 0 clamp(5rem, 9vw, 8.125rem);
+  background-color: var(--color-navy);
+  color: var(--color-white);
+}
+
+/* formas decorativas: todas absolutas, detras del contenido y sin recibir clics
+   lo que va arriba (tubo, acuarela y gotas) se mide desde el borde de arriba y lo de abajo desde el de abajo, asi no se corren cuando
+   la seccion crece o se achica segun cuantos productos haya */
+.deco {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* las que solo aparecen en pantallas anchas, donde sobra lugar a los costados */
+.solo {
+  display: none;
+}
+
+/* el tubo esta parado con la pintura saliendo por abajo, y la mancha de acuarela queda justo debajo: parece que la esta soltando
+   en celular van chicos en el hueco de arriba, antes del titular */
+.pomo {
+  top: 3.75rem;
+  right: 8%;
+  width: clamp(3rem, 8vw, 9.5rem);
+  height: clamp(3rem, 8vw, 9.5rem);
+}
+
+.acuarela {
+  top: 5rem;
+  right: 3%;
+  width: clamp(3.5rem, 12vw, 14rem);
+  height: clamp(3.5rem, 12vw, 14rem);
+}
+
+.gotaUno {
+  top: clamp(4.5rem, 10vw, 11rem);
+  right: 21%;
+  width: clamp(1rem, 2vw, 2.25rem);
+  height: clamp(1rem, 2vw, 2.25rem);
+}
+
+.gotaDos {
+  top: clamp(7rem, 13vw, 14rem);
+  right: 17%;
+  width: clamp(0.75rem, 1.5vw, 1.75rem);
+  height: clamp(0.75rem, 1.5vw, 1.75rem);
+}
+
+@media (min-width: 1000px) {
+  .solo {
+    display: block;
+  }
+
+  /* flor mitad fuera de la pantalla, en el margen izquierdo a la altura de la primera fila de tarjetas */
+  .flor {
+    top: 30%;
+    left: -3.5rem;
+    width: clamp(7rem, 11vw, 13rem);
+    height: clamp(7rem, 11vw, 13rem);
+  }
+
+  /* el lapiz sale de atras de la columna de la derecha, inclinado */
+  .lapiz {
+    top: 48%;
+    right: -1.25rem;
+    width: clamp(5.5rem, 9vw, 10.5rem);
+    height: clamp(5.5rem, 9vw, 10.5rem);
+    rotate: -38deg;
+  }
+
+  /* la brocha asoma por la izquierda, mas abajo, cruzada */
+  .brocha {
+    top: 62%;
+    left: -1rem;
+    width: clamp(5rem, 8vw, 9.5rem);
+    height: clamp(5rem, 8vw, 9.5rem);
+    rotate: 28deg;
+  }
+
+  /* el sol en la esquina de abajo a la derecha, cortado por el borde */
+  .sol {
+    right: -3rem;
+    bottom: 1.5rem;
+    width: clamp(7rem, 11vw, 12.5rem);
+    height: clamp(7rem, 11vw, 12.5rem);
+  }
+
+  .gotaTres {
+    bottom: clamp(4rem, 7vw, 7rem);
+    left: 7%;
+    width: clamp(1.25rem, 2.2vw, 2.5rem);
+    height: clamp(1.25rem, 2.2vw, 2.5rem);
+  }
+}
+
+/* el contenido va arriba de las formas */
+.seccion > :global(.container) {
+  position: relative;
+  z-index: 1;
 }
 
 /* mobile first: una columna, y mas columnas a medida que hay lugar */
 .grilla {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 640px) {
   .grilla {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1000px) {
-  .seccion {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
   .grilla {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

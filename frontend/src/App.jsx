@@ -11,7 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
-      {/* /admin solo redirige a la primera seccion del panel */}
+      {/* /admin solo redirige a categorias, que es por donde se empieza: hay que crear una categoria antes de cargar obras o productos */}
       <Route
         path="/admin"
         element={<Navigate to="/admin/categorias" replace />}

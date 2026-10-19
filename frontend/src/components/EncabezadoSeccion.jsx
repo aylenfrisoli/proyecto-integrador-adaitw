@@ -1,18 +1,26 @@
-import Silueta from "./Silueta";
 import styles from "./EncabezadoSeccion.module.css";
 
-// cabecera que repiten las secciones de la landing: ficha chica con una silueta natural opcional, titular y una bajada opcional
-// silueta es un objeto { tipo, color } con lo que recibe Silueta
-function EncabezadoSeccion({ etiqueta, titulo, descripcion, silueta }) {
+// una linea del titular: sirve para poner una forma animada al lado del texto
+export function Linea({ children }) {
+  return <span className={styles.linea}>{children}</span>;
+}
+
+// ultima linea del titular: letra manuscrita y con el color de acento de la seccion (ver --color-acento en el css de cada una)
+export function Acento({ children }) {
+  return <span className={styles.acento}>{children}</span>;
+}
+
+// cabecera que repiten las secciones de la landing: el titular grande arriba y debajo, a la izquierda, la bajada
+// children es lo que va debajo de la bajada, por ejemplo los botones de filtro
+// titulo recibe jsx (varias <Linea>) porque cada titular combina texto y formas distintas
+function EncabezadoSeccion({ titulo, descripcion, children }) {
   return (
     <header className={styles.encabezado}>
-      {/* la silueta va en la misma fila que la etiqueta y no encima del titulo, asi nunca tapa el texto */}
-      <div className={styles.fila}>
-        <p className={styles.etiqueta}>{etiqueta}</p>
-        {silueta && <Silueta tipo={silueta.tipo} color={silueta.color} tamano="2.5rem" />}
+      <h2 className={styles.titulo}>{titulo}</h2>
+      <div className={styles.lateral}>
+        <p className={styles.descripcion}>{descripcion}</p>
+        {children}
       </div>
-      <h2 className={`display-title ${styles.titulo}`}>{titulo}</h2>
-      {descripcion && <p className={styles.descripcion}>{descripcion}</p>}
     </header>
   );
 }

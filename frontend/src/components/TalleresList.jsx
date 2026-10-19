@@ -1,9 +1,10 @@
 import useFetch from "../hooks/useFetch";
 import { ordenarTalleres } from "../utils/talleres";
-import EncabezadoSeccion from "./EncabezadoSeccion";
+import Bandas from "./Bandas";
+import EncabezadoSeccion, { Acento, Linea } from "./EncabezadoSeccion";
 import EstadoDeDatos from "./EstadoDeDatos";
-import Silueta from "./Silueta";
-import TallerCard from "./TallerCard";
+import Forma from "./Forma";
+import TallerFila from "./TallerFila";
 import styles from "./TalleresList.module.css";
 
 // seccion de talleres: sin filtro porque los talleres no tienen categoria
@@ -14,30 +15,54 @@ function TalleresList() {
   const lista = ordenarTalleres(talleres ?? []);
 
   return (
-    <section id="talleres" className={`container separador-botanico ${styles.seccion}`}>
-      {/* piezas de herbario: la grande sangra por el borde junto al titular y las chicas asoman por los costados, donde queda lugar en blanco */}
-      <Silueta tipo="alga" color="ocre" tamano="12rem" lado="derecha" dentro arriba="1rem" sangre="1rem" giro={4} profundidad={0.4} />
-      <Silueta tipo="concha" color="tierra" tamano="8rem" lado="izquierda" arriba="42%" giro={-6} profundidad={-0.6} />
-      <Silueta tipo="caracola" color="musgo" tamano="7rem" lado="derecha" arriba="72%" giro={8} profundidad={0.4} />
-      <EncabezadoSeccion
-        etiqueta="Talleres"
-        silueta={{ tipo: "eucalipto", color: "salvia" }}
-        titulo="Aprendé creando"
-        descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
-      />
+    <section id="talleres" className={styles.seccion}>
+      <Bandas color="plum" className={styles.bandas} />
 
-      <EstadoDeDatos
-        loading={loading}
-        error={error}
-        vacio={lista.length === 0}
-        textoVacio="Por ahora no hay talleres programados. ¡Pronto vamos a sumar nuevos!"
-      >
-        <div className={styles.grilla}>
-          {lista.map((taller) => (
-            <TallerCard key={taller._id} taller={taller} />
-          ))}
+      <div className="container">
+        <EncabezadoSeccion
+          titulo={
+            <>
+              <Linea>
+                Aprendé
+                <Forma
+                  tipo="paleta"
+                  colores={["wood", "rose", "sky", "plum", "olive", "yellow"]}
+                  ancho="0.6em"
+                  alto="0.6em"
+                />
+              </Linea>
+              <Linea>
+                <Forma tipo="flor" colores={["lilac", "white"]} duracion={26} ancho="0.6em" alto="0.6em" />
+                <Acento>creando</Acento>
+              </Linea>
+            </>
+          }
+          descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
+        />
+
+        {/* las formas se miden desde el borde de arriba de esta zona (la linea de la lista), asi quedan siempre apoyadas en ella */}
+        <div className={styles.zonaLista}>
+          <Forma tipo="lapiz" colores={["sky"]} className={`${styles.deco} ${styles.lapiz}`} />
+          <Forma tipo="brocha" colores={["rose", "sky"]} duracion={5.5} className={`${styles.deco} ${styles.brocha}`} />
+          <Forma tipo="gota" colores={["rose"]} duracion={3.4} className={`${styles.deco} ${styles.gotaUno}`} />
+          <Forma tipo="gota" colores={["lilac"]} duracion={4.4} className={`${styles.deco} ${styles.solo} ${styles.gotaDos}`} />
+          <Forma tipo="mariposa" colores={["rose", "yellow"]} vuela className={`${styles.deco} ${styles.solo} ${styles.mariposa}`} />
+
+          <EstadoDeDatos
+            loading={loading}
+            error={error}
+            vacio={lista.length === 0}
+            textoVacio="Por ahora no hay talleres programados. ¡Pronto vamos a sumar nuevos!"
+          >
+            {/* lista ordenada porque el orden importa: primero los talleres que vienen y al final los ya realizados */}
+            <ol className={styles.lista}>
+              {lista.map((taller) => (
+                <TallerFila key={taller._id} taller={taller} />
+              ))}
+            </ol>
+          </EstadoDeDatos>
         </div>
-      </EstadoDeDatos>
+      </div>
     </section>
   );
 }

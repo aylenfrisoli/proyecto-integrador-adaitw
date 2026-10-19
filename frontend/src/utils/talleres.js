@@ -44,16 +44,9 @@ export function fechaDesdeInput(valor) {
   return new Date(valor).toISOString();
 }
 
-// ordena para la landing: primero los que todavia sirven, del mas proximo al mas lejano, y al final los finalizados, del mas reciente al mas viejo
+// ordena para la landing desde la fecha mas nueva hasta la mas vieja
 export function ordenarTalleres(talleres) {
-  // filter devuelve un array nuevo, asi que sort no modifica el array original
-  const vigentes = talleres
-    .filter((taller) => taller.estado !== "finalizado")
-    .sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-  const finalizados = talleres
-    .filter((taller) => taller.estado === "finalizado")
-    .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-  return [...vigentes, ...finalizados];
+  return [...talleres].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 }
 
 // mensaje de whatsapp para inscribirse a un taller

@@ -29,5 +29,5 @@
 .activa {
   border-color: var(--color-brand-primary);
   background-color: var(--color-brand-primary);
-  color: #ffffff;
+  color: var(--color-white);
 }

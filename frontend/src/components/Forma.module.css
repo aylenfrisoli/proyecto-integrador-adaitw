@@ -1,0 +1,484 @@
+/* formas decorativas hechas solo con css: cada una es un grupo de spans posicionados en porcentajes
+   asi se agrandan o achican con el contenedor; los colores llegan como variables desde Forma.jsx */
+
+/* cuadro que ocupa la forma: el tamano y el lugar los define quien la usa (por className) */
+.bloque {
+  display: block;
+}
+
+/* dentro de un titular: ocupa un espacio en linea y su tamano se mide en em, asi acompana al texto */
+.enLinea {
+  display: inline-block;
+  width: var(--ancho);
+  height: var(--alto);
+}
+
+/* base de todos los dibujos: llenan el cuadro y son el punto de referencia de sus partes */
+.flor,
+.mariposa,
+.pincel,
+.brocha,
+.paleta,
+.pomo,
+.lapiz,
+.acuarela {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- flor: seis petalos girados que dan vueltas despacio ---------- */
+.flor {
+  animation: girar var(--duracion) linear infinite;
+}
+
+.petalo {
+  position: absolute;
+  top: 0;
+  left: 34%;
+  width: 32%;
+  height: 50%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background-color: var(--petalo);
+  /* gira desde la base del petalo, que queda en el centro de la flor */
+  transform-origin: 50% 100%;
+  transform: rotate(var(--giro));
+}
+
+.centroFlor {
+  position: absolute;
+  top: 33%;
+  left: 33%;
+  width: 34%;
+  height: 34%;
+  border-radius: 50%;
+  background-color: var(--centro);
+}
+
+/* ---------- sol: un disco con rayitas alrededor ---------- */
+.sol {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* el centro es un circulo y los rayos salen de un gradiente conico que se repite */
+  background:
+    radial-gradient(circle, var(--color) 0 38%, transparent 39%),
+    repeating-conic-gradient(var(--color) 0 7deg, transparent 7deg 18deg);
+  /* la mascara recorta las puntas de los rayos en un borde redondo */
+  -webkit-mask: radial-gradient(circle, black 0 70%, transparent 71%);
+  mask: radial-gradient(circle, black 0 70%, transparent 71%);
+  animation: girar 18s linear infinite;
+}
+
+/* ---------- mancha: una forma blanda que cambia de contorno ---------- */
+.blob {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 58% 42% 63% 37% / 45% 55% 45% 55%;
+  background-color: var(--color);
+  animation: fluir 7s ease-in-out infinite;
+}
+
+/* ---------- mariposa: dos alas que aletean y, si vuela, se pasea ---------- */
+.vuela {
+  animation: volar var(--vuelo) ease-in-out infinite;
+}
+
+/* cada lado es la mitad de la mariposa y se achica hacia el cuerpo para simular el aleteo */
+.lado {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  animation: aletear var(--aleteo) ease-in-out infinite;
+}
+
+.izquierda {
+  left: 0;
+  transform-origin: 100% 50%;
+}
+
+.derecha {
+  right: 0;
+  transform-origin: 0 50%;
+}
+
+.alaAlta,
+.alaBaja {
+  position: absolute;
+}
+
+.alaAlta {
+  top: 2%;
+  width: 92%;
+  height: 56%;
+  background-color: var(--ala);
+}
+
+.alaBaja {
+  top: 50%;
+  width: 70%;
+  height: 44%;
+  background-color: var(--ala-baja);
+}
+
+/* las alas de la derecha son las de la izquierda espejadas */
+.izquierda .alaAlta {
+  left: 4%;
+  border-radius: 70% 30% 20% 60%;
+}
+
+.derecha .alaAlta {
+  right: 4%;
+  border-radius: 30% 70% 60% 20%;
+}
+
+.izquierda .alaBaja {
+  left: 22%;
+  border-radius: 40% 20% 60% 70%;
+}
+
+.derecha .alaBaja {
+  right: 22%;
+  border-radius: 20% 40% 70% 60%;
+}
+
+.cuerpo {
+  position: absolute;
+  top: 14%;
+  left: 46%;
+  width: 8%;
+  height: 74%;
+  border-radius: 999px;
+  background-color: var(--color-plum-deep);
+}
+
+/* ---------- pincel y brocha: el movil se mece como si estuviera pintando ---------- */
+.pincel {
+  transform: rotate(35deg);
+}
+
+.brocha {
+  transform: rotate(-25deg);
+}
+
+.movil {
+  position: absolute;
+  inset: 0;
+  animation: pintar var(--duracion) ease-in-out infinite;
+}
+
+.pincel .movil {
+  transform-origin: 50% 90%;
+}
+
+.brocha .movil {
+  transform-origin: 50% 95%;
+}
+
+.mango,
+.virola,
+.punta,
+.cerdas,
+.gotaBrocha {
+  position: absolute;
+}
+
+.pincel .mango {
+  top: 36%;
+  left: 44%;
+  width: 12%;
+  height: 62%;
+  border-radius: 999px 999px 40% 40%;
+  background-color: var(--mango);
+}
+
+.pincel .virola {
+  top: 25%;
+  left: 41%;
+  width: 18%;
+  height: 13%;
+  border-radius: 3px;
+  background-color: var(--color-metal);
+  box-shadow: inset 0 -3px 0 color-mix(in srgb, black 12%, transparent);
+}
+
+.punta {
+  top: 0;
+  left: 40%;
+  width: 20%;
+  height: 28%;
+  border-radius: 50% 50% 40% 40% / 85% 85% 15% 15%;
+  background-color: var(--punta);
+}
+
+.brocha .mango {
+  top: 54%;
+  left: 42%;
+  width: 16%;
+  height: 44%;
+  border-radius: 999px;
+  background-color: var(--mango);
+}
+
+.brocha .virola {
+  top: 42%;
+  left: 24%;
+  width: 52%;
+  height: 14%;
+  border-radius: 4px;
+  background-color: var(--color-metal);
+  box-shadow: inset 0 -4px 0 color-mix(in srgb, black 12%, transparent);
+}
+
+/* las cerdas son lineas finas verticales sobre dos tonos: la pintura arriba y el papel crudo abajo */
+.cerdas {
+  top: 4%;
+  left: 25%;
+  width: 50%;
+  height: 40%;
+  border-radius: 10px 10px 3px 3px;
+  background:
+    repeating-linear-gradient(90deg, color-mix(in srgb, black 8%, transparent) 0 2px, transparent 2px 6px),
+    linear-gradient(to bottom, var(--pintura) 0 45%, var(--color-paper) 45%);
+}
+
+.gotaBrocha {
+  top: 1%;
+  left: 58%;
+  width: 9%;
+  height: 12%;
+  border-radius: 50%;
+  background-color: var(--pintura);
+}
+
+/* ---------- paleta: un contorno con un agujero para el pulgar y manchas de color ---------- */
+.paleta {
+  animation: latir 6s ease-in-out infinite;
+}
+
+.fondoPaleta {
+  position: absolute;
+  inset: 0;
+  border-radius: 58% 42% 55% 45% / 52% 60% 40% 48%;
+  background-color: var(--fondo);
+  /* el agujero del pulgar es un circulo transparente en la mascara */
+  -webkit-mask: radial-gradient(circle at 68% 64%, transparent 0 9%, black 9.5%);
+  mask: radial-gradient(circle at 68% 64%, transparent 0 9%, black 9.5%);
+}
+
+.mancha {
+  position: absolute;
+  width: 17%;
+  height: 17%;
+  border-radius: 50% 45% 55% 50%;
+}
+
+/* ---------- tubo de pintura: sube y baja y se ve derecho (un transform fijo seria pisado por el de la animacion) ---------- */
+.pomo {
+  animation: gotear 4.5s ease-in-out infinite;
+}
+
+.tapa,
+.tubo,
+.cuello,
+.pintura {
+  position: absolute;
+}
+
+.tapa {
+  top: 6%;
+  left: 30%;
+  width: 40%;
+  height: 8%;
+  border-radius: 2px;
+  background-color: var(--color-metal);
+}
+
+/* el cuerpo del tubo lleva una franja blanca en el medio */
+.tubo {
+  top: 12%;
+  left: 28%;
+  width: 44%;
+  height: 54%;
+  border-radius: 6px 6px 30% 30%;
+  background: linear-gradient(to bottom, var(--cuerpo) 0 28%, var(--color-white) 28% 62%, var(--cuerpo) 62%);
+}
+
+.cuello {
+  top: 64%;
+  left: 38%;
+  width: 24%;
+  height: 10%;
+  border-radius: 3px;
+  background-color: var(--color-metal);
+}
+
+.pintura {
+  top: 73%;
+  left: 34%;
+  width: 32%;
+  height: 24%;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  background-color: var(--pintura);
+}
+
+/* ---------- gota: sube y baja suave ---------- */
+.gota {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: gotear var(--duracion) ease-in-out infinite;
+}
+
+/* un cuadrado con tres esquinas redondas y una puntiaguda, girado para que la punta mire arriba */
+.cuerpoGota {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 0 50% 50%;
+  background-color: var(--color);
+  transform: rotate(-45deg);
+}
+
+/* ---------- lapiz: igual que el tubo, sube y baja derecho ---------- */
+.lapiz {
+  animation: gotear 5s ease-in-out infinite;
+}
+
+.goma,
+.banda,
+.cuerpoLapiz,
+.mina {
+  position: absolute;
+  left: 42%;
+  width: 16%;
+}
+
+.goma {
+  top: 0;
+  height: 10%;
+  border-radius: 4px 4px 0 0;
+  background-color: var(--color-rose-soft);
+}
+
+.banda {
+  top: 10%;
+  height: 6%;
+  background-color: var(--color-metal);
+}
+
+/* el cuerpo tiene una franja clara en el medio, como las facetas de un lapiz de madera */
+.cuerpoLapiz {
+  top: 16%;
+  height: 60%;
+  background:
+    linear-gradient(90deg, var(--color) 0 33%, color-mix(in srgb, var(--color-white) 25%, transparent) 33% 66%, var(--color) 66%),
+    var(--color);
+}
+
+/* la punta es un triangulo: madera arriba y mina abajo */
+.mina {
+  top: 76%;
+  height: 20%;
+  background: linear-gradient(to bottom, var(--color-wood) 0 60%, var(--color) 60%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* ---------- acuarela: una mancha difusa con salpicaduras ---------- */
+.manchaAcuarela {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 72%;
+  height: 66%;
+  border-radius: 58% 42% 63% 37% / 45% 55% 45% 55%;
+  background: radial-gradient(circle at 40% 40%, var(--color) 0 45%, transparent 75%);
+  opacity: 0.9;
+  animation: fluir 8s ease-in-out infinite;
+}
+
+.salpicadura {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--color);
+}
+
+/* ---------- movimientos ---------- */
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* late: se agranda un poco y se inclina, como respirando */
+@keyframes latir {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.18) rotate(14deg);
+  }
+}
+
+/* de un contorno al otro y vuelta */
+@keyframes fluir {
+  0%,
+  100% {
+    border-radius: 58% 42% 63% 37% / 45% 55% 45% 55%;
+  }
+
+  50% {
+    border-radius: 38% 62% 40% 60% / 60% 38% 62% 40%;
+  }
+}
+
+@keyframes pintar {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes gotear {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* el aleteo achica cada ala hacia el cuerpo y la vuelve a abrir */
+@keyframes aletear {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+
+  50% {
+    transform: scaleX(0.3);
+  }
+}
+
+@keyframes volar {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-8deg);
+  }
+
+  50% {
+    transform: translate(14px, -18px) rotate(7deg);
+  }
+}

@@ -1,0 +1,15 @@
+/* el svg se ubica solo a lo ancho; arriba o abajo, el alto y la transparencia los define la seccion que lo usa */
+.bandas {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.bandas path {
+  fill: none;
+  stroke: var(--linea);
+  stroke-width: 1.2;
+  /* el trazo mide lo mismo aunque el svg se estire a lo ancho de la pantalla */
+  vector-effect: non-scaling-stroke;
+}

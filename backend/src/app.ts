@@ -3,8 +3,8 @@ import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.routes";
-import caminataRoutes from "./routes/caminata.routes";
 import categoriaRoutes from "./routes/categoria.routes";
+import configuracionRoutes from "./routes/configuracion.routes";
 import obraRoutes from "./routes/obra.routes";
 import productoRoutes from "./routes/producto.routes";
 import tallerRoutes from "./routes/taller.routes";
@@ -26,8 +26,9 @@ app.use(cors({ origin: process.env.CORS_ORIGIN }));
 // muestra cada peticion en la terminal, sirve para ver que llega mientras probamos con postman
 app.use(morgan("dev"));
 
-// convierte el body json de las peticiones en req.body
-app.use(express.json());
+// permite recibir imagenes codificadas en base64 dentro del body json
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // ruta de prueba para saber si la api esta viva, tambien la usa render para chequear el deploy
 app.get("/", (_req, res) => {
@@ -49,8 +50,8 @@ app.use("/productos", productoRoutes);
 // rutas de talleres: /talleres y /talleres/:id
 app.use("/talleres", tallerRoutes);
 
-// rutas de la caminata: /caminatas y /caminatas/:id
-app.use("/caminatas", caminataRoutes);
+// ruta de la configuracion del sitio (fotos de la portada y de sobre sara): /configuracion
+app.use("/configuracion", configuracionRoutes);
 
 // estos dos van siempre al final: express prueba los middlewares en orden
 // si un pedido llego hasta aca es porque ninguna ruta lo atendio, o porque alguna tiro un error

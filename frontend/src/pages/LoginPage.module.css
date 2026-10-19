@@ -63,15 +63,15 @@
   outline: 2px solid color-mix(in srgb, var(--color-brand-primary) 25%, transparent);
 }
 
-/* el error usa el ladrillo suave de la paleta en vez de un rojo */
+/* el error usa el rosa de la paleta en vez de un rojo */
 .error {
   margin: 0;
   padding: 0.8rem 1rem;
-  border: 1px solid var(--color-brand-primary);
+  border: 1px solid var(--color-error);
   border-radius: var(--radius-sm);
-  background-color: color-mix(in srgb, var(--color-soft-brick) 40%, transparent);
+  background-color: color-mix(in srgb, var(--color-error-bg) 60%, transparent);
   font-size: 0.9rem;
-  color: var(--color-brand-hover);
+  color: var(--color-error);
 }
 
 .formulario button:disabled {

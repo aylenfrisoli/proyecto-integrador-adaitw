@@ -1,6 +1,6 @@
 import styles from "./ObraCard.module.css";
 
-// tarjeta de una obra: imagen en proporcion 4/5 con zoom al pasar el mouse, categoria, titulo y descripcion
+// tarjeta de una obra: la imagen lleva la categoria encima, y debajo van el titulo y la descripcion sobre el fondo de la seccion
 function ObraCard({ obra }) {
   return (
     <article className={styles.tarjeta}>
@@ -12,9 +12,10 @@ function ObraCard({ obra }) {
           className={styles.imagen}
           loading="lazy"
         />
+        <span className={styles.categoria}>{obra.categoria.nombre}</span>
       </div>
-      <div className={styles.info}>
-        <p className={styles.categoria}>{obra.categoria.nombre}</p>
+
+      <div>
         <h3 className={styles.titulo}>{obra.titulo}</h3>
         <p className={styles.descripcion}>{obra.descripcion}</p>
       </div>
