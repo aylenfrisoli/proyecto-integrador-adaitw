@@ -12,6 +12,7 @@
   /* azules */
   --color-ink: #0a2c45; /* azul tinta, casi negro: texto principal y pie de pagina */
   --color-navy: #0d5a84; /* azul marino de la marca; con texto blanco encima da 7:1 */
+  --color-header: #0d5881; /* fondo de la navbar fija; casi igual al marino pero elegido a mano por la usuaria */
   --color-blue: #14739e; /* azul medio de la seccion sobre sara */
   --color-sky: #1b87b6; /* celeste fuerte para acentos y formas */
   --color-sky-soft: #cfe3ee; /* celeste suave para fondos y etiquetas */
@@ -89,10 +90,10 @@
   box-sizing: border-box;
 }
 
-/* scroll suave entre secciones; el padding evita que la navbar flotante tape el titulo al saltar al ancla */
+/* scroll suave entre secciones; el padding evita que la navbar fija tape el titulo al saltar al ancla (es del alto de la barra) */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.25rem;
+  scroll-padding-top: 4rem;
 }
 
 body {

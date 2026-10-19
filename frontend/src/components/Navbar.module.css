@@ -1,43 +1,46 @@
-/* queda fija arriba; el padding deja un borde de aire alrededor de la pastilla */
+/* barra fija arriba, de borde a borde; el menu de celular pasa por detras de ella (ver --tmm-z en .panel)
+   la linea fina de abajo la separa de la seccion de productos, que es casi del mismo azul */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 40;
-  padding: 0.875rem var(--gutter);
+  background-color: var(--color-header);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-white) 16%, transparent);
 }
 
-/* pastilla blanca translucida: deja ver un poco lo que pasa por detras */
+/* el contenido se alinea con el resto de la pagina: mismo ancho maximo y mismo margen lateral que las secciones */
 .barra {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.5rem 0.5rem 0.5rem 1.375rem;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  background-color: color-mix(in srgb, var(--color-white) 86%, transparent);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0.625rem var(--gutter);
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  color: inherit;
+  color: var(--color-white);
   text-decoration: none;
 }
 
+/* todo el logo va en la manuscrita (la misma de los acentos de los titulares): SAF en amarillo y un poco mas grande, y el nombre en blanco */
 .marca {
-  font-size: 1.625rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--color-navy);
+  font-family: var(--font-acento);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-yellow);
 }
 
 .nombre {
   font-family: var(--font-acento);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* mobile first: los links de la fila se ocultan y se usa el boton */
@@ -57,50 +60,6 @@
   border-radius: 999px;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--color-ink);
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.link:hover {
-  background-color: var(--color-yellow);
-}
-
-.toggle {
-  min-height: 2.75rem;
-  padding: 0 1.25rem;
-  border: none;
-  border-radius: 999px;
-  background-color: var(--color-navy);
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--color-white);
-  cursor: pointer;
-}
-
-/* panel desplegable de celular: azul, con los links grandes */
-.menuMovil {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  margin: 0.5rem 0 0;
-  padding: 0.75rem;
-  list-style: none;
-  border-radius: 1.75rem;
-  background-color: var(--color-navy);
-}
-
-.linkMovil {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 3.5rem;
-  padding: 0 1.25rem;
-  border-radius: 1.25rem;
-  font-size: 1.75rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
   color: var(--color-white);
   text-decoration: none;
   transition:
@@ -108,26 +67,89 @@
     color 0.2s ease;
 }
 
-.linkMovil:hover {
+.link:hover {
   background-color: var(--color-yellow);
   color: var(--color-ink);
 }
 
-.numero {
+/* el boton va en amarillo: uno azul se perderia contra el fondo de la barra
+   la libreria del menu lo completa con las dos lineas del icono y sus reglas leen estas variables (tamano, fondo y color de las lineas) */
+.toggle {
+  --tmm-toggle-size: 2.75rem;
+  --tmm-toggle-bg: var(--color-yellow);
+  --tmm-toggle-color: var(--color-ink);
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.toggle:hover {
+  --tmm-toggle-bg: var(--color-yellow-soft);
+}
+
+/* el anillo de foco amarillo se ve sobre el azul de la barra
+   el boton lleva .barra delante para ganarle al anillo propio de la libreria: tiene la misma fuerza y, como se carga despues, si no ganaria ella */
+.logo:focus-visible,
+.link:focus-visible,
+.barra .toggle:focus-visible {
+  outline: 2px solid var(--color-yellow);
+  outline-offset: 2px;
+}
+
+/* menu de celular a pantalla completa: la libreria lo crea directo en el body (fuera de la navbar) y se pinta con sus variables
+   es del mismo azul que la barra para que se lea como una continuacion de ella
+   --tmm-z es la capa: un punto por debajo de la barra (40) para que el panel pase por detras de ella y el boton siga a la vista
+   va aca y no en la opcion zIndex de la libreria porque esa le agrega "px" al numero y el z-index queda invalido (el panel quedaba debajo de la portada) */
+.panel {
+  --tmm-z: 39;
+  --tmm-bg: var(--color-header);
+  --tmm-color: var(--color-white);
+  --tmm-accent: var(--color-yellow);
+  --tmm-border: color-mix(in srgb, var(--color-white) 16%, transparent);
+  --tmm-link-weight: 800;
+}
+
+/* sin la linea de arriba: ya la hace el borde de abajo de la barra y quedarian dos pegadas
+   el contador numera los links (01, 02...) como tenia el menu anterior */
+.panel :global(.tmm-nav) {
+  border-top: 0;
+  counter-reset: seccion;
+}
+
+/* links grandes alineados con el margen de la pagina y con las letras juntas como los titulares; el numero queda a la derecha */
+.panel :global(.tmm-link) {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: var(--gutter);
+  letter-spacing: -0.04em;
+  counter-increment: seccion;
+}
+
+.panel :global(.tmm-link)::after {
+  /* la segunda linea (con / "") esconde el numero a los lectores de pantalla; si el navegador no la entiende se queda con la primera */
+  content: counter(seccion, decimal-leading-zero);
+  content: counter(seccion, decimal-leading-zero) / "";
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: 0;
 }
 
-/* desktop: sin boton ni panel, los links van en la fila de la derecha */
+/* con el teclado el link marcado se ve por el color y ademas por un anillo, que no depende solo del color */
+.panel :global(.tmm-link:focus-visible) {
+  outline: 2px solid var(--color-yellow);
+  outline-offset: -4px;
+}
+
+/* escritorio: sin boton, los links van en la fila de la derecha (el panel lo apaga la libreria desde el mismo ancho, ver ANCHO_ESCRITORIO en Navbar.jsx)
+   el boton lleva .barra delante porque la libreria le pone display: flex y, como se carga despues, le ganaria */
 @media (min-width: 1000px) {
   .links {
     display: flex;
   }
 
-  .toggle,
-  .menuMovil {
+  .barra .toggle {
     display: none;
   }
 }
