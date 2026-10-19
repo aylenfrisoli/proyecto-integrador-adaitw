@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Caminata } from "../models/caminata.model";
-import { CaminataInput } from "../schemas/caminata.schema";
+import { Caminata } from "./caminata.model";
+import { CaminataInput } from "./caminata.schema";
 
 // devuelve todas las ediciones, de la mas vieja a la mas nueva
 export async function getCaminatas(_req: Request, res: Response): Promise<void> {

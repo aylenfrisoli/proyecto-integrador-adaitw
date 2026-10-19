@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { imagenBase64 } from "./comun.schema";
+import { imagenBase64 } from "../../schemas/comun.schema";
 
 // tope de fotos por edicion: evita documentos enormes y una galeria imposible de recorrer
 const MAX_FOTOS = 30;

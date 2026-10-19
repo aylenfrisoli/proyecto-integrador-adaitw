@@ -5,10 +5,10 @@ import {
   getCaminataById,
   getCaminatas,
   updateCaminata,
-} from "../controllers/caminata.controller";
-import { verificarToken } from "../middlewares/auth.middleware";
-import { validate } from "../middlewares/validate.middleware";
-import { caminataSchema } from "../schemas/caminata.schema";
+} from "./caminata.controller";
+import { verificarToken } from "../../middlewares/auth.middleware";
+import { validate } from "../../middlewares/validate.middleware";
+import { caminataSchema } from "./caminata.schema";
 
 const router = Router();
 

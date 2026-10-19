@@ -2,7 +2,6 @@
 import "dotenv/config";
 import mongoose from "mongoose";
 import { connectDB } from "../config/db";
-import { Caminata } from "../models/caminata.model";
 import { Categoria } from "../models/categoria.model";
 import { Obra } from "../models/obra.model";
 import { Producto, type Disponibilidad } from "../models/producto.model";
@@ -178,50 +177,6 @@ const TALLERES_RETIRADOS = [
   "Taller de Collage Creativo",
 ];
 
-// ediciones de ejemplo de la caminata, con fotos de relleno en los rosas y lilas de la paleta
-// las fechas van a mediodia con el offset -03:00, igual que las que carga el panel, para que el dia no se corra
-const CAMINATAS = [
-  {
-    nombre: "1ª edición",
-    fecha: new Date("2026-03-14T12:00:00-03:00"),
-    lugar: "San Bernardo del Tuyú",
-    descripcion: "Primera caminata de concientización sobre el cáncer de mama: salimos a recorrer la costa para visibilizar y acompañarnos entre todos.",
-    fotos: [
-      { url: imagen(600, 600, "ladrillo", "La salida"), epigrafe: "La salida" },
-      { url: imagen(600, 600, "salvia", "En camino"), epigrafe: "Caminando juntos" },
-      // sin epigrafe a proposito: sirve para ver como queda una polaroid sin texto
-      { url: imagen(600, 600, "arena", "Llegada") },
-    ],
-  },
-  {
-    nombre: "2ª edición",
-    fecha: new Date("2026-05-16T12:00:00-03:00"),
-    lugar: "San Bernardo del Tuyú",
-    descripcion: "Segunda caminata: más personas, más lazos y la misma ilusión de seguir juntos.",
-    fotos: [
-      { url: imagen(600, 600, "ocre", "Largada"), epigrafe: "La largada" },
-      { url: imagen(600, 600, "ladrillo", "Todas juntas"), epigrafe: "Todas juntas" },
-      { url: imagen(600, 600, "salvia", "Un abrazo"), epigrafe: "Un abrazo en la meta" },
-    ],
-  },
-  {
-    nombre: "3ª edición",
-    fecha: new Date("2026-08-22T12:00:00-03:00"),
-    lugar: "San Bernardo del Tuyú",
-    descripcion: "Tercera caminata del año, la más grande hasta ahora. Gracias a cada persona que vino a caminar.",
-    fotos: [
-      { url: imagen(600, 600, "arena", "Llegando"), epigrafe: "Llegando a la meta" },
-      { url: imagen(600, 600, "ladrillo", "Mariposas"), epigrafe: "Mariposas rosas" },
-      { url: imagen(600, 600, "ocre", "Sonrisas"), epigrafe: "Sonrisas por todos lados" },
-      { url: imagen(600, 600, "salvia", "El cierre") },
-    ],
-  },
-];
-
-const imagenesDemoCaminata = CAMINATAS.flatMap((caminata) =>
-  caminata.fotos.map((foto) => foto.url),
-);
-
 // crea lo que falta; los talleres de ejemplo se sincronizan por titulo para no duplicarse
 async function cargarDemo(): Promise<void> {
   const talleresBorrados = await Taller.deleteMany({
@@ -270,18 +225,6 @@ async function cargarDemo(): Promise<void> {
     });
     console.log(`sincronizado taller: ${resultado.titulo}`);
   }
-
-  // las ediciones de ejemplo solo se cargan si todavia no hay ninguna
-  // si sara ya cargo las reales, mezclarlas con las de ejemplo confundiria el sitio
-  if (await Caminata.exists({})) {
-    console.log("ya hay ediciones de la caminata, no se cargan las de ejemplo");
-    return;
-  }
-
-  for (const datos of CAMINATAS) {
-    await Caminata.create(datos);
-    console.log(`creada edicion de la caminata: ${datos.nombre}`);
-  }
 }
 
 // borra solo lo que cargo este seed (por titulo y nombre), no toca lo que sara cargue desde el panel
@@ -290,17 +233,6 @@ async function borrarDemo(): Promise<void> {
   const productos = await Producto.deleteMany({ titulo: { $in: PRODUCTOS.map((p) => p.titulo) } });
   const talleres = await Taller.deleteMany({ titulo: { $in: TALLERES.map((t) => t.titulo) } });
   console.log(`borradas ${obras.deletedCount} obras, ${productos.deletedCount} productos y ${talleres.deletedCount} talleres`);
-
-  // con las ediciones no alcanza el nombre: sara puede llamar "1ª edición" a una real
-  // por eso se borran solo las que ademas tienen todas sus fotos de relleno, y una edicion real tiene fotos propias
-  const candidatas = await Caminata.find({ nombre: { $in: CAMINATAS.map((c) => c.nombre) } });
-  const delDemo = candidatas.filter(
-    (c) => c.fotos.length > 0 && c.fotos.every((foto) =>
-      foto.url.startsWith("https://placehold.co/") || imagenesDemoCaminata.includes(foto.url),
-    ),
-  );
-  await Caminata.deleteMany({ _id: { $in: delDemo.map((c) => c._id) } });
-  console.log(`borradas ${delDemo.length} ediciones de la caminata (se conservan ${candidatas.length - delDemo.length} con fotos propias)`);
 
   for (const nombre of CATEGORIAS) {
     const categoria = await Categoria.findOne({ nombre });

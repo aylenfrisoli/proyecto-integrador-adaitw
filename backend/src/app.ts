@@ -3,7 +3,6 @@ import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.routes";
-import caminataRoutes from "./routes/caminata.routes";
 import categoriaRoutes from "./routes/categoria.routes";
 import configuracionRoutes from "./routes/configuracion.routes";
 import obraRoutes from "./routes/obra.routes";
@@ -50,9 +49,6 @@ app.use("/productos", productoRoutes);
 
 // rutas de talleres: /talleres y /talleres/:id
 app.use("/talleres", tallerRoutes);
-
-// rutas de la caminata: /caminatas y /caminatas/:id
-app.use("/caminatas", caminataRoutes);
 
 // ruta de la configuracion del sitio (fotos de la portada y de sobre sara): /configuracion
 app.use("/configuracion", configuracionRoutes);
