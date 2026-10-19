@@ -3,7 +3,8 @@
 Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos y talleres, y un panel de administración desde el que ella carga y edita el contenido.
 
 - **API deployada:** https://proyecto-integrador-adaitw.onrender.com
-- **Repositorio:** monorepo con las carpetas `backend/` (API REST con Express y MongoDB) y `frontend/` (React con Vite).
+- **Web deployada:** https://proyecto-integrador-adaitw.onrender.com
+- **Repositorio:** https://github.com/aylenfrisoli/proyecto-integrador-adaitw monorepo con las carpetas `backend/` (API REST con Express y MongoDB) y `frontend/` (React con Vite).
 
 > Render puede tardar unos segundos en responder la primera vez si la API estuvo inactiva.
 
@@ -74,41 +75,41 @@ npm run dev              # levanta el sitio en http://localhost:5173
 
 ### Scripts del backend
 
-| Script                   | Qué hace                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------- |
-| `npm run dev`            | levanta la API con recarga automática (`tsx watch`)                             |
-| `npm run build`          | compila TypeScript a la carpeta `dist/`                                         |
-| `npm start`              | corre la versión compilada (`dist/server.js`)                                   |
-| `npm run seed`           | crea la cuenta admin; si ya existe, no la duplica                               |
-| `npm run seed:demo`      | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
+| Script                     | Qué hace                                                                         |
+| -------------------------- | -------------------------------------------------------------------------------- |
+| `npm run dev`              | levanta la API con recarga automática (`tsx watch`)                              |
+| `npm run build`            | compila TypeScript a la carpeta `dist/`                                          |
+| `npm start`                | corre la versión compilada (`dist/server.js`)                                    |
+| `npm run seed`             | crea la cuenta admin; si ya existe, no la duplica                                |
+| `npm run seed:demo`        | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
 | `npm run seed:demo:borrar` | borra solo los datos que cargó el seed demo, sin tocar lo cargado desde el panel |
 
 El seed demo escribe en la base que indique `MONGO_URI`, así que si apunta a Atlas también se ve en la API deployada. Los datos de ejemplo quedan cargados en producción hasta que Sara suba su contenido real; entonces se sacan con `seed:demo:borrar`, que no toca lo que ella cargue desde el panel.
 
 ### Variables de entorno
 
-| Variable         | Descripción                                                          |
-| ---------------- | -------------------------------------------------------------------- |
-| `PORT`           | puerto donde escucha la API (Render define el suyo)                  |
-| `MONGO_URI`      | URI de conexión a Atlas, con el nombre de la base (`sara-figarra`)   |
-| `JWT_SECRET`     | clave para firmar los tokens, larga y difícil de adivinar            |
-| `JWT_EXPIRES_IN` | duración de la sesión, por ejemplo `1d`                              |
+| Variable         | Descripción                                                                                                                   |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`           | puerto donde escucha la API (Render define el suyo)                                                                           |
+| `MONGO_URI`      | URI de conexión a Atlas, con el nombre de la base (`sara-figarra`)                                                            |
+| `JWT_SECRET`     | clave para firmar los tokens, larga y difícil de adivinar                                                                     |
+| `JWT_EXPIRES_IN` | duración de la sesión, por ejemplo `1d`                                                                                       |
 | `CORS_ORIGIN`    | URL del front que puede consumir la API (en desarrollo, Vite: `http://localhost:5173`; en producción, la del front deployado) |
-| `ADMIN_EMAIL`    | email de la cuenta admin que crea el seed                            |
-| `ADMIN_PASSWORD` | contraseña de la cuenta admin que crea el seed                       |
+| `ADMIN_EMAIL`    | email de la cuenta admin que crea el seed                                                                                     |
+| `ADMIN_PASSWORD` | contraseña de la cuenta admin que crea el seed                                                                                |
 
 ### Scripts del frontend
 
-| Script            | Qué hace                                              |
-| ----------------- | ----------------------------------------------------- |
-| `npm run dev`     | levanta el sitio con recarga automática (Vite)        |
-| `npm run build`   | genera la versión de producción en `frontend/dist/`   |
-| `npm run preview` | sirve la versión compilada para probarla              |
+| Script            | Qué hace                                            |
+| ----------------- | --------------------------------------------------- |
+| `npm run dev`     | levanta el sitio con recarga automática (Vite)      |
+| `npm run build`   | genera la versión de producción en `frontend/dist/` |
+| `npm run preview` | sirve la versión compilada para probarla            |
 
 ### Variable de entorno del frontend
 
-| Variable       | Descripción                                                                     |
-| -------------- | ------------------------------------------------------------------------------- |
+| Variable       | Descripción                                                                       |
+| -------------- | --------------------------------------------------------------------------------- |
 | `VITE_API_URL` | URL de la API (`http://localhost:3000` en desarrollo, la de Render en producción) |
 
 Las imágenes se eligen desde los formularios y se guardan como Data URLs Base64 en MongoDB. Cada archivo puede pesar hasta 4 MB y la API admite cuerpos de hasta 10 MB en total por envío (si se pasa responde `413`).
@@ -146,12 +147,12 @@ frontend/src/
 
 ### Rutas del frontend
 
-| Ruta                  | Acceso    | Qué muestra                                                  |
-| --------------------- | --------- | ------------------------------------------------------------ |
-| `/`                   | público   | landing con obras, productos, talleres y la sección sobre Sara |
-| `/login`              | público   | formulario de ingreso de la administradora                   |
-| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `web` |
-| cualquier otra ruta   | público   | página 404                                                   |
+| Ruta                | Acceso     | Qué muestra                                                                   |
+| ------------------- | ---------- | ----------------------------------------------------------------------------- |
+| `/`                 | público    | landing con obras, productos, talleres y la sección sobre Sara                |
+| `/login`            | público    | formulario de ingreso de la administradora                                    |
+| `/admin/:seccion`   | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `web` |
+| cualquier otra ruta | público    | página 404                                                                    |
 
 `/admin` redirige a `/admin/categorias`. Si alguien entra al panel sin sesión, lo manda al login; si el token vence, cierra la sesión solo.
 
@@ -170,8 +171,8 @@ Authorization: Bearer <token>
 
 ### Auth
 
-| Método | Ruta          | Acceso  | Descripción                                |
-| ------ | ------------- | ------- | ------------------------------------------ |
+| Método | Ruta          | Acceso  | Descripción                                   |
+| ------ | ------------- | ------- | --------------------------------------------- |
 | POST   | `/auth/login` | público | devuelve un token JWT y los datos de la admin |
 
 ```json
@@ -186,13 +187,13 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 
 ### Categorías
 
-| Método | Ruta              | Acceso  | Descripción                                              |
-| ------ | ----------------- | ------- | -------------------------------------------------------- |
-| GET    | `/categorias`     | público | lista todas las categorías                               |
-| GET    | `/categorias/:id` | público | trae una categoría                                       |
-| POST   | `/categorias`     | admin   | crea una categoría                                       |
-| PUT    | `/categorias/:id` | admin   | edita una categoría                                      |
-| DELETE | `/categorias/:id` | admin   | borra una categoría (`409` si tiene obras o productos)   |
+| Método | Ruta              | Acceso  | Descripción                                            |
+| ------ | ----------------- | ------- | ------------------------------------------------------ |
+| GET    | `/categorias`     | público | lista todas las categorías                             |
+| GET    | `/categorias/:id` | público | trae una categoría                                     |
+| POST   | `/categorias`     | admin   | crea una categoría                                     |
+| PUT    | `/categorias/:id` | admin   | edita una categoría                                    |
+| DELETE | `/categorias/:id` | admin   | borra una categoría (`409` si tiene obras o productos) |
 
 ```json
 { "nombre": "Óleo" }
@@ -200,13 +201,13 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 
 ### Obras
 
-| Método | Ruta         | Acceso  | Descripción                                               |
-| ------ | ------------ | ------- | --------------------------------------------------------- |
-| GET    | `/obras`     | público | lista las obras; acepta `?categoria=<id>` para filtrar    |
-| GET    | `/obras/:id` | público | trae una obra                                             |
-| POST   | `/obras`     | admin   | crea una obra                                             |
-| PUT    | `/obras/:id` | admin   | edita una obra                                            |
-| DELETE | `/obras/:id` | admin   | borra una obra                                            |
+| Método | Ruta         | Acceso  | Descripción                                            |
+| ------ | ------------ | ------- | ------------------------------------------------------ |
+| GET    | `/obras`     | público | lista las obras; acepta `?categoria=<id>` para filtrar |
+| GET    | `/obras/:id` | público | trae una obra                                          |
+| POST   | `/obras`     | admin   | crea una obra                                          |
+| PUT    | `/obras/:id` | admin   | edita una obra                                         |
+| DELETE | `/obras/:id` | admin   | borra una obra                                         |
 
 ```json
 {
@@ -219,13 +220,13 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 
 ### Productos
 
-| Método | Ruta             | Acceso  | Descripción                                                  |
-| ------ | ---------------- | ------- | ------------------------------------------------------------ |
-| GET    | `/productos`     | público | lista los productos; acepta `?categoria=<id>` para filtrar   |
-| GET    | `/productos/:id` | público | trae un producto                                             |
-| POST   | `/productos`     | admin   | crea un producto                                             |
-| PUT    | `/productos/:id` | admin   | edita un producto                                            |
-| DELETE | `/productos/:id` | admin   | borra un producto                                            |
+| Método | Ruta             | Acceso  | Descripción                                                |
+| ------ | ---------------- | ------- | ---------------------------------------------------------- |
+| GET    | `/productos`     | público | lista los productos; acepta `?categoria=<id>` para filtrar |
+| GET    | `/productos/:id` | público | trae un producto                                           |
+| POST   | `/productos`     | admin   | crea un producto                                           |
+| PUT    | `/productos/:id` | admin   | edita un producto                                          |
+| DELETE | `/productos/:id` | admin   | borra un producto                                          |
 
 ```json
 {
@@ -244,13 +245,13 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 
 ### Talleres
 
-| Método | Ruta            | Acceso  | Descripción                                          |
-| ------ | --------------- | ------- | ---------------------------------------------------- |
-| GET    | `/talleres`     | público | lista los talleres, el de fecha más nueva primero    |
-| GET    | `/talleres/:id` | público | trae un taller                                       |
-| POST   | `/talleres`     | admin   | crea un taller                                       |
-| PUT    | `/talleres/:id` | admin   | edita un taller                                      |
-| DELETE | `/talleres/:id` | admin   | borra un taller                                      |
+| Método | Ruta            | Acceso  | Descripción                                       |
+| ------ | --------------- | ------- | ------------------------------------------------- |
+| GET    | `/talleres`     | público | lista los talleres, el de fecha más nueva primero |
+| GET    | `/talleres/:id` | público | trae un taller                                    |
+| POST   | `/talleres`     | admin   | crea un taller                                    |
+| PUT    | `/talleres/:id` | admin   | edita un taller                                   |
+| DELETE | `/talleres/:id` | admin   | borra un taller                                   |
 
 ```json
 {
@@ -271,10 +272,10 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 
 Datos sueltos de la landing que Sara cambia desde la pestaña `Web` del panel: la foto de la portada y la foto de la sección «Cada pieza tiene su propia historia». A diferencia de las otras entidades es **un único documento**: no hay lista, ni ids en las rutas, ni `POST` o `DELETE` (el documento se crea solo la primera vez que se guarda).
 
-| Método | Ruta             | Acceso  | Descripción                                                                |
-| ------ | ---------------- | ------- | -------------------------------------------------------------------------- |
+| Método | Ruta             | Acceso  | Descripción                                                                                |
+| ------ | ---------------- | ------- | ------------------------------------------------------------------------------------------ |
 | GET    | `/configuracion` | público | trae la configuración; si todavía no se guardó nada responde ambos campos como texto vacío |
-| PUT    | `/configuracion` | admin   | guarda la configuración (la crea si no existe)                             |
+| PUT    | `/configuracion` | admin   | guarda la configuración (la crea si no existe)                                             |
 
 ```json
 {
@@ -294,21 +295,26 @@ Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; lo
 ```json
 {
   "message": "los datos enviados no son validos",
-  "errores": [{ "campo": "direccion", "mensaje": "la direccion es obligatoria en los talleres presenciales" }]
+  "errores": [
+    {
+      "campo": "direccion",
+      "mensaje": "la direccion es obligatoria en los talleres presenciales"
+    }
+  ]
 }
 ```
 
-| Código | Cuándo                                                                       |
-| ------ | ---------------------------------------------------------------------------- |
-| 200    | lectura, edición o borrado correctos                                         |
-| 201    | recurso creado                                                               |
-| 400    | datos inválidos, id mal formado, JSON roto o categoría que no existe         |
-| 401    | falta el token, es inválido, venció, o las credenciales del login son erróneas |
-| 404    | el recurso o la ruta no existe                                               |
-| 409    | se intenta borrar una categoría que tiene obras o productos                  |
+| Código | Cuándo                                                                          |
+| ------ | ------------------------------------------------------------------------------- |
+| 200    | lectura, edición o borrado correctos                                            |
+| 201    | recurso creado                                                                  |
+| 400    | datos inválidos, id mal formado, JSON roto o categoría que no existe            |
+| 401    | falta el token, es inválido, venció, o las credenciales del login son erróneas  |
+| 404    | el recurso o la ruta no existe                                                  |
+| 409    | se intenta borrar una categoría que tiene obras o productos                     |
 | 413    | el body pasa los 10 MB (por ejemplo, varias imágenes pesadas en un mismo envío) |
-| 429    | demasiados intentos fallidos de login                                        |
-| 500    | error interno (no se devuelven detalles al cliente)                          |
+| 429    | demasiados intentos fallidos de login                                           |
+| 500    | error interno (no se devuelven detalles al cliente)                             |
 
 ## Pruebas con Postman
 
@@ -320,19 +326,19 @@ La colección está en [`backend/postman/sara-figarra.postman_collection.json`](
 2. Abrí la colección, pestaña **Variables**, y completá `adminEmail` y `adminPassword` en la columna **Current value** (van vacías para no subir credenciales al repo).
 3. Clic derecho en la colección, **Run collection** y **Run**. Tiene que correr completa y en orden: el login guarda el token y cada request usa los ids que creó el anterior.
 
-| Variable        | Para qué sirve                                                                 |
-| --------------- | ------------------------------------------------------------------------------ |
-| `baseUrl`       | dirección de la API; viene con la de Render y en local se cambia a `http://localhost:3000` |
-| `adminEmail`    | email de la cuenta admin                                                       |
-| `adminPassword` | contraseña de la cuenta admin                                                  |
-| `token`         | lo completa solo el login, no hay que tocarlo                                  |
+| Variable                | Para qué sirve                                                                                              |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `baseUrl`               | dirección de la API; viene con la de Render y en local se cambia a `http://localhost:3000`                  |
+| `adminEmail`            | email de la cuenta admin                                                                                    |
+| `adminPassword`         | contraseña de la cuenta admin                                                                               |
+| `token`                 | lo completa solo el login, no hay que tocarlo                                                               |
 | `imagenPortadaOriginal` | la completa sola la carpeta de Configuración: guarda la foto de la portada que había y la devuelve al final |
 
 ### Resultado esperado
 
 Corrida completa: todos los requests y aserciones en verde. La colección borra al final todo lo que crea, y la carpeta de Configuración vuelve a dejar la foto de la portada como estaba, así la base queda como antes de correrla.
 
-### Ojo
+### Importante
 
 - El login tiene rate limit (5 intentos fallidos cada 15 minutos por IP) y la colección hace 2 logins fallidos a propósito. Si se corre 3 veces seguidas, el login responde `429`: esperá 15 minutos.
 - Si `baseUrl` apunta a Render, la colección escribe en la base real mientras corre.
@@ -347,4 +353,6 @@ Corrida completa: todos los requests y aserciones en verde. La colección borra 
 
 ## Mejoras a futuro
 
-- Reemplazar el número de WhatsApp de ejemplo por el real en `frontend/src/config/contacto.js`.
+- Reemplazar el número de WhatsApp de ejemplo por el real
+- Reemplazar el logo de la marca de ejemplo por el real
+- Mejorar en el panel la relación de categorias
