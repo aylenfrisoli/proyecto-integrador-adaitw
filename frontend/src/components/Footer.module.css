@@ -2,17 +2,18 @@
 .footer {
   position: relative;
   margin-top: calc(-1 * var(--radius-seccion));
-  padding: clamp(5rem, 9vw, 8.125rem) 0 1.5rem;
+  /* el relleno de arriba es el radio de la esquina mas un poco de aire, asi el contenido arranca debajo de la curva */
+  padding: 4rem 0 1.25rem;
   overflow: hidden;
   border-radius: var(--radius-seccion) var(--radius-seccion) 0 0;
   background-color: var(--color-ink);
   color: var(--color-white);
 }
 
-/* lineas onduladas detras del SAF gigante */
+/* rayas onduladas en el borde de arriba, por encima de las columnas */
 .bandas {
-  top: 34%;
-  height: 260px;
+  top: 0;
+  height: 64px;
   opacity: 0.4;
   z-index: 0;
   pointer-events: none;
@@ -23,25 +24,62 @@
   z-index: 1;
 }
 
-/* el SAF crece con la pantalla hasta 25rem; las formas van en el mismo renglon y su tamano se mide en em del texto, asi lo acompanan */
-.gigante {
-  display: flex;
-  align-items: center;
-  gap: 0.08em;
-  margin: 0 0 clamp(3rem, 6vw, 5rem);
-  font-size: clamp(6rem, 24vw, 25rem);
-  font-weight: 800;
-  line-height: 0.8;
-  letter-spacing: -0.07em;
-  color: var(--color-yellow);
+/* formas decorativas chicas: absolutas, detras del contenido y sin recibir clics; solo en pantallas anchas */
+.deco {
+  display: none;
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* mobile first: una columna; desde que entran dos de 220px se acomodan solas */
+@media (min-width: 900px) {
+  .deco {
+    display: block;
+  }
+
+  .flor {
+    top: 4.5rem;
+    right: 5%;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .pincel {
+    top: 8.25rem;
+    right: 9.5%;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .gota {
+    top: 10.75rem;
+    right: 4%;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* mobile first: una sola columna y todo centrado */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
-  padding-bottom: 3.5rem;
+  padding-bottom: 2.25rem;
+  text-align: center;
+}
+
+/* en escritorio vuelven las columnas, alineadas a la izquierda; el pie mide unos 326px: el relleno de arriba y de abajo se achica para que
+   las columnas queden a la vista */
+@media (min-width: 900px) {
+  .footer {
+    padding-top: 3.75rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding-bottom: 2.5rem;
+    text-align: left;
+  }
 }
 
 .logo {
@@ -54,7 +92,8 @@
 
 .text {
   max-width: 34ch;
-  margin: 0;
+  /* margin auto lo centra en celular; en escritorio vuelve a pegarse a la izquierda (ver el final del archivo) */
+  margin: 0 auto;
   font-size: 1rem;
   line-height: 1.55;
   color: var(--color-mist);
@@ -72,6 +111,7 @@
 .list {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.375rem;
   margin: 0;
   padding: 0;
@@ -104,6 +144,7 @@
 .redes {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
   margin: 0;
   padding: 0;
@@ -135,9 +176,10 @@
 /* el copyright y los enlaces se reparten el ancho, con una linea fina arriba */
 .bottom {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   gap: 0.75rem;
+  text-align: center;
   padding-top: 1.25rem;
   border-top: 1px solid color-mix(in srgb, var(--color-white) 20%, transparent);
   font-family: var(--font-mono);
@@ -151,6 +193,8 @@
 
 .enlaces {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.25rem;
 }
 
@@ -162,4 +206,31 @@
 
 .acceso:hover {
   color: var(--color-yellow);
+}
+
+/* escritorio: la lista, las redes y el texto vuelven a la izquierda, y el copyright y los enlaces se reparten el ancho */
+@media (min-width: 900px) {
+  .text {
+    margin: 0;
+  }
+
+  .list {
+    align-items: flex-start;
+  }
+
+  .redes {
+    justify-content: flex-start;
+  }
+
+  .bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .enlaces {
+    justify-content: flex-start;
+  }
 }

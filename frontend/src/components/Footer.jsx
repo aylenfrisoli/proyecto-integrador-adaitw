@@ -5,7 +5,7 @@ import Bandas from "./Bandas";
 import Forma from "./Forma";
 import styles from "./Footer.module.css";
 
-// pie de pagina azul tinta: un SAF gigante con formas al lado, la info de la marca, los links y los datos de contacto
+// pie de pagina azul tinta y compacto: la info de la marca, los links y los datos de contacto, con rayas onduladas arriba y tres formas chicas a la derecha
 function Footer() {
   // el anio se calcula para no tener que actualizar el copyright a mano
   const anio = new Date().getFullYear();
@@ -13,16 +13,12 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <Bandas color="sky" className={styles.bandas} />
+      {/* formas chicas en el costado derecho, al lado de las redes; en pantallas angostas se ocultan */}
+      <Forma tipo="flor" colores={["sky", "yellow"]} duracion={30} className={`${styles.deco} ${styles.flor}`} />
+      <Forma tipo="pincel" colores={["rose", "rose-soft"]} duracion={4} className={`${styles.deco} ${styles.pincel}`} />
+      <Forma tipo="gota" colores={["rose-soft"]} duracion={3.8} className={`${styles.deco} ${styles.gota}`} />
 
       <div className={`container ${styles.contenido}`}>
-        {/* el SAF gigante es decoracion: el nombre completo ya esta en el texto de abajo */}
-        <p className={styles.gigante} aria-hidden="true">
-          SAF
-          <Forma tipo="flor" colores={["sky", "yellow"]} duracion={30} ancho="0.42em" alto="0.42em" />
-          <Forma tipo="pincel" colores={["rose", "rose-soft"]} duracion={4} ancho="0.36em" alto="0.36em" />
-          <Forma tipo="gota" colores={["rose-soft"]} duracion={3.8} ancho="0.3em" alto="0.3em" />
-        </p>
-
         <div className={styles.grid}>
           <div>
             <p className={styles.logo}>SAF Creaciones para Vos</p>
@@ -71,7 +67,7 @@ function Footer() {
 
         <div className={styles.bottom}>
           <small className={styles.copyright}>
-            © {anio} SAF Creaciones para Vos · Sara Figarra, artista plástica
+            © {anio} SAF Creaciones para Vos · Sara Figarra
           </small>
           <div className={styles.enlaces}>
             {/* acceso discreto al panel: no esta en la navbar porque es solo para la administradora */}
