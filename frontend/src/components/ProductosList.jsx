@@ -21,8 +21,18 @@ function ProductosList() {
 
   return (
     <section id="productos" className={styles.seccion}>
-      <Forma tipo="pomo" colores={["yellow", "rose"]} className={styles.pomo} />
-      <Forma tipo="acuarela" colores={["rose-soft"]} className={styles.acuarela} />
+      {/* a la derecha del titular: un tubo que suelta pintura sobre una mancha de acuarela, con gotas que caen entre los dos */}
+      <Forma tipo="acuarela" colores={["rose-soft"]} className={`${styles.deco} ${styles.acuarela}`} />
+      <Forma tipo="pomo" colores={["yellow", "rose"]} className={`${styles.deco} ${styles.pomo}`} />
+      <Forma tipo="gota" colores={["yellow"]} duracion={3.4} className={`${styles.deco} ${styles.gotaUno}`} />
+      <Forma tipo="gota" colores={["rose-soft"]} duracion={4.2} className={`${styles.deco} ${styles.gotaDos}`} />
+
+      {/* el resto se asoma por los costados y por detras de las tarjetas; en pantallas angostas se ocultan para que no tapen nada */}
+      <Forma tipo="flor" colores={["rose-soft", "yellow"]} duracion={26} className={`${styles.deco} ${styles.solo} ${styles.flor}`} />
+      <Forma tipo="lapiz" colores={["rose-soft"]} className={`${styles.deco} ${styles.solo} ${styles.lapiz}`} />
+      <Forma tipo="brocha" colores={["wood", "sky"]} duracion={5} className={`${styles.deco} ${styles.solo} ${styles.brocha}`} />
+      <Forma tipo="sol" colores={["yellow"]} className={`${styles.deco} ${styles.solo} ${styles.sol}`} />
+      <Forma tipo="gota" colores={["lilac-soft"]} duracion={3.8} className={`${styles.deco} ${styles.solo} ${styles.gotaTres}`} />
 
       <div className="container">
         <EncabezadoSeccion
@@ -31,9 +41,11 @@ function ProductosList() {
               <Linea>
                 Hecho a mano
                 <Forma tipo="pincel" colores={["yellow", "rose"]} duracion={4.5} ancho="0.62em" alto="0.62em" />
-                <Forma tipo="blob" colores={["yellow"]} ancho="0.7em" alto="0.55em" />
               </Linea>
-              <Acento>para vos</Acento>
+              <Linea>
+                <Acento>para vos</Acento>
+                <Forma tipo="mariposa" colores={["yellow", "rose-soft"]} vuela ancho="0.55em" alto="0.55em" />
+              </Linea>
             </>
           }
           descripcion="Cajas, bordados, bolsos y papelería artesanales. Consultá por WhatsApp y coordinamos la entrega."

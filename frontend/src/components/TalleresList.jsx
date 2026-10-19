@@ -17,9 +17,6 @@ function TalleresList() {
   return (
     <section id="talleres" className={styles.seccion}>
       <Bandas color="plum" className={styles.bandas} />
-      <Forma tipo="brocha" colores={["rose", "sky"]} duracion={5.5} className={styles.brocha} />
-      <Forma tipo="lapiz" colores={["sky"]} className={styles.lapiz} />
-      <Forma tipo="gota" colores={["rose"]} duracion={3.4} className={styles.gota} />
 
       <div className="container">
         <EncabezadoSeccion
@@ -43,19 +40,28 @@ function TalleresList() {
           descripcion="Talleres creativos para animarte a probar, con materiales y acompañamiento. No hace falta tener experiencia."
         />
 
-        <EstadoDeDatos
-          loading={loading}
-          error={error}
-          vacio={lista.length === 0}
-          textoVacio="Por ahora no hay talleres programados. ¡Pronto vamos a sumar nuevos!"
-        >
-          {/* lista ordenada porque el orden importa: primero los talleres que vienen y al final los ya realizados */}
-          <ol className={styles.lista}>
-            {lista.map((taller) => (
-              <TallerFila key={taller._id} taller={taller} />
-            ))}
-          </ol>
-        </EstadoDeDatos>
+        {/* las formas se miden desde el borde de arriba de esta zona (la linea de la lista), asi quedan siempre apoyadas en ella */}
+        <div className={styles.zonaLista}>
+          <Forma tipo="lapiz" colores={["sky"]} className={`${styles.deco} ${styles.lapiz}`} />
+          <Forma tipo="brocha" colores={["rose", "sky"]} duracion={5.5} className={`${styles.deco} ${styles.brocha}`} />
+          <Forma tipo="gota" colores={["rose"]} duracion={3.4} className={`${styles.deco} ${styles.gotaUno}`} />
+          <Forma tipo="gota" colores={["lilac"]} duracion={4.4} className={`${styles.deco} ${styles.solo} ${styles.gotaDos}`} />
+          <Forma tipo="mariposa" colores={["rose", "yellow"]} vuela className={`${styles.deco} ${styles.solo} ${styles.mariposa}`} />
+
+          <EstadoDeDatos
+            loading={loading}
+            error={error}
+            vacio={lista.length === 0}
+            textoVacio="Por ahora no hay talleres programados. ¡Pronto vamos a sumar nuevos!"
+          >
+            {/* lista ordenada porque el orden importa: primero los talleres que vienen y al final los ya realizados */}
+            <ol className={styles.lista}>
+              {lista.map((taller) => (
+                <TallerFila key={taller._id} taller={taller} />
+              ))}
+            </ol>
+          </EstadoDeDatos>
+        </div>
       </div>
     </section>
   );

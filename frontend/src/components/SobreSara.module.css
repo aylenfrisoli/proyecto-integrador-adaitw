@@ -33,8 +33,10 @@
   color: var(--color-yellow);
 }
 
-/* dos columnas cuando hay lugar (minimo 380px cada una) y una sola en el celular */
+/* dos columnas cuando hay lugar (minimo 380px cada una) y una sola en el celular
+   position relative: las formas de los costados se miden desde el borde de arriba y de abajo de las columnas */
 .columnas {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
   gap: clamp(2.5rem, 5vw, 5rem);
@@ -61,11 +63,29 @@
   object-fit: cover;
 }
 
+/* formas alrededor del retrato, una por esquina; todas en amarillo, blanco o rosa claro porque el azul de fondo se come los tonos oscuros */
 .flor,
 .lapiz,
-.acuarela {
+.gotaArco,
+.acuarela,
+.deco {
   position: absolute;
   pointer-events: none;
+}
+
+.lapiz {
+  top: 40px;
+  left: -28px;
+  width: 110px;
+  height: 110px;
+  rotate: -18deg;
+}
+
+.gotaArco {
+  top: 12%;
+  right: -14px;
+  width: 30px;
+  height: 30px;
 }
 
 .flor {
@@ -75,18 +95,61 @@
   height: 120px;
 }
 
-.lapiz {
-  top: 40px;
-  left: -28px;
-  width: 110px;
-  height: 110px;
-}
-
 .acuarela {
   bottom: -30px;
   left: 12%;
   width: 90px;
   height: 90px;
+}
+
+/* formas de los costados, solo en pantallas anchas: ahi las columnas dejan aire a la derecha del titular y debajo del texto */
+.solo {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .solo {
+    display: block;
+  }
+
+  /* paradas sobre el borde de arriba de las columnas, a la derecha: el pincel de pie, la mariposa mas alta y las gotas cayendo entre las dos */
+  .pincel {
+    right: 8%;
+    bottom: calc(100% - 2px);
+    width: clamp(4rem, 7vw, 8rem);
+    height: clamp(4rem, 7vw, 8rem);
+  }
+
+  .mariposa {
+    right: 24%;
+    bottom: calc(100% + 1.75rem);
+    width: clamp(3.5rem, 6vw, 6.5rem);
+    height: clamp(3.5rem, 6vw, 6.5rem);
+  }
+
+  .gotaBlanca {
+    right: 2.5%;
+    bottom: calc(100% + 0.75rem);
+    width: clamp(1rem, 1.8vw, 1.875rem);
+    height: clamp(1rem, 1.8vw, 1.875rem);
+  }
+
+  .gotaAmarilla {
+    right: 17%;
+    bottom: calc(100% + 0.25rem);
+    width: clamp(0.875rem, 1.4vw, 1.5rem);
+    height: clamp(0.875rem, 1.4vw, 1.5rem);
+  }
+
+  /* la brocha cruzada en el hueco de abajo, a la derecha, debajo de las etiquetas (el retrato es mas alto que el texto y deja lugar)
+     sube 3rem porque el pie se mete 3rem sobre el final de la seccion y le cortaria la punta */
+  .brocha {
+    top: calc(100% - 3rem);
+    right: 5%;
+    width: clamp(3.5rem, 6vw, 7rem);
+    height: clamp(3.5rem, 6vw, 7rem);
+    rotate: 24deg;
+  }
 }
 
 .texto {

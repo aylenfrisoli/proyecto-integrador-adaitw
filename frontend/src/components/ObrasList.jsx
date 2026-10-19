@@ -21,9 +21,6 @@ function ObrasList() {
 
   return (
     <section id="obras" className={styles.seccion}>
-      <Forma tipo="brocha" colores={["plum", "rose"]} duracion={5} className={styles.brocha} />
-      <Forma tipo="gota" colores={["sky"]} duracion={3.6} className={styles.gota} />
-
       <div className="container">
         <EncabezadoSeccion
           titulo={
@@ -52,18 +49,31 @@ function ObrasList() {
           )}
         </EncabezadoSeccion>
 
-        <EstadoDeDatos
-          loading={loading}
-          error={error}
-          vacio={lista.length === 0}
-          textoVacio="Todavía no hay obras para mostrar."
-        >
-          <div className={styles.grilla}>
-            {obrasVisibles.map((obra) => (
-              <ObraCard key={obra._id} obra={obra} />
-            ))}
-          </div>
-        </EstadoDeDatos>
+        {/* las formas se miden desde el borde de arriba y de abajo de esta zona (la grilla de obras), asi quedan siempre pegadas a las tarjetas */}
+        <div className={styles.zonaGrilla}>
+          {/* paradas sobre las tarjetas de arriba, a la derecha, donde no hay titular ni filtros */}
+          <Forma tipo="lapiz" colores={["plum"]} className={`${styles.deco} ${styles.lapiz}`} />
+          <Forma tipo="brocha" colores={["plum", "rose"]} duracion={5} className={`${styles.deco} ${styles.brocha}`} />
+          <Forma tipo="gota" colores={["sky"]} duracion={3.6} className={`${styles.deco} ${styles.gotaUno}`} />
+          <Forma tipo="gota" colores={["rose"]} duracion={4.4} className={`${styles.deco} ${styles.solo} ${styles.gotaDos}`} />
+          <Forma tipo="mariposa" colores={["rose", "plum"]} vuela className={`${styles.deco} ${styles.solo} ${styles.mariposa}`} />
+          {/* estas dos se asoman por detras de las tarjetas */}
+          <Forma tipo="acuarela" colores={["sky"]} className={`${styles.deco} ${styles.solo} ${styles.detras} ${styles.acuarela}`} />
+          <Forma tipo="flor" colores={["white", "rose"]} duracion={28} className={`${styles.deco} ${styles.solo} ${styles.detras} ${styles.flor}`} />
+
+          <EstadoDeDatos
+            loading={loading}
+            error={error}
+            vacio={lista.length === 0}
+            textoVacio="Todavía no hay obras para mostrar."
+          >
+            <div className={styles.grilla}>
+              {obrasVisibles.map((obra) => (
+                <ObraCard key={obra._id} obra={obra} />
+              ))}
+            </div>
+          </EstadoDeDatos>
+        </div>
       </div>
     </section>
   );

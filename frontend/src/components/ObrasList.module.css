@@ -14,26 +14,85 @@
   color: var(--color-plum-deep);
 }
 
-/* formas de la esquina de arriba a la derecha, detras del texto */
-.brocha,
-.gota {
+/* la zona de la grilla es el punto de referencia de las formas: su borde de arriba es el de las tarjetas de la primera fila */
+.zonaGrilla {
+  position: relative;
+}
+
+/* formas paradas sobre las tarjetas de la primera fila, en la parte derecha del ancho (la izquierda la ocupan la bajada y los filtros)
+   bottom: calc(100% - 2px) las hunde un poquito para que parezca que se apoyan */
+.deco {
   position: absolute;
-  z-index: 0;
   pointer-events: none;
 }
 
-.brocha {
-  top: 56px;
-  right: 4%;
-  width: clamp(4.375rem, 8vw, 8.125rem);
-  height: clamp(4.375rem, 8vw, 8.125rem);
+/* la mariposa, la segunda gota, la acuarela y la flor solo en pantallas anchas, donde hay lugar */
+.solo {
+  display: none;
 }
 
-.gota {
-  top: 70px;
-  right: 14%;
-  width: clamp(1.25rem, 2.2vw, 2.125rem);
-  height: clamp(1.25rem, 2.2vw, 2.125rem);
+/* z-index negativo: pasan por detras de las tarjetas (el contenedor de la seccion tiene su propio z-index, asi que no se van detras del fondo) */
+.detras {
+  z-index: -1;
+}
+
+/* mobile first: tamanos chicos, que entran en el espacio entre los filtros y las tarjetas */
+.lapiz {
+  right: 26%;
+  bottom: calc(100% - 2px);
+  width: clamp(2.75rem, 7vw, 8rem);
+  height: clamp(2.75rem, 7vw, 8rem);
+}
+
+.brocha {
+  right: 6%;
+  bottom: calc(100% - 2px);
+  width: clamp(3rem, 9vw, 10rem);
+  height: clamp(3rem, 9vw, 10rem);
+}
+
+.gotaUno {
+  right: 1%;
+  bottom: calc(100% + 0.5rem);
+  width: clamp(1rem, 2.2vw, 2.25rem);
+  height: clamp(1rem, 2.2vw, 2.25rem);
+}
+
+@media (min-width: 900px) {
+  .solo {
+    display: block;
+  }
+
+  .gotaDos {
+    right: 36%;
+    bottom: calc(100% + 1.25rem);
+    width: clamp(0.875rem, 1.6vw, 1.75rem);
+    height: clamp(0.875rem, 1.6vw, 1.75rem);
+  }
+
+  /* la mariposa vuela mas arriba, a la altura del titular, sin tocar los filtros */
+  .mariposa {
+    right: 40%;
+    bottom: calc(100% + 3.5rem);
+    width: clamp(3.5rem, 6vw, 7rem);
+    height: clamp(3.5rem, 6vw, 7rem);
+  }
+
+  /* mancha de acuarela celeste que se asoma por detras del costado derecho de las tarjetas de arriba */
+  .acuarela {
+    top: 1.5rem;
+    right: -3.5rem;
+    width: clamp(6rem, 11vw, 13rem);
+    height: clamp(6rem, 11vw, 13rem);
+  }
+
+  /* flor blanca asomando por detras de la esquina de abajo a la izquierda de la ultima fila */
+  .flor {
+    bottom: -2.5rem;
+    left: -3rem;
+    width: clamp(5rem, 8vw, 9.5rem);
+    height: clamp(5rem, 8vw, 9.5rem);
+  }
 }
 
 /* el contenido va arriba de las formas */

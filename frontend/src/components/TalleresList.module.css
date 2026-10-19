@@ -11,46 +11,73 @@
   color: var(--color-plum-deep);
 }
 
-/* decoracion de fondo: lineas onduladas a lo ancho y formas en la esquina de arriba a la derecha, todas detras del texto */
-.bandas,
-.brocha,
-.lapiz,
-.gota {
-  z-index: 0;
-  pointer-events: none;
-}
-
+/* decoracion de fondo: lineas onduladas a lo ancho, detras del texto */
 .bandas {
+  z-index: 0;
   top: 120px;
   height: 240px;
   opacity: 0.35;
+  pointer-events: none;
 }
 
-.brocha,
-.lapiz,
-.gota {
+/* la zona de la lista es el punto de referencia de las formas: su borde de arriba es la linea de la lista */
+.zonaLista {
+  position: relative;
+}
+
+/* formas paradas sobre la linea de la lista, en la mitad derecha del ancho (la izquierda la ocupa la bajada)
+   bottom: calc(100% - 2px) las hunde un poquito en la linea para que parezca que se apoyan en ella */
+.deco {
   position: absolute;
+  pointer-events: none;
+}
+
+/* la mariposa y la segunda gota solo en pantallas anchas, donde hay lugar */
+.solo {
+  display: none;
+}
+
+/* mobile first: tamanos chicos, que entran en el espacio entre la bajada y la lista */
+.lapiz {
+  right: 24%;
+  bottom: calc(100% - 2px);
+  width: clamp(2.75rem, 7vw, 8rem);
+  height: clamp(2.75rem, 7vw, 8rem);
 }
 
 .brocha {
-  top: 56px;
-  right: 5%;
-  width: clamp(4.75rem, 9vw, 9.375rem);
-  height: clamp(4.75rem, 9vw, 9.375rem);
+  right: 6%;
+  bottom: calc(100% - 2px);
+  width: clamp(3rem, 10vw, 11rem);
+  height: clamp(3rem, 10vw, 11rem);
 }
 
-.lapiz {
-  top: 110px;
-  right: 16%;
-  width: clamp(3.125rem, 6vw, 6rem);
-  height: clamp(3.125rem, 6vw, 6rem);
+.gotaUno {
+  right: 1%;
+  bottom: calc(100% + 0.5rem);
+  width: clamp(1rem, 2.2vw, 2.25rem);
+  height: clamp(1rem, 2.2vw, 2.25rem);
 }
 
-.gota {
-  top: 200px;
-  right: 2%;
-  width: clamp(1.25rem, 2.2vw, 2.125rem);
-  height: clamp(1.25rem, 2.2vw, 2.125rem);
+@media (min-width: 900px) {
+  .solo {
+    display: block;
+  }
+
+  .gotaDos {
+    right: 33%;
+    bottom: calc(100% + 1.25rem);
+    width: clamp(0.875rem, 1.6vw, 1.75rem);
+    height: clamp(0.875rem, 1.6vw, 1.75rem);
+  }
+
+  /* la mariposa vuela mas arriba, entre el lapiz y el centro de la pagina */
+  .mariposa {
+    right: 38%;
+    bottom: calc(100% + 3rem);
+    width: clamp(3.5rem, 6vw, 7rem);
+    height: clamp(3.5rem, 6vw, 7rem);
+  }
 }
 
 /* el contenido va arriba de la decoracion */

@@ -43,6 +43,14 @@ function SobreSara() {
         </h2>
 
         <div className={styles.columnas}>
+          {/* parados sobre las columnas, a la derecha del titular, donde no hay texto; solo en pantallas anchas */}
+          <Forma tipo="pincel" colores={["yellow", "white"]} duracion={4.5} className={`${styles.deco} ${styles.solo} ${styles.pincel}`} />
+          <Forma tipo="mariposa" colores={["yellow", "white"]} vuela className={`${styles.deco} ${styles.solo} ${styles.mariposa}`} />
+          <Forma tipo="gota" colores={["white"]} duracion={3.6} className={`${styles.deco} ${styles.solo} ${styles.gotaBlanca}`} />
+          <Forma tipo="gota" colores={["yellow"]} duracion={4.4} className={`${styles.deco} ${styles.solo} ${styles.gotaAmarilla}`} />
+          {/* debajo de las etiquetas, cierra la seccion */}
+          <Forma tipo="brocha" colores={["white", "yellow"]} duracion={5} className={`${styles.deco} ${styles.solo} ${styles.brocha}`} />
+
           <div className={styles.retrato}>
             {/* arco: redondo arriba y con esquinas suaves abajo; sin foto queda el azul de fondo */}
             <div className={styles.arco}>
@@ -50,8 +58,10 @@ function SobreSara() {
                 <img src={imagenSobreSara} alt="Retrato de Sara Figarra" className={styles.imagen} />
               )}
             </div>
+            {/* una forma en cada esquina del arco: lapiz arriba a la izquierda, gota arriba a la derecha, flor abajo a la derecha y acuarela abajo a la izquierda */}
+            <Forma tipo="lapiz" colores={["yellow"]} className={styles.lapiz} />
+            <Forma tipo="gota" colores={["yellow-soft"]} duracion={3.2} className={styles.gotaArco} />
             <Forma tipo="flor" colores={["yellow", "rose"]} duracion={24} className={styles.flor} />
-            <Forma tipo="lapiz" colores={["rose"]} className={styles.lapiz} />
             <Forma tipo="acuarela" colores={["rose-soft"]} className={styles.acuarela} />
           </div>
 

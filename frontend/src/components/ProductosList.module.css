@@ -13,26 +13,95 @@
   color: var(--color-white);
 }
 
-/* formas de la esquina de arriba a la derecha, detras del texto */
-.pomo,
-.acuarela {
+/* formas decorativas: todas absolutas, detras del contenido y sin recibir clics
+   lo que va arriba (tubo, acuarela y gotas) se mide desde el borde de arriba y lo de abajo desde el de abajo, asi no se corren cuando
+   la seccion crece o se achica segun cuantos productos haya */
+.deco {
   position: absolute;
   z-index: 0;
   pointer-events: none;
 }
 
+/* las que solo aparecen en pantallas anchas, donde sobra lugar a los costados */
+.solo {
+  display: none;
+}
+
+/* el tubo esta parado con la pintura saliendo por abajo, y la mancha de acuarela queda justo debajo: parece que la esta soltando
+   en celular van chicos en el hueco de arriba, antes del titular */
 .pomo {
-  top: 44px;
-  right: 4%;
-  width: clamp(4rem, 7vw, 7.25rem);
-  height: clamp(4rem, 7vw, 7.25rem);
+  top: 3.75rem;
+  right: 8%;
+  width: clamp(3rem, 8vw, 9.5rem);
+  height: clamp(3rem, 8vw, 9.5rem);
 }
 
 .acuarela {
-  top: 36px;
-  right: 13%;
-  width: clamp(3.125rem, 6vw, 6rem);
-  height: clamp(3.125rem, 6vw, 6rem);
+  top: 5rem;
+  right: 3%;
+  width: clamp(3.5rem, 12vw, 14rem);
+  height: clamp(3.5rem, 12vw, 14rem);
+}
+
+.gotaUno {
+  top: clamp(4.5rem, 10vw, 11rem);
+  right: 21%;
+  width: clamp(1rem, 2vw, 2.25rem);
+  height: clamp(1rem, 2vw, 2.25rem);
+}
+
+.gotaDos {
+  top: clamp(7rem, 13vw, 14rem);
+  right: 17%;
+  width: clamp(0.75rem, 1.5vw, 1.75rem);
+  height: clamp(0.75rem, 1.5vw, 1.75rem);
+}
+
+@media (min-width: 1000px) {
+  .solo {
+    display: block;
+  }
+
+  /* flor mitad fuera de la pantalla, en el margen izquierdo a la altura de la primera fila de tarjetas */
+  .flor {
+    top: 30%;
+    left: -3.5rem;
+    width: clamp(7rem, 11vw, 13rem);
+    height: clamp(7rem, 11vw, 13rem);
+  }
+
+  /* el lapiz sale de atras de la columna de la derecha, inclinado */
+  .lapiz {
+    top: 48%;
+    right: -1.25rem;
+    width: clamp(5.5rem, 9vw, 10.5rem);
+    height: clamp(5.5rem, 9vw, 10.5rem);
+    rotate: -38deg;
+  }
+
+  /* la brocha asoma por la izquierda, mas abajo, cruzada */
+  .brocha {
+    top: 62%;
+    left: -1rem;
+    width: clamp(5rem, 8vw, 9.5rem);
+    height: clamp(5rem, 8vw, 9.5rem);
+    rotate: 28deg;
+  }
+
+  /* el sol en la esquina de abajo a la derecha, cortado por el borde */
+  .sol {
+    right: -3rem;
+    bottom: 1.5rem;
+    width: clamp(7rem, 11vw, 12.5rem);
+    height: clamp(7rem, 11vw, 12.5rem);
+  }
+
+  .gotaTres {
+    bottom: clamp(4rem, 7vw, 7rem);
+    left: 7%;
+    width: clamp(1.25rem, 2.2vw, 2.5rem);
+    height: clamp(1.25rem, 2.2vw, 2.5rem);
+  }
 }
 
 /* el contenido va arriba de las formas */
