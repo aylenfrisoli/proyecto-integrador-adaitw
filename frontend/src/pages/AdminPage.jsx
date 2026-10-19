@@ -16,7 +16,7 @@ const PANELES = [
   { id: "obras", nombre: "Obras", componente: ObrasAdmin },
   { id: "productos", nombre: "Productos", componente: ProductosAdmin },
   { id: "talleres", nombre: "Talleres", componente: TalleresAdmin },
-  { id: "portada", nombre: "Portada", componente: PortadaAdmin },
+  { id: "web", nombre: "Web", componente: PortadaAdmin },
 ];
 
 // estructura del panel de administracion: cabecera con acciones, pestañas y el panel de la seccion elegida

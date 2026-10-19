@@ -1,4 +1,4 @@
-import { IMAGEN_RETRATO_SARA } from "../config/imagenes";
+import useFetch from "../hooks/useFetch";
 import Forma from "./Forma";
 import styles from "./SobreSara.module.css";
 
@@ -28,6 +28,9 @@ const ETIQUETAS = [
 
 // presentacion de sara: el titular grande arriba y debajo dos columnas, el retrato a la izquierda y el texto con las etiquetas a la derecha
 function SobreSara() {
+  const { data: configuracion } = useFetch("/configuracion");
+  const imagenSobreSara = configuracion?.imagenSobreSara;
+
   return (
     <section id="sobre-sara" className={styles.seccion}>
       <div className="container">
@@ -43,8 +46,8 @@ function SobreSara() {
           <div className={styles.retrato}>
             {/* arco: redondo arriba y con esquinas suaves abajo; sin foto queda el azul de fondo */}
             <div className={styles.arco}>
-              {IMAGEN_RETRATO_SARA && (
-                <img src={IMAGEN_RETRATO_SARA} alt="Retrato de Sara Figarra" className={styles.imagen} />
+              {imagenSobreSara && (
+                <img src={imagenSobreSara} alt="Retrato de Sara Figarra" className={styles.imagen} />
               )}
             </div>
             <Forma tipo="flor" colores={["yellow", "rose"]} duracion={24} className={styles.flor} />
