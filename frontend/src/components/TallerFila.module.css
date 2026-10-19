@@ -125,6 +125,8 @@
   margin: 0;
   font-family: var(--font-acento);
   font-size: 1.25rem;
+  /* ocupa el lugar del boton de inscripcion: el cursor avisa que ya no se puede (cupo completo o taller finalizado) */
+  cursor: not-allowed;
 }
 
 @media (min-width: 700px) {

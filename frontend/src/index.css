@@ -115,12 +115,26 @@ img {
 }
 
 /* mano en todo lo que se puede tocar; :where() le saca especificidad para que el cursor propio de un componente (ej: wait al guardar) siga ganando */
-:where(a[href], button, select, summary, [role="button"]) {
+:where(a[href], button, select, summary, [role="button"], input[type="file"]) {
   cursor: pointer;
 }
 
-/* va despues de la regla de arriba para pisarla: un control deshabilitado muestra que no se puede usar */
-:where(button:disabled, select:disabled, input:disabled) {
+/* el navegador deja la flecha comun en el boton "elegir archivo" y en el icono del calendario de las fechas; van en reglas separadas
+   porque si un navegador no conoce uno de los dos pseudo-elementos descarta toda la regla */
+:where(input[type="file"])::file-selector-button {
+  cursor: pointer;
+}
+
+:where(input[type="date"], input[type="datetime-local"])::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+/* va despues de las reglas de arriba para pisarlas: un control deshabilitado muestra que no se puede usar */
+:where(button:disabled, select:disabled, input:disabled, textarea:disabled) {
+  cursor: not-allowed;
+}
+
+:where(input[type="file"]:disabled)::file-selector-button {
   cursor: not-allowed;
 }
 
