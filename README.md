@@ -46,7 +46,7 @@ cd backend
 npm install
 cp .env.example .env     # abrí el .env y completá los valores (ver la tabla de variables)
 npm run seed             # crea la cuenta de administradora con el email y la contraseña del .env
-npm run seed:demo        # opcional: carga obras, productos, talleres y ediciones de la caminata de ejemplo
+npm run seed:demo        # opcional: carga categorías, obras, productos y talleres de ejemplo
 npm run dev              # levanta la API en http://localhost:3000
 ```
 
@@ -80,12 +80,10 @@ npm run dev              # levanta el sitio en http://localhost:5173
 | `npm run build`          | compila TypeScript a la carpeta `dist/`                                         |
 | `npm start`              | corre la versión compilada (`dist/server.js`)                                   |
 | `npm run seed`           | crea la cuenta admin; si ya existe, no la duplica                               |
-| `npm run seed:demo`      | carga categorías, obras, productos, talleres y ediciones de la caminata de ejemplo con imágenes de relleno |
+| `npm run seed:demo`      | carga categorías, obras, productos y talleres de ejemplo con imágenes de relleno |
 | `npm run seed:demo:borrar` | borra solo los datos que cargó el seed demo, sin tocar lo cargado desde el panel |
 
 El seed demo escribe en la base que indique `MONGO_URI`, así que si apunta a Atlas también se ve en la API deployada. Los datos de ejemplo quedan cargados en producción hasta que Sara suba su contenido real; entonces se sacan con `seed:demo:borrar`, que no toca lo que ella cargue desde el panel.
-
-Con la caminata el seed es más cuidadoso: las ediciones de ejemplo solo se cargan si todavía no hay ninguna, y `seed:demo:borrar` solo borra las que tienen todas las fotos de relleno, así que nunca toca las ediciones reales.
 
 ### Variables de entorno
 
@@ -113,7 +111,7 @@ Con la caminata el seed es más cuidadoso: las ediciones de ejemplo solo se carg
 | -------------- | ------------------------------------------------------------------------------- |
 | `VITE_API_URL` | URL de la API (`http://localhost:3000` en desarrollo, la de Render en producción) |
 
-Las imágenes se eligen desde los formularios y se guardan como Data URLs Base64 en MongoDB. Cada archivo puede pesar hasta 4 MB y la API admite cuerpos de hasta 10 MB en total por envío (si se pasa responde `413`). Por eso las fotos de una edición de la caminata tienen que ser livianas: entre todas no pueden pasar los 10 MB.
+Las imágenes se eligen desde los formularios y se guardan como Data URLs Base64 en MongoDB. Cada archivo puede pesar hasta 4 MB y la API admite cuerpos de hasta 10 MB en total por envío (si se pasa responde `413`).
 
 ## Estructura del backend
 
@@ -126,6 +124,7 @@ backend/src/
 ├── routes/        rutas por entidad
 ├── schemas/       esquemas de Zod
 ├── scripts/       seed de la cuenta admin y seed demo con datos de ejemplo
+├── exportables/   la API de la caminata, sacada del proyecto y guardada para volver a ponerla (ver su LEEME.md)
 ├── app.ts         arma la app de Express
 └── server.ts      conecta la base y levanta el servidor
 ```
@@ -135,9 +134,9 @@ backend/src/
 ```
 frontend/src/
 ├── components/    piezas de la landing (Hero, tarjetas, listas) y del panel (formularios y listas de administración)
-├── config/        URL de la API, secciones de la navbar, datos de contacto (WhatsApp y redes) y el retrato de Sara
+├── config/        URL de la API, secciones de la navbar, datos de contacto (WhatsApp y redes)
 ├── context/       AuthContext: guarda la sesión de la administradora
-├── exportables/   la sección de la caminata y su pestaña del panel, sacadas del sitio y listas para volver a ponerlas (ver su LEEME.md)
+├── exportables/   la sección de la caminata y su pestaña del panel, sacadas del sitio y guardadas para volver a ponerlas (ver su LEEME.md)
 ├── hooks/         useFetch (leer datos), useApi (escribir con el token) y useAccion (estado de cada acción)
 ├── pages/         HomePage, LoginPage, AdminPage y NotFoundPage
 ├── utils/         funciones puras para formatear precios y fechas, filtrar y leer el token
@@ -268,36 +267,6 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 - `modalidad` acepta `presencial` o `virtual`. La `direccion` es obligatoria en los presenciales; en los virtuales no se guarda.
 - `estado` acepta `abierto` (valor por defecto), `completo` o `finalizado`.
 
-### Caminatas
-
-Cada documento es una edición de la caminata de concientización sobre el cáncer de mama (1ª edición, 2ª edición...). Las fotos viven dentro de la edición, no tienen rutas propias. La sección que las muestra está fuera de la landing por ahora y su pestaña del panel también se sacó (el código de ambas está en `frontend/src/exportables/caminata/`), pero la API sigue funcionando completa.
-
-| Método | Ruta              | Acceso  | Descripción                                                    |
-| ------ | ----------------- | ------- | -------------------------------------------------------------- |
-| GET    | `/caminatas`      | público | lista las ediciones, de la más vieja a la más nueva            |
-| GET    | `/caminatas/:id`  | público | trae una edición                                               |
-| POST   | `/caminatas`      | admin   | crea una edición                                               |
-| PUT    | `/caminatas/:id`  | admin   | edita una edición                                              |
-| DELETE | `/caminatas/:id`  | admin   | borra una edición con todas sus fotos                          |
-
-```json
-{
-  "nombre": "1ª edición",
-  "fecha": "2026-03-14T12:00:00-03:00",
-  "lugar": "San Bernardo del Tuyú",
-  "descripcion": "Primera caminata de concientización sobre el cáncer de mama",
-  "fotos": [
-    { "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==", "epigrafe": "La salida" },
-    { "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==" }
-  ]
-}
-```
-
-- `nombre` es la etiqueta del botón de cada edición en la sección de la caminata (hasta 60 caracteres). `lugar` admite hasta 150 y `descripcion` hasta 1000.
-- `fecha` se manda como texto en formato ISO. El panel manda mediodía con offset `-03:00` para que el día no se corra en Argentina.
-- `fotos` es opcional y acepta hasta 30 fotos. Cada una lleva en `url` una Data URL Base64 de imagen de hasta 4 MB y un `epigrafe` opcional de hasta 120 caracteres, que se ve debajo de la foto.
-- Al editar, si el body no trae `fotos` se conservan las que ya tenía; si las trae, reemplazan la lista entera (con `"fotos": []` se vacía).
-
 ### Configuración
 
 Datos sueltos de la landing que Sara cambia desde la pestaña `Web` del panel: la foto de la portada y la foto de la sección «Cada pieza tiene su propia historia». A diferencia de las otras entidades es **un único documento**: no hay lista, ni ids en las rutas, ni `POST` o `DELETE` (el documento se crea solo la primera vez que se guarda).
@@ -343,7 +312,7 @@ Todas las respuestas son JSON. Los errores tienen siempre un campo `message`; lo
 
 ## Pruebas con Postman
 
-La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 85 requests en 8 carpetas (Auth, Categorías, Obras, Productos, Talleres, Caminatas, Configuración, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
+La colección está en [`backend/postman/sara-figarra.postman_collection.json`](backend/postman/sara-figarra.postman_collection.json). Tiene 64 requests en 7 carpetas (Auth, Categorías, Obras, Productos, Talleres, Configuración, y Borrados y limpieza) con casos correctos y de error: `400`, `401`, `404`, `409` y filtros por categoría. Cada request trae sus tests.
 
 ### Cómo usarla
 
