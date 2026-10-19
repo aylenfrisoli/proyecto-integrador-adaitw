@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-// forma de una foto de la caminata en typescript: el link de la imagen y un texto corto que va debajo, como en una polaroid
+// forma de una foto de la caminata en typescript: la data url y un texto corto que va debajo, como en una polaroid
 export interface IFoto {
   url: string;
   // opcional: no todas las fotos necesitan un texto
@@ -23,7 +23,7 @@ const fotoSchema = new Schema<IFoto>(
   {
     url: {
       type: String,
-      required: [true, "la url de la foto es obligatoria"],
+      required: [true, "la foto es obligatoria"],
       trim: true,
     },
     epigrafe: {

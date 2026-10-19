@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { urlImagen } from "./comun.schema";
+import { imagenBase64 } from "./comun.schema";
 
 // tope de fotos por edicion: evita documentos enormes y una galeria imposible de recorrer
 const MAX_FOTOS = 30;
 
 // reglas de cada foto de la lista
 const fotoSchema = z.object({
-  url: urlImagen,
+  url: imagenBase64,
   epigrafe: z
     .string({ error: "el epigrafe tiene que ser texto" })
     .trim()

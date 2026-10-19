@@ -7,7 +7,7 @@ export async function getConfiguracion(_req: Request, res: Response): Promise<vo
   const configuracion = await Configuracion.findOne();
 
   // si todavia no se guardo nada se responde el valor por defecto, asi el front no tiene que manejar un 404
-  res.json(configuracion ?? { imagenPortada: "" });
+  res.json(configuracion ?? { imagenPortada: "", imagenSobreSara: "" });
 }
 
 // guarda la configuracion y devuelve el documento ya actualizado

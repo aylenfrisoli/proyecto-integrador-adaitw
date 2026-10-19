@@ -24,7 +24,7 @@ const obraSchema = new Schema<IObra>(
     },
     imagen: {
       type: String,
-      // solo guardamos la url, la imagen vive en otro servicio (no subimos archivos)
+      // guarda la data url completa de la imagen
       required: [true, "la imagen es obligatoria"],
       trim: true,
     },
