@@ -113,6 +113,8 @@ Con la caminata el seed es más cuidadoso: las ediciones de ejemplo solo se carg
 | -------------- | ------------------------------------------------------------------------------- |
 | `VITE_API_URL` | URL de la API (`http://localhost:3000` en desarrollo, la de Render en producción) |
 
+Las imágenes se eligen desde los formularios y se guardan como Data URLs Base64 en MongoDB. Cada archivo puede pesar hasta 4 MB; la API admite cuerpos de hasta 10 MB.
+
 ## Estructura del backend
 
 ```
@@ -149,7 +151,7 @@ frontend/src/
 | --------------------- | --------- | ------------------------------------------------------------ |
 | `/`                   | público   | landing con obras, productos, talleres y la sección sobre Sara |
 | `/login`              | público   | formulario de ingreso de la administradora                   |
-| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `portada` |
+| `/admin/:seccion`     | con sesión | panel con las pestañas `categorias`, `obras`, `productos`, `talleres` y `web` |
 | cualquier otra ruta   | público   | página 404                                                   |
 
 `/admin` redirige a `/admin/categorias`. Si alguien entra al panel sin sesión, lo manda al login; si el token vence, cierra la sesión solo.
@@ -211,7 +213,7 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
 {
   "titulo": "Atardecer",
   "descripcion": "Óleo sobre tela, 60 x 80 cm",
-  "imagen": "https://ejemplo.com/atardecer.jpg",
+  "imagen": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==",
   "categoria": "<id de una categoría existente>"
 }
 ```
@@ -231,7 +233,7 @@ Credenciales incorrectas responden `401` con el mismo mensaje, exista o no el em
   "titulo": "Print Atardecer",
   "descripcion": "Impresión de edición limitada",
   "precio": 15000,
-  "imagen": "https://ejemplo.com/print.jpg",
+  "imagen": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==",
   "mensajeWhatsapp": "Hola Sara, me interesa el print Atardecer",
   "disponibilidad": "disponible",
   "categoria": "<id de una categoría existente>"
@@ -285,33 +287,35 @@ Cada documento es una edición de la caminata de concientización sobre el cánc
   "lugar": "San Bernardo del Tuyú",
   "descripcion": "Primera caminata de concientización sobre el cáncer de mama",
   "fotos": [
-    { "url": "https://ejemplo.com/salida.jpg", "epigrafe": "La salida" },
-    { "url": "https://ejemplo.com/llegada.jpg" }
+    { "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==", "epigrafe": "La salida" },
+    { "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==" }
   ]
 }
 ```
 
 - `nombre` es la etiqueta del botón de cada edición en la sección de la caminata (hasta 60 caracteres). `lugar` admite hasta 150 y `descripcion` hasta 1000.
 - `fecha` se manda como texto en formato ISO. El panel manda mediodía con offset `-03:00` para que el día no se corra en Argentina.
-- `fotos` es opcional y acepta hasta 30 fotos. Cada una lleva la `url` de un link directo a la imagen (solo `http` y `https`) y un `epigrafe` opcional de hasta 120 caracteres, que se ve debajo de la foto.
+- `fotos` es opcional y acepta hasta 30 fotos. Cada una lleva en `url` una Data URL Base64 de imagen de hasta 4 MB y un `epigrafe` opcional de hasta 120 caracteres, que se ve debajo de la foto.
 - Al editar, si el body no trae `fotos` se conservan las que ya tenía; si las trae, reemplazan la lista entera (con `"fotos": []` se vacía).
 
 ### Configuración
 
-Datos sueltos de la landing que Sara cambia desde el panel. Por ahora es solo la foto de la portada. A diferencia de las otras entidades es **un único documento**: no hay lista, ni ids en las rutas, ni `POST` o `DELETE` (el documento se crea solo la primera vez que se guarda).
+Datos sueltos de la landing que Sara cambia desde la pestaña `Web` del panel: la foto de la portada y la foto de la sección «Cada pieza tiene su propia historia». A diferencia de las otras entidades es **un único documento**: no hay lista, ni ids en las rutas, ni `POST` o `DELETE` (el documento se crea solo la primera vez que se guarda).
 
 | Método | Ruta             | Acceso  | Descripción                                                                |
 | ------ | ---------------- | ------- | -------------------------------------------------------------------------- |
-| GET    | `/configuracion` | público | trae la configuración; si todavía no se guardó nada responde `{ "imagenPortada": "" }` |
+| GET    | `/configuracion` | público | trae la configuración; si todavía no se guardó nada responde ambos campos como texto vacío |
 | PUT    | `/configuracion` | admin   | guarda la configuración (la crea si no existe)                             |
 
 ```json
 {
-  "imagenPortada": "https://ejemplo.com/portada.jpg"
+  "imagenPortada": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==",
+  "imagenSobreSara": ""
 }
 ```
 
-- `imagenPortada` es obligatorio y tiene que ser un link directo a la imagen (solo `http` y `https`).
+- `imagenPortada` es obligatorio y tiene que ser una Data URL Base64 de imagen de hasta 4 MB.
+- `imagenSobreSara` es opcional para mantener compatibilidad con clientes anteriores; si se envía, tiene que ser una Data URL Base64 de imagen de hasta 4 MB.
 - Un texto vacío (`""`) es válido y quiere decir "sin foto": la landing muestra un bloque de color en su lugar. Así se saca la foto desde el panel.
 
 ## Respuestas y errores
@@ -368,10 +372,9 @@ Corrida completa: todos los requests y aserciones en verde. La colección borra 
 - Contraseña hasheada con `bcrypt`; el login responde igual si el email no existe, para no revelar qué cuentas hay, y compara siempre contra un hash para evitar timing attacks.
 - Sesión con JWT; las escrituras verifican el token antes de analizar el body.
 - Rate limit en el login contra ataques de fuerza bruta.
-- Validación de todos los datos de entrada con Zod, incluidas las URLs de imágenes (solo `http` y `https`).
+- Validación de todos los datos de entrada con Zod, incluidas las Data URLs de imágenes (hasta 4 MB por archivo).
 - Headers de seguridad con `helmet` y `cors` restringido al front configurado.
 
 ## Mejoras a futuro
 
-- Subir las imágenes desde el panel en lugar de pegar la URL.
 - Reemplazar el número de WhatsApp de ejemplo por el real en `frontend/src/config/contacto.js`.

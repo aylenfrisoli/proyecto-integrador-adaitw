@@ -616,7 +616,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -699,7 +699,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"000000000000000000000000\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"000000000000000000000000\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -743,7 +743,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -920,7 +920,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Atardecer (editada)\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Atardecer (editada)\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -962,7 +962,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"No existe\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"https://ejemplo.com/obra.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"No existe\",\n  \"descripcion\": \"Oleo sobre tela, 60 x 80 cm\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1009,7 +1009,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": 15000,\n  \"mensajeWhatsapp\": \"Hola Sara, me interesa el print\",\n  \"disponibilidad\": \"disponible\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": 15000,\n  \"mensajeWhatsapp\": \"Hola Sara, me interesa el print\",\n  \"disponibilidad\": \"disponible\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1055,7 +1055,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1097,7 +1097,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"disponibilidad\": \"regalado\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"disponibilidad\": \"regalado\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1138,7 +1138,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": -5,\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": -5,\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1182,7 +1182,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1358,7 +1358,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": null,\n  \"disponibilidad\": \"agotado\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"precio\": null,\n  \"disponibilidad\": \"agotado\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1400,7 +1400,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"https://ejemplo.com/print.jpg\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
+              "raw": "{\n  \"titulo\": \"Print Atardecer\",\n  \"descripcion\": \"Impresion de edicion limitada\",\n  \"imagen\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n  \"categoria\": \"{{categoriaId}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1854,7 +1854,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": [\n    {\n      \"url\": \"https://placehold.co/600x600/f6cbd5/9f7657.png?text=Postman1\",\n      \"epigrafe\": \"  Salida desde la costanera  \"\n    },\n    {\n      \"url\": \"https://placehold.co/600x600/ebceff/9f7657.png?text=Postman2\",\n      \"epigrafe\": \"\"\n    }\n  ]\n}",
+              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": [\n    {\n      \"url\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n      \"epigrafe\": \"  Salida desde la costanera  \"\n    },\n    {\n      \"url\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n      \"epigrafe\": \"\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1991,7 +1991,7 @@
           }
         },
         {
-          "name": "Crear edicion con una foto que no es http o https (400)",
+          "name": "Crear edicion con una Data URL invalida (400)",
           "event": [
             {
               "listen": "test",
@@ -2041,7 +2041,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "// 31 fotos: una mas que el maximo permitido",
-                  "const fotos = Array.from({ length: 31 }, (_, i) => ({ url: \"https://placehold.co/100x100.png?text=\" + i }));",
+                  "const fotos = Array.from({ length: 31 }, () => ({ url: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\" }));",
                   "pm.request.body.update(JSON.stringify({ nombre: \"Edicion con demasiadas fotos\", fecha: \"2026-04-12T12:00:00-03:00\", lugar: \"Lugar\", descripcion: \"Descripcion\", fotos }));"
                 ]
               }
@@ -2296,7 +2296,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman (editada)\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": [\n    {\n      \"url\": \"https://placehold.co/600x600/c4dcff/9f7657.png?text=Postman3\",\n      \"epigrafe\": \"Una sola foto\"\n    }\n  ]\n}",
+              "raw": "{\n  \"nombre\": \"Edicion de prueba Postman (editada)\",\n  \"fecha\": \"2026-04-12T12:00:00-03:00\",\n  \"lugar\": \"Costanera de prueba\",\n  \"descripcion\": \"Edicion creada por la coleccion de Postman\",\n  \"fotos\": [\n    {\n      \"url\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\",\n      \"epigrafe\": \"Una sola foto\"\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2547,7 +2547,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"imagenPortada\": \"https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman\"\n}",
+              "raw": "{\n  \"imagenPortada\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2560,7 +2560,7 @@
           }
         },
         {
-          "name": "Guardar una imagen que no es http o https (400)",
+          "name": "Guardar una imagen en formato invalido (400)",
           "event": [
             {
               "listen": "test",
@@ -2592,7 +2592,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"imagenPortada\": \"javascript:alert(1)\"\n}",
+              "raw": "{\n  \"imagenPortada\": \"esto-no-es-una-data-url\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2652,7 +2652,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"guarda la url sin espacios\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman\"));"
+                  "pm.test(\"guarda la data url sin espacios\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\"));"
                 ]
               }
             }
@@ -2676,7 +2676,7 @@
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"imagenPortada\": \"  https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman  \"\n}",
+              "raw": "{\n  \"imagenPortada\": \"  data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==  \"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2694,7 +2694,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"responde 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"devuelve la foto que se guardo\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"https://placehold.co/1200x750/1b87b6/ffffff.png?text=Portada+Postman\"));"
+                  "pm.test(\"devuelve la foto que se guardo\", () => pm.expect(pm.response.json().imagenPortada).to.eql(\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjwvc3ZnPg==\"));"
                 ]
               }
             }
