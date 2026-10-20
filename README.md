@@ -3,7 +3,8 @@
 Sitio de **Sara Figarra** (SAF Creaciones para Vos), artista plástica: una landing pública con sus obras, productos y talleres, y un panel de administración desde el que ella carga y edita el contenido.
 
 - **API deployada:** https://proyecto-integrador-adaitw.onrender.com
-- **Web deployada:** https://proyecto-integrador-adaitw.onrender.com
+- **Web deployada:** https://safcreacionesparavos.vercel.app/
+- **Panel deployada:** https://safcreacionesparavos.vercel.app/login
 - **Repositorio:** https://github.com/aylenfrisoli/proyecto-integrador-adaitw monorepo con las carpetas `backend/` (API REST con Express y MongoDB) y `frontend/` (React con Vite).
 
 > Render puede tardar unos segundos en responder la primera vez si la API estuvo inactiva.
